@@ -909,7 +909,8 @@ a {
     background: rgba(0, 0, 0, 0.04);
 }
 
-/* ----- Project Requirements Badges ----- */
+/* ----- Project Proficiencies Badges ----- */
+.project-proficiencies,
 .project-requirements {
     display: flex;
     flex-wrap: wrap;
@@ -924,15 +925,18 @@ a {
     transition: all 0.3s ease;
 }
 
+:root.light-mode .project-proficiencies,
 :root.light-mode .project-requirements {
     background: rgba(0, 0, 0, 0.02);
 }
 
+.project-card:hover .project-proficiencies,
 .project-card:hover .project-requirements {
     border-color: var(--border-hover);
     background: rgba(255, 255, 255, 0.04);
 }
 
+.prof-label,
 .req-label {
     display: inline-flex;
     align-items: center;
@@ -945,10 +949,12 @@ a {
     margin-right: 0.2rem;
 }
 
+.prof-label svg,
 .req-label svg {
     color: var(--fg-faint);
 }
 
+.prof-tag,
 .req-badge {
     display: inline-flex;
     align-items: center;
@@ -960,53 +966,132 @@ a {
     transition: all 0.2s ease;
 }
 
+.prof-tag-purple,
 .req-badge-purple {
     background: rgba(168, 85, 247, 0.12);
     color: #c084fc;
     border: 1px solid rgba(168, 85, 247, 0.3);
 }
 
+.prof-tag-blue,
 .req-badge-blue {
     background: rgba(59, 130, 246, 0.12);
     color: #60a5fa;
     border: 1px solid rgba(59, 130, 246, 0.3);
 }
 
+.prof-tag-cyan,
 .req-badge-cyan {
     background: rgba(6, 182, 212, 0.12);
     color: #22d3ee;
     border: 1px solid rgba(6, 182, 212, 0.3);
 }
 
+.prof-tag-pink,
 .req-badge-pink {
     background: rgba(236, 72, 153, 0.12);
     color: #f472b6;
     border: 1px solid rgba(236, 72, 153, 0.3);
 }
 
+:root.light-mode .prof-tag-purple,
 :root.light-mode .req-badge-purple {
     background: rgba(168, 85, 247, 0.1);
     color: #7e22ce;
     border-color: rgba(168, 85, 247, 0.35);
 }
 
+:root.light-mode .prof-tag-blue,
 :root.light-mode .req-badge-blue {
     background: rgba(59, 130, 246, 0.1);
     color: #1d4ed8;
     border-color: rgba(59, 130, 246, 0.35);
 }
 
+:root.light-mode .prof-tag-cyan,
 :root.light-mode .req-badge-cyan {
     background: rgba(6, 182, 212, 0.1);
     color: #0e7490;
     border-color: rgba(6, 182, 212, 0.35);
 }
 
+:root.light-mode .prof-tag-pink,
 :root.light-mode .req-badge-pink {
     background: rgba(236, 72, 153, 0.1);
     color: #be185d;
     border-color: rgba(236, 72, 153, 0.35);
 }
+
+/* ----- Hero Core Proficiencies Showcase ----- */
+.hero-proficiencies {
+    margin-top: 1.6rem;
+    max-width: 620px;
+    margin-left: auto;
+    margin-right: auto;
+    animation: taglineFadeIn 1.2s var(--ease-out) both;
+    animation-delay: 0.85s;
+}
+
+.proficiencies-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--fg-faint);
+    margin-bottom: 0.65rem;
+}
+
+.proficiencies-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.45rem;
+}
+
+.prof-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.76rem;
+    font-weight: 500;
+    padding: 0.3rem 0.75rem;
+    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    color: var(--fg);
+    letter-spacing: 0.01em;
+    transition: all 0.25s ease;
+}
+
+.prof-badge:hover {
+    border-color: var(--border-hover);
+    background: rgba(255, 255, 255, 0.07);
+    transform: translateY(-2px);
+}
+
+:root.light-mode .prof-badge {
+    background: rgba(0, 0, 0, 0.03);
+}
+
+:root.light-mode .prof-badge:hover {
+    background: rgba(0, 0, 0, 0.06);
+}
+
+.prof-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.prof-python .prof-dot { background: #38bdf8; box-shadow: 0 0 8px rgba(56, 189, 248, 0.6); }
+.prof-js .prof-dot { background: #facc15; box-shadow: 0 0 8px rgba(250, 204, 21, 0.6); }
+.prof-node .prof-dot { background: #22c55e; box-shadow: 0 0 8px rgba(34, 197, 94, 0.6); }
+.prof-webrtc .prof-dot { background: #a855f7; box-shadow: 0 0 8px rgba(168, 85, 247, 0.6); }
+.prof-fastapi .prof-dot { background: #14b8a6; box-shadow: 0 0 8px rgba(20, 184, 166, 0.6); }
+.prof-iot .prof-dot { background: #f97316; box-shadow: 0 0 8px rgba(249, 115, 22, 0.6); }
+.prof-android .prof-dot { background: #10b981; box-shadow: 0 0 8px rgba(16, 185, 129, 0.6); }
+.prof-compose .prof-dot { background: #ec4899; box-shadow: 0 0 8px rgba(236, 72, 153, 0.6); }
 
 .project-read-more {
     display: inline-block;
