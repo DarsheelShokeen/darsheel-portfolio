@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlbumCanvas — Dynamic Live Wallpaper & Widgets for Android</title>
+    <meta name="description" content="AlbumCanvas dynamically transforms currently playing music artwork into ambient wallpapers and Material You home screen widgets with real-time palette extraction.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon.png">
+    <link rel="shortcut icon" href="favicon.ico">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <div class="nav-left">
+                <a href="../projects.html" class="pill-btn">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg>
+                    Portfolio
+                </a>
+                <div class="brand-badge">
+                    <div class="brand-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+                    </div>
+                    <div class="brand-text">
+                        <h1>AlbumCanvas</h1>
+                        <span>Native Android • Jetpack Compose</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nav-right">
+                <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle theme">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <!-- Hero Header -->
+        <header class="hero-header">
+            <div class="hero-tag">Android App & Wallpaper Service</div>
+            <h1 class="hero-title">AlbumCanvas</h1>
+            <p class="hero-desc">
+                Dynamically turns currently playing music artwork into ambient wallpapers and Material You home screen widgets with real-time palette extraction.
+            </p>
+        </header>
+
+        <!-- Interactive Playground -->
+        <div class="playground-grid">
+            <!-- Left: Phone Simulator Frame -->
+            <div class="phone-mockup-wrapper">
+                <div class="phone-frame">
+                    <div class="phone-screen">
+                        <!-- Dynamic Wallpaper Background (Blur) -->
+                        <div class="wallpaper-bg" id="wallpaper-bg"></div>
+                        <div class="wallpaper-scrim" id="wallpaper-scrim"></div>
+
+                        <!-- Phone UI -->
+                        <div class="phone-content">
+                            <!-- Status Bar -->
+                            <div class="phone-status-bar">
+                                <span id="phone-clock">12:00</span>
+                                <div style="display: flex; gap: 6px; align-items: center;">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L12 22l7.03-4.39C20.26 16.07 21 14.12 21 12c0-4.97-4.03-9-9-9z"/></svg>
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4C7.31 4 3.07 5.9 0 8.98L12 21 24 8.98C20.93 5.9 16.69 4 12 4z"/></svg>
+                                    <svg width="14" height="10" viewBox="0 0 24 14" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="1" width="18" height="12" rx="2"/><path d="M22 5v4"/></svg>
+                                </div>
+                            </div>
+
+                            <!-- View A: Wallpaper Mode -->
+                            <div class="wallpaper-view" id="wallpaper-view">
+                                <div class="phone-clock">12:00</div>
+                                <div class="phone-date" id="phone-date">Sat, Oct 17</div>
+
+                                <div class="album-art-card" id="album-art-card">
+                                    <img src="" id="album-art-img" class="album-art-img" alt="Album Cover">
+                                </div>
+
+                                <div class="song-title" id="song-title">Song Title</div>
+                                <div class="song-artist" id="song-artist">Artist Name</div>
+                            </div>
+
+                            <!-- View B: Widget Mode -->
+                            <div class="widget-view" id="widget-view">
+                                <div class="material-widget" id="material-widget">
+                                    <div class="widget-top">
+                                        <img src="" id="widget-art" class="widget-art" alt="Widget Art">
+                                        <div class="widget-info">
+                                            <div class="widget-title" id="widget-title">Song Title</div>
+                                            <div class="widget-artist" id="widget-artist">Artist Name</div>
+                                        </div>
+                                    </div>
+                                    <div class="widget-progress">
+                                        <div class="widget-progress-fill"></div>
+                                    </div>
+                                    <div class="widget-controls">
+                                        <div class="widget-ctrl-btn">
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="19 20 9 12 19 4 19 20"/><line x1="5" y1="19" x2="5" y2="5" stroke="currentColor" stroke-width="2"/></svg>
+                                        </div>
+                                        <div class="play-pause-circle">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+                                        </div>
+                                        <div class="widget-ctrl-btn">
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" y1="5" x2="19" y2="19" stroke="currentColor" stroke-width="2"/></svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Bottom pill bar -->
+                            <div style="height: 4px; width: 35%; background: rgba(255,255,255,0.4); border-radius: 100px; margin: 0 auto;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Interactive Control Panel -->
+            <div class="control-panel">
+                <!-- Mode Switcher -->
+                <div class="card">
+                    <h2 class="card-title">Preview Mode</h2>
+                    <p class="card-subtitle">Switch between the Live Wallpaper background and the Material You Widget</p>
+                    <div class="tab-group">
+                        <button class="tab-btn active" id="tab-wallpaper">📱 Live Wallpaper</button>
+                        <button class="tab-btn" id="tab-widget">🧩 Material 3 Widget</button>
+                    </div>
+                </div>
+
+                <!-- Track Selector -->
+                <div class="card">
+                    <h2 class="card-title">Select Music Preset</h2>
+                    <p class="card-subtitle">Test how AlbumCanvas extracts distinct color palettes from different album art</p>
+                    <div class="tracks-grid" id="tracks-container"></div>
+                    
+                    <div style="margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between;">
+                        <span style="font-size: 0.8rem; color: var(--text-secondary);">Or test with your own image:</span>
+                        <label class="pill-btn" style="cursor: pointer;">
+                            <input type="file" id="custom-art-upload" accept="image/*" style="display: none;">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                            Upload Art
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Extracted Palette Swatches -->
+                <div class="card">
+                    <h2 class="card-title">Extracted Palette Swatches</h2>
+                    <p class="card-subtitle">Real-time swatches generated via AndroidX Palette API (Click any hex to copy)</p>
+                    <div class="palette-display" id="palette-container"></div>
+                </div>
+
+                <!-- Customization Controls -->
+                <div class="card">
+                    <h2 class="card-title">Live Wallpaper Customization</h2>
+                    <p class="card-subtitle">Tune the wallpaper appearance in real time just like inside the Android app</p>
+                    
+                    <div class="control-row">
+                        <div class="control-label-wrap">
+                            <span>Gaussian Blur Radius</span>
+                            <span class="control-val" id="val-blur">28px</span>
+                        </div>
+                        <input type="range" id="slider-blur" min="0" max="60" value="28">
+                    </div>
+
+                    <div class="control-row">
+                        <div class="control-label-wrap">
+                            <span>Artwork Dimension</span>
+                            <span class="control-val" id="val-size">190px</span>
+                        </div>
+                        <input type="range" id="slider-size" min="120" max="240" value="190">
+                    </div>
+
+                    <div class="control-row">
+                        <div class="control-label-wrap">
+                            <span>Corner Radius</span>
+                            <span class="control-val" id="val-radius">20px</span>
+                        </div>
+                        <input type="range" id="slider-radius" min="4" max="40" value="20">
+                    </div>
+
+                    <div class="control-row">
+                        <div class="control-label-wrap">
+                            <span>Ambient Vignette / Scrim</span>
+                            <span class="control-val" id="val-scrim">65%</span>
+                        </div>
+                        <input type="range" id="slider-scrim" min="0" max="100" value="65">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Architecture & Features Grid -->
+        <section class="specs-section">
+            <h2 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; letter-spacing: -0.02em;">Technical Architecture & Engineering</h2>
+            <p style="color: var(--text-secondary); font-size: 0.95rem; font-weight: 300;">Built natively from scratch following modern Android development best practices.</p>
+
+            <div class="specs-grid">
+                <div class="spec-card">
+                    <div class="spec-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                    </div>
+                    <h3>Jetpack Compose & Material 3</h3>
+                    <p>Modern declarative UI toolkit featuring adaptive layout support, edge-to-edge rendering, and Material You dynamic color harmonizing.</p>
+                </div>
+
+                <div class="spec-card">
+                    <div class="spec-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                    </div>
+                    <h3>WallpaperService & RenderEffect</h3>
+                    <p>High-performance Android Live Wallpaper service utilizing GPU hardware acceleration and RenderEffect shader blur pipelines.</p>
+                </div>
+
+                <div class="spec-card">
+                    <div class="spec-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+                    </div>
+                    <h3>MediaSessionObserver</h3>
+                    <p>Low-overhead background observer that hooks into active media sessions (Spotify, YouTube Music, Apple Music) with zero battery drain.</p>
+                </div>
+
+                <div class="spec-card">
+                    <div class="spec-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24M14.83 14.83l4.24 4.24"/></svg>
+                    </div>
+                    <h3>AndroidX Palette Engine</h3>
+                    <p>Asynchronous multi-swatch extraction extracting dominant, vibrant, muted, light vibrant, and dark muted tones to skin widgets on the fly.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>

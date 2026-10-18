@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects — Darsheel Shokeen</title>
+    <meta name="description" content="Projects by Darsheel Shokeen — A collection of work and personal projects.">
+    <link rel="canonical" href="https://darsheelshokeen.xo.je/projects.html">
+
+    <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://darsheelshokeen.xo.je/projects.html">
+    <meta property="og:title" content="Projects — Darsheel Shokeen">
+    <meta property="og:description" content="Interactive showcase of ChatBridge (WebRTC), EduCloud (School SaaS), Smart Flood Alert (IoT), and AlbumCanvas (Android).">
+    <meta property="og:image" content="https://darsheelshokeen.xo.je/og-preview.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- Twitter / X Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Projects — Darsheel Shokeen">
+    <meta name="twitter:description" content="Interactive showcase of ChatBridge (WebRTC), EduCloud (School SaaS), Smart Flood Alert (IoT), and AlbumCanvas (Android).">
+    <meta name="twitter:image" content="https://darsheelshokeen.xo.je/og-preview.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon.png">
+    <link rel="shortcut icon" href="favicon.ico">
+</head>
+<body>
+    <!-- Particle Canvas -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- Animated gradient line at top -->
+    <div class="top-gradient-line"></div>
+
+    <!-- Back button -->
+    <a href="index.html" class="nav-back-btn" id="nav-back" aria-label="Back to home">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 12H5"></path>
+            <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+    </a>
+
+    <!-- Navigation -->
+    <nav class="nav nav-pill" id="main-nav">
+        <a href="index.html" class="nav-link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            Home
+        </a>
+        <a href="projects.html" class="nav-link active">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
+            Projects
+        </a>
+        <a href="contact.html" class="nav-link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            Contact
+        </a>
+    </nav>
+
+    <!-- Theme toggle -->
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="moon-icon">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+        </svg>
+    </button>
+
+    <!-- Main Content -->
+    <main class="page-content">
+        <div class="page-header">
+            <h1 class="page-title">Projects</h1>
+            <p class="page-description">Some of the projects are from work and some are on my own time.</p>
+        </div>
+
+        <!-- Projects Grid (Featured Live Projects) -->
+        <div class="featured-grid">
+            <!-- ChatBridge -->
+            <a href="chatbridge/index.html" class="project-featured-link" id="featured-project-chatbridge">
+                <article class="project-card project-card-featured">
+                    <div class="project-card-inner">
+                        <div class="project-icon project-icon-purple">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z"/></svg>
+                        </div>
+                        <div class="project-meta">
+                            <time class="project-date">May 2025</time>
+                            <span class="project-views">
+                                <span class="views-dot"></span>
+                                <span class="view-count" id="chatbridge-views">0</span> views
+                            </span>
+                            <span class="status-badge status-live"><span class="status-dot-color"></span>Live Now</span>
+                        </div>
+                        <h2 class="project-title">ChatBridge</h2>
+                        <p class="project-desc">An open-source, self-hosted messaging platform with end-to-end encryption, file sharing, and video calling.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">WebRTC</span>
+                            <span class="project-tag">E2EE</span>
+                            <span class="project-tag">WebSockets</span>
+                            <span class="project-tag">Node.js</span>
+                        </div>
+                        <div class="project-requirements">
+                            <span class="req-label">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m9 12 2 2 4-4"/></svg>
+                                Requires:
+                            </span>
+                            <span class="req-badge req-badge-purple">Modern Web Browser</span>
+                            <span class="req-badge req-badge-purple">WebRTC & Camera/Mic</span>
+                        </div>
+                        <span class="project-read-more">Open App →</span>
+                    </div>
+                </article>
+            </a>
+
+            <!-- EduCloud -->
+            <a href="educloud/index.html" class="project-featured-link" id="featured-project-educloud">
+                <article class="project-card project-card-featured">
+                    <div class="project-card-inner">
+                        <div class="project-icon project-icon-blue">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                        </div>
+                        <div class="project-meta">
+                            <time class="project-date">May 2026</time>
+                            <span class="project-views">
+                                <span class="views-dot"></span>
+                                <span class="view-count" id="educloud-views">0</span> views
+                            </span>
+                            <span class="status-badge status-live"><span class="status-dot-color"></span>Live Now</span>
+                        </div>
+                        <h2 class="project-title">EduCloud</h2>
+                        <p class="project-desc">Cloud-based school management platform featuring multi-role dashboards for Admin, Teacher, Student, and Parent with real-time attendance, homework tracking, and notifications.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Cloud SaaS</span>
+                            <span class="project-tag">Multi-Role</span>
+                            <span class="project-tag">Real-time DB</span>
+                            <span class="project-tag">SPA</span>
+                        </div>
+                        <div class="project-requirements">
+                            <span class="req-label">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m9 12 2 2 4-4"/></svg>
+                                Requires:
+                            </span>
+                            <span class="req-badge req-badge-blue">Cross-Platform Browser</span>
+                            <span class="req-badge req-badge-blue">Zero Installation</span>
+                        </div>
+                        <span class="project-read-more">Open App →</span>
+                    </div>
+                </article>
+            </a>
+
+            <!-- Smart Flood Alert -->
+            <a href="smart-flood/index.html" class="project-featured-link" id="featured-project-smartflood">
+                <article class="project-card project-card-featured">
+                    <div class="project-card-inner">
+                        <div class="project-icon project-icon-cyan">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+                        </div>
+                        <div class="project-meta">
+                            <time class="project-date">Sep 2026</time>
+                            <span class="project-views">
+                                <span class="views-dot"></span>
+                                <span class="view-count" id="smartflood-views">0</span> views
+                            </span>
+                            <span class="status-badge status-live"><span class="status-dot-color"></span>Live Now</span>
+                        </div>
+                        <h2 class="project-title">Smart Flood Alert</h2>
+                        <p class="project-desc">IoT-powered smart city flood detection and early warning system using ESP32, FC-28 water level sensor, FastAPI telemetry backend, live web dashboard, and automated WhatsApp alert dispatching.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">IoT</span>
+                            <span class="project-tag">ESP32</span>
+                            <span class="project-tag">FastAPI</span>
+                            <span class="project-tag">Python</span>
+                            <span class="project-tag">Meta Cloud API</span>
+                        </div>
+                        <div class="project-requirements">
+                            <span class="req-label">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m9 12 2 2 4-4"/></svg>
+                                Requires:
+                            </span>
+                            <span class="req-badge req-badge-cyan">ESP32 + FC-28 Sensor</span>
+                            <span class="req-badge req-badge-cyan">Python 3.10+ & WhatsApp API</span>
+                        </div>
+                        <span class="project-read-more">Launch Dashboard →</span>
+                    </div>
+                </article>
+            </a>
+
+            <!-- AlbumCanvas -->
+            <a href="album-canvas/index.html" class="project-featured-link" id="featured-project-albumcanvas">
+                <article class="project-card project-card-featured">
+                    <div class="project-card-inner">
+                        <div class="project-icon project-icon-pink">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+                        </div>
+                        <div class="project-meta">
+                            <time class="project-date">Oct 2026</time>
+                            <span class="project-views">
+                                <span class="views-dot"></span>
+                                <span class="view-count" id="albumcanvas-views">0</span> views
+                            </span>
+                            <span class="status-badge status-live"><span class="status-dot-color"></span>Live Now</span>
+                        </div>
+                        <h2 class="project-title">AlbumCanvas</h2>
+                        <p class="project-desc">Dynamic Android application built with Jetpack Compose & Material 3 that transforms live music playback into adaptive ambient wallpapers and home screen widgets with real-time palette extraction.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Android</span>
+                            <span class="project-tag">Kotlin</span>
+                            <span class="project-tag">Jetpack Compose</span>
+                            <span class="project-tag">Material 3</span>
+                            <span class="project-tag">MediaSession</span>
+                        </div>
+                        <div class="project-requirements">
+                            <span class="req-label">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m9 12 2 2 4-4"/></svg>
+                                Requires:
+                            </span>
+                            <span class="req-badge req-badge-pink">Android 12+ (API 31+)</span>
+                            <span class="req-badge req-badge-pink">Active Media Player</span>
+                        </div>
+                        <span class="project-read-more">Explore App →</span>
+                    </div>
+                </article>
+            </a>
+        </div>
+    </main>
+
+    <script src="particles.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

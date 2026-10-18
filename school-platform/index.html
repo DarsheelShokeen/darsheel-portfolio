@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduCloud — School Management Platform</title>
+    <meta name="description" content="Cloud-based School Management: Student, teacher & admin management, attendance, exams, fees, and multi-role dashboards.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="school.css">
+</head>
+<body>
+    <!-- Login Screen -->
+    <div class="sp-login-overlay" id="login-screen">
+        <div class="sp-login-box">
+            <div class="sp-logo" style="justify-content: center; margin-bottom: 1rem;">
+                <div class="sp-logo-icon" style="width: 48px; height: 48px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                </div>
+            </div>
+            <h2 style="text-align: center; margin-bottom: 0.5rem; color: var(--sp-fg);">Welcome to EduCloud</h2>
+            <p style="text-align: center; color: var(--sp-fg-muted); margin-bottom: 2rem; font-size: 0.9rem;">Please login to access the system</p>
+            
+            <div class="sp-login-form">
+                <div class="sp-input-group">
+                    <label>Email / Username</label>
+                    <input type="text" value="admin@educloud.com" id="login-email">
+                </div>
+                <div class="sp-input-group">
+                    <label>Password</label>
+                    <input type="password" value="password123" id="login-password">
+                </div>
+                <div class="sp-input-group">
+                    <label>Login As</label>
+                    <select id="login-role" class="sp-role-select" style="width: 100%;">
+                        <option value="admin">Administrator</option>
+                        <option value="teacher">Teacher</option>
+                        <option value="parent">Parent</option>
+                    </select>
+                </div>
+                <button class="sp-btn-primary" id="login-btn">Sign In</button>
+                <div style="text-align: center; margin-top: 1rem;">
+                    <a href="../projects.html" class="sp-back-link" style="justify-content: center;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg>
+                        Back to Portfolio
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sp-app" id="main-app" style="display: none;">
+        <!-- Sidebar -->
+        <aside class="sp-sidebar">
+            <div class="sp-logo">
+                <div class="sp-logo-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                </div>
+                <h2>EduCloud</h2>
+            </div>
+
+            <div class="sp-nav">
+                <p class="sp-nav-label">MAIN MENU</p>
+                <a href="#" class="sp-nav-link active" data-view="dashboard">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+                    Dashboard
+                </a>
+                <a href="#" class="sp-nav-link" data-view="students">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    Students
+                </a>
+                <a href="#" class="sp-nav-link" data-view="teachers">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+                    Teachers
+                </a>
+                <a href="#" class="sp-nav-link" data-view="attendance">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                    Attendance
+                </a>
+                <a href="#" class="sp-nav-link" data-view="homework">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                    Homework & Exams
+                </a>
+                <a href="#" class="sp-nav-link" data-view="fees">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+                    Fee Management
+                </a>
+                <a href="#" class="sp-nav-link" data-view="reports">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+                    Reports
+                </a>
+            </div>
+
+            <div class="sp-sidebar-bottom">
+                <a href="../projects.html" class="sp-back-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg>
+                    Back to Portfolio
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="sp-main">
+            <!-- Topbar -->
+            <header class="sp-topbar">
+                <div class="sp-search">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                    <input type="text" placeholder="Search students, teachers, or classes...">
+                </div>
+                
+                <div class="sp-topbar-actions">
+                    <!-- Role Switcher -->
+                    <select class="sp-role-select" id="role-select">
+                        <option value="admin">Admin View</option>
+                        <option value="teacher">Teacher View</option>
+                        <option value="parent">Parent View</option>
+                    </select>
+
+                    <button class="sp-icon-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+                        <span class="sp-badge">3</span>
+                    </button>
+
+                    <div class="sp-user-profile">
+                        <div class="sp-avatar">A</div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Content Area -->
+            <div class="sp-content" id="sp-content">
+                <!-- Content will be rendered here by JS based on Role -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Script -->
+    <script src="school.js"></script>
+</body>
+</html>
