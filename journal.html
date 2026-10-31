@@ -21,7 +21,7 @@
             border: 1px solid var(--border-subtle);
             border-radius: var(--radius-md);
             padding: 36px;
-            margin-bottom: 32px;
+            margin-bottom: 28px;
             transition: all var(--transition-fast);
         }
         .essay-card:hover {
@@ -32,7 +32,7 @@
         .essay-meta-top {
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: 14px;
             font-family: var(--font-mono);
             font-size: 0.74rem;
             color: var(--text-muted);
@@ -44,7 +44,7 @@
             letter-spacing: 0.08em;
         }
         .essay-title {
-            font-size: 1.6rem;
+            font-size: 1.55rem;
             font-weight: 600;
             line-height: 1.3;
             letter-spacing: -0.02em;
@@ -84,11 +84,16 @@
                     <li><a href="index.html#expertise" class="nav-link">Expertise</a></li>
                     <li><a href="index.html#experiments" class="nav-link">Experiments</a></li>
                     <li><a href="journal.html" class="nav-link active">Journal</a></li>
+                    <li><a href="now.html" class="nav-link">Now</a></li>
                     <li><a href="index.html#contact" class="nav-link">Contact</a></li>
                 </ul>
             </nav>
 
             <div class="nav-actions">
+                <button class="cmd-palette-btn open-cmd-btn" aria-label="Open Command Palette">
+                    <span>Search</span>
+                    <kbd class="cmd-kbd">Ctrl+K</kbd>
+                </button>
                 <a href="index.html#projects" class="nav-cta">View Selected Work →</a>
                 <button class="nav-toggle-btn" id="nav-toggle" aria-label="Toggle navigation">
                     <span></span><span></span><span></span>
@@ -105,6 +110,8 @@
             <li><a href="index.html#expertise" class="mobile-nav-link">Expertise</a></li>
             <li><a href="index.html#experiments" class="mobile-nav-link">Experiments</a></li>
             <li><a href="journal.html" class="mobile-nav-link">Journal</a></li>
+            <li><a href="now.html" class="mobile-nav-link">Now</a></li>
+            <li><a href="guestbook.html" class="mobile-nav-link">Guestbook</a></li>
             <li><a href="index.html#contact" class="mobile-nav-link">Contact</a></li>
         </ul>
     </div>
@@ -122,7 +129,7 @@
         <!-- Essay 1 -->
         <article class="essay-card">
             <div class="essay-meta-top">
-                <span class="essay-tag">Android Architecture</span>
+                <span class="essay-tag">Software Engineering</span>
                 <span>•</span>
                 <time datetime="2026-10-18">October 2026</time>
                 <span>•</span>
@@ -154,7 +161,7 @@
         <!-- Essay 3 -->
         <article class="essay-card">
             <div class="essay-meta-top">
-                <span class="essay-tag">Quantitative Finance</span>
+                <span class="essay-tag">Finance & Valuation</span>
                 <span>•</span>
                 <time datetime="2026-06-15">June 2026</time>
                 <span>•</span>
@@ -170,7 +177,7 @@
         <!-- Essay 4 -->
         <article class="essay-card">
             <div class="essay-meta-top">
-                <span class="essay-tag">Product Engineering</span>
+                <span class="essay-tag">Product Building</span>
                 <span>•</span>
                 <time datetime="2026-05-10">May 2026</time>
                 <span>•</span>
@@ -197,6 +204,8 @@
                     <li><a href="index.html#projects" class="footer-nav-link">Projects</a></li>
                     <li><a href="index.html#experiments" class="footer-nav-link">Experiments</a></li>
                     <li><a href="journal.html" class="footer-nav-link">Journal</a></li>
+                    <li><a href="now.html" class="footer-nav-link">Now</a></li>
+                    <li><a href="guestbook.html" class="footer-nav-link">Guestbook</a></li>
                     <li><a href="index.html#contact" class="footer-nav-link">Contact</a></li>
                 </ul>
             </div>
@@ -206,6 +215,23 @@
             </div>
         </div>
     </footer>
+
+    <!-- Command Palette Modal -->
+    <div class="cmd-palette-overlay" id="cmd-palette" role="dialog" aria-modal="true" aria-label="Command Palette">
+        <div class="cmd-palette-box">
+            <div class="cmd-input-wrapper">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="cmd-input-icon"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input type="text" id="cmd-input" class="cmd-input" placeholder="Search pages, projects, articles..." autocomplete="off">
+            </div>
+            <ul class="cmd-list" id="cmd-list">
+                <li class="cmd-group-label">Navigation</li>
+                <li class="cmd-item" data-href="index.html"><span>Home</span></li>
+                <li class="cmd-item active" data-href="journal.html"><span>Journal</span></li>
+                <li class="cmd-item" data-href="now.html"><span>Now Page</span></li>
+                <li class="cmd-item" data-href="guestbook.html"><span>Guestbook</span></li>
+            </ul>
+        </div>
+    </div>
 
     <script src="main.js"></script>
 </body>

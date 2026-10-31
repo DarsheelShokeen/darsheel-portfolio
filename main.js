@@ -1,6 +1,6 @@
 /**
- * DARSHEEL SHOKEEN — Master Client Runtime
- * Modern ES6+, Zero Bloat, Fast & Accessible
+ * DARSHEEL SHOKEEN — Runtime Engine V2.0
+ * Obsidian Violet Design System • Fast, Accessible, Pure ES6+
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const handleScrollNav = () => {
         if (!nav) return;
-        if (window.scrollY > 30) {
+        if (window.scrollY > 25) {
             nav.classList.add('scrolled');
         } else {
             nav.classList.remove('scrolled');
@@ -27,7 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
             navToggle.setAttribute('aria-expanded', isOpen);
         });
 
-        // Close when clicking any mobile link
         document.querySelectorAll('.mobile-nav-link').forEach(link => {
             link.addEventListener('click', () => {
                 mobileDrawer.classList.remove('open');
@@ -35,7 +34,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // Close on outside click
         document.addEventListener('click', (e) => {
             if (!mobileDrawer.contains(e.target) && !navToggle.contains(e.target)) {
                 mobileDrawer.classList.remove('open');
@@ -62,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         navLinks.forEach(link => {
             const href = link.getAttribute('href');
-            if (href === `#${currentId}` || (currentId === '' && href === 'index.html')) {
+            if (href === `#${currentId}`) {
                 link.classList.add('active');
             } else if (href.startsWith('#')) {
                 link.classList.remove('active');
@@ -113,7 +111,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         animateCount(cached);
 
-        // Fetch incremented count from counter.php
         const counterEndpoint = (!window.location.protocol.startsWith('file')) ? 'counter.php?action=increment' : null;
         if (counterEndpoint) {
             fetch(counterEndpoint, { cache: 'no-store' })
@@ -146,7 +143,89 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 7. Contact Form Handling
+    // 7. Command Palette (Ctrl+K / Cmd+K)
+    const cmdOverlay = document.getElementById('cmd-palette');
+    const cmdInput = document.getElementById('cmd-input');
+    const cmdList = document.getElementById('cmd-list');
+    const cmdOpenBtns = document.querySelectorAll('.open-cmd-btn');
+
+    if (cmdOverlay && cmdInput && cmdList) {
+        const openPalette = () => {
+            cmdOverlay.classList.add('open');
+            cmdInput.value = '';
+            filterCmdItems('');
+            setTimeout(() => cmdInput.focus(), 50);
+        };
+
+        const closePalette = () => {
+            cmdOverlay.classList.remove('open');
+        };
+
+        cmdOpenBtns.forEach(btn => btn.addEventListener('click', openPalette));
+
+        window.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+                e.preventDefault();
+                if (cmdOverlay.classList.contains('open')) {
+                    closePalette();
+                } else {
+                    openPalette();
+                }
+            } else if (e.key === 'Escape' && cmdOverlay.classList.contains('open')) {
+                closePalette();
+            }
+        });
+
+        cmdOverlay.addEventListener('click', (e) => {
+            if (e.target === cmdOverlay) {
+                closePalette();
+            }
+        });
+
+        function filterCmdItems(query) {
+            const items = cmdList.querySelectorAll('.cmd-item');
+            const q = query.toLowerCase().trim();
+            items.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                if (!q || text.includes(q)) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        cmdInput.addEventListener('input', (e) => {
+            filterCmdItems(e.target.value);
+        });
+
+        // Keyboard arrow navigation in palette
+        cmdInput.addEventListener('keydown', (e) => {
+            const visibleItems = Array.from(cmdList.querySelectorAll('.cmd-item')).filter(it => it.style.display !== 'none');
+            const activeIdx = visibleItems.findIndex(it => it.classList.contains('active'));
+
+            if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                if (activeIdx !== -1) visibleItems[activeIdx].classList.remove('active');
+                const nextIdx = (activeIdx + 1) % visibleItems.length;
+                if (visibleItems[nextIdx]) visibleItems[nextIdx].classList.add('active');
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                if (activeIdx !== -1) visibleItems[activeIdx].classList.remove('active');
+                const prevIdx = (activeIdx - 1 + visibleItems.length) % visibleItems.length;
+                if (visibleItems[prevIdx]) visibleItems[prevIdx].classList.add('active');
+            } else if (e.key === 'Enter') {
+                e.preventDefault();
+                const target = activeIdx !== -1 ? visibleItems[activeIdx] : visibleItems[0];
+                if (target) {
+                    const link = target.getAttribute('data-href');
+                    if (link) window.location.href = link;
+                }
+            }
+        });
+    }
+
+    // 8. Contact Form Handling
     const contactForm = document.getElementById('contact-form');
     const feedbackBox = document.getElementById('form-feedback');
 
@@ -169,17 +248,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            // Anti-spam check
             if (honeypot) {
                 feedbackBox.className = 'form-feedback success';
-                feedbackBox.textContent = 'Thank you! Your message has been sent.';
+                feedbackBox.textContent = 'Thank you! Your message has been transmitted.';
                 contactForm.reset();
                 return;
             }
 
             if (submitBtn) {
                 submitBtn.disabled = true;
-                submitBtn.textContent = 'Sending...';
+                submitBtn.textContent = 'Transmitting...';
             }
 
             try {
@@ -193,15 +271,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (response.ok && data.status === 'success') {
                     feedbackBox.className = 'form-feedback success';
-                    feedbackBox.textContent = data.message || 'Thank you! Your message has been sent.';
+                    feedbackBox.textContent = data.message || 'Thank you! Your message has been sent successfully.';
                     contactForm.reset();
                 } else {
-                    throw new Error(data.message || 'Unable to send message at this time.');
+                    throw new Error(data.message || 'Unable to transmit message at this time.');
                 }
             } catch (err) {
-                // If on local file:// or network fail, fallback gracefully
                 feedbackBox.className = 'form-feedback success';
-                feedbackBox.innerHTML = `Message noted! You can also reach me directly at <a href="mailto:darsheelshokeen@gmail.com" style="text-decoration: underline; color: inherit;">darsheelshokeen@gmail.com</a>.`;
+                feedbackBox.innerHTML = `Message noted! You can also email me directly at <a href="mailto:darsheelshokeen@gmail.com" style="text-decoration: underline; color: inherit;">darsheelshokeen@gmail.com</a>.`;
                 contactForm.reset();
             } finally {
                 if (submitBtn) {
