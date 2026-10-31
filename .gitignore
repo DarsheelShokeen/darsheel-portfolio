@@ -9,9 +9,19 @@ desktop.ini
 *.swp
 *.swo
 
-# Environment variables
+# Environment variables & secrets
 .env
-.env.local
+.env.*
+*.env
+*credentials*
+*secret*
+*.pem
+*.key
+
+# Local analytics and datastores
+analytics_data.json
+analytics_cache.json
+visits.json
 
 # Build artifacts & logs
 npm-debug.log*

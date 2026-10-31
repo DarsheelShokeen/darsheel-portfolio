@@ -621,23 +621,24 @@ button, input, textarea, select {
 
 .project-card-large {
     display: grid;
-    grid-template-columns: 1.15fr 1fr;
-    gap: 40px;
+    grid-template-columns: 1.25fr 1fr;
+    gap: 0;
     background: var(--bg-secondary);
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md);
     overflow: hidden;
     transition: border-color var(--transition-base), transform var(--transition-base), box-shadow var(--transition-base);
+    align-items: stretch;
 }
 
 .project-card-large:hover {
     border-color: var(--border-medium);
     transform: translateY(-3px);
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.55);
 }
 
 .project-card-large:nth-child(even) {
-    grid-template-columns: 1fr 1.15fr;
+    grid-template-columns: 1fr 1.25fr;
 }
 .project-card-large:nth-child(even) .project-media-col {
     order: 2;
@@ -656,7 +657,8 @@ button, input, textarea, select {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 380px;
+    aspect-ratio: 16 / 10;
+    width: 100%;
 }
 
 .project-cover-link {
@@ -671,16 +673,17 @@ button, input, textarea, select {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
     display: block;
-    transition: transform 0.4s var(--ease-out), filter 0.4s var(--ease-out);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
 }
 
 .project-card-large:hover .project-cover-img {
-    transform: scale(1.03);
+    transform: scale(1.025);
 }
 
 .project-info-col {
-    padding: 40px 36px;
+    padding: 38px 36px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -1399,6 +1402,26 @@ button, input, textarea, select {
     color: var(--text-muted);
 }
 
+.footer-bottom-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.footer-telemetry-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--accent-secondary);
+    background: var(--accent-dim);
+    border: 1px solid var(--accent-border);
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+}
+
 .back-to-top-btn {
     display: inline-flex;
     align-items: center;
@@ -1652,11 +1675,22 @@ button, input, textarea, select {
 
 .case-cover-showcase {
     width: 100%;
+    max-width: 1040px;
+    margin: 36px auto;
+    aspect-ratio: 16 / 10;
     border-radius: var(--radius-md);
     overflow: hidden;
     border: 1px solid var(--border-medium);
-    margin: 36px 0;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+    background: var(--bg-elevated);
+}
+
+.case-cover-showcase img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
 }
 
 .case-meta-grid {

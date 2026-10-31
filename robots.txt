@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /analytics.html
+Disallow: /analytics.php
+Disallow: /analytics_data.json
 
 Sitemap: https://darsheelshokeen.xo.je/sitemap.xml

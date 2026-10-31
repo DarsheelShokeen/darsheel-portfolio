@@ -29,7 +29,7 @@
 | :--- | :--- | :--- | :--- | :--- |
 | **[AlbumCanvas](album-canvas.html)** | Android System Architecture | Kotlin, Jetpack Compose, Material 3, Palette API | Live & Open Source | [Read Case Study →](album-canvas.html) |
 | **[Smart Flood Alert](smart-flood.html)** | IoT Telemetry & Alerting | ESP32 (C++), FC-28 Sensor, FastAPI, WhatsApp API | Deployed & Live | [Read Case Study →](smart-flood.html) |
-| **[LessonPlan Maker](lessonplan-maker.html)** | Educational Platform | JavaScript (ES6+), NCERT Taxonomy, 5E Inquiry | Active Prototype | [Read Case Study →](lessonplan-maker.html) |
+| **[LessonPlan Maker](lessonplan-maker.html)** | Educational Platform | JavaScript (ES6+), NCERT Taxonomy, 5E Inquiry | Fully Deployed & Operational | [Read Case Study →](lessonplan-maker.html) |
 | **[Financial Research Platform](financial-research.html)** | Quantitative Valuation | Python, DCF Modeling, Financial Statement Parsing | Active Prototyping | [Read Case Study →](financial-research.html) |
 
 ---
@@ -64,11 +64,16 @@ darsheel-portfolio/
 
 ## 🛠️ Deployment
 
-Deployments to InfinityFree Apache hosting are automated via `deploy_ftp.py`:
+Deployments to production Apache hosting are automated via secure deployment script using environment variables:
 
 ```bash
-python deploy_ftp.py if0_43208143 abcd098E
+# Pass credentials via environment variables (never commit credentials into repository)
+export FTP_USER="your_ftp_username"
+export FTP_PASS="your_ftp_password"
+python deploy_ftp.py
 ```
+
+> **Security Notice:** Never commit actual FTP, database, or API credentials into tracked repository files or commit logs. Production deployments utilize secure environment variable injection.
 
 ---
 

@@ -1,9 +1,33 @@
 /**
- * DARSHEEL SHOKEEN — Runtime Engine V2.0
- * Obsidian Violet Design System • Fast, Accessible, Pure ES6+
+ * DARSHEEL SHOKEEN — Master Runtime Engine
+ * Obsidian Violet Design System • Privacy Telemetry • Command Palette (Ctrl+K)
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+    // 0. Privacy-First Telemetry Beacon
+    try {
+        if (!window.location.protocol.startsWith('file')) {
+            const beaconData = {
+                page: window.location.pathname || '/',
+                referrer: document.referrer || ''
+            };
+            const beaconBody = JSON.stringify(beaconData);
+            if (navigator.sendBeacon) {
+                const blob = new Blob([beaconBody], { type: 'application/json' });
+                navigator.sendBeacon('analytics.php?action=log', blob);
+            } else {
+                fetch('analytics.php?action=log', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: beaconBody,
+                    keepalive: true
+                }).catch(() => {});
+            }
+        }
+    } catch (e) {
+        // Fail silently
+    }
+
     // 1. Navigation Scroll Treatment & Mobile Drawer
     const nav = document.querySelector('.site-nav');
     const navToggle = document.getElementById('nav-toggle');
@@ -87,44 +111,51 @@ document.addEventListener('DOMContentLoaded', () => {
         setInterval(updateClock, 1000);
     }
 
-    // 4. Real Worldwide Visit Counter
-    const counterEl = document.getElementById('visit-counter-val');
-    if (counterEl) {
-        const cached = parseInt(localStorage.getItem('portfolio_global_visits') || '268', 10);
+    // 4. Real Public Visitor Counter (Synchronized with Analytics Engine)
+    const counterEls = document.querySelectorAll('#visit-counter-val, .visit-counter-target');
+    if (counterEls.length > 0) {
+        const cached = parseInt(localStorage.getItem('portfolio_global_visits') || '482', 10);
 
         const animateCount = (target) => {
-            let current = parseInt(counterEl.textContent.replace(/\D/g, '') || '0', 10);
-            if (current >= target) {
-                counterEl.textContent = target.toLocaleString();
-                return;
-            }
-            const increment = Math.max(1, Math.ceil((target - current) / 28));
-            const timer = setInterval(() => {
-                current += increment;
+            counterEls.forEach(el => {
+                let current = parseInt(el.textContent.replace(/\D/g, '') || '0', 10);
                 if (current >= target) {
-                    current = target;
-                    clearInterval(timer);
+                    el.textContent = target.toLocaleString();
+                    return;
                 }
-                counterEl.textContent = current.toLocaleString();
-            }, 30);
+                const increment = Math.max(1, Math.ceil((target - current) / 24));
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    el.textContent = current.toLocaleString();
+                }, 30);
+            });
         };
 
         animateCount(cached);
 
-        const counterEndpoint = (!window.location.protocol.startsWith('file')) ? 'counter.php?action=increment' : null;
-        if (counterEndpoint) {
-            fetch(counterEndpoint, { cache: 'no-store' })
+        if (!window.location.protocol.startsWith('file')) {
+            fetch('analytics.php?action=public_count', { cache: 'no-store' })
                 .then(res => res.json())
                 .then(data => {
-                    if (data && typeof data.count === 'number') {
-                        localStorage.setItem('portfolio_global_visits', data.count.toString());
-                        animateCount(data.count);
+                    if (data && typeof data.total === 'number') {
+                        localStorage.setItem('portfolio_global_visits', data.total.toString());
+                        animateCount(data.total);
                     }
                 })
                 .catch(() => {
-                    const fallback = cached + 1;
-                    localStorage.setItem('portfolio_global_visits', fallback.toString());
-                    animateCount(fallback);
+                    fetch('counter.php', { cache: 'no-store' })
+                        .then(r => r.json())
+                        .then(d => {
+                            if (d && typeof d.count === 'number') {
+                                localStorage.setItem('portfolio_global_visits', d.count.toString());
+                                animateCount(d.count);
+                            }
+                        })
+                        .catch(() => {});
                 });
         }
     }
@@ -143,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 7. Command Palette (Ctrl+K / Cmd+K)
+    // 7. Command Palette (Ctrl+K / Cmd+K) with Secret Keyword Discovery ('iamdarsheel')
     const cmdOverlay = document.getElementById('cmd-palette');
     const cmdInput = document.getElementById('cmd-input');
     const cmdList = document.getElementById('cmd-list');
@@ -154,7 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
             cmdOverlay.classList.add('open');
             cmdInput.value = '';
             filterCmdItems('');
-            setTimeout(() => cmdInput.focus(), 50);
+            setTimeout(() => cmdInput.focus(), 60);
         };
 
         const closePalette = () => {
@@ -182,17 +213,69 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        function filterCmdItems(query) {
-            const items = cmdList.querySelectorAll('.cmd-item');
-            const q = query.toLowerCase().trim();
-            items.forEach(item => {
-                const text = item.textContent.toLowerCase();
-                if (!q || text.includes(q)) {
-                    item.style.display = 'flex';
-                } else {
-                    item.style.display = 'none';
+        // Delegate click on command list items
+        cmdList.addEventListener('click', (e) => {
+            const item = e.target.closest('.cmd-item');
+            if (item) {
+                const href = item.getAttribute('data-href');
+                if (href) {
+                    closePalette();
+                    window.location.href = href;
                 }
-            });
+            }
+        });
+
+        function filterCmdItems(query) {
+            const q = query.toLowerCase().trim();
+            const isSecret = (q === 'iamdarsheel');
+
+            // Find or create hidden dashboard entry
+            let secretItem = cmdList.querySelector('.cmd-secret');
+            if (!secretItem) {
+                secretItem = document.createElement('li');
+                secretItem.className = 'cmd-item cmd-secret';
+                secretItem.setAttribute('data-href', 'analytics.html');
+                secretItem.style.background = 'rgba(139, 92, 246, 0.14)';
+                secretItem.style.border = '1px solid rgba(139, 92, 246, 0.4)';
+                secretItem.innerHTML = `
+                    <div class="cmd-item-left">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="2">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                        </svg>
+                        <span style="color: #A78BFA; font-weight: 600;">⚡ Master Telemetry & Analytics Dashboard</span>
+                    </div>
+                    <span class="cmd-badge" style="background: #8B5CF6; color: #ffffff;">Admin Access</span>
+                `;
+                cmdList.prepend(secretItem);
+            }
+
+            const normalItems = cmdList.querySelectorAll('.cmd-item:not(.cmd-secret), .cmd-group-label');
+
+            if (isSecret) {
+                // Secret revealed: show ONLY the hidden dashboard entry
+                secretItem.style.display = 'flex';
+                secretItem.classList.add('active');
+                normalItems.forEach(it => it.style.display = 'none');
+            } else {
+                // Normal search: keep secret hidden
+                secretItem.style.display = 'none';
+                secretItem.classList.remove('active');
+
+                cmdList.querySelectorAll('.cmd-item:not(.cmd-secret)').forEach(item => {
+                    const text = item.textContent.toLowerCase();
+                    if (!q || text.includes(q)) {
+                        item.style.display = 'flex';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+
+                // Group labels visibility
+                cmdList.querySelectorAll('.cmd-group-label').forEach(lbl => {
+                    lbl.style.display = q ? 'none' : 'block';
+                });
+            }
         }
 
         cmdInput.addEventListener('input', (e) => {
@@ -202,24 +285,31 @@ document.addEventListener('DOMContentLoaded', () => {
         // Keyboard arrow navigation in palette
         cmdInput.addEventListener('keydown', (e) => {
             const visibleItems = Array.from(cmdList.querySelectorAll('.cmd-item')).filter(it => it.style.display !== 'none');
+            if (visibleItems.length === 0) return;
+
             const activeIdx = visibleItems.findIndex(it => it.classList.contains('active'));
 
             if (e.key === 'ArrowDown') {
                 e.preventDefault();
                 if (activeIdx !== -1) visibleItems[activeIdx].classList.remove('active');
                 const nextIdx = (activeIdx + 1) % visibleItems.length;
-                if (visibleItems[nextIdx]) visibleItems[nextIdx].classList.add('active');
+                visibleItems[nextIdx].classList.add('active');
+                visibleItems[nextIdx].scrollIntoView({ block: 'nearest' });
             } else if (e.key === 'ArrowUp') {
                 e.preventDefault();
                 if (activeIdx !== -1) visibleItems[activeIdx].classList.remove('active');
                 const prevIdx = (activeIdx - 1 + visibleItems.length) % visibleItems.length;
-                if (visibleItems[prevIdx]) visibleItems[prevIdx].classList.add('active');
+                visibleItems[prevIdx].classList.add('active');
+                visibleItems[prevIdx].scrollIntoView({ block: 'nearest' });
             } else if (e.key === 'Enter') {
                 e.preventDefault();
                 const target = activeIdx !== -1 ? visibleItems[activeIdx] : visibleItems[0];
                 if (target) {
                     const link = target.getAttribute('data-href');
-                    if (link) window.location.href = link;
+                    if (link) {
+                        closePalette();
+                        window.location.href = link;
+                    }
                 }
             }
         });
