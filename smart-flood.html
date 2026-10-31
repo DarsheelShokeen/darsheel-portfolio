@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Flood Alert — Case Study • Darsheel Shokeen</title>
+    <meta name="description" content="Case study on Smart Flood Alert: An IoT-powered urban early warning system using ESP32, FC-28 sensors, FastAPI telemetry backend, and WhatsApp alert dispatching.">
+    <link rel="canonical" href="https://darsheelshokeen.xo.je/smart-flood.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon.png">
+    <link rel="shortcut icon" href="favicon.ico">
+</head>
+<body>
+
+    <!-- Site Navigation -->
+    <header class="site-nav" id="top-nav">
+        <div class="container nav-container">
+            <a href="index.html" class="nav-brand">
+                <span class="nav-brand-dot"></span>
+                Darsheel Shokeen
+            </a>
+
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html#about" class="nav-link">About</a></li>
+                    <li><a href="index.html#projects" class="nav-link active">Projects</a></li>
+                    <li><a href="index.html#expertise" class="nav-link">Expertise</a></li>
+                    <li><a href="index.html#experiments" class="nav-link">Experiments</a></li>
+                    <li><a href="index.html#journal" class="nav-link">Journal</a></li>
+                    <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-actions">
+                <a href="smart-flood/index.html" target="_blank" class="nav-cta">Launch IoT Dashboard ↗</a>
+                <button class="nav-toggle-btn" id="nav-toggle" aria-label="Toggle navigation">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Drawer -->
+    <div class="mobile-nav-drawer" id="mobile-drawer">
+        <ul class="mobile-nav-links">
+            <li><a href="index.html#about" class="mobile-nav-link">About</a></li>
+            <li><a href="index.html#projects" class="mobile-nav-link">Projects</a></li>
+            <li><a href="index.html#expertise" class="mobile-nav-link">Expertise</a></li>
+            <li><a href="index.html#experiments" class="mobile-nav-link">Experiments</a></li>
+            <li><a href="index.html#journal" class="mobile-nav-link">Journal</a></li>
+            <li><a href="index.html#contact" class="mobile-nav-link">Contact</a></li>
+            <li><a href="smart-flood/index.html" target="_blank" class="mobile-nav-link">Launch IoT Dashboard ↗</a></li>
+        </ul>
+    </div>
+
+    <!-- Case Study Hero -->
+    <section class="case-hero">
+        <div class="container">
+            <a href="index.html#projects" class="case-back-link">← Back to Selected Work</a>
+            <div class="project-category" style="margin-bottom: 12px;">Embedded Systems • IoT Telemetry • Cloud Backend</div>
+            <h1 class="case-title">Smart Flood Alert — Urban Water Level Telemetry & Rapid Warning Pipeline</h1>
+            <p class="case-lead">
+                An end-to-end IoT hardware and cloud alerting platform engineered to detect rising water levels in vulnerable urban lowlands and trigger instant emergency broadcasts via WhatsApp and real-time dashboards.
+            </p>
+
+            <div class="case-meta-grid">
+                <div class="case-meta-item">
+                    <span class="case-meta-label">Role</span>
+                    <span class="case-meta-val">Full-Stack IoT & Backend Engineer</span>
+                </div>
+                <div class="case-meta-item">
+                    <span class="case-meta-label">Core Technologies</span>
+                    <span class="case-meta-val">ESP32 (C++), FC-28 Water Sensor, Python / FastAPI, Meta Cloud API, Chart.js</span>
+                </div>
+                <div class="case-meta-item">
+                    <span class="case-meta-label">Status</span>
+                    <span class="case-meta-val" style="color: var(--status-live);">Deployed & Open Source</span>
+                </div>
+                <div class="case-meta-item">
+                    <span class="case-meta-label">Repository</span>
+                    <a href="https://github.com/DarsheelShokeen/Smart-Flood-Alert" target="_blank" rel="noopener noreferrer" class="case-meta-val" style="color: var(--accent-secondary); text-decoration: underline;">github.com/DarsheelShokeen/Smart-Flood-Alert ↗</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Content Body -->
+    <main class="container">
+        <div class="case-content-grid">
+            <article class="case-article">
+                <!-- Section 1: Introduction -->
+                <section id="introduction">
+                    <h2>1. Project Introduction</h2>
+                    <p>
+                        In many fast-growing cities, severe monsoon rains cause localized flash flooding in underpasses, subways, and low-lying residential sectors within minutes. Traditional municipal monitoring systems are sparse, expensive, and centralized, leaving commuters and residents vulnerable during sudden cloudbursts.
+                    </p>
+                    <p>
+                        Smart Flood Alert was designed to solve this with a low-cost, decentralized hardware sensing node coupled to an ultra-fast telemetry backend that delivers immediate warnings directly to smartphones via WhatsApp — the primary communication channel used by citizens in India.
+                    </p>
+                </section>
+
+                <!-- Section 2: Problem Statement -->
+                <section id="problem">
+                    <h2>2. The Problem Being Addressed</h2>
+                    <ul>
+                        <li><strong>Lag in Disaster Dispatches:</strong> Traditional flood alerts rely on regional TV bulletins or municipal websites with 30–60 minute latency.</li>
+                        <li><strong>Sensor Reliability:</strong> Outdoor submersible sensors degrade rapidly due to silt, chemical corrosion, and electrical fluctuations.</li>
+                        <li><strong>Friction of Standalone Apps:</strong> Citizens rarely keep specialized disaster management apps installed until it is already too late.</li>
+                    </ul>
+                </section>
+
+                <!-- Section 3: Design Philosophy & Objectives -->
+                <section id="philosophy">
+                    <h2>3. Project Objectives & System Design</h2>
+                    <blockquote>
+                        "Emergency notifications must meet people where they already are — immediately, with zero friction."
+                    </blockquote>
+                    <p>
+                        The guiding technical criteria were:
+                    </p>
+                    <ul>
+                        <li><strong>Under-5-Second Alert Propagation:</strong> From physical water detection to smartphone vibration within 5 seconds.</li>
+                        <li><strong>Triple Redundancy Thresholds:</strong> Distinguishing between minor puddles (NORMAL), hazardous accumulation (WARNING), and critical inundation (CRITICAL).</li>
+                        <li><strong>Low-Power Edge Execution:</strong> Deep-sleep cycle management on the ESP32 microcontroller to enable solar battery autonomy.</li>
+                    </ul>
+                </section>
+
+                <!-- Section 4: Architecture -->
+                <section id="architecture">
+                    <h2>4. Technical Architecture</h2>
+                    <p>
+                        The system comprises three synchronized tiers:
+                    </p>
+                    <ol>
+                        <li><strong>Edge Sensing Node:</strong> An ESP32 microcontroller interfaced with an FC-28 resistive moisture and liquid level probe. Code written in C++ (Arduino framework) samples ADC pins at 50Hz, applies a moving-median filter to eliminate wave noise, and transmits telemetry packets over Wi-Fi/4G.</li>
+                        <li><strong>FastAPI Ingestion Gateway:</strong> A high-throughput Python FastAPI service receiving JSON telemetry payloads, validating cryptographic tokens, updating rolling time-series records, and evaluating threshold breach triggers.</li>
+                        <li><strong>Meta Cloud WhatsApp Dispatcher:</strong> When water exceeds critical thresholds for more than 3 consecutive samples, the backend initiates Meta Cloud API webhooks to dispatch emergency evacuation alerts with GPS pinpoints and safety checklists.</li>
+                        <li><strong>Real-time Telemetry Dashboard:</strong> Responsive browser cockpit displaying live water level percentages, status pill changes, battery voltage, and historical drainage trend charts.</li>
+                    </ol>
+
+                    <div class="interactive-demo-card">
+                        <div style="font-family: var(--font-mono); font-size: 0.76rem; color: var(--accent-secondary); margin-bottom: 8px; text-transform: uppercase;">
+                            Live Interactive Cockpit
+                        </div>
+                        <h3 style="margin-top: 0;">Explore the Smart Flood Alert Dashboard</h3>
+                        <p style="color: var(--text-secondary); margin-bottom: 20px;">
+                            Launch the operational dashboard with simulated sensor telemetry, threshold toggles, live Chart.js time-series plots, and WhatsApp alert dispatches.
+                        </p>
+                        <a href="smart-flood/index.html" target="_blank" class="btn-primary" style="display: inline-flex;">
+                            Open Smart Flood Alert Dashboard ↗
+                        </a>
+                    </div>
+                </section>
+
+                <!-- Section 5: Challenges & Solutions -->
+                <section id="challenges">
+                    <h2>5. Challenges and Solutions</h2>
+                    <h3>Challenge: False Positives from Surface Splashing</h3>
+                    <p>
+                        Passing vehicles or falling raindrops caused brief voltage spikes on the FC-28 sensor pins.
+                    </p>
+                    <p>
+                        <strong>Solution:</strong> Implemented a temporal debounce algorithm on the ESP32 that requires 10 consecutive readings above the threshold over a 4-second continuous window before triggering state elevation.
+                    </p>
+
+                    <h3>Challenge: Anti-Spam Notification Throttling</h3>
+                    <p>
+                        Sustained critical flood conditions risked triggering hundred of repetitive WhatsApp messages, consuming API quotas and annoying users.
+                    </p>
+                    <p>
+                        <strong>Solution:</strong> Built a dynamic backoff rate-limiter in FastAPI that sends an initial urgent broadcast, followed by hourly delta status digests unless a severe status transition occurs.
+                    </p>
+                </section>
+
+                <!-- Section 6: Status & Links -->
+                <section id="status">
+                    <h2>6. Current Status & Open Source</h2>
+                    <p>
+                        Both the hardware firmware (C++), cloud API (FastAPI), and web dashboard are open-sourced under the MIT license with complete circuit schematics and deployment guides.
+                    </p>
+                    <div style="display: flex; gap: 16px; flex-wrap: wrap; margin-top: 24px;">
+                        <a href="https://github.com/DarsheelShokeen/Smart-Flood-Alert" target="_blank" rel="noopener noreferrer" class="btn-primary">
+                            View on GitHub ↗
+                        </a>
+                        <a href="smart-flood/index.html" target="_blank" class="btn-secondary">
+                            Launch Live Dashboard ↗
+                        </a>
+                    </div>
+                </section>
+            </article>
+
+            <!-- Table of Contents Sidebar -->
+            <aside class="case-sidebar-toc">
+                <div class="toc-title">Table of Contents</div>
+                <ul class="toc-links">
+                    <li><a href="#introduction" class="toc-link">1. Introduction</a></li>
+                    <li><a href="#problem" class="toc-link">2. Problem Being Addressed</a></li>
+                    <li><a href="#philosophy" class="toc-link">3. Design Philosophy</a></li>
+                    <li><a href="#architecture" class="toc-link">4. Technical Architecture</a></li>
+                    <li><a href="#challenges" class="toc-link">5. Challenges & Solutions</a></li>
+                    <li><a href="#status" class="toc-link">6. Status & Links</a></li>
+                </ul>
+
+                <div style="padding-top: 16px; border-top: 1px solid var(--border-subtle); margin-top: 8px;">
+                    <div class="toc-title" style="margin-bottom: 12px;">Related Flagships</div>
+                    <ul class="toc-links">
+                        <li><a href="album-canvas.html" class="toc-link">AlbumCanvas (Android) →</a></li>
+                        <li><a href="lessonplan-maker.html" class="toc-link">LessonPlan Maker (EdTech) →</a></li>
+                        <li><a href="financial-research.html" class="toc-link">Financial Research (FinTech) →</a></li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <span class="footer-wordmark">Darsheel Shokeen</span>
+                    <span class="footer-tagline">Building ideas into something meaningful.</span>
+                </div>
+                <ul class="footer-nav-links">
+                    <li><a href="index.html#about" class="footer-nav-link">About</a></li>
+                    <li><a href="index.html#projects" class="footer-nav-link">Projects</a></li>
+                    <li><a href="index.html#experiments" class="footer-nav-link">Experiments</a></li>
+                    <li><a href="index.html#journal" class="footer-nav-link">Journal</a></li>
+                    <li><a href="index.html#contact" class="footer-nav-link">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-bottom">
+                <span>© <span id="current-year">2026</span> Darsheel Shokeen. All rights reserved.</span>
+                <span class="back-to-top-btn" id="back-to-top">Back to top ↑</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>

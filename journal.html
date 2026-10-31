@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journal • Darsheel Shokeen</title>
+    <meta name="description" content="Essays, architectural notes, and explorations across software engineering, systems design, and valuation by Darsheel Shokeen.">
+    <link rel="canonical" href="https://darsheelshokeen.xo.je/journal.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon.png">
+    <link rel="shortcut icon" href="favicon.ico">
+    <style>
+        .essay-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            padding: 36px;
+            margin-bottom: 32px;
+            transition: all var(--transition-fast);
+        }
+        .essay-card:hover {
+            border-color: var(--border-medium);
+            background: var(--bg-elevated);
+            transform: translateY(-2px);
+        }
+        .essay-meta-top {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-family: var(--font-mono);
+            font-size: 0.74rem;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+        .essay-tag {
+            color: var(--accent-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+        .essay-title {
+            font-size: 1.6rem;
+            font-weight: 600;
+            line-height: 1.3;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+        .essay-body {
+            font-size: 0.98rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: 18px;
+        }
+        .essay-footer {
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            color: var(--accent-secondary);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Site Navigation -->
+    <header class="site-nav" id="top-nav">
+        <div class="container nav-container">
+            <a href="index.html" class="nav-brand">
+                <span class="nav-brand-dot"></span>
+                Darsheel Shokeen
+            </a>
+
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html#about" class="nav-link">About</a></li>
+                    <li><a href="index.html#projects" class="nav-link">Projects</a></li>
+                    <li><a href="index.html#expertise" class="nav-link">Expertise</a></li>
+                    <li><a href="index.html#experiments" class="nav-link">Experiments</a></li>
+                    <li><a href="journal.html" class="nav-link active">Journal</a></li>
+                    <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-actions">
+                <a href="index.html#projects" class="nav-cta">View Selected Work →</a>
+                <button class="nav-toggle-btn" id="nav-toggle" aria-label="Toggle navigation">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Drawer -->
+    <div class="mobile-nav-drawer" id="mobile-drawer">
+        <ul class="mobile-nav-links">
+            <li><a href="index.html#about" class="mobile-nav-link">About</a></li>
+            <li><a href="index.html#projects" class="mobile-nav-link">Projects</a></li>
+            <li><a href="index.html#expertise" class="mobile-nav-link">Expertise</a></li>
+            <li><a href="index.html#experiments" class="mobile-nav-link">Experiments</a></li>
+            <li><a href="journal.html" class="mobile-nav-link">Journal</a></li>
+            <li><a href="index.html#contact" class="mobile-nav-link">Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Header -->
+    <main class="container" style="padding-top: 150px; padding-bottom: 80px; max-width: 860px;">
+        <div style="margin-bottom: 48px;">
+            <div class="section-kicker">Writing & Technical Essays</div>
+            <h1 class="section-title">Journal</h1>
+            <p class="section-subtitle">
+                Observations on building software products, systems architecture, embedded hardware, and the mechanics of quantitative valuation.
+            </p>
+        </div>
+
+        <!-- Essay 1 -->
+        <article class="essay-card">
+            <div class="essay-meta-top">
+                <span class="essay-tag">Android Architecture</span>
+                <span>•</span>
+                <time datetime="2026-10-18">October 2026</time>
+                <span>•</span>
+                <span>6 min read</span>
+            </div>
+            <h2 class="essay-title">Architecting Ambient Android Experiences with Jetpack Compose & MediaSession</h2>
+            <p class="essay-body">
+                How modern declarative UI patterns in Android allow developers to treat background operating system state as a reactive stream. We explore the memory profile of real-time bitmap palette extraction, OpenGL blur render pipelines, and preventing battery-draining redraw loops in custom WallpaperServices.
+            </p>
+            <a href="album-canvas.html" class="essay-footer">Read Full Architectural Breakdown →</a>
+        </article>
+
+        <!-- Essay 2 -->
+        <article class="essay-card">
+            <div class="essay-meta-top">
+                <span class="essay-tag">IoT & Systems</span>
+                <span>•</span>
+                <time datetime="2026-09-22">September 2026</time>
+                <span>•</span>
+                <span>8 min read</span>
+            </div>
+            <h2 class="essay-title">Hardware-to-Cloud Telemetry: Designing Resilient IoT Pipelines with ESP32 and FastAPI</h2>
+            <p class="essay-body">
+                Deploying hardware nodes into harsh environmental conditions exposes every assumption made in cloud software. This essay details how to implement temporal debouncing on physical ADC sensor pins, handle intermittent 4G network drops with local ring buffers, and automate reliable WhatsApp alerts via webhook dispatchers.
+            </p>
+            <a href="smart-flood.html" class="essay-footer">Read Full Architectural Breakdown →</a>
+        </article>
+
+        <!-- Essay 3 -->
+        <article class="essay-card">
+            <div class="essay-meta-top">
+                <span class="essay-tag">Quantitative Finance</span>
+                <span>•</span>
+                <time datetime="2026-06-15">June 2026</time>
+                <span>•</span>
+                <span>9 min read</span>
+            </div>
+            <h2 class="essay-title">The Anatomy of a Corporate Valuation Engine: Bridging Accounting Reality and DCF Models</h2>
+            <p class="essay-body">
+                Financial statements are records of past accounting choices, not economic truth. Here we deconstruct how to systematically normalize reported net income into true Free Cash Flow to Firm (FCFF), calculate levered beta under varying capital structures, and model two-stage horizon transitions without terminal value inflation.
+            </p>
+            <a href="financial-research.html" class="essay-footer">Explore the Interactive Valuation Model →</a>
+        </article>
+
+        <!-- Essay 4 -->
+        <article class="essay-card">
+            <div class="essay-meta-top">
+                <span class="essay-tag">Product Engineering</span>
+                <span>•</span>
+                <time datetime="2026-05-10">May 2026</time>
+                <span>•</span>
+                <span>5 min read</span>
+            </div>
+            <h2 class="essay-title">First Principles: Engineering Pedagogical State Machines for the NCERT Curriculum</h2>
+            <p class="essay-body">
+                Translating educational policy (NEP 2020) and cognitive inquiry models (5E) into deterministic web data structures. How structuring lesson components as composable JSON schemas allows educators to generate classroom-ready, printable curriculum plans in under thirty seconds.
+            </p>
+            <a href="lessonplan-maker.html" class="essay-footer">Explore the LessonPlan Workbench →</a>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <span class="footer-wordmark">Darsheel Shokeen</span>
+                    <span class="footer-tagline">Building ideas into something meaningful.</span>
+                </div>
+                <ul class="footer-nav-links">
+                    <li><a href="index.html#about" class="footer-nav-link">About</a></li>
+                    <li><a href="index.html#projects" class="footer-nav-link">Projects</a></li>
+                    <li><a href="index.html#experiments" class="footer-nav-link">Experiments</a></li>
+                    <li><a href="journal.html" class="footer-nav-link">Journal</a></li>
+                    <li><a href="index.html#contact" class="footer-nav-link">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-bottom">
+                <span>© <span id="current-year">2026</span> Darsheel Shokeen. All rights reserved.</span>
+                <span class="back-to-top-btn" id="back-to-top">Back to top ↑</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>

@@ -1,252 +1,214 @@
 /**
- * Main interactivity script
- * Handles: visit counter, clock, card glow, ripple effects, page transitions
+ * DARSHEEL SHOKEEN — Master Client Runtime
+ * Modern ES6+, Zero Bloat, Fast & Accessible
  */
-(function () {
-    // --- Real Worldwide Visit Counter (Serverless + Fallback) ---
-    (function initVisitCounter() {
-        var el = document.getElementById('visit-count');
-        var cachedCount = parseInt(localStorage.getItem('portfolio_global_visits') || '268', 10);
-        
-        function animateCounter(target) {
-            if (!el) return;
-            var current = parseInt(el.textContent.replace(/\D/g, '') || '0', 10);
+
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Navigation Scroll Treatment & Mobile Drawer
+    const nav = document.querySelector('.site-nav');
+    const navToggle = document.getElementById('nav-toggle');
+    const mobileDrawer = document.getElementById('mobile-drawer');
+
+    const handleScrollNav = () => {
+        if (!nav) return;
+        if (window.scrollY > 30) {
+            nav.classList.add('scrolled');
+        } else {
+            nav.classList.remove('scrolled');
+        }
+    };
+    window.addEventListener('scroll', handleScrollNav, { passive: true });
+    handleScrollNav();
+
+    if (navToggle && mobileDrawer) {
+        navToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isOpen = mobileDrawer.classList.toggle('open');
+            navToggle.setAttribute('aria-expanded', isOpen);
+        });
+
+        // Close when clicking any mobile link
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileDrawer.classList.remove('open');
+                navToggle.setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        // Close on outside click
+        document.addEventListener('click', (e) => {
+            if (!mobileDrawer.contains(e.target) && !navToggle.contains(e.target)) {
+                mobileDrawer.classList.remove('open');
+                navToggle.setAttribute('aria-expanded', 'false');
+            }
+        });
+    }
+
+    // 2. Active Section Spy
+    const sections = document.querySelectorAll('section[id], header[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    const updateActiveNav = () => {
+        let currentId = '';
+        const scrollPosition = window.scrollY + 180;
+
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                currentId = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            const href = link.getAttribute('href');
+            if (href === `#${currentId}` || (currentId === '' && href === 'index.html')) {
+                link.classList.add('active');
+            } else if (href.startsWith('#')) {
+                link.classList.remove('active');
+            }
+        });
+    };
+    window.addEventListener('scroll', updateActiveNav, { passive: true });
+
+    // 3. Live IST Clock (Delhi, India)
+    const clockEl = document.getElementById('ist-clock');
+    if (clockEl) {
+        const updateClock = () => {
+            const now = new Date();
+            const options = {
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: true,
+                timeZone: 'Asia/Kolkata'
+            };
+            clockEl.textContent = `${now.toLocaleTimeString('en-IN', options)} IST`;
+        };
+        updateClock();
+        setInterval(updateClock, 1000);
+    }
+
+    // 4. Real Worldwide Visit Counter
+    const counterEl = document.getElementById('visit-counter-val');
+    if (counterEl) {
+        const cached = parseInt(localStorage.getItem('portfolio_global_visits') || '268', 10);
+
+        const animateCount = (target) => {
+            let current = parseInt(counterEl.textContent.replace(/\D/g, '') || '0', 10);
             if (current >= target) {
-                el.textContent = target.toLocaleString();
+                counterEl.textContent = target.toLocaleString();
                 return;
             }
-            var step = Math.max(1, Math.ceil((target - current) / 25));
-            var timer = setInterval(function () {
-                current += step;
+            const increment = Math.max(1, Math.ceil((target - current) / 28));
+            const timer = setInterval(() => {
+                current += increment;
                 if (current >= target) {
                     current = target;
                     clearInterval(timer);
                 }
-                el.textContent = current.toLocaleString();
+                counterEl.textContent = current.toLocaleString();
             }, 30);
-        }
+        };
 
-        // Show cached immediately so there's no waiting
-        if (el) {
-            animateCounter(cachedCount);
-        }
+        animateCount(cached);
 
-        // Fetch real worldwide count from counter.php
-        var counterUrl = (window.location.pathname.indexOf('/') !== -1 && !window.location.protocol.startsWith('file')) ? '/counter.php?action=increment' : 'counter.php?action=increment';
-        fetch(counterUrl, { cache: 'no-store' })
-            .then(function (res) { return res.json(); })
-            .then(function (data) {
-                if (data && typeof data.count === 'number') {
-                    localStorage.setItem('portfolio_global_visits', data.count.toString());
-                    animateCounter(data.count);
+        // Fetch incremented count from counter.php
+        const counterEndpoint = (!window.location.protocol.startsWith('file')) ? 'counter.php?action=increment' : null;
+        if (counterEndpoint) {
+            fetch(counterEndpoint, { cache: 'no-store' })
+                .then(res => res.json())
+                .then(data => {
+                    if (data && typeof data.count === 'number') {
+                        localStorage.setItem('portfolio_global_visits', data.count.toString());
+                        animateCount(data.count);
+                    }
+                })
+                .catch(() => {
+                    const fallback = cached + 1;
+                    localStorage.setItem('portfolio_global_visits', fallback.toString());
+                    animateCount(fallback);
+                });
+        }
+    }
+
+    // 5. Dynamic Footer Copyright Year
+    const yearEl = document.getElementById('current-year');
+    if (yearEl) {
+        yearEl.textContent = new Date().getFullYear();
+    }
+
+    // 6. Back-to-Top Button
+    const backToTopBtn = document.getElementById('back-to-top');
+    if (backToTopBtn) {
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+
+    // 7. Contact Form Handling
+    const contactForm = document.getElementById('contact-form');
+    const feedbackBox = document.getElementById('form-feedback');
+
+    if (contactForm && feedbackBox) {
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn ? submitBtn.textContent : 'Send Message';
+
+            const name = document.getElementById('form-name')?.value.trim();
+            const email = document.getElementById('form-email')?.value.trim();
+            const subject = document.getElementById('form-subject')?.value.trim();
+            const message = document.getElementById('form-message')?.value.trim();
+            const honeypot = document.getElementById('form-hp')?.value.trim();
+
+            if (!name || !email || !message) {
+                feedbackBox.className = 'form-feedback error';
+                feedbackBox.textContent = 'Please fill out all required fields (Name, Email, Message).';
+                return;
+            }
+
+            // Anti-spam check
+            if (honeypot) {
+                feedbackBox.className = 'form-feedback success';
+                feedbackBox.textContent = 'Thank you! Your message has been sent.';
+                contactForm.reset();
+                return;
+            }
+
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Sending...';
+            }
+
+            try {
+                const response = await fetch('contact.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, email, subject, message, website: honeypot })
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.status === 'success') {
+                    feedbackBox.className = 'form-feedback success';
+                    feedbackBox.textContent = data.message || 'Thank you! Your message has been sent.';
+                    contactForm.reset();
+                } else {
+                    throw new Error(data.message || 'Unable to send message at this time.');
                 }
-            })
-            .catch(function () {
-                // Graceful local increment fallback if offline
-                var localFallback = cachedCount + 1;
-                localStorage.setItem('portfolio_global_visits', localFallback.toString());
-                animateCounter(localFallback);
-            });
-
-        // Update specific view counts
-        var cbCount = parseInt(localStorage.getItem('chatbridge_use_count') || '142', 10);
-        var eduCount = parseInt(localStorage.getItem('educloud_use_count') || '189', 10);
-        var sfCount = parseInt(localStorage.getItem('smartflood_use_count') || '97', 10);
-        var acCount = parseInt(localStorage.getItem('albumcanvas_use_count') || '114', 10);
-        
-        var cbEl = document.getElementById('chatbridge-views');
-        if (cbEl) cbEl.textContent = cbCount;
-        
-        var eduEl = document.getElementById('educloud-views');
-        if (eduEl) eduEl.textContent = eduCount;
-
-        var sfEl = document.getElementById('smartflood-views');
-        if (sfEl) sfEl.textContent = sfCount;
-
-        var acEl = document.getElementById('albumcanvas-views');
-        if (acEl) acEl.textContent = acCount;
-    })();
-
-    // --- Live Clock ---
-    (function initClock() {
-        var clockEl = document.getElementById('clock-time');
-        if (!clockEl) return;
-        function updateClock() {
-            var now = new Date();
-            var opts = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true, timeZone: 'Asia/Kolkata' };
-            clockEl.textContent = now.toLocaleTimeString('en-IN', opts) + ' IST';
-        }
-        updateClock();
-        setInterval(updateClock, 1000);
-    })();
-
-    // --- Card mouse-follow glow effect ---
-    document.addEventListener('mousemove', function (e) {
-        var cards = document.querySelectorAll('.project-card, .contact-card');
-        cards.forEach(function (card) {
-            var rect = card.getBoundingClientRect();
-            card.style.setProperty('--mouse-x', (e.clientX - rect.left) + 'px');
-            card.style.setProperty('--mouse-y', (e.clientY - rect.top) + 'px');
-        });
-    });
-
-    // --- Click Ripple Effect on nav links, cards, and buttons ---
-    (function initRipple() {
-        var rippleTargets = document.querySelectorAll(
-            '.nav-pill .nav-link, .project-card, .contact-card, .nav-back-btn, .social-icon, .role-pill'
-        );
-        rippleTargets.forEach(function (el) {
-            el.addEventListener('click', function (e) {
-                // Create ripple element
-                var ripple = document.createElement('span');
-                ripple.className = 'ripple';
-                var rect = el.getBoundingClientRect();
-                var size = Math.max(rect.width, rect.height) * 2;
-                ripple.style.width = ripple.style.height = size + 'px';
-                ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
-                ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
-                el.appendChild(ripple);
-                // Clean up after animation
-                setTimeout(function () {
-                    if (ripple.parentNode) ripple.parentNode.removeChild(ripple);
-                }, 600);
-            });
-        });
-    })();
-
-    // --- Interactive icon bounce on project card click ---
-    (function initCardIconBounce() {
-        var cards = document.querySelectorAll('.project-card');
-        cards.forEach(function (card) {
-            card.addEventListener('click', function () {
-                var icon = card.querySelector('.project-icon');
-                if (icon) {
-                    icon.style.transform = 'scale(1.3) rotate(-8deg)';
-                    icon.style.transition = 'transform 0.15s ease';
-                    setTimeout(function () {
-                        icon.style.transform = '';
-                        icon.style.transition = '';
-                    }, 200);
+            } catch (err) {
+                // If on local file:// or network fail, fallback gracefully
+                feedbackBox.className = 'form-feedback success';
+                feedbackBox.innerHTML = `Message noted! You can also reach me directly at <a href="mailto:darsheelshokeen@gmail.com" style="text-decoration: underline; color: inherit;">darsheelshokeen@gmail.com</a>.`;
+                contactForm.reset();
+            } finally {
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalBtnText;
                 }
-            });
-        });
-    })();
-
-    // --- Interactive contact card icon spin on click ---
-    (function initContactIconSpin() {
-        var contactCards = document.querySelectorAll('.contact-card');
-        contactCards.forEach(function (card) {
-            card.addEventListener('click', function () {
-                var icon = card.querySelector('.contact-card-icon');
-                if (icon) {
-                    icon.style.transform = 'scale(1.2) rotate(360deg)';
-                    icon.style.transition = 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)';
-                    setTimeout(function () {
-                        icon.style.transform = '';
-                        icon.style.transition = '';
-                    }, 600);
-                }
-            });
-        });
-    })();
-
-    // --- Social icon bounce on click ---
-    (function initSocialBounce() {
-        var socials = document.querySelectorAll('.social-icon');
-        socials.forEach(function (icon) {
-            icon.addEventListener('click', function () {
-                icon.style.transform = 'translateY(-6px) scale(1.2)';
-                setTimeout(function () {
-                    icon.style.transform = '';
-                }, 300);
-            });
-        });
-    })();
-
-    // --- Nav link icon wiggle on hover ---
-    (function initNavWiggle() {
-        var navLinks = document.querySelectorAll('.nav-pill .nav-link');
-        navLinks.forEach(function (link) {
-            link.addEventListener('mouseenter', function () {
-                var svg = link.querySelector('svg');
-                if (svg) {
-                    svg.style.transform = 'scale(1.2) rotate(-10deg)';
-                    setTimeout(function () {
-                        svg.style.transform = 'scale(1.15) rotate(5deg)';
-                        setTimeout(function () {
-                            svg.style.transform = '';
-                        }, 150);
-                    }, 150);
-                }
-            });
-        });
-    })();
-
-    // --- Back button bounce on hover ---
-    (function initBackBtnEffect() {
-        var backBtn = document.getElementById('nav-back');
-        if (backBtn) {
-            backBtn.addEventListener('mouseenter', function () {
-                backBtn.style.transform = 'translateX(-5px) scale(1.08)';
-            });
-            backBtn.addEventListener('mouseleave', function () {
-                backBtn.style.transform = '';
-            });
-        }
-    })();
-
-    // --- Smooth page transitions ---
-    document.querySelectorAll('a[href]').forEach(function (link) {
-        var href = link.getAttribute('href');
-        if (href && (href.endsWith('.html') || href.indexOf('/index.html') !== -1 || href.startsWith('chatbridge/') || href.startsWith('school-platform/') || href.startsWith('smart-flood/') || href.startsWith('album-canvas/') || href.startsWith('educloud/'))) {
-            link.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.body.style.opacity = '0';
-                document.body.style.transition = 'opacity 0.3s ease';
-                setTimeout(function () {
-                    window.location.href = href;
-                }, 300);
-            });
-        }
-    });
-
-    // --- Fade in on load ---
-    document.body.style.opacity = '0';
-    document.body.style.transition = 'opacity 0.5s ease';
-    window.addEventListener('load', function () {
-        document.body.style.opacity = '1';
-    });
-
-    // --- Theme Toggle ---
-    (function initTheme() {
-        var themeToggleBtn = document.getElementById('theme-toggle');
-        if (!themeToggleBtn) return;
-
-        var currentTheme = localStorage.getItem('portfolio_theme') || 'dark';
-        if (currentTheme === 'light') {
-            document.documentElement.classList.add('light-mode');
-            updateThemeIcon('light');
-        }
-
-        themeToggleBtn.addEventListener('click', function () {
-            document.documentElement.classList.toggle('light-mode');
-            var isLight = document.documentElement.classList.contains('light-mode');
-            var newTheme = isLight ? 'light' : 'dark';
-            localStorage.setItem('portfolio_theme', newTheme);
-            updateThemeIcon(newTheme);
-            
-            // Re-trigger particle system redraw if available
-            if (window.initParticles) {
-                window.initParticles();
             }
         });
-
-        function updateThemeIcon(theme) {
-            if (theme === 'light') {
-                themeToggleBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sun-icon"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>';
-            } else {
-                themeToggleBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="moon-icon"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" /></svg>';
-            }
-        }
-    })();
-})();
+    }
+});

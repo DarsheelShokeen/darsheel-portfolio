@@ -3,29 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact — Darsheel Shokeen</title>
-    <meta name="description" content="Get in touch with Darsheel Shokeen via email, Twitter, or GitHub.">
+    <title>Contact • Darsheel Shokeen</title>
+    <meta name="description" content="Get in touch with Darsheel Shokeen for collaborations, engineering inquiries, or investment research.">
     <link rel="canonical" href="https://darsheelshokeen.xo.je/contact.html">
-
-    <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://darsheelshokeen.xo.je/contact.html">
-    <meta property="og:title" content="Contact — Darsheel Shokeen">
-    <meta property="og:description" content="Get in touch with Darsheel Shokeen for collaborations, projects, or inquiries.">
-    <meta property="og:image" content="https://darsheelshokeen.xo.je/og-preview.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-
-    <!-- Twitter / X Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Contact — Darsheel Shokeen">
-    <meta name="twitter:description" content="Get in touch with Darsheel Shokeen for collaborations, projects, or inquiries.">
-    <meta name="twitter:image" content="https://darsheelshokeen.xo.je/og-preview.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
@@ -33,109 +17,154 @@
     <link rel="shortcut icon" href="favicon.ico">
 </head>
 <body>
-    <!-- Particle Canvas -->
-    <canvas id="particle-canvas"></canvas>
 
-    <!-- Animated gradient line at top -->
-    <div class="top-gradient-line"></div>
+    <!-- Site Navigation -->
+    <header class="site-nav" id="top-nav">
+        <div class="container nav-container">
+            <a href="index.html" class="nav-brand">
+                <span class="nav-brand-dot"></span>
+                Darsheel Shokeen
+            </a>
 
-    <!-- Back button -->
-    <a href="index.html" class="nav-back-btn" id="nav-back" aria-label="Back to home">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M19 12H5"></path>
-            <polyline points="12 19 5 12 12 5"></polyline>
-        </svg>
-    </a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html#about" class="nav-link">About</a></li>
+                    <li><a href="projects.html" class="nav-link">Projects</a></li>
+                    <li><a href="index.html#expertise" class="nav-link">Expertise</a></li>
+                    <li><a href="index.html#experiments" class="nav-link">Experiments</a></li>
+                    <li><a href="journal.html" class="nav-link">Journal</a></li>
+                    <li><a href="contact.html" class="nav-link active">Contact</a></li>
+                </ul>
+            </nav>
 
-    <!-- Navigation -->
-    <nav class="nav nav-pill" id="main-nav">
-        <a href="index.html" class="nav-link">
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-            Home
-        </a>
-        <a href="projects.html" class="nav-link">
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
-            Projects
-        </a>
-        <a href="contact.html" class="nav-link active">
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-            Contact
-        </a>
-    </nav>
+            <div class="nav-actions">
+                <a href="mailto:darsheelshokeen@gmail.com" class="nav-cta">Email Direct →</a>
+                <button class="nav-toggle-btn" id="nav-toggle" aria-label="Toggle navigation">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
 
-    <!-- Theme toggle -->
-    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="moon-icon">
-            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
-        </svg>
-    </button>
+    <!-- Mobile Drawer -->
+    <div class="mobile-nav-drawer" id="mobile-drawer">
+        <ul class="mobile-nav-links">
+            <li><a href="index.html#about" class="mobile-nav-link">About</a></li>
+            <li><a href="projects.html" class="mobile-nav-link">Projects</a></li>
+            <li><a href="index.html#expertise" class="mobile-nav-link">Expertise</a></li>
+            <li><a href="index.html#experiments" class="mobile-nav-link">Experiments</a></li>
+            <li><a href="journal.html" class="mobile-nav-link">Journal</a></li>
+            <li><a href="contact.html" class="mobile-nav-link">Contact</a></li>
+        </ul>
+    </div>
 
     <!-- Main Content -->
-    <main class="page-content contact-page">
-        <div class="contact-grid" id="contact-grid">
-            <!-- Twitter Card -->
-            <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" class="contact-card" id="contact-twitter">
-                <div class="contact-card-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
-                    </svg>
+    <main class="container" style="padding-top: 150px; padding-bottom: 80px;">
+        <div class="contact-layout">
+            <div class="contact-info-col">
+                <div>
+                    <div class="section-kicker">Reach Out</div>
+                    <h1 class="contact-title">Have something interesting in mind?</h1>
+                    <p class="contact-subtitle" style="margin-top: 12px;">
+                        Let's build something worth exploring. I'm always open to discussing technology, product ideas, collaborative engineering, and investment research.
+                    </p>
                 </div>
-                <div class="contact-card-line"></div>
-                <div class="contact-card-info">
-                    <span class="contact-card-handle">@darsheelshokeen</span>
-                    <span class="contact-card-label">Twitter</span>
-                </div>
-            </a>
 
-            <!-- Email Card -->
-            <a href="mailto:darsheelshokeen@gmail.com" class="contact-card" id="contact-email">
-                <div class="contact-card-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="2" y="4" width="20" height="16" rx="2"></rect>
-                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
-                    </svg>
-                </div>
-                <div class="contact-card-line"></div>
-                <div class="contact-card-info">
-                    <span class="contact-card-handle">darsheelshokeen@gmail.com</span>
-                    <span class="contact-card-label">Email</span>
-                </div>
-            </a>
+                <div class="direct-channels-list">
+                    <a href="mailto:darsheelshokeen@gmail.com" class="channel-item">
+                        <div class="channel-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                        </div>
+                        <div class="channel-details">
+                            <span class="channel-label">Email Direct</span>
+                            <span class="channel-value">darsheelshokeen@gmail.com</span>
+                        </div>
+                    </a>
 
-            <!-- GitHub Card -->
-            <a href="https://github.com/DarsheelShokeen" target="_blank" rel="noopener noreferrer" class="contact-card" id="contact-github">
-                <div class="contact-card-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
-                        <path d="M9 18c-4.51 2-5-2-7-2"></path>
-                    </svg>
-                </div>
-                <div class="contact-card-line"></div>
-                <div class="contact-card-info">
-                    <span class="contact-card-handle">DarsheelShokeen</span>
-                    <span class="contact-card-label">GitHub</span>
-                </div>
-            </a>
+                    <a href="https://github.com/DarsheelShokeen" target="_blank" rel="noopener noreferrer" class="channel-item">
+                        <div class="channel-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+                        </div>
+                        <div class="channel-details">
+                            <span class="channel-label">GitHub</span>
+                            <span class="channel-value">@DarsheelShokeen</span>
+                        </div>
+                    </a>
 
-            <!-- LinkedIn Card -->
-            <a href="https://www.linkedin.com/in/darsheel-shokeen-523833302" target="_blank" rel="noopener noreferrer" class="contact-card" id="contact-linkedin">
-                <div class="contact-card-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                        <rect width="4" height="12" x="2" y="9"></rect>
-                        <circle cx="4" cy="4" r="2"></circle>
-                    </svg>
+                    <a href="https://www.linkedin.com/in/darsheel-shokeen-523833302" target="_blank" rel="noopener noreferrer" class="channel-item">
+                        <div class="channel-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+                        </div>
+                        <div class="channel-details">
+                            <span class="channel-label">LinkedIn</span>
+                            <span class="channel-value">Darsheel Shokeen</span>
+                        </div>
+                    </a>
                 </div>
-                <div class="contact-card-line"></div>
-                <div class="contact-card-info">
-                    <span class="contact-card-handle">Darsheel Shokeen</span>
-                    <span class="contact-card-label">LinkedIn</span>
-                </div>
-            </a>
+            </div>
+
+            <div class="contact-form-box">
+                <form class="contact-form" id="contact-form" novalidate>
+                    <!-- Honeypot anti-spam field -->
+                    <div class="hp-field">
+                        <label for="form-hp">Website</label>
+                        <input type="text" id="form-hp" name="website" tabindex="-1" autocomplete="off">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="form-name" class="form-label">Your Name</label>
+                        <input type="text" id="form-name" class="form-input" placeholder="e.g. Alex Sharma" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="form-email" class="form-label">Email Address</label>
+                        <input type="email" id="form-email" class="form-input" placeholder="alex@company.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="form-subject" class="form-label">Subject</label>
+                        <input type="text" id="form-subject" class="form-input" placeholder="Project Inquiry / Collaboration">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="form-message" class="form-label">Message</label>
+                        <textarea id="form-message" class="form-textarea" placeholder="Tell me about what you are building or exploring..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; padding: 14px;">
+                        Send Message →
+                    </button>
+
+                    <div class="form-feedback" id="form-feedback" role="alert"></div>
+                </form>
+            </div>
         </div>
     </main>
 
-    <script src="particles.js"></script>
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <span class="footer-wordmark">Darsheel Shokeen</span>
+                    <span class="footer-tagline">Building ideas into something meaningful.</span>
+                </div>
+                <ul class="footer-nav-links">
+                    <li><a href="index.html#about" class="footer-nav-link">About</a></li>
+                    <li><a href="projects.html" class="footer-nav-link">Projects</a></li>
+                    <li><a href="index.html#expertise" class="footer-nav-link">Expertise</a></li>
+                    <li><a href="index.html#experiments" class="footer-nav-link">Experiments</a></li>
+                    <li><a href="journal.html" class="footer-nav-link">Journal</a></li>
+                    <li><a href="contact.html" class="footer-nav-link">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-bottom">
+                <span>© <span id="current-year">2026</span> Darsheel Shokeen. All rights reserved.</span>
+                <span class="back-to-top-btn" id="back-to-top">Back to top ↑</span>
+            </div>
+        </div>
+    </footer>
+
     <script src="main.js"></script>
 </body>
 </html>

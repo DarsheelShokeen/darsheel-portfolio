@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LessonPlan Maker — Case Study • Darsheel Shokeen</title>
+    <meta name="description" content="Case study on LessonPlan Maker: An educational platform designed to streamline NCERT-based lesson planning and 5E inquiry pedagogy for Classes 6–8.">
+    <link rel="canonical" href="https://darsheelshokeen.xo.je/lessonplan-maker.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon.png">
+    <link rel="shortcut icon" href="favicon.ico">
+</head>
+<body>
+
+    <!-- Site Navigation -->
+    <header class="site-nav" id="top-nav">
+        <div class="container nav-container">
+            <a href="index.html" class="nav-brand">
+                <span class="nav-brand-dot"></span>
+                Darsheel Shokeen
+            </a>
+
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html#about" class="nav-link">About</a></li>
+                    <li><a href="index.html#projects" class="nav-link active">Projects</a></li>
+                    <li><a href="index.html#expertise" class="nav-link">Expertise</a></li>
+                    <li><a href="index.html#experiments" class="nav-link">Experiments</a></li>
+                    <li><a href="index.html#journal" class="nav-link">Journal</a></li>
+                    <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-actions">
+                <a href="lessonplan-maker/index.html" target="_blank" class="nav-cta">Launch Lesson Planner ↗</a>
+                <button class="nav-toggle-btn" id="nav-toggle" aria-label="Toggle navigation">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Drawer -->
+    <div class="mobile-nav-drawer" id="mobile-drawer">
+        <ul class="mobile-nav-links">
+            <li><a href="index.html#about" class="mobile-nav-link">About</a></li>
+            <li><a href="index.html#projects" class="mobile-nav-link">Projects</a></li>
+            <li><a href="index.html#expertise" class="mobile-nav-link">Expertise</a></li>
+            <li><a href="index.html#experiments" class="mobile-nav-link">Experiments</a></li>
+            <li><a href="index.html#journal" class="mobile-nav-link">Journal</a></li>
+            <li><a href="index.html#contact" class="mobile-nav-link">Contact</a></li>
+            <li><a href="lessonplan-maker/index.html" target="_blank" class="mobile-nav-link">Launch Lesson Planner ↗</a></li>
+        </ul>
+    </div>
+
+    <!-- Case Study Hero -->
+    <section class="case-hero">
+        <div class="container">
+            <a href="index.html#projects" class="case-back-link">← Back to Selected Work</a>
+            <div class="project-category" style="margin-bottom: 12px;">Educational Technology • Curriculum Design • Web Application</div>
+            <h1 class="case-title">LessonPlan Maker — Pedagogical Workbench for NCERT Classes 6–8</h1>
+            <p class="case-lead">
+                A purpose-built web workbench for educators to rapidly structure, format, and export competency-aligned lesson plans following the NCERT syllabus and NEP 2020 5E inquiry cycle.
+            </p>
+
+            <div class="case-meta-grid">
+                <div class="case-meta-item">
+                    <span class="case-meta-label">Role</span>
+                    <span class="case-meta-val">Product Architect & Frontend Engineer</span>
+                </div>
+                <div class="case-meta-item">
+                    <span class="case-meta-label">Core Technologies</span>
+                    <span class="case-meta-val">JavaScript (ES6+), CSS Grid/Flexbox, DOM State Engine, Print CSS Stylesheet</span>
+                </div>
+                <div class="case-meta-item">
+                    <span class="case-meta-label">Status</span>
+                    <span class="case-meta-val" style="color: var(--status-live);">Active Prototype (v0.9 Beta)</span>
+                </div>
+                <div class="case-meta-item">
+                    <span class="case-meta-label">Live Application</span>
+                    <a href="lessonplan-maker/index.html" target="_blank" class="case-meta-val" style="color: var(--accent-secondary); text-decoration: underline;">Launch Web Platform ↗</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Content Body -->
+    <main class="container">
+        <div class="case-content-grid">
+            <article class="case-article">
+                <!-- Section 1: Introduction -->
+                <section id="introduction">
+                    <h2>1. Project Introduction</h2>
+                    <p>
+                        In Indian schooling under CBSE and state boards adopting the National Curriculum Framework (NCF), teachers spend countless hours each week drafting mandatory lesson plans for middle school classes (Grades 6–8). Many educators are forced to balance heavy teaching timetables with cumbersome manual administrative formatting.
+                    </p>
+                    <p>
+                        LessonPlan Maker was engineered to eliminate this administrative friction. It provides a structured, responsive digital workbench that guides educators through learning outcomes, 5E inquiry steps, and differentiation rubrics, outputting clean, printable pedagogical plans in seconds.
+                    </p>
+                </section>
+
+                <!-- Section 2: Problem Statement -->
+                <section id="problem">
+                    <h2>2. The Problem Being Addressed</h2>
+                    <ul>
+                        <li><strong>Inconsistent Pedagogical Formatting:</strong> Plans drafted in generic word processors vary wildly in quality and often omit mandatory NEP 2020 outcome statements.</li>
+                        <li><strong>Fragmented Chapter Information:</strong> Teachers must cross-reference multiple PDFs to match specific chapter concepts to standardized learning outcomes.</li>
+                        <li><strong>Clunky PDF Output:</strong> Most existing education tools generate messy tables with bad page breaks and unreadable layouts when printed on standard A4 paper.</li>
+                    </ul>
+                </section>
+
+                <!-- Section 3: Philosophy & Pedagogy -->
+                <section id="philosophy">
+                    <h2>3. Pedagogical Philosophy & Objectives</h2>
+                    <blockquote>
+                        "Teachers should spend their cognitive energy on classroom relationships and student engagement, not repetitive documentation formatting."
+                    </blockquote>
+                    <p>
+                        The tool implements the renowned <strong>5E Instructional Model</strong>:
+                    </p>
+                    <ul>
+                        <li><strong>Engage:</strong> Sparks curiosity, uncovers prior knowledge, and sets cognitive context.</li>
+                        <li><strong>Explore:</strong> Facilitates hands-on observation, experimental inquiry, and peer debate.</li>
+                        <li><strong>Explain:</strong> Clarifies evidence, connects conceptual dots, and introduces formal definitions.</li>
+                        <li><strong>Elaborate:</strong> Challenges students to apply learned principles to novel real-world situations.</li>
+                        <li><strong>Evaluate:</strong> Conducts formative checks and provides constructive diagnostic feedback.</li>
+                    </ul>
+                </section>
+
+                <!-- Section 4: Technical Architecture -->
+                <section id="architecture">
+                    <h2>4. Technical Architecture</h2>
+                    <p>
+                        LessonPlan Maker is built with clean, zero-dependency browser technologies:
+                    </p>
+                    <ol>
+                        <li><strong>Curriculum Knowledge Base:</strong> A structured data model mapping NCERT Middle Stage (Classes 6, 7, and 8) across Science, Mathematics, Social Science, and English to specific learning outcomes.</li>
+                        <li><strong>Dynamic Plan Synthesizer:</strong> A client-side state engine that dynamically populates pedagogical sequences, time allocations, and tiered differentiation strategies based on the selected period duration.</li>
+                        <li><strong>Print-Optimized Engine:</strong> Specialized CSS `@media print` rules ensuring that generated documents render with crisp typography, correct margins, and zero page breaks across sections.</li>
+                    </ol>
+
+                    <div class="interactive-demo-card">
+                        <div style="font-family: var(--font-mono); font-size: 0.76rem; color: var(--accent-secondary); margin-bottom: 8px; text-transform: uppercase;">
+                            Interactive Workbench
+                        </div>
+                        <h3 style="margin-top: 0;">Try the LessonPlan Maker Prototype</h3>
+                        <p style="color: var(--text-secondary); margin-bottom: 20px;">
+                            Configure a grade, subject, and topic to generate a comprehensive 5E lesson plan and export to print or PDF.
+                        </p>
+                        <a href="lessonplan-maker/index.html" target="_blank" class="btn-primary" style="display: inline-flex;">
+                            Launch LessonPlan Maker ↗
+                        </a>
+                    </div>
+                </section>
+
+                <!-- Section 5: Challenges & Solutions -->
+                <section id="challenges">
+                    <h2>5. Challenges and Solutions</h2>
+                    <h3>Challenge: Harmonizing Diverse Subject Requirements</h3>
+                    <p>
+                        A laboratory-based science inquiry sequence has fundamentally different classroom stages than an English literature comprehension lesson.
+                    </p>
+                    <p>
+                        <strong>Solution:</strong> Designed modular pedagogical schemas that dynamically adapt section headers (e.g. "Hands-on Investigation" for Science vs. "Textual Analysis & Vocabulary" for English).
+                    </p>
+
+                    <h3>Challenge: Offline Reliability in School Environments</h3>
+                    <p>
+                        Many school staff rooms have unstable internet connections or restricted browsing policies.
+                    </p>
+                    <p>
+                        <strong>Solution:</strong> Built the entire application as a self-contained, client-side bundle that operates completely offline with zero server dependencies.
+                    </p>
+                </section>
+
+                <!-- Section 6: Current Status -->
+                <section id="status">
+                    <h2>6. Current Status & Roadmap</h2>
+                    <p>
+                        The platform is currently in active prototype testing (v0.9 Beta). Future iterations will introduce custom teacher annotations, multilingual Hindi / English switching, and CBSE annual syllabus pacing guides.
+                    </p>
+                    <div style="display: flex; gap: 16px; flex-wrap: wrap; margin-top: 24px;">
+                        <a href="lessonplan-maker/index.html" target="_blank" class="btn-primary">
+                            Open LessonPlan Workbench ↗
+                        </a>
+                        <a href="index.html#projects" class="btn-secondary">
+                            Explore Other Projects ↗
+                        </a>
+                    </div>
+                </section>
+            </article>
+
+            <!-- Table of Contents Sidebar -->
+            <aside class="case-sidebar-toc">
+                <div class="toc-title">Table of Contents</div>
+                <ul class="toc-links">
+                    <li><a href="#introduction" class="toc-link">1. Introduction</a></li>
+                    <li><a href="#problem" class="toc-link">2. Problem Being Addressed</a></li>
+                    <li><a href="#philosophy" class="toc-link">3. Design Philosophy</a></li>
+                    <li><a href="#architecture" class="toc-link">4. Technical Architecture</a></li>
+                    <li><a href="#challenges" class="toc-link">5. Challenges & Solutions</a></li>
+                    <li><a href="#status" class="toc-link">6. Status & Roadmap</a></li>
+                </ul>
+
+                <div style="padding-top: 16px; border-top: 1px solid var(--border-subtle); margin-top: 8px;">
+                    <div class="toc-title" style="margin-bottom: 12px;">Related Flagships</div>
+                    <ul class="toc-links">
+                        <li><a href="album-canvas.html" class="toc-link">AlbumCanvas (Android) →</a></li>
+                        <li><a href="smart-flood.html" class="toc-link">Smart Flood Alert (IoT) →</a></li>
+                        <li><a href="financial-research.html" class="toc-link">Financial Research (FinTech) →</a></li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <span class="footer-wordmark">Darsheel Shokeen</span>
+                    <span class="footer-tagline">Building ideas into something meaningful.</span>
+                </div>
+                <ul class="footer-nav-links">
+                    <li><a href="index.html#about" class="footer-nav-link">About</a></li>
+                    <li><a href="index.html#projects" class="footer-nav-link">Projects</a></li>
+                    <li><a href="index.html#experiments" class="footer-nav-link">Experiments</a></li>
+                    <li><a href="index.html#journal" class="footer-nav-link">Journal</a></li>
+                    <li><a href="index.html#contact" class="footer-nav-link">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-bottom">
+                <span>© <span id="current-year">2026</span> Darsheel Shokeen. All rights reserved.</span>
+                <span class="back-to-top-btn" id="back-to-top">Back to top ↑</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlbumCanvas — Case Study • Darsheel Shokeen</title>
+    <meta name="description" content="Case study on AlbumCanvas: An Android dynamic live wallpaper and home screen widget engine powered by Jetpack Compose and real-time palette extraction.">
+    <link rel="canonical" href="https://darsheelshokeen.xo.je/album-canvas.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon.png">
+    <link rel="shortcut icon" href="favicon.ico">
+</head>
+<body>
+
+    <!-- Site Navigation -->
+    <header class="site-nav" id="top-nav">
+        <div class="container nav-container">
+            <a href="index.html" class="nav-brand">
+                <span class="nav-brand-dot"></span>
+                Darsheel Shokeen
+            </a>
+
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html#about" class="nav-link">About</a></li>
+                    <li><a href="index.html#projects" class="nav-link active">Projects</a></li>
+                    <li><a href="index.html#expertise" class="nav-link">Expertise</a></li>
+                    <li><a href="index.html#experiments" class="nav-link">Experiments</a></li>
+                    <li><a href="index.html#journal" class="nav-link">Journal</a></li>
+                    <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-actions">
+                <a href="album-canvas/index.html" target="_blank" class="nav-cta">Launch Interactive Demo ↗</a>
+                <button class="nav-toggle-btn" id="nav-toggle" aria-label="Toggle navigation">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Drawer -->
+    <div class="mobile-nav-drawer" id="mobile-drawer">
+        <ul class="mobile-nav-links">
+            <li><a href="index.html#about" class="mobile-nav-link">About</a></li>
+            <li><a href="index.html#projects" class="mobile-nav-link">Projects</a></li>
+            <li><a href="index.html#expertise" class="mobile-nav-link">Expertise</a></li>
+            <li><a href="index.html#experiments" class="mobile-nav-link">Experiments</a></li>
+            <li><a href="index.html#journal" class="mobile-nav-link">Journal</a></li>
+            <li><a href="index.html#contact" class="mobile-nav-link">Contact</a></li>
+            <li><a href="album-canvas/index.html" target="_blank" class="mobile-nav-link">Launch Interactive Demo ↗</a></li>
+        </ul>
+    </div>
+
+    <!-- Case Study Hero -->
+    <section class="case-hero">
+        <div class="container">
+            <a href="index.html#projects" class="case-back-link">← Back to Selected Work</a>
+            <div class="project-category" style="margin-bottom: 12px;">Android System Architecture & Interface Design</div>
+            <h1 class="case-title">AlbumCanvas — Dynamic Live Wallpaper & Ambient Music Experience</h1>
+            <p class="case-lead">
+                An Android application built with Kotlin and Jetpack Compose that hooks into system media playback to dynamically generate ambient, album-reactive wallpapers and Material You home screen widgets.
+            </p>
+
+            <div class="case-meta-grid">
+                <div class="case-meta-item">
+                    <span class="case-meta-label">Role</span>
+                    <span class="case-meta-val">Android Developer & UI/UX Designer</span>
+                </div>
+                <div class="case-meta-item">
+                    <span class="case-meta-label">Core Technologies</span>
+                    <span class="case-meta-val">Kotlin, Jetpack Compose, Material 3, AndroidX MediaSession, Palette API</span>
+                </div>
+                <div class="case-meta-item">
+                    <span class="case-meta-label">Status</span>
+                    <span class="case-meta-val" style="color: var(--status-live);">Complete & Open Source</span>
+                </div>
+                <div class="case-meta-item">
+                    <span class="case-meta-label">Repository</span>
+                    <a href="https://github.com/DarsheelShokeen/AlbumCanvas" target="_blank" rel="noopener noreferrer" class="case-meta-val" style="color: var(--accent-secondary); text-decoration: underline;">github.com/DarsheelShokeen/AlbumCanvas ↗</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Content Body -->
+    <main class="container">
+        <div class="case-content-grid">
+            <article class="case-article">
+                <!-- Section 1: Introduction -->
+                <section id="introduction">
+                    <h2>1. Project Introduction</h2>
+                    <p>
+                        AlbumCanvas was conceived as an exploration into deeply contextual, atmospheric interfaces for Android. While modern operating systems feature Material You dynamic theming based on a static wallpaper, AlbumCanvas inverts this relationship: it lets the user's active auditory environment shape the entire visual atmosphere of their device in real time.
+                    </p>
+                    <p>
+                        Whenever a track plays on Spotify, Apple Music, YouTube Music, or any compliant media player, AlbumCanvas intercepts the media metadata, extracts the high-resolution album artwork, computes a balanced 6-tone color palette, and synthesizes dynamic wallpapers and widgets with ultra-low battery overhead.
+                    </p>
+                </section>
+
+                <!-- Section 2: Problem Statement -->
+                <section id="problem">
+                    <h2>2. The Problem Being Addressed</h2>
+                    <p>
+                        Most Android customization apps that attempt to display music artwork suffer from severe structural drawbacks:
+                    </p>
+                    <ul>
+                        <li><strong>High Battery Drain:</strong> Continual canvas redraw loops in legacy `WallpaperService` exhaust GPU cycles and drain battery life.</li>
+                        <li><strong>Poor Contrast & Legibility:</strong> Displaying raw square album covers on phone screens clashes with desktop app icons and notification text.</li>
+                        <li><strong>Inflexible Notification Listeners:</strong> Legacy tools rely on brittle accessibility services rather than the standardized AndroidX `MediaSessionManager` pipeline.</li>
+                    </ul>
+                </section>
+
+                <!-- Section 3: Objectives & Design Philosophy -->
+                <section id="philosophy">
+                    <h2>3. Project Objectives & Design Philosophy</h2>
+                    <blockquote>
+                        "Interface elements should not fight with user content; they should emerge naturally from it."
+                    </blockquote>
+                    <p>
+                        The guiding philosophy for AlbumCanvas was strict Swiss minimalism applied to mobile motion design. Key criteria included:
+                    </p>
+                    <ul>
+                        <li><strong>Zero Perceptible Latency:</strong> Track transitions should crossfade gracefully within 300ms of playback change.</li>
+                        <li><strong>Automatic Text Scrimming:</strong> Contrast calculation using WCAG luminance metrics to ensure home screen icon labels remain perfectly legible regardless of album brightness.</li>
+                        <li><strong>Native Jetpack Compose UI:</strong> Clean declarative architecture eliminating boilerplate XML views.</li>
+                    </ul>
+                </section>
+
+                <!-- Section 4: Architecture & Technical Stack -->
+                <section id="architecture">
+                    <h2>4. Technical Architecture</h2>
+                    <p>
+                        The architecture is structured around four decoupled modules:
+                    </p>
+                    <ol>
+                        <li><strong>MediaSession Listener:</strong> A background service observing active `MediaController` callbacks and emitting Kotlin Coroutine `StateFlow` updates upon playback state changes.</li>
+                        <li><strong>Palette Extraction Engine:</strong> Asynchronously processes album artwork bitmaps off the main thread with `AndroidX Palette`, extracting dominant, vibrant, muted, and dark saturated swatches.</li>
+                        <li><strong>Wallpaper Render Pipeline:</strong> Custom `WallpaperService` that implements an OpenGL / RenderScript blur pass and dynamic mesh gradient shaders.</li>
+                        <li><strong>Glance Widget Layer:</strong> Modern home screen widgets built with AndroidX Glance, offering playback controls, track progression, and album art presentation.</li>
+                    </ol>
+
+                    <div class="interactive-demo-card">
+                        <div style="font-family: var(--font-mono); font-size: 0.76rem; color: var(--accent-secondary); margin-bottom: 8px; text-transform: uppercase;">
+                            Interactive Simulation
+                        </div>
+                        <h3 style="margin-top: 0;">Experience AlbumCanvas Live</h3>
+                        <p style="color: var(--text-secondary); margin-bottom: 20px;">
+                            Test the live web simulator with real-time palette extraction, dynamic blur shaders, and home screen widget switching.
+                        </p>
+                        <a href="album-canvas/index.html" target="_blank" class="btn-primary" style="display: inline-flex;">
+                            Launch AlbumCanvas Web Playground ↗
+                        </a>
+                    </div>
+                </section>
+
+                <!-- Section 5: Challenges & Solutions -->
+                <section id="challenges">
+                    <h2>5. Challenges and Solutions</h2>
+                    <h3>Challenge: Memory Leaks with Bitmap Caching</h3>
+                    <p>
+                        Streaming high-resolution album artwork during rapid track scrubbing could trigger OutOfMemory (OOM) exceptions.
+                    </p>
+                    <p>
+                        <strong>Solution:</strong> Implemented an LRU in-memory bitmap cache with downsampling during initial decode, ensuring bitmap memory never exceeds 32MB regardless of playlist duration.
+                    </p>
+
+                    <h3>Challenge: Lock Screen vs. Home Screen Separation</h3>
+                    <p>
+                        Android 13+ introduced stricter wallpaper dispatching policies between lock screen and home screen surfaces.
+                    </p>
+                    <p>
+                        <strong>Solution:</strong> Leveraged `WallpaperManager.FLAG_SYSTEM` and `FLAG_LOCK` routing to allow users to isolate dynamic music visuals exclusively to their chosen surface.
+                    </p>
+                </section>
+
+                <!-- Section 6: Current Status & Open Source -->
+                <section id="status">
+                    <h2>6. Current Status & Links</h2>
+                    <p>
+                        The codebase is fully open-sourced on GitHub with comprehensive documentation, build instructions, and architecture diagrams under the MIT license.
+                    </p>
+                    <div style="display: flex; gap: 16px; flex-wrap: wrap; margin-top: 24px;">
+                        <a href="https://github.com/DarsheelShokeen/AlbumCanvas" target="_blank" rel="noopener noreferrer" class="btn-primary">
+                            View on GitHub ↗
+                        </a>
+                        <a href="album-canvas/index.html" target="_blank" class="btn-secondary">
+                            Open Interactive Simulator ↗
+                        </a>
+                    </div>
+                </section>
+            </article>
+
+            <!-- Table of Contents Sidebar -->
+            <aside class="case-sidebar-toc">
+                <div class="toc-title">Table of Contents</div>
+                <ul class="toc-links">
+                    <li><a href="#introduction" class="toc-link">1. Introduction</a></li>
+                    <li><a href="#problem" class="toc-link">2. Problem Being Addressed</a></li>
+                    <li><a href="#philosophy" class="toc-link">3. Design Philosophy</a></li>
+                    <li><a href="#architecture" class="toc-link">4. Technical Architecture</a></li>
+                    <li><a href="#challenges" class="toc-link">5. Challenges & Solutions</a></li>
+                    <li><a href="#status" class="toc-link">6. Status & Links</a></li>
+                </ul>
+
+                <div style="padding-top: 16px; border-top: 1px solid var(--border-subtle); margin-top: 8px;">
+                    <div class="toc-title" style="margin-bottom: 12px;">Related Flagships</div>
+                    <ul class="toc-links">
+                        <li><a href="smart-flood.html" class="toc-link">Smart Flood Alert (IoT) →</a></li>
+                        <li><a href="lessonplan-maker.html" class="toc-link">LessonPlan Maker (EdTech) →</a></li>
+                        <li><a href="financial-research.html" class="toc-link">Financial Research (FinTech) →</a></li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <span class="footer-wordmark">Darsheel Shokeen</span>
+                    <span class="footer-tagline">Building ideas into something meaningful.</span>
+                </div>
+                <ul class="footer-nav-links">
+                    <li><a href="index.html#about" class="footer-nav-link">About</a></li>
+                    <li><a href="index.html#projects" class="footer-nav-link">Projects</a></li>
+                    <li><a href="index.html#experiments" class="footer-nav-link">Experiments</a></li>
+                    <li><a href="index.html#journal" class="footer-nav-link">Journal</a></li>
+                    <li><a href="index.html#contact" class="footer-nav-link">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-bottom">
+                <span>© <span id="current-year">2026</span> Darsheel Shokeen. All rights reserved.</span>
+                <span class="back-to-top-btn" id="back-to-top">Back to top ↑</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>

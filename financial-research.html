@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Research Platform — Case Study • Darsheel Shokeen</title>
+    <meta name="description" content="Case study on Financial Research Platform: A fundamental valuation and financial statement analysis architecture featuring discounted cash flow (DCF) modeling.">
+    <link rel="canonical" href="https://darsheelshokeen.xo.je/financial-research.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon.png">
+    <link rel="shortcut icon" href="favicon.ico">
+    <style>
+        .sandbox-box {
+            background: #0d0d12;
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            padding: 32px;
+            margin: 32px 0;
+        }
+        .sandbox-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+            margin-top: 20px;
+        }
+        .slider-control {
+            margin-bottom: 16px;
+        }
+        .slider-header {
+            display: flex;
+            justify-content: space-between;
+            font-family: var(--font-mono);
+            font-size: 0.76rem;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+        }
+        .slider-val {
+            color: var(--accent-secondary);
+            font-weight: 600;
+        }
+        .custom-slider {
+            width: 100%;
+            accent-color: var(--accent-primary);
+        }
+        .results-card {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-sm);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .res-label {
+            font-family: var(--font-mono);
+            font-size: 0.74rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+        .res-value {
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: var(--accent-secondary);
+            letter-spacing: -0.02em;
+        }
+        .res-sub {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            margin-top: 8px;
+        }
+        @media (max-width: 768px) {
+            .sandbox-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Site Navigation -->
+    <header class="site-nav" id="top-nav">
+        <div class="container nav-container">
+            <a href="index.html" class="nav-brand">
+                <span class="nav-brand-dot"></span>
+                Darsheel Shokeen
+            </a>
+
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html#about" class="nav-link">About</a></li>
+                    <li><a href="index.html#projects" class="nav-link active">Projects</a></li>
+                    <li><a href="index.html#expertise" class="nav-link">Expertise</a></li>
+                    <li><a href="index.html#experiments" class="nav-link">Experiments</a></li>
+                    <li><a href="index.html#journal" class="nav-link">Journal</a></li>
+                    <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-actions">
+                <a href="#sandbox" class="nav-cta">Test Valuation Sandbox ↓</a>
+                <button class="nav-toggle-btn" id="nav-toggle" aria-label="Toggle navigation">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Drawer -->
+    <div class="mobile-nav-drawer" id="mobile-drawer">
+        <ul class="mobile-nav-links">
+            <li><a href="index.html#about" class="mobile-nav-link">About</a></li>
+            <li><a href="index.html#projects" class="mobile-nav-link">Projects</a></li>
+            <li><a href="index.html#expertise" class="mobile-nav-link">Expertise</a></li>
+            <li><a href="index.html#experiments" class="mobile-nav-link">Experiments</a></li>
+            <li><a href="index.html#journal" class="mobile-nav-link">Journal</a></li>
+            <li><a href="index.html#contact" class="mobile-nav-link">Contact</a></li>
+            <li><a href="#sandbox" class="mobile-nav-link">Test Valuation Sandbox ↓</a></li>
+        </ul>
+    </div>
+
+    <!-- Case Study Hero -->
+    <section class="case-hero">
+        <div class="container">
+            <a href="index.html#projects" class="case-back-link">← Back to Selected Work</a>
+            <div class="project-category" style="margin-bottom: 12px;">Quantitative Finance • Valuation Modeling • Analytical Systems</div>
+            <h1 class="case-title">Financial Research Platform — Systematic Valuation & Statement Analytics</h1>
+            <p class="case-lead">
+                An ongoing research and engineering initiative exploring automated corporate financial statement parsing, normalized ratio computation, and interactive Discounted Cash Flow (DCF) valuation models.
+            </p>
+
+            <div class="case-meta-grid">
+                <div class="case-meta-item">
+                    <span class="case-meta-label">Role</span>
+                    <span class="case-meta-val">Financial Analyst & Systems Engineer</span>
+                </div>
+                <div class="case-meta-item">
+                    <span class="case-meta-label">Core Technologies</span>
+                    <span class="case-meta-val">Python, Pandas, Valuation Mathematics, REST API Schema, SQLite</span>
+                </div>
+                <div class="case-meta-item">
+                    <span class="case-meta-label">Status</span>
+                    <span class="case-meta-val" style="color: var(--status-dev);">In Active Development (Research & Engine Prototyping)</span>
+                </div>
+                <div class="case-meta-item">
+                    <span class="case-meta-label">Focus Area</span>
+                    <span class="case-meta-val">Equity Valuation & Capital Structure</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Content Body -->
+    <main class="container">
+        <div class="case-content-grid">
+            <article class="case-article">
+                <!-- Section 1: Introduction -->
+                <section id="introduction">
+                    <h2>1. Project Introduction</h2>
+                    <p>
+                        Investment research often involves extracting data from dense, idiosyncratic PDF annual reports and quarterly filing disclosures. Retail investors and independent researchers either spend hours entering numbers into static spreadsheets or rely on black-box commercial terminals with steep recurring costs.
+                    </p>
+                    <p>
+                        The Financial Research Platform is designed to bridge this divide. It creates a standardized data pipeline that ingests raw balance sheets, income statements, and cash flow statements, standardizes them across reporting periods, and feeds them into systematic valuation engines.
+                    </p>
+                </section>
+
+                <!-- Section 2: Problem Statement -->
+                <section id="problem">
+                    <h2>2. The Problem Being Addressed</h2>
+                    <ul>
+                        <li><strong>Inconsistent Accounting Nomenclature:</strong> Line items like "Other Operating Expenses" or "Share-Based Compensation" vary across accounting regimes (Ind-AS vs. US GAAP vs. IFRS), causing distorted automated screeners.</li>
+                        <li><strong>Static, Rigid Financial Models:</strong> Traditional Excel spreadsheets lack sensitivity analysis interfaces and require manual formula reconstruction when historical restatements occur.</li>
+                        <li><strong>Neglect of Capital Structure Nuance:</strong> Simple P/E or EV/EBITDA screeners overlook lease liabilities, non-controlling interests, and dilution from convertible instruments.</li>
+                    </ul>
+                </section>
+
+                <!-- Section 3: Objectives & Design Philosophy -->
+                <section id="philosophy">
+                    <h2>3. Project Objectives & Mathematical Rigor</h2>
+                    <blockquote>
+                        "Valuation is neither pure science nor pure art; it is disciplined craft rooted in cash flow reality."
+                    </blockquote>
+                    <p>
+                        The platform's valuation methodology is built on explicit, verifiable financial principles:
+                    </p>
+                    <ul>
+                        <li><strong>Free Cash Flow to Firm (FCFF):</strong> Unlevered cash flows defined as \( \text{NOPAT} + \text{D\&A} - \Delta \text{NWC} - \text{CapEx} \).</li>
+                        <li><strong>Dynamic Weighted Average Cost of Capital (WACC):</strong> Calibrating cost of equity via CAPM using realistic country risk premiums and levered betas.</li>
+                        <li><strong>Two-Stage Horizon Modeling:</strong> High-growth projection period transitioning smoothly to a sustainable terminal growth rate capped at long-term GDP growth.</li>
+                    </ul>
+                </section>
+
+                <!-- Section 4: Interactive Sandbox Preview -->
+                <section id="sandbox">
+                    <h2>4. Interactive DCF Sensitivity Sandbox</h2>
+                    <p>
+                        Below is an interactive prototype demonstrating the platform's core sensitivity calculation engine for an illustrative cash-generating enterprise:
+                    </p>
+
+                    <div class="sandbox-box">
+                        <div style="font-family: var(--font-mono); font-size: 0.74rem; color: var(--accent-secondary); text-transform: uppercase; margin-bottom: 6px;">
+                            Interactive Simulation Sandbox
+                        </div>
+                        <h3 style="margin-top: 0; margin-bottom: 8px;">Real-Time Intrinsic Valuation Calculator</h3>
+                        <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 24px;">
+                            Base Year Free Cash Flow: $100M • 5-Year Horizon. Adjust the parameters below to compute the estimated Enterprise Value in real-time.
+                        </p>
+
+                        <div class="sandbox-grid">
+                            <div>
+                                <div class="slider-control">
+                                    <div class="slider-header">
+                                        <span>5-Yr Revenue / FCF Growth Rate</span>
+                                        <span class="slider-val" id="growth-disp">12%</span>
+                                    </div>
+                                    <input type="range" min="2" max="30" value="12" class="custom-slider" id="growth-slider">
+                                </div>
+
+                                <div class="slider-control">
+                                    <div class="slider-header">
+                                        <span>Discount Rate (WACC)</span>
+                                        <span class="slider-val" id="wacc-disp">10.0%</span>
+                                    </div>
+                                    <input type="range" min="6" max="18" step="0.5" value="10.0" class="custom-slider" id="wacc-slider">
+                                </div>
+
+                                <div class="slider-control">
+                                    <div class="slider-header">
+                                        <span>Perpetual Terminal Growth Rate</span>
+                                        <span class="slider-val" id="term-disp">3.5%</span>
+                                    </div>
+                                    <input type="range" min="1.5" max="5.0" step="0.1" value="3.5" class="custom-slider" id="term-slider">
+                                </div>
+                            </div>
+
+                            <div class="results-card">
+                                <div class="res-label">Implied Enterprise Value</div>
+                                <div class="res-value" id="ev-result">$2,145M</div>
+                                <div class="res-sub" id="ev-details">PV of Horizon: $492M • PV of Terminal: $1,653M</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 5: Planned Capabilities vs. Actual Status -->
+                <section id="status">
+                    <h2>5. Current Development Status & Transparency</h2>
+                    <p>
+                        In adherence to engineering integrity, we clearly distinguish between completed architecture and roadmap features:
+                    </p>
+                    <table style="width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.9rem;">
+                        <thead>
+                            <tr style="border-bottom: 1px solid var(--border-medium); text-align: left;">
+                                <th style="padding: 10px 0; color: var(--text-primary); font-family: var(--font-mono); font-size: 0.74rem; text-transform: uppercase;">Module</th>
+                                <th style="padding: 10px 0; color: var(--text-primary); font-family: var(--font-mono); font-size: 0.74rem; text-transform: uppercase;">Implementation State</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid var(--border-subtle);">
+                                <td style="padding: 12px 0; color: var(--text-primary); font-weight: 500;">DCF Sensitivity Mathematical Engine</td>
+                                <td style="padding: 12px 0; color: var(--status-live); font-family: var(--font-mono); font-size: 0.78rem;">✓ Complete / Working Prototype</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border-subtle);">
+                                <td style="padding: 12px 0; color: var(--text-primary); font-weight: 500;">Financial Statement Schema (XBRL / JSON)</td>
+                                <td style="padding: 12px 0; color: var(--status-live); font-family: var(--font-mono); font-size: 0.78rem;">✓ Schema Designed & Verified</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border-subtle);">
+                                <td style="padding: 12px 0; color: var(--text-primary); font-weight: 500;">Automated SEC / MCA Regulatory Ingestion</td>
+                                <td style="padding: 12px 0; color: var(--status-dev); font-family: var(--font-mono); font-size: 0.78rem;">⚙ In Active Development</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border-subtle);">
+                                <td style="padding: 12px 0; color: var(--text-primary); font-weight: 500;">Cross-Sector Peer Multiple Comparisons</td>
+                                <td style="padding: 12px 0; color: var(--text-muted); font-family: var(--font-mono); font-size: 0.78rem;">Planned Future Phase</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px 0; color: var(--text-primary); font-weight: 500;">Multi-Asset Portfolio Risk Analytics</td>
+                                <td style="padding: 12px 0; color: var(--text-muted); font-family: var(--font-mono); font-size: 0.78rem;">Planned Future Phase</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </article>
+
+            <!-- Table of Contents Sidebar -->
+            <aside class="case-sidebar-toc">
+                <div class="toc-title">Table of Contents</div>
+                <ul class="toc-links">
+                    <li><a href="#introduction" class="toc-link">1. Introduction</a></li>
+                    <li><a href="#problem" class="toc-link">2. Problem Being Addressed</a></li>
+                    <li><a href="#philosophy" class="toc-link">3. Valuation Philosophy</a></li>
+                    <li><a href="#sandbox" class="toc-link">4. DCF Valuation Sandbox</a></li>
+                    <li><a href="#status" class="toc-link">5. Status & Transparency</a></li>
+                </ul>
+
+                <div style="padding-top: 16px; border-top: 1px solid var(--border-subtle); margin-top: 8px;">
+                    <div class="toc-title" style="margin-bottom: 12px;">Related Flagships</div>
+                    <ul class="toc-links">
+                        <li><a href="album-canvas.html" class="toc-link">AlbumCanvas (Android) →</a></li>
+                        <li><a href="smart-flood.html" class="toc-link">Smart Flood Alert (IoT) →</a></li>
+                        <li><a href="lessonplan-maker.html" class="toc-link">LessonPlan Maker (EdTech) →</a></li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <span class="footer-wordmark">Darsheel Shokeen</span>
+                    <span class="footer-tagline">Building ideas into something meaningful.</span>
+                </div>
+                <ul class="footer-nav-links">
+                    <li><a href="index.html#about" class="footer-nav-link">About</a></li>
+                    <li><a href="index.html#projects" class="footer-nav-link">Projects</a></li>
+                    <li><a href="index.html#experiments" class="footer-nav-link">Experiments</a></li>
+                    <li><a href="index.html#journal" class="footer-nav-link">Journal</a></li>
+                    <li><a href="index.html#contact" class="footer-nav-link">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-bottom">
+                <span>© <span id="current-year">2026</span> Darsheel Shokeen. All rights reserved.</span>
+                <span class="back-to-top-btn" id="back-to-top">Back to top ↑</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <script>
+        // Interactive DCF Valuation Calculator
+        const growthSlider = document.getElementById('growth-slider');
+        const waccSlider = document.getElementById('wacc-slider');
+        const termSlider = document.getElementById('term-slider');
+
+        const growthDisp = document.getElementById('growth-disp');
+        const waccDisp = document.getElementById('wacc-disp');
+        const termDisp = document.getElementById('term-disp');
+
+        const evResult = document.getElementById('ev-result');
+        const evDetails = document.getElementById('ev-details');
+
+        function recalculateDCF() {
+            const g = parseFloat(growthSlider.value) / 100;
+            const w = parseFloat(waccSlider.value) / 100;
+            const tg = parseFloat(termSlider.value) / 100;
+
+            growthDisp.textContent = `${(g * 100).toFixed(0)}%`;
+            waccDisp.textContent = `${(w * 100).toFixed(1)}%`;
+            termDisp.textContent = `${(tg * 100).toFixed(1)}%`;
+
+            if (w <= tg) {
+                evResult.textContent = 'Infinite / Invalid';
+                evDetails.textContent = 'Discount rate must be strictly greater than terminal rate.';
+                return;
+            }
+
+            let baseFCF = 100; // $100M
+            let pvExplicit = 0;
+            let currentFCF = baseFCF;
+
+            for (let yr = 1; yr <= 5; yr++) {
+                currentFCF *= (1 + g);
+                pvExplicit += currentFCF / Math.pow(1 + w, yr);
+            }
+
+            const terminalFCF = currentFCF * (1 + tg);
+            const terminalValue = terminalFCF / (w - tg);
+            const pvTerminal = terminalValue / Math.pow(1 + w, 5);
+
+            const totalEV = pvExplicit + pvTerminal;
+
+            evResult.textContent = `$${Math.round(totalEV).toLocaleString()}M`;
+            evDetails.textContent = `PV of Horizon: $${Math.round(pvExplicit).toLocaleString()}M • PV of Terminal: $${Math.round(pvTerminal).toLocaleString()}M`;
+        }
+
+        [growthSlider, waccSlider, termSlider].forEach(slider => {
+            slider.addEventListener('input', recalculateDCF);
+        });
+        recalculateDCF();
+    </script>
+</body>
+</html>
