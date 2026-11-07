@@ -1,6 +1,6 @@
 /**
  * DARSHEEL SHOKEEN — Master Runtime Engine
- * Obsidian Violet Design System • Privacy Telemetry • Command Palette (Ctrl+K)
+ * Obsidian Violet Design System • Unlumen & SmoothUI Kinetic System • Privacy Telemetry
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -28,7 +28,174 @@ document.addEventListener('DOMContentLoaded', () => {
         // Fail silently
     }
 
-    // 1. Navigation Scroll Treatment & Mobile Drawer
+    // 1. SmoothUI: Top Scroll Progress Rail
+    const initScrollProgress = () => {
+        let rail = document.getElementById('scroll-progress-rail');
+        if (!rail) {
+            rail = document.createElement('div');
+            rail.id = 'scroll-progress-rail';
+            document.body.prepend(rail);
+        }
+
+        let ticking = false;
+        const updateProgress = () => {
+            const scrollTop = window.scrollY || document.documentElement.scrollTop;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = docHeight > 0 ? Math.min(100, Math.max(0, (scrollTop / docHeight) * 100)) : 0;
+            rail.style.width = `${scrollPercent.toFixed(1)}%`;
+            ticking = false;
+        };
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(updateProgress);
+                ticking = true;
+            }
+        }, { passive: true });
+        updateProgress();
+    };
+    initScrollProgress();
+
+    // 2. SmoothUI: Fluid Hover Sliding Navigation Pill (Animated Tabs)
+    const initFluidNav = () => {
+        const navMenu = document.querySelector('.nav-menu');
+        if (!navMenu) return;
+
+        let pill = navMenu.querySelector('.nav-sliding-pill');
+        if (!pill) {
+            pill = document.createElement('div');
+            pill.className = 'nav-sliding-pill';
+            navMenu.prepend(pill);
+        }
+
+        const navLinks = navMenu.querySelectorAll('.nav-link');
+
+        const movePillTo = (el) => {
+            if (!el) {
+                pill.style.opacity = '0';
+                return;
+            }
+            const offsetLeft = el.offsetLeft;
+            const width = el.offsetWidth;
+            pill.style.transform = `translateX(${offsetLeft}px)`;
+            pill.style.width = `${width}px`;
+            pill.style.opacity = '1';
+        };
+
+        const activeLink = navMenu.querySelector('.nav-link.active') || navLinks[0];
+        if (activeLink && window.scrollY < 200) {
+            setTimeout(() => movePillTo(activeLink), 150);
+        }
+
+        navLinks.forEach(link => {
+            link.addEventListener('mouseenter', () => movePillTo(link));
+        });
+
+        navMenu.addEventListener('mouseleave', () => {
+            const currentActive = navMenu.querySelector('.nav-link.active');
+            if (currentActive) {
+                movePillTo(currentActive);
+            } else {
+                pill.style.opacity = '0';
+            }
+        });
+
+        // Update when active link changes
+        window.addEventListener('scrollNavUpdate', () => {
+            const currentActive = navMenu.querySelector('.nav-link.active');
+            if (currentActive && !navMenu.matches(':hover')) {
+                movePillTo(currentActive);
+            }
+        });
+    };
+    initFluidNav();
+
+    // 3. SmoothUI: Magnetic Field Physics (Buttons & Key Controls)
+    const initMagneticField = () => {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        if ('ontouchstart' in window || navigator.maxTouchPoints > 0) return;
+
+        const magneticTargets = document.querySelectorAll('.btn-primary, .btn-secondary, .cmd-palette-btn, .link-case-study, .magnetic');
+        magneticTargets.forEach(el => {
+            el.addEventListener('mousemove', (e) => {
+                const rect = el.getBoundingClientRect();
+                const x = e.clientX - (rect.left + rect.width / 2);
+                const y = e.clientY - (rect.top + rect.height / 2);
+                // Spring magnetic attraction damping factor
+                el.style.transform = `translate(${x * 0.22}px, ${y * 0.22}px)`;
+                el.style.transition = 'transform 0.08s ease-out';
+            });
+
+            el.addEventListener('mouseleave', () => {
+                el.style.transform = 'translate(0px, 0px)';
+                el.style.transition = 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
+            });
+        });
+    };
+    initMagneticField();
+
+    // 4. Unlumen UI & SmoothUI: Spotlight Glow Border & 3D Subtle Tilt Cards
+    const initSpotlightCards = () => {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        const isTouch = ('ontouchstart' in window || navigator.maxTouchPoints > 0);
+
+        const cards = document.querySelectorAll('.project-card-large, .expertise-card, .experiment-card, .now-card');
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+
+                if (!isTouch) {
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const tiltX = ((y - centerY) / centerY) * -1.6;
+                    const tiltY = ((x - centerX) / centerX) * 1.6;
+                    card.style.transform = `perspective(1000px) rotateX(${tiltX.toFixed(2)}deg) rotateY(${tiltY.toFixed(2)}deg) translateY(-2px)`;
+                }
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.setProperty('--mouse-x', `-500px`);
+                card.style.setProperty('--mouse-y', `-500px`);
+                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+                card.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
+            });
+
+            card.addEventListener('mouseenter', () => {
+                card.style.transition = 'none';
+            });
+        });
+    };
+    initSpotlightCards();
+
+    // 5. SmoothUI: Staggered Scroll Reveal System
+    const initScrollReveals = () => {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+        const revealElements = document.querySelectorAll('.section-header, .project-card-large, .expertise-card, .experiment-card, .now-card, .timeline-item, .journal-entry-row');
+        revealElements.forEach(el => el.classList.add('reveal-on-scroll'));
+
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.12,
+            rootMargin: '0px 0px -40px 0px'
+        });
+
+        revealElements.forEach(el => observer.observe(el));
+    };
+    initScrollReveals();
+
+    // 6. Navigation Scroll Treatment & Mobile Drawer
     const nav = document.querySelector('.site-nav');
     const navToggle = document.getElementById('nav-toggle');
     const mobileDrawer = document.getElementById('mobile-drawer');
@@ -66,7 +233,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 2. Active Section Spy
+    // 7. Active Section Spy
     const sections = document.querySelectorAll('section[id], header[id]');
     const navLinks = document.querySelectorAll('.nav-link');
 
@@ -82,18 +249,29 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
+        let changed = false;
         navLinks.forEach(link => {
             const href = link.getAttribute('href');
             if (href === `#${currentId}`) {
-                link.classList.add('active');
-            } else if (href.startsWith('#')) {
-                link.classList.remove('active');
+                if (!link.classList.contains('active')) {
+                    link.classList.add('active');
+                    changed = true;
+                }
+            } else if (href && href.startsWith('#')) {
+                if (link.classList.contains('active')) {
+                    link.classList.remove('active');
+                    changed = true;
+                }
             }
         });
+
+        if (changed) {
+            window.dispatchEvent(new CustomEvent('scrollNavUpdate'));
+        }
     };
     window.addEventListener('scroll', updateActiveNav, { passive: true });
 
-    // 3. Live IST Clock (Delhi, India)
+    // 8. Live IST Clock (Delhi, India)
     const clockEl = document.getElementById('ist-clock');
     if (clockEl) {
         const updateClock = () => {
@@ -111,31 +289,40 @@ document.addEventListener('DOMContentLoaded', () => {
         setInterval(updateClock, 1000);
     }
 
-    // 4. Real Public Visitor Counter (Synchronized with Analytics Engine)
+    // 9. SmoothUI Spring Number Ticker for Real Public Visitor Counter
     const counterEls = document.querySelectorAll('#visit-counter-val, .visit-counter-target');
     if (counterEls.length > 0) {
         const cached = parseInt(localStorage.getItem('portfolio_global_visits') || '482', 10);
 
-        const animateCount = (target) => {
+        const animateSpringCount = (target) => {
             counterEls.forEach(el => {
                 let current = parseInt(el.textContent.replace(/\D/g, '') || '0', 10);
                 if (current >= target) {
                     el.textContent = target.toLocaleString();
                     return;
                 }
-                const increment = Math.max(1, Math.ceil((target - current) / 24));
-                const timer = setInterval(() => {
-                    current += increment;
-                    if (current >= target) {
-                        current = target;
-                        clearInterval(timer);
+                const duration = 1400;
+                const startTime = performance.now();
+                const startVal = current;
+
+                const tick = (now) => {
+                    const elapsed = now - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    // Smooth quartic ease-out
+                    const ease = 1 - Math.pow(1 - progress, 4);
+                    const val = Math.round(startVal + (target - startVal) * ease);
+                    el.textContent = val.toLocaleString();
+                    if (progress < 1) {
+                        requestAnimationFrame(tick);
+                    } else {
+                        el.textContent = target.toLocaleString();
                     }
-                    el.textContent = current.toLocaleString();
-                }, 30);
+                };
+                requestAnimationFrame(tick);
             });
         };
 
-        animateCount(cached);
+        animateSpringCount(cached);
 
         if (!window.location.protocol.startsWith('file')) {
             fetch('analytics.php?action=public_count', { cache: 'no-store' })
@@ -143,7 +330,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 .then(data => {
                     if (data && typeof data.total === 'number') {
                         localStorage.setItem('portfolio_global_visits', data.total.toString());
-                        animateCount(data.total);
+                        animateSpringCount(data.total);
                     }
                 })
                 .catch(() => {
@@ -152,7 +339,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         .then(d => {
                             if (d && typeof d.count === 'number') {
                                 localStorage.setItem('portfolio_global_visits', d.count.toString());
-                                animateCount(d.count);
+                                animateSpringCount(d.count);
                             }
                         })
                         .catch(() => {});
@@ -160,13 +347,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // 5. Dynamic Footer Copyright Year
+    // 10. Dynamic Footer Copyright Year
     const yearEl = document.getElementById('current-year');
     if (yearEl) {
         yearEl.textContent = new Date().getFullYear();
     }
 
-    // 6. Back-to-Top Button
+    // 11. Back-to-Top Button
     const backToTopBtn = document.getElementById('back-to-top');
     if (backToTopBtn) {
         backToTopBtn.addEventListener('click', () => {
@@ -174,7 +361,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 7. Command Palette (Ctrl+K / Cmd+K) with Secret Keyword Discovery ('iamdarsheel')
+    // 12. Command Palette (Ctrl+K / Cmd+K) with Secret Keyword Discovery ('iamdarsheel')
     const cmdOverlay = document.getElementById('cmd-palette');
     const cmdInput = document.getElementById('cmd-input');
     const cmdList = document.getElementById('cmd-list');
@@ -315,7 +502,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 8. Contact Form Handling
+    // 13. Contact Form Handling
     const contactForm = document.getElementById('contact-form');
     const feedbackBox = document.getElementById('form-feedback');
 

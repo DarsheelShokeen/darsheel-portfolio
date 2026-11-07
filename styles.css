@@ -257,17 +257,38 @@ button, input, textarea, select {
 .nav-menu {
     display: flex;
     align-items: center;
-    gap: 28px;
+    gap: 4px;
     list-style: none;
+    position: relative;
+    padding: 3px;
+    border-radius: var(--radius-full);
+    background: rgba(18, 18, 24, 0.5);
+    border: 1px solid rgba(39, 39, 47, 0.6);
+}
+
+.nav-sliding-pill {
+    position: absolute;
+    top: 3px;
+    left: 0;
+    height: calc(100% - 6px);
+    background: rgba(139, 92, 246, 0.14);
+    border: 1px solid rgba(139, 92, 246, 0.35);
+    border-radius: var(--radius-full);
+    pointer-events: none;
+    z-index: 0;
+    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), width 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+    opacity: 0;
 }
 
 .nav-link {
     font-family: var(--font-sans);
-    font-size: 0.88rem;
+    font-size: 0.86rem;
     font-weight: 500;
     color: var(--text-secondary);
     position: relative;
-    padding: 6px 0;
+    z-index: 1;
+    padding: 6px 14px;
+    border-radius: var(--radius-full);
     transition: color var(--transition-fast);
 }
 
@@ -277,14 +298,7 @@ button, input, textarea, select {
 }
 
 .nav-link.active::after {
-    content: "";
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: var(--accent-primary);
-    border-radius: 2px;
+    display: none;
 }
 
 .nav-actions {
@@ -654,17 +668,19 @@ button, input, textarea, select {
     border-right: 1px solid var(--border-subtle);
     position: relative;
     overflow: hidden;
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     aspect-ratio: 16 / 10;
-    align-self: stretch;
 }
 
 .project-cover-link {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     height: 100%;
-    aspect-ratio: 16 / 10;
     overflow: hidden;
     position: relative;
 }
@@ -672,7 +688,6 @@ button, input, textarea, select {
 .project-cover-img {
     width: 100%;
     height: 100%;
-    aspect-ratio: 16 / 10;
     object-fit: cover;
     object-position: center;
     display: block;
@@ -689,8 +704,6 @@ button, input, textarea, select {
     flex-direction: column;
     justify-content: center;
     gap: 16px;
-}
-    justify-content: space-between;
 }
 
 .project-meta-top {
@@ -1896,11 +1909,181 @@ button, input, textarea, select {
     }
 }
 
+/* ==============================================================================
+   KINETIC & INTERACTION SYSTEM (SmoothUI & Unlumen UI Inspired Primitives)
+   ============================================================================== */
+
+/* 1. Top Scroll Progress Rail */
+#scroll-progress-rail {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 2.5px;
+    background: linear-gradient(90deg, #8B5CF6 0%, #A78BFA 50%, #EC4899 100%);
+    z-index: 99999;
+    pointer-events: none;
+    box-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+    transition: width 0.08s ease-out;
+}
+
+/* 2. Dynamic Spotlight Glow Border on Cards */
+.project-card-large,
+.expertise-card,
+.experiment-card,
+.now-card {
+    position: relative;
+    --mouse-x: -500px;
+    --mouse-y: -500px;
+    will-change: transform;
+    transform-style: preserve-3d;
+}
+
+/* Surface Ambient Spotlight */
+.project-card-large::before,
+.expertise-card::before,
+.experiment-card::before,
+.now-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(500px circle at var(--mouse-x) var(--mouse-y), rgba(139, 92, 246, 0.12), transparent 70%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 2;
+}
+
+.project-card-large:hover::before,
+.expertise-card:hover::before,
+.experiment-card:hover::before,
+.now-card:hover::before {
+    opacity: 1;
+}
+
+/* 1px Border Beam / Illuminated Border Highlight */
+.project-card-large::after,
+.expertise-card::after,
+.experiment-card::after,
+.now-card::after {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: radial-gradient(380px circle at var(--mouse-x) var(--mouse-y), rgba(185, 160, 255, 0.5), transparent 65%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    padding: 1px;
+}
+
+.project-card-large:hover::after,
+.expertise-card:hover::after,
+.experiment-card:hover::after,
+.now-card:hover::after {
+    opacity: 1;
+}
+
+/* 3. Magnetic Element Base Styles */
+.btn-primary,
+.btn-secondary,
+.cmd-palette-btn,
+.link-case-study,
+.magnetic {
+    will-change: transform;
+    display: inline-flex;
+    align-items: center;
+}
+
+/* 4. Scroll Reveal System */
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+
+.reveal-on-scroll.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 5. AlbumCanvas Bespoke Equalizer */
+.albumcanvas-equalizer {
+    display: inline-flex;
+    align-items: flex-end;
+    gap: 2.5px;
+    height: 13px;
+    margin-left: 8px;
+    vertical-align: middle;
+}
+
+.albumcanvas-equalizer-bar {
+    width: 2px;
+    background: var(--accent-secondary);
+    border-radius: 1px;
+    animation: eqBounce 1.2s ease-in-out infinite alternate;
+}
+
+.albumcanvas-equalizer-bar:nth-child(1) { height: 35%; animation-delay: 0.1s; }
+.albumcanvas-equalizer-bar:nth-child(2) { height: 90%; animation-delay: 0.35s; }
+.albumcanvas-equalizer-bar:nth-child(3) { height: 55%; animation-delay: 0.15s; }
+.albumcanvas-equalizer-bar:nth-child(4) { height: 100%; animation-delay: 0.45s; }
+.albumcanvas-equalizer-bar:nth-child(5) { height: 45%; animation-delay: 0.25s; }
+
+@keyframes eqBounce {
+    0% { height: 25%; }
+    100% { height: 100%; }
+}
+
+/* 6. Vinyl Disc Peek Interaction */
+.vinyl-disc-peek {
+    position: absolute;
+    right: -35px;
+    top: 50%;
+    transform: translateY(-50%) rotate(0deg);
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #09090B 18%, #27272F 19%, #121218 35%, #2a2a38 36%, #121218 55%, #22222d 56%, #09090B 72%);
+    border: 2px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.7);
+    pointer-events: none;
+    transition: right 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+    opacity: 0;
+    z-index: 1;
+}
+
+.project-card-large:hover .vinyl-disc-peek {
+    right: 18px;
+    transform: translateY(-50%) rotate(45deg);
+    opacity: 0.85;
+}
+
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
+    }
+    .reveal-on-scroll {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+    .project-card-large,
+    .expertise-card,
+    .experiment-card,
+    .now-card {
+        transform: none !important;
+    }
+    .albumcanvas-equalizer-bar {
+        animation: none !important;
     }
 }
