@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="theme-color" content="#07090E">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Master Telemetry & Analytics Dashboard — Darsheel Shokeen</title>
     <!-- Hidden from search engine crawlers -->
@@ -10,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=3.2">
+    <link rel="stylesheet" href="styles.css?v=4.0">
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="shortcut icon" href="favicon.ico">
@@ -519,7 +520,7 @@
                     <p style="font-size: 0.85rem; color: var(--text-muted); font-family: var(--font-mono); margin-top: 4px;">Pageviews and unique visitors over time</p>
                 </div>
                 <div style="font-family: var(--font-mono); font-size: 0.74rem; color: var(--accent-secondary); display: flex; gap: 16px;">
-                    <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 8px; height: 8px; background: #8B5CF6; border-radius: 2px;"></span> Pageviews</span>
+                    <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 8px; height: 8px; background: #00E5FF; border-radius: 2px;"></span> Pageviews</span>
                     <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 8px; height: 8px; background: #34D399; border-radius: 2px;"></span> Unique Visitors</span>
                 </div>
             </div>
@@ -867,8 +868,8 @@
                     <svg width="100%" height="100%" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none">
                         <defs>
                             <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="0%" stop-color="#8B5CF6" stop-opacity="0.25"/>
-                                <stop offset="100%" stop-color="#8B5CF6" stop-opacity="0.0"/>
+                                <stop offset="0%" stop-color="#00E5FF" stop-opacity="0.25"/>
+                                <stop offset="100%" stop-color="#00E5FF" stop-opacity="0.0"/>
                             </linearGradient>
                         </defs>
                         <!-- Grid Lines -->
@@ -880,7 +881,7 @@
                         <path d="${areaPath}" fill="url(#areaGrad)"/>
 
                         <!-- Lines -->
-                        <path d="${viewsPath}" fill="none" stroke="#8B5CF6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="${viewsPath}" fill="none" stroke="#00E5FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="${uniquesPath}" fill="none" stroke="#34D399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 
                         <!-- Date Labels -->
