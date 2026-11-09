@@ -448,7 +448,7 @@ button, input, textarea, select {
 .hero-content {
     position: relative;
     z-index: 1;
-    max-width: 960px;
+    max-width: 1240px;
 }
 
 .hero-meta-row {
@@ -572,6 +572,146 @@ button, input, textarea, select {
     transform: translateY(-2px);
 }
 
+
+/* ==============================================================================
+   HERO 2-COLUMN EDITORIAL GRID & AUTHENTIC AVATAR CARD
+   ============================================================================== */
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.35fr 0.85fr;
+    gap: 52px;
+    align-items: center;
+}
+
+.hero-copy-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.hero-avatar-col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.avatar-card-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(12, 16, 23, 0.78);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--border-subtle);
+    border-radius: 24px;
+    padding: 32px 24px;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    transition: border-color 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+    max-width: 360px;
+    width: 100%;
+}
+
+.avatar-card-container:hover {
+    border-color: rgba(0, 229, 255, 0.4);
+    transform: translateY(-4px);
+    box-shadow: 0 32px 80px rgba(0, 0, 0, 0.75), 0 0 40px rgba(0, 229, 255, 0.15);
+}
+
+.avatar-glow-halo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 229, 255, 0.22) 0%, rgba(37, 99, 235, 0.15) 50%, transparent 75%);
+    filter: blur(36px);
+    pointer-events: none;
+    z-index: 0;
+    animation: avatarHaloBreath 4s ease-in-out infinite;
+}
+
+@keyframes avatarHaloBreath {
+    0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(0.95); }
+    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+}
+
+.avatar-frame {
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    border: 2px solid rgba(0, 229, 255, 0.45);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.7), inset 0 0 20px rgba(0, 229, 255, 0.2);
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    background: #080D14;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+}
+
+.avatar-card-container:hover .avatar-frame {
+    transform: scale(1.05);
+    border-color: var(--accent-primary);
+}
+
+.hero-avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.avatar-meta-pill {
+    margin-top: 20px;
+    background: rgba(19, 27, 38, 0.9);
+    border: 1px solid var(--border-subtle);
+    border-radius: 999px;
+    padding: 6px 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    color: var(--text-primary);
+    z-index: 1;
+}
+
+.avatar-pulse-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--status-live);
+    box-shadow: 0 0 10px var(--status-live);
+    animation: livePulse 2s infinite ease-in-out;
+}
+
+.avatar-tech-chips {
+    margin-top: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: center;
+    z-index: 1;
+}
+
+.avatar-chip {
+    font-family: var(--font-mono);
+    font-size: 0.70rem;
+    color: var(--text-secondary);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-subtle);
+    padding: 3px 9px;
+    border-radius: 6px;
+    transition: all var(--transition-fast);
+}
+
+.avatar-chip:hover {
+    color: var(--accent-primary);
+    border-color: rgba(0, 229, 255, 0.3);
+    background: rgba(0, 229, 255, 0.05);
+}
+
 /* ==============================================================================
    CURRENTLY BUILDING (Concise strip beneath hero)
    ============================================================================== */
@@ -688,6 +828,7 @@ button, input, textarea, select {
     height: 100%;
     overflow: hidden;
     position: relative;
+    aspect-ratio: 16 / 10;
 }
 
 .project-cover-img {
@@ -696,6 +837,7 @@ button, input, textarea, select {
     object-fit: cover;
     object-position: center;
     display: block;
+    aspect-ratio: 16 / 10;
     transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
 }
 
@@ -2123,4 +2265,20 @@ button, a, input, select, textarea, .cmd-item, .project-cover-link {
 section[id],
 article[id] {
     scroll-margin-top: 85px;
+}
+
+
+@media (max-width: 960px) {
+    .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+    }
+    .hero-avatar-col {
+        order: -1;
+        justify-content: flex-start;
+    }
+    .avatar-card-container {
+        max-width: 320px;
+        margin: 0;
+    }
 }
