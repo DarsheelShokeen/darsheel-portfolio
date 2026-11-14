@@ -5208,3 +5208,113 @@ figcaption {
 #w-node-_1d7edd9a-c0a2-fdac-6869-db989cef2c6d-63c7f6b9 {
   grid-area: 1 / 2 / 2 / 3;
 }
+
+
+/* ==============================================================================
+   TOM DE KONING ARCHITECTURAL SECTIONS: CAPABILITIES & EXPERIENCE
+   ============================================================================== */
+
+.section-editorial {
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+}
+
+.capabilities-list,
+.experience-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.capability-item,
+.experience-item {
+  position: relative;
+  padding: 2.2rem 0;
+  border-top: 1px solid rgba(231, 225, 215, 0.2);
+  display: grid;
+  grid-template-columns: 3.5fr 8.5fr;
+  gap: 2rem;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.capability-item:last-child,
+.experience-item:last-child {
+  border-bottom: 1px solid rgba(231, 225, 215, 0.2);
+}
+
+.capability-item:hover,
+.experience-item:hover {
+  border-color: var(--orange);
+}
+
+.capability-meta,
+.experience-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.capability-num,
+.experience-year {
+  font-family: Ppneuemontreal, "Plus Jakarta Sans", sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--orange);
+  text-transform: uppercase;
+}
+
+.capability-category,
+.experience-role {
+  font-family: Ppneuemontreal, "Plus Jakarta Sans", sans-serif;
+  font-size: 0.95rem;
+  color: var(--sand);
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.capability-details,
+.experience-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.capability-title,
+.experience-title {
+  font-family: Ppneuemontreal, "Plus Jakarta Sans", sans-serif;
+  font-size: clamp(1.4rem, 2.5vw, 2.2rem);
+  font-weight: 500;
+  text-transform: uppercase;
+  color: var(--white);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.capability-stack {
+  font-family: Ppneuemontreal, "Plus Jakarta Sans", sans-serif;
+  font-size: 0.88rem;
+  color: var(--orange);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 500;
+}
+
+.capability-desc,
+.experience-desc {
+  font-family: Ppneuemontreal, "Plus Jakarta Sans", sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: var(--sand);
+  opacity: 0.85;
+  margin: 0;
+}
+
+@media (max-width: 767px) {
+  .capability-item,
+  .experience-item {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1.8rem 0;
+  }
+}
