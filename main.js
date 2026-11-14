@@ -910,4 +910,126 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     initFinancialDCFSim();
 
+
+    // ==============================================================================
+    // AWWWARDS V5.0 UNCONVENTIONAL EXHIBITION STAGE & SWISS ARCHIVE CATALOG
+    // ==============================================================================
+    const initExhibitionStageAndCatalog = () => {
+        const stageBtn = document.getElementById('view-mode-stage');
+        const catalogBtn = document.getElementById('view-mode-catalog');
+        const stageDeck = document.getElementById('exhibition-deck');
+        const catalogView = document.getElementById('archive-catalog-view');
+        const stageTabsContainer = document.getElementById('stage-tabs-nav');
+        const stageTabs = document.querySelectorAll('.stage-tab-btn');
+        const deckItems = document.querySelectorAll('.deck-item');
+        const prevBtn = document.getElementById('deck-prev-btn');
+        const nextBtn = document.getElementById('deck-next-btn');
+        const indicator = document.getElementById('deck-indicator');
+
+        if (!stageBtn || !catalogBtn || !stageDeck || !catalogView) return;
+
+        let activeProjectIdx = 0;
+        const projectNames = [
+            'AlbumCanvas',
+            'Smart Flood Alert',
+            'LessonPlan Maker',
+            'Financial Research'
+        ];
+
+        const updateStageProject = (idx) => {
+            if (idx < 0) idx = deckItems.length - 1;
+            if (idx >= deckItems.length) idx = 0;
+            activeProjectIdx = idx;
+
+            stageTabs.forEach((tab, i) => {
+                tab.classList.toggle('active', i === idx);
+                tab.setAttribute('aria-selected', i === idx ? 'true' : 'false');
+            });
+
+            deckItems.forEach((item, i) => {
+                item.classList.toggle('active', i === idx);
+            });
+
+            if (indicator) {
+                indicator.textContent = `0${idx + 1} / 0${deckItems.length} — ${projectNames[idx] || ''}`;
+            }
+
+            if (window.audioSynth) {
+                window.audioSynth.playSubtleBeep(620 + idx * 80, 0.05);
+            }
+        };
+
+        stageTabs.forEach((tab) => {
+            tab.addEventListener('click', () => {
+                const idx = parseInt(tab.getAttribute('data-project'), 10);
+                updateStageProject(idx);
+            });
+        });
+
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => updateStageProject(activeProjectIdx - 1));
+        }
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => updateStageProject(activeProjectIdx + 1));
+        }
+
+        // View mode switcher (Stage vs Catalog)
+        const setViewMode = (mode) => {
+            if (mode === 'stage') {
+                stageBtn.classList.add('active');
+                stageBtn.setAttribute('aria-selected', 'true');
+                catalogBtn.classList.remove('active');
+                catalogBtn.setAttribute('aria-selected', 'false');
+
+                if (stageTabsContainer) stageTabsContainer.style.display = 'grid';
+                stageDeck.style.display = 'block';
+                catalogView.classList.remove('active');
+                catalogView.style.display = 'none';
+            } else {
+                catalogBtn.classList.add('active');
+                catalogBtn.setAttribute('aria-selected', 'true');
+                stageBtn.classList.remove('active');
+                stageBtn.setAttribute('aria-selected', 'false');
+
+                if (stageTabsContainer) stageTabsContainer.style.display = 'none';
+                stageDeck.style.display = 'none';
+                catalogView.classList.add('active');
+                catalogView.style.display = 'block';
+            }
+
+            if (window.audioSynth) {
+                window.audioSynth.playSubtleBeep(880, 0.06);
+            }
+        };
+
+        stageBtn.addEventListener('click', () => setViewMode('stage'));
+        catalogBtn.addEventListener('click', () => setViewMode('catalog'));
+
+        // Catalog filters
+        const filterBtns = document.querySelectorAll('.catalog-filter-btn');
+        const tableRows = document.querySelectorAll('.catalog-table tbody tr');
+
+        filterBtns.forEach((btn) => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach((b) => b.classList.remove('active'));
+                btn.classList.add('active');
+                const category = btn.getAttribute('data-filter');
+
+                tableRows.forEach((row) => {
+                    const rowCat = row.getAttribute('data-category');
+                    if (category === 'all' || rowCat === category) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+
+                if (window.audioSynth) {
+                    window.audioSynth.playSubtleBeep(720, 0.04);
+                }
+            });
+        });
+    };
+    initExhibitionStageAndCatalog();
+
 });

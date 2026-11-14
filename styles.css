@@ -2728,3 +2728,324 @@ article[id] {
         gap: 8px;
     }
 }
+
+
+/* ==============================================================================
+   AWWWARDS V5.0 UNCONVENTIONAL EXHIBITION STAGE & SWISS ARCHIVE CATALOG
+   ============================================================================== */
+
+/* View Mode Switcher Pill */
+.view-mode-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: 18px;
+}
+
+.view-mode-switcher {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(14, 18, 26, 0.9);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-full);
+    padding: 3px;
+    gap: 2px;
+}
+
+.view-btn {
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-full);
+    padding: 6px 14px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all var(--transition-fast);
+}
+
+.view-btn:hover {
+    color: var(--text-primary);
+}
+
+.view-btn.active {
+    background: rgba(0, 229, 255, 0.14);
+    color: var(--accent-primary);
+    border: 1px solid rgba(0, 229, 255, 0.35);
+    font-weight: 600;
+}
+
+/* Exhibition Stage Rail */
+.stage-rail-tabs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 24px;
+}
+
+.stage-tab-btn {
+    background: rgba(12, 16, 23, 0.75);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+    text-align: left;
+    cursor: pointer;
+    transition: all var(--transition-base);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.stage-tab-btn:hover {
+    border-color: var(--border-medium);
+    background: rgba(19, 27, 38, 0.7);
+}
+
+.stage-tab-btn.active {
+    border-color: var(--accent-primary);
+    background: rgba(19, 27, 38, 0.95);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), inset 0 2px 0 var(--accent-primary);
+}
+
+.tab-num {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: var(--accent-primary);
+    letter-spacing: 0.08em;
+}
+
+.tab-name {
+    font-family: var(--font-sans);
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.tab-sub {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--text-muted);
+}
+
+/* Active Exhibition Deck */
+.exhibition-deck {
+    position: relative;
+    border-radius: var(--radius-md);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.deck-item {
+    display: none;
+    animation: deckFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.deck-item.active {
+    display: block;
+}
+
+@keyframes deckFadeIn {
+    0% { opacity: 0; transform: translateY(8px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+.deck-nav-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border-subtle);
+}
+
+.deck-nav-btn {
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    padding: 8px 16px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all var(--transition-fast);
+}
+
+.deck-nav-btn:hover {
+    color: var(--accent-primary);
+    border-color: rgba(0, 229, 255, 0.35);
+    background: rgba(0, 229, 255, 0.06);
+}
+
+.deck-indicator {
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    color: var(--text-muted);
+}
+
+/* Swiss Archive Catalog Table */
+.archive-catalog-view {
+    display: none;
+    animation: deckFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.archive-catalog-view.active {
+    display: block;
+}
+
+.catalog-filter-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.catalog-filter-btn {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    padding: 4px 12px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-full);
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.catalog-filter-btn:hover {
+    color: var(--text-primary);
+    border-color: var(--border-medium);
+}
+
+.catalog-filter-btn.active {
+    background: rgba(0, 229, 255, 0.12);
+    color: var(--accent-primary);
+    border-color: rgba(0, 229, 255, 0.35);
+    font-weight: 600;
+}
+
+.catalog-table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    background: var(--bg-secondary);
+}
+
+.catalog-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.86rem;
+    text-align: left;
+}
+
+.catalog-table th {
+    font-family: var(--font-mono);
+    font-size: 0.70rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    padding: 14px 18px;
+    background: rgba(14, 18, 26, 0.85);
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.catalog-table td {
+    padding: 16px 18px;
+    border-bottom: 1px solid rgba(30, 40, 56, 0.4);
+    color: var(--text-secondary);
+    vertical-align: middle;
+}
+
+.catalog-table tr:hover td {
+    background: rgba(0, 229, 255, 0.03);
+    color: var(--text-primary);
+}
+
+.catalog-title-cell {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.catalog-status-pill {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    padding: 3px 8px;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.catalog-status-pill.live {
+    background: rgba(16, 185, 129, 0.12);
+    color: var(--status-live);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.catalog-status-pill.wip {
+    background: rgba(245, 158, 11, 0.12);
+    color: var(--status-dev);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.catalog-action-link {
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    color: var(--accent-primary);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: transform var(--transition-fast);
+}
+
+.catalog-action-link:hover {
+    transform: translateX(3px);
+    text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+    .stage-rail-tabs {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .stage-rail-tabs {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* Strict 16:10 Aspect Ratio Invariants Across All Viewports */
+.project-media-col {
+    aspect-ratio: 16 / 10 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.project-cover-link,
+.project-cover-img {
+    aspect-ratio: 16 / 10 !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-height: 100% !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    display: block !important;
+}

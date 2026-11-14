@@ -2,7 +2,7 @@
 #  InfinityFree / Apache Configuration for Darsheel Portfolio & Web Apps
 # ==============================================================================
 
-DirectoryIndex index.html
+DirectoryIndex index.php index.html
 
 # Enforce HTTPS redirect
 RewriteEngine On
