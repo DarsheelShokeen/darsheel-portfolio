@@ -13,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=4.2">
+    <link rel="stylesheet" href="styles.css?v=5.0">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
@@ -21,6 +21,9 @@
     <link rel="shortcut icon" href="favicon.ico">
 </head>
 <body>
+    <!-- Awwwards V5.0 Custom Magnetic Cursor -->
+    <div class="custom-cursor" aria-hidden="true"></div>
+    <div class="cursor-trail" aria-hidden="true"></div>
 
     <!-- Site Navigation -->
     <header class="site-nav" id="top-nav">
@@ -43,6 +46,14 @@
             </nav>
 
             <div class="nav-actions">
+                <button class="audio-toggle-btn" id="audio-toggle-btn" aria-label="Toggle ambient UI audio synthesizer">
+                    <span class="audio-eq-icon" aria-hidden="true">
+                        <span class="audio-eq-bar"></span>
+                        <span class="audio-eq-bar"></span>
+                        <span class="audio-eq-bar"></span>
+                    </span>
+                    <span class="audio-label">Audio: OFF</span>
+                </button>
                 <button class="cmd-palette-btn open-cmd-btn" aria-label="Open Command Palette">
                     <span>Search</span>
                     <kbd class="cmd-kbd">Ctrl+K</kbd>
@@ -84,7 +95,7 @@
             <article class="project-card-large">
                 <div class="project-media-col">
                     <a href="album-canvas.html" class="project-cover-link">
-                        <img src="assets/images/albumcanvas-cover.webp?v=4.2" alt="AlbumCanvas — Dynamic Live Wallpaper & Ambient Music Experience" class="project-cover-img" width="1600" height="1000" loading="lazy">
+                        <img src="assets/images/albumcanvas-cover.webp?v=5.0" alt="AlbumCanvas — Dynamic Live Wallpaper & Ambient Music Experience" class="project-cover-img" width="1600" height="1000" loading="lazy">
                     </a>
                         <div class="vinyl-disc-peek" aria-hidden="true"></div>
                 </div>
@@ -117,6 +128,29 @@
                             <span class="tech-tag">AndroidX Palette</span>
                         </div>
                     </div>
+                                            <!-- AlbumCanvas Live Interactive Sandbox -->
+                        <div class="project-interactive-drawer">
+                            <div class="drawer-header">
+                                <span class="drawer-title">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+                                    Dynamic Vinyl & 16-Band Equalizer Sandbox
+                                </span>
+                                <span class="drawer-badge">Interactive Demo</span>
+                            </div>
+                            <div class="albumcanvas-controls-row">
+                                <button type="button" class="sim-btn" id="albumcanvas-play-btn">
+                                    <span>▶</span> Play Audio Simulation
+                                </button>
+                                <div class="palette-swatches-group">
+                                    <span style="font-family: var(--font-mono); font-size: 0.68rem; color: var(--text-muted); margin-right: 4px;">Palette Extractor:</span>
+                                    <button type="button" class="swatch-btn active" data-color="#00E5FF" style="background: #00E5FF;" title="Hyper Cyan" aria-label="Extract Hyper Cyan"></button>
+                                    <button type="button" class="swatch-btn" data-color="#10B981" style="background: #10B981;" title="Emerald Live" aria-label="Extract Emerald Live"></button>
+                                    <button type="button" class="swatch-btn" data-color="#F59E0B" style="background: #F59E0B;" title="Solar Amber" aria-label="Extract Solar Amber"></button>
+                                    <button type="button" class="swatch-btn" data-color="#8B5CF6" style="background: #8B5CF6;" title="Royal Violet" aria-label="Extract Royal Violet"></button>
+                                </div>
+                            </div>
+                            <div class="live-16-band-eq" id="albumcanvas-eq-bars" aria-label="16-band real-time audio visualizer simulation"></div>
+                        </div>
                     <div class="project-actions">
                         <a href="album-canvas.html" class="link-case-study">Read Case Study →</a>
                         <a href="album-canvas/index.html" target="_blank" class="link-text-action">Live Web Simulator ↗</a>
@@ -129,7 +163,7 @@
             <article class="project-card-large">
                 <div class="project-media-col">
                     <a href="smart-flood.html" class="project-cover-link">
-                        <img src="assets/images/smartflood-cover.webp?v=4.2" alt="Smart Flood Alert — IoT Urban Water Level Telemetry Cockpit" class="project-cover-img" width="1600" height="1000" loading="lazy">
+                        <img src="assets/images/smartflood-cover.webp?v=5.0" alt="Smart Flood Alert — IoT Urban Water Level Telemetry Cockpit" class="project-cover-img" width="1600" height="1000" loading="lazy">
                     </a>
                 </div>
 
@@ -155,6 +189,36 @@
                             <span class="tech-tag">Chart.js</span>
                         </div>
                     </div>
+                                            <!-- Smart Flood Alert Live Telemetry Switcher -->
+                        <div class="project-interactive-drawer">
+                            <div class="drawer-header">
+                                <span class="drawer-title">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg>
+                                    IoT Sensing Node Telemetry Cockpit
+                                </span>
+                                <div class="telemetry-node-nav">
+                                    <button type="button" class="node-btn active" id="smartflood-node-01">Node 01: Canal</button>
+                                    <button type="button" class="node-btn" id="smartflood-node-02">Node 02: Underpass</button>
+                                </div>
+                            </div>
+                            <div class="node-metrics-grid">
+                                <div class="node-metric-box">
+                                    <span class="metric-label">Liquid Depth Probe</span>
+                                    <span class="metric-value" id="flood-depth-val" style="color: #F59E0B;">14.8 cm (74%)</span>
+                                </div>
+                                <div class="node-metric-box">
+                                    <span class="metric-label">Telemetry Status</span>
+                                    <span class="metric-value" id="flood-status-val" style="color: #F59E0B;">WARNING LEVEL</span>
+                                </div>
+                                <div class="node-metric-box">
+                                    <span class="metric-label">Debounced ADC Sensor</span>
+                                    <span class="metric-value" id="flood-voltage-val">2.14 V (ADC 2658)</span>
+                                </div>
+                            </div>
+                            <div style="background: rgba(14, 20, 30, 0.7); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: var(--radius-sm); padding: 8px 10px; font-family: var(--font-mono); font-size: 0.72rem; color: #10B981; line-height: 1.4;" id="flood-dispatch-text">
+                                🚨 ADVISORY DISPATCHED: Ward 12 Canal Drain water depth exceeded 14.0 cm (+2.1 cm/hr rate of rise). Basements advised to monitor.
+                            </div>
+                        </div>
                     <div class="project-actions">
                         <a href="smart-flood.html" class="link-case-study">Read Case Study →</a>
                         <a href="smart-flood/index.html" target="_blank" class="link-text-action">Operational Dashboard ↗</a>
@@ -167,7 +231,7 @@
             <article class="project-card-large">
                 <div class="project-media-col">
                     <a href="lessonplan-maker.html" class="project-cover-link">
-                        <img src="assets/images/lessonplan-cover.webp?v=4.2" alt="LessonPlan Maker — NCERT Middle Stage Curriculum Planning Workbench" class="project-cover-img" width="1600" height="1000" loading="lazy">
+                        <img src="assets/images/lessonplan-cover.webp?v=5.0" alt="LessonPlan Maker — NCERT Middle Stage Curriculum Planning Workbench" class="project-cover-img" width="1600" height="1000" loading="lazy">
                     </a>
                 </div>
 
@@ -192,6 +256,27 @@
                             <span class="tech-tag">Print Engine</span>
                         </div>
                     </div>
+                                            <!-- LessonPlan Maker 5E Stepper Drawer -->
+                        <div class="project-interactive-drawer">
+                            <div class="drawer-header">
+                                <span class="drawer-title">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                                    NCERT 5E Inquiry Cycle & NEP 2020 Engine
+                                </span>
+                                <span class="drawer-badge">Pedagogy Matrix</span>
+                            </div>
+                            <div class="pedagogy-stepper-tabs">
+                                <button type="button" class="step-tab-btn active" data-step="1">1. Engage</button>
+                                <button type="button" class="step-tab-btn" data-step="2">2. Explore</button>
+                                <button type="button" class="step-tab-btn" data-step="3">3. Explain</button>
+                                <button type="button" class="step-tab-btn" data-step="4">4. Elaborate</button>
+                                <button type="button" class="step-tab-btn" data-step="5">5. Evaluate</button>
+                            </div>
+                            <div class="pedagogy-outcome-display">
+                                <span class="outcome-tag" id="lp-outcome-tag">PHASE 1: ENGAGE • Elicit Prior Understanding (Bloom: Recall & Connect)</span>
+                                <span id="lp-outcome-text">Elicit prior student observations of capillary liquid rise using colored water stalks. Scaffold initial student conjectures regarding plant transpiration mechanics.</span>
+                            </div>
+                        </div>
                     <div class="project-actions">
                         <a href="lessonplan-maker.html" class="link-case-study">Read Case Study →</a>
                         <a href="lessonplan-maker/index.html" target="_blank" class="link-text-action">Launch Workbench ↗</a>
@@ -203,7 +288,7 @@
             <article class="project-card-large">
                 <div class="project-media-col">
                     <a href="financial-research.html" class="project-cover-link">
-                        <img src="assets/images/financial-research-cover.webp?v=4.2" alt="Financial Research Platform — Systematic Valuation & Statement Analytics" class="project-cover-img" width="1600" height="1000" loading="lazy">
+                        <img src="assets/images/financial-research-cover.webp?v=5.0" alt="Financial Research Platform — Systematic Valuation & Statement Analytics" class="project-cover-img" width="1600" height="1000" loading="lazy">
                     </a>
                 </div>
 
@@ -228,6 +313,39 @@
                             <span class="tech-tag">Pandas</span>
                         </div>
                     </div>
+                                            <!-- Financial Research Platform DCF Valuation Sandbox -->
+                        <div class="project-interactive-drawer">
+                            <div class="drawer-header">
+                                <span class="drawer-title">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                                    Interactive DCF Intrinsic Valuation Model
+                                </span>
+                                <span class="drawer-badge">Quantitative Model</span>
+                            </div>
+                            <div class="dcf-slider-container">
+                                <div class="dcf-slider-row">
+                                    <span class="dcf-slider-label">5-Yr Revenue CAGR:</span>
+                                    <input type="range" class="dcf-range-input" id="dcf-growth-slider" min="8" max="25" step="0.5" value="12" aria-label="5-Year Revenue Growth Rate">
+                                    <span class="dcf-slider-val" id="dcf-growth-val">12%</span>
+                                </div>
+                                <div class="dcf-slider-row">
+                                    <span class="dcf-slider-label">WACC Discount Rate:</span>
+                                    <input type="range" class="dcf-range-input" id="dcf-wacc-slider" min="7" max="14" step="0.25" value="9.5" aria-label="WACC Discount Rate">
+                                    <span class="dcf-slider-val" id="dcf-wacc-val">9.5%</span>
+                                </div>
+                            </div>
+                            <div class="dcf-output-banner">
+                                <div class="dcf-stat-block">
+                                    <span class="dcf-stat-label">Intrinsic Value / Share</span>
+                                    <span class="dcf-stat-val" id="dcf-share-price">$137.95</span>
+                                </div>
+                                <div class="dcf-stat-block">
+                                    <span class="dcf-stat-label">Enterprise Value (EV)</span>
+                                    <span class="dcf-stat-val" id="dcf-ev">$3.65B</span>
+                                </div>
+                                <span class="dcf-margin-badge" id="dcf-margin-safety">+20.0% MoS</span>
+                            </div>
+                        </div>
                     <div class="project-actions">
                         <a href="financial-research.html" class="link-case-study">Read Case Study →</a>
                         <a href="financial-research.html#sandbox" class="link-text-action">Test Live Valuation Model ↓</a>
@@ -300,6 +418,6 @@
         </div>
     </div>
 
-    <script src="main.js?v=4.2"></script>
+    <script src="main.js?v=5.0"></script>
 </body>
 </html>

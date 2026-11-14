@@ -565,4 +565,349 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+
+    // ==============================================================================
+    // 14. AWWWARDS V5.0: NATIVE WEB AUDIO API SYNTHESIZER & MICRO-HAPTICS
+    // ==============================================================================
+    let audioCtx = null;
+    let isAudioEnabled = (localStorage.getItem('portfolio_audio_enabled') === 'true');
+
+    const audioToggleBtn = document.getElementById('audio-toggle-btn');
+    if (audioToggleBtn) {
+        if (isAudioEnabled) {
+            audioToggleBtn.classList.add('active');
+            audioToggleBtn.querySelector('.audio-label').textContent = 'Audio: ON';
+        }
+
+        audioToggleBtn.addEventListener('click', () => {
+            isAudioEnabled = !isAudioEnabled;
+            localStorage.setItem('portfolio_audio_enabled', isAudioEnabled.toString());
+            audioToggleBtn.classList.toggle('active', isAudioEnabled);
+            audioToggleBtn.querySelector('.audio-label').textContent = isAudioEnabled ? 'Audio: ON' : 'Audio: OFF';
+
+            if (isAudioEnabled) {
+                playTone(520, 'sine', 0.04, 0.05);
+                setTimeout(() => playTone(880, 'sine', 0.08, 0.06), 60);
+            }
+        });
+    }
+
+    const playTone = (freq = 800, type = 'sine', duration = 0.03, vol = 0.03) => {
+        if (!isAudioEnabled) return;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        try {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = type;
+            osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+            gain.gain.setValueAtTime(vol, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start();
+            osc.stop(audioCtx.currentTime + duration);
+        } catch (e) {
+            // AudioContext not allowed or unsupported
+        }
+    };
+
+    // Attach subtle audio feedback to interactive controls
+    document.querySelectorAll('.btn-primary, .btn-secondary, .nav-link, .cmd-palette-btn, .sim-btn, .node-btn, .step-tab-btn, .swatch-btn').forEach(el => {
+        el.addEventListener('mouseenter', () => playTone(1200, 'sine', 0.015, 0.015));
+        el.addEventListener('click', () => playTone(750, 'triangle', 0.04, 0.04));
+    });
+
+    // ==============================================================================
+    // 15. AWWWARDS V5.0: CUSTOM MAGNETIC POINTER & TRAILING RING (Desktop)
+    // ==============================================================================
+    const initCustomCursor = () => {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        if ('ontouchstart' in window || navigator.maxTouchPoints > 0) return;
+
+        let cursorDot = document.querySelector('.custom-cursor');
+        let cursorTrail = document.querySelector('.cursor-trail');
+
+        if (!cursorDot) {
+            cursorDot = document.createElement('div');
+            cursorDot.className = 'custom-cursor';
+            document.body.appendChild(cursorDot);
+        }
+        if (!cursorTrail) {
+            cursorTrail = document.createElement('div');
+            cursorTrail.className = 'cursor-trail';
+            document.body.appendChild(cursorTrail);
+        }
+
+        let mouseX = -100, mouseY = -100;
+        let trailX = -100, trailY = -100;
+
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            cursorDot.style.left = `${mouseX}px`;
+            cursorDot.style.top = `${mouseY}px`;
+        }, { passive: true });
+
+        const animateCursor = () => {
+            trailX += (mouseX - trailX) * 0.18;
+            trailY += (mouseY - trailY) * 0.18;
+            cursorTrail.style.left = `${trailX}px`;
+            cursorTrail.style.top = `${trailY}px`;
+            requestAnimationFrame(animateCursor);
+        };
+        requestAnimationFrame(animateCursor);
+
+        // Hover expand on interactive targets
+        const interactiveTargets = 'a, button, input, select, textarea, .project-card-large, .cmd-item, .sim-btn, .node-btn, .step-tab-btn, .swatch-btn';
+        document.querySelectorAll(interactiveTargets).forEach(el => {
+            el.addEventListener('mouseenter', () => cursorTrail.classList.add('hovered'));
+            el.addEventListener('mouseleave', () => cursorTrail.classList.remove('hovered'));
+        });
+
+        window.addEventListener('mousedown', () => cursorTrail.classList.add('active'));
+        window.addEventListener('mouseup', () => cursorTrail.classList.remove('active'));
+    };
+    initCustomCursor();
+
+    // ==============================================================================
+    // 16. AWWWARDS V5.0: ALBUMCANVAS LIVE VINYL & 16-BAND EQUALIZER SIMULATOR
+    // ==============================================================================
+    const initAlbumCanvasSim = () => {
+        const playBtn = document.getElementById('albumcanvas-play-btn');
+        const eqContainer = document.getElementById('albumcanvas-eq-bars');
+        const vinylDisc = document.querySelector('.project-card-large:nth-child(1) .vinyl-disc-peek');
+        const swatchBtns = document.querySelectorAll('.swatch-btn');
+        const card1 = document.querySelector('.project-card-large:nth-child(1)');
+
+        if (!playBtn || !eqContainer) return;
+
+        // Generate 16 equalizer columns
+        eqContainer.innerHTML = '';
+        const eqCols = [];
+        for (let i = 0; i < 16; i++) {
+            const col = document.createElement('div');
+            col.className = 'eq-column';
+            col.style.height = `${4 + Math.random() * 8}px`;
+            eqContainer.appendChild(col);
+            eqCols.push(col);
+        }
+
+        let isPlaying = false;
+        let eqAnimFrame = null;
+
+        const updateEqBars = () => {
+            if (!isPlaying) return;
+            const t = performance.now() * 0.005;
+            eqCols.forEach((col, idx) => {
+                const wave = Math.sin(t + idx * 0.45) * 0.5 + 0.5;
+                const noise = Math.sin(t * 1.8 + idx * 0.9) * 0.3 + 0.3;
+                const h = Math.round(4 + (wave * 0.65 + noise * 0.35) * 22);
+                col.style.height = `${h}px`;
+            });
+            eqAnimFrame = requestAnimationFrame(updateEqBars);
+        };
+
+        playBtn.addEventListener('click', () => {
+            isPlaying = !isPlaying;
+            playBtn.classList.toggle('active', isPlaying);
+            playBtn.innerHTML = isPlaying ? `<span>⏸</span> Pause Simulation` : `<span>▶</span> Play Audio Simulation`;
+
+            if (vinylDisc) {
+                if (isPlaying) {
+                    vinylDisc.style.right = '24px';
+                    vinylDisc.style.opacity = '1';
+                    vinylDisc.style.animation = 'vinylSpin 3.5s linear infinite';
+                } else {
+                    vinylDisc.style.animation = 'none';
+                    vinylDisc.style.right = '';
+                    vinylDisc.style.opacity = '';
+                }
+            }
+
+            if (isPlaying) {
+                updateEqBars();
+            } else {
+                cancelAnimationFrame(eqAnimFrame);
+                eqCols.forEach(c => c.style.height = '6px');
+            }
+        });
+
+        // Palette color extraction simulation
+        swatchBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                swatchBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const color = btn.getAttribute('data-color') || '#00E5FF';
+                if (card1) {
+                    card1.style.borderColor = color;
+                    card1.style.boxShadow = `0 20px 48px rgba(0, 0, 0, 0.65), 0 0 32px ${color}33`;
+                }
+                eqCols.forEach(col => {
+                    col.style.background = `linear-gradient(180deg, ${color}, #2563EB)`;
+                });
+            });
+        });
+    };
+    initAlbumCanvasSim();
+
+    // ==============================================================================
+    // 17. AWWWARDS V5.0: SMART FLOOD ALERT LIVE TELEMETRY NODE SWITCHER
+    // ==============================================================================
+    const initSmartFloodSim = () => {
+        const btnNode1 = document.getElementById('smartflood-node-01');
+        const btnNode2 = document.getElementById('smartflood-node-02');
+        const depthVal = document.getElementById('flood-depth-val');
+        const statusVal = document.getElementById('flood-status-val');
+        const voltageVal = document.getElementById('flood-voltage-val');
+        const dispatchText = document.getElementById('flood-dispatch-text');
+
+        if (!btnNode1 || !btnNode2 || !depthVal) return;
+
+        const setNode1 = () => {
+            btnNode1.classList.add('active');
+            btnNode2.classList.remove('active');
+            depthVal.textContent = '14.8 cm (74%)';
+            depthVal.style.color = '#F59E0B';
+            statusVal.textContent = 'WARNING LEVEL';
+            statusVal.style.color = '#F59E0B';
+            voltageVal.textContent = '2.14 V (ADC 2658)';
+            if (dispatchText) {
+                dispatchText.textContent = '🚨 ADVISORY DISPATCHED: Ward 12 Canal Drain water depth exceeded 14.0 cm (+2.1 cm/hr rate of rise). Basements advised to monitor.';
+            }
+        };
+
+        const setNode2 = () => {
+            btnNode2.classList.add('active');
+            btnNode1.classList.remove('active');
+            depthVal.textContent = '19.4 cm (97%)';
+            depthVal.style.color = '#EF4444';
+            statusVal.textContent = 'CRITICAL EMERGENCY';
+            statusVal.style.color = '#EF4444';
+            voltageVal.textContent = '2.88 V (ADC 3574)';
+            if (dispatchText) {
+                dispatchText.textContent = '🚨 IMMEDIATE EVACUATION ORDER: Sector 04 Underpass liquid sensor exceeded 18.0 cm safety threshold. Roadway diversion initiated.';
+            }
+        };
+
+        btnNode1.addEventListener('click', setNode1);
+        btnNode2.addEventListener('click', setNode2);
+    };
+    initSmartFloodSim();
+
+    // ==============================================================================
+    // 18. AWWWARDS V5.0: LESSONPLAN MAKER 5E PEDAGOGICAL FRAMEWORK STEPPER
+    // ==============================================================================
+    const initLessonPlanSim = () => {
+        const stepBtns = document.querySelectorAll('.step-tab-btn');
+        const outcomeTag = document.getElementById('lp-outcome-tag');
+        const outcomeText = document.getElementById('lp-outcome-text');
+
+        if (stepBtns.length === 0 || !outcomeTag || !outcomeText) return;
+
+        const phases = {
+            1: {
+                tag: 'PHASE 1: ENGAGE • Elicit Prior Understanding (Bloom: Recall & Connect)',
+                text: 'Elicit prior student observations of capillary liquid rise using colored water stalks. Scaffold initial student conjectures regarding plant transpiration mechanics.'
+            },
+            2: {
+                tag: 'PHASE 2: EXPLORE • Hands-on Inquiry Investigation (Bloom: Apply & Analyze)',
+                text: 'Students prepare thin blade-cut cross-sections of celery stalks and examine xylem vessel bundles under 40x magnification, tracking dye transport velocities.'
+            },
+            3: {
+                tag: 'PHASE 3: EXPLAIN • Evidence Synthesis (Bloom: Articulate & Conceptualize)',
+                text: 'Facilitate student group presentations connecting capillary cohesion-tension theory to observed dye ascent rates. Introduce stomatal transpiration vocabulary.'
+            },
+            4: {
+                tag: 'PHASE 4: ELABORATE • Real-World Extension (Bloom: Evaluate & Synthesize)',
+                text: 'Connect plant water conservation adaptations (xerophyte waxy cuticles) to regional agricultural irrigation practices in semi-arid zones.'
+            },
+            5: {
+                tag: 'PHASE 5: EVALUATE • Formative Competency Check (Bloom: Assessment & Creation)',
+                text: 'Students generate an annotated predictive diagram of transpiration rates under variable humidity and wind conditions, mapped to NCERT Class 7 Science standards.'
+            }
+        };
+
+        stepBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                stepBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const step = parseInt(btn.getAttribute('data-step') || '1', 10);
+                if (phases[step]) {
+                    outcomeTag.textContent = phases[step].tag;
+                    outcomeText.textContent = phases[step].text;
+                }
+            });
+        });
+    };
+    initLessonPlanSim();
+
+    // ==============================================================================
+    // 19. AWWWARDS V5.0: FINANCIAL RESEARCH PLATFORM QUANTITATIVE DCF CALCULATOR
+    // ==============================================================================
+    const initFinancialDCFSim = () => {
+        const growthSlider = document.getElementById('dcf-growth-slider');
+        const waccSlider = document.getElementById('dcf-wacc-slider');
+        const growthVal = document.getElementById('dcf-growth-val');
+        const waccVal = document.getElementById('dcf-wacc-val');
+        const priceVal = document.getElementById('dcf-share-price');
+        const evVal = document.getElementById('dcf-ev');
+        const mosVal = document.getElementById('dcf-margin-safety');
+
+        if (!growthSlider || !waccSlider || !priceVal) return;
+
+        const calculateDCF = () => {
+            const g = parseFloat(growthSlider.value) / 100.0;
+            const wacc = parseFloat(waccSlider.value) / 100.0;
+
+            growthVal.textContent = `${growthSlider.value}%`;
+            waccVal.textContent = `${waccSlider.value}%`;
+
+            const baseFcf = 158.0;
+            let pvFcf = 0.0;
+            let fcf = baseFcf;
+            for (let y = 1; y <= 5; y++) {
+                fcf *= (1.0 + g);
+                pvFcf += fcf / Math.pow(1.0 + wacc, y);
+            }
+
+            const gTerm = 0.03;
+            const tv = fcf * (1.0 + gTerm) / Math.max(0.005, (wacc - gTerm));
+            const pvTv = tv / Math.pow(1.0 + wacc, 5);
+            const ev = pvFcf + pvTv;
+            const equityVal = Math.max(100.0, ev - 200.0);
+            const shares = 25.0;
+            const intrinsicPrice = equityVal / shares;
+            const currentMkt = 115.0;
+            const marginOfSafety = ((intrinsicPrice - currentMkt) / currentMkt) * 100.0;
+
+            priceVal.textContent = `$${intrinsicPrice.toFixed(2)}`;
+            evVal.textContent = `$${(ev / 1000).toFixed(2)}B`;
+
+            const sign = marginOfSafety >= 0 ? '+' : '';
+            mosVal.textContent = `${sign}${marginOfSafety.toFixed(1)}% MoS`;
+            if (marginOfSafety >= 15) {
+                mosVal.style.color = '#10B981';
+                mosVal.style.borderColor = '#10B981';
+            } else if (marginOfSafety >= 0) {
+                mosVal.style.color = '#38BDF8';
+                mosVal.style.borderColor = '#38BDF8';
+            } else {
+                mosVal.style.color = '#EF4444';
+                mosVal.style.borderColor = '#EF4444';
+            }
+        };
+
+        growthSlider.addEventListener('input', calculateDCF);
+        waccSlider.addEventListener('input', calculateDCF);
+        calculateDCF();
+    };
+    initFinancialDCFSim();
+
 });

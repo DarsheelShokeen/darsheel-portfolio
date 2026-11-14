@@ -13,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=4.2">
+    <link rel="stylesheet" href="styles.css?v=5.0">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
@@ -21,6 +21,9 @@
     <link rel="shortcut icon" href="favicon.ico">
 </head>
 <body>
+    <!-- Awwwards V5.0 Custom Magnetic Cursor -->
+    <div class="custom-cursor" aria-hidden="true"></div>
+    <div class="cursor-trail" aria-hidden="true"></div>
 
     <!-- Site Navigation -->
     <header class="site-nav" id="top-nav">
@@ -43,6 +46,14 @@
             </nav>
 
             <div class="nav-actions">
+                <button class="audio-toggle-btn" id="audio-toggle-btn" aria-label="Toggle ambient UI audio synthesizer">
+                    <span class="audio-eq-icon" aria-hidden="true">
+                        <span class="audio-eq-bar"></span>
+                        <span class="audio-eq-bar"></span>
+                        <span class="audio-eq-bar"></span>
+                    </span>
+                    <span class="audio-label">Audio: OFF</span>
+                </button>
                 <button class="cmd-palette-btn open-cmd-btn" aria-label="Open Command Palette">
                     <span>Search</span>
                     <kbd class="cmd-kbd">Ctrl+K</kbd>
@@ -82,7 +93,7 @@
 
             <!-- Large Product Cover Image Showcase -->
             <div class="case-cover-showcase">
-                <img src="assets/images/smartflood-cover.webp?v=4.2" alt="Smart Flood Alert Product Cover" width="1600" height="1000">
+                <img src="assets/images/smartflood-cover.webp?v=5.0" alt="Smart Flood Alert Product Cover" width="1600" height="1000">
             </div>
 
             <div class="case-meta-grid">
@@ -284,6 +295,6 @@
         </div>
     </div>
 
-    <script src="main.js?v=4.2"></script>
+    <script src="main.js?v=5.0"></script>
 </body>
 </html>
