@@ -36,7 +36,11 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         const targets = document.querySelectorAll('h1, h2, h3, h4, h5, h6, .heading-extreme, .heading-2, .marquee-text, .nav-link, .stats-wrapper h6');
-        targets.forEach(wrap);
+        targets.forEach(el => {
+            if (!el.matches('[data-gradient-wave-text]') && !el.closest('[data-gradient-wave-text]')) {
+                wrap(el);
+            }
+        });
     };
     initWrapLetterO();
 
@@ -349,7 +353,87 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     initHeroCanvas();
 
-    // 9. Full Liquid Glass WebGL Carousel Engine
+// 9. Signature Scroll Wave Color Fill (Tom de Koning Specification)
+    const initGradientWaveText = () => {
+        const headings = document.querySelectorAll('[data-gradient-wave-text]');
+        if (!headings.length) return;
+
+        headings.forEach((heading) => {
+            const startColor = heading.dataset.gradientWaveColorStart || 'rgba(255, 255, 255, 0.2)';
+            const waveColor = heading.dataset.gradientWaveColorWave || '#F34213';
+            const endColor = '#FFFFFF';
+
+            // Clean raw text
+            const rawText = heading.textContent.trim().replace(/\s+/g, ' ');
+            heading.innerHTML = '';
+
+            const words = rawText.split(' ');
+            const allChars = [];
+
+            words.forEach((wordText, wIdx) => {
+                const wordSpan = document.createElement('span');
+                wordSpan.className = 'wave-word';
+                wordSpan.style.display = 'inline-block';
+                wordSpan.style.whiteSpace = 'nowrap';
+
+                for (let c = 0; c < wordText.length; c++) {
+                    const char = wordText[c];
+                    const charSpan = document.createElement('span');
+                    charSpan.className = 'wave-char' + (/[oO]/.test(char) ? ' playfair-o' : '');
+                    charSpan.style.display = 'inline-block';
+                    charSpan.style.color = startColor;
+                    charSpan.textContent = char;
+                    wordSpan.appendChild(charSpan);
+                    allChars.push(charSpan);
+                }
+
+                heading.appendChild(wordSpan);
+
+                if (wIdx < words.length - 1) {
+                    heading.appendChild(document.createTextNode(' '));
+                }
+            });
+
+            if (reduceMotion()) {
+                allChars.forEach(ch => ch.style.color = endColor);
+                return;
+            }
+
+            if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+                const totalChars = allChars.length;
+                const progressObj = { value: 0 };
+
+                const paint = () => {
+                    const next = Math.round(progressObj.value * totalChars);
+                    for (let i = 0; i < totalChars; i++) {
+                        if (i < next - 1) {
+                            allChars[i].style.color = endColor;
+                        } else if (i === next - 1 || (i === next && next < totalChars)) {
+                            allChars[i].style.color = waveColor;
+                        } else {
+                            allChars[i].style.color = startColor;
+                        }
+                    }
+                };
+
+                gsap.to(progressObj, {
+                    value: 1,
+                    ease: 'none',
+                    scrollTrigger: {
+                        trigger: heading,
+                        start: 'top 85%',
+                        end: 'center 45%',
+                        scrub: 0.15,
+                        onUpdate: paint,
+                        onRefresh: paint
+                    }
+                });
+            }
+        });
+    };
+    initGradientWaveText();
+
+    // 10. Full Liquid Glass WebGL Carousel Engine with Dynamic Active Caption
     const initLiquidGlassCarousel = () => {
         const carouselSec = document.querySelector('[data-glass-carousel]');
         const list = document.querySelector('[data-glass-carousel-list]');
@@ -359,12 +443,65 @@ document.addEventListener('DOMContentLoaded', () => {
         const items = Array.from(list.querySelectorAll('.glass-carousel__item'));
         if (!items.length) return;
 
-        // Dynamic Three.js Liquid Lens Shading
+        const captionEl = carouselSec.querySelector('[data-glass-carousel-caption]');
+        let activeIndex = 0;
+
+        const updateCaption = (index) => {
+            if (!captionEl || !items[index]) return;
+            activeIndex = index;
+            const title = items[index].querySelector('h3')?.textContent.trim() || '';
+            const sub = items[index].querySelector('p.is--faded')?.textContent.trim() || '';
+
+            if (typeof gsap !== 'undefined') {
+                gsap.killTweensOf(captionEl);
+                gsap.to(captionEl, {
+                    opacity: 0,
+                    y: -8,
+                    duration: 0.2,
+                    ease: 'power2.in',
+                    onComplete: () => {
+                        captionEl.innerHTML = `
+                            <h3 class="glass-carousel__caption-title">${title}</h3>
+                            <p class="glass-carousel__caption-sub">${sub}</p>
+                        `;
+                        gsap.fromTo(captionEl, 
+                            { opacity: 0, y: 12 },
+                            { opacity: 1, y: 0, duration: 0.35, ease: 'power2.out' }
+                        );
+                    }
+                });
+            } else {
+                captionEl.innerHTML = `
+                    <h3 class="glass-carousel__caption-title">${title}</h3>
+                    <p class="glass-carousel__caption-sub">${sub}</p>
+                `;
+            }
+        };
+
+        const computeActiveIndex = () => {
+            const center = list.scrollLeft + list.clientWidth / 2;
+            let closestIdx = 0;
+            let minDiff = Infinity;
+            items.forEach((item, idx) => {
+                const itemCenter = item.offsetLeft + item.offsetWidth / 2;
+                const diff = Math.abs(center - itemCenter);
+                if (diff < minDiff) {
+                    minDiff = diff;
+                    closestIdx = idx;
+                }
+            });
+            if (closestIdx !== activeIndex) {
+                updateCaption(closestIdx);
+            }
+        };
+
+        // Initialize first caption
+        updateCaption(0);
+
         let isDragging = false;
         let startX = 0;
         let currentScroll = 0;
         let targetScroll = 0;
-        const maxScroll = list.scrollWidth - list.clientWidth;
 
         list.addEventListener('wheel', (e) => {
             if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
@@ -398,6 +535,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const updateScroll = () => {
             list.scrollLeft += (targetScroll - list.scrollLeft) * 0.12;
+            computeActiveIndex();
             requestAnimationFrame(updateScroll);
         };
         requestAnimationFrame(updateScroll);

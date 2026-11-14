@@ -1,4 +1,3 @@
-
 /* ==============================================================================
    TOM DE KONING EMBEDDED STYLES & INTERACTION TOKENS
    ============================================================================== */
@@ -5316,5 +5315,253 @@ figcaption {
     grid-template-columns: 1fr;
     gap: 1rem;
     padding: 1.8rem 0;
+  }
+}
+
+/* ==============================================================================
+   MASTER REFINEMENTS: TYPOGRAPHIC INTEGRITY, TOM DE KONING SPEC & ZERO WORD-BREAK
+   ============================================================================== */
+
+/* 1. Global Zero Mid-Word Breaking & Uncompromised Typography */
+h1, h2, h3, h4, h5, h6,
+.heading-2, .heading-extreme, .hero-title,
+.glass-carousel__item-p, .glass-carousel__caption-title,
+.capability-title, .experience-title,
+.marquee-text, .text-2-col, .wave-word,
+.hero-firstname, .hero-lastname {
+  word-break: keep-all !important;
+  overflow-wrap: normal !important;
+  hyphens: none !important;
+}
+
+/* 2. Fixed Navbar & DS Brand Monogram */
+.navbar {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  padding: 1.25rem 2.5rem !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  z-index: 1000 !important;
+  background: rgba(11, 11, 11, 0.75) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.nav-brand-mark {
+  font-family: Ppneuemontreal, "Plus Jakarta Sans", sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--white);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.28rem;
+  line-height: 1;
+}
+
+.nav-brand-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--orange);
+  display: inline-block;
+  box-shadow: 0 0 8px rgba(243, 66, 19, 0.6);
+}
+
+.nav-button {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-radius: 0.5rem !important;
+  border: 0.5px solid rgba(255, 255, 255, 0.15) !important;
+  box-shadow: inset 0.5px 0.5px 0px rgba(255, 255, 255, 0.25), 0px 10px 25px rgba(0, 0, 0, 0.3) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  padding: 0.65rem 1.15rem !important;
+  min-height: auto !important;
+  color: var(--sand) !important;
+  font-size: 0.9rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.04em !important;
+  transition: all 0.25s ease !important;
+}
+
+.nav-button:hover {
+  background: rgba(255, 255, 255, 0.16) !important;
+  border-color: rgba(243, 66, 19, 0.6) !important;
+  color: var(--white) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* 3. Section Header: Complete Clearance Below Fixed Navbar (No Collisions) */
+.section__header {
+  padding-top: clamp(6.5rem, 11vh, 8.5rem) !important;
+  padding-bottom: clamp(3rem, 6vh, 5rem) !important;
+  min-height: 88vh !important;
+  height: auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+}
+
+.header-top {
+  margin-top: 0 !important;
+  padding-bottom: 1.25rem !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  width: 100% !important;
+  border-bottom: 1px solid rgba(231, 225, 215, 0.1) !important;
+}
+
+.header-top h6 {
+  font-family: Ppneuemontreal, "Plus Jakarta Sans", sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--sand);
+  margin: 0;
+}
+
+.header-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.status-indicator-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.8);
+  display: inline-block;
+  animation: pulse-dot 2s infinite ease-in-out;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.45; transform: scale(0.8); }
+}
+
+/* 4. Refined Hero Signature Typography: Clean Darsheel Shokeen without .XO.JE */
+.hero-title {
+  font-family: Ppneuemontreal, "Plus Jakarta Sans", sans-serif !important;
+  font-size: clamp(3.2rem, 9.5vw, 8.2rem) !important;
+  line-height: 0.95 !important;
+  font-weight: 500 !important;
+  text-transform: uppercase !important;
+  letter-spacing: -0.025em !important;
+  color: var(--white) !important;
+  margin: 0 !important;
+  text-align: right !important;
+}
+
+.hero-firstname, .hero-lastname {
+  display: inline-block !important;
+  white-space: nowrap !important;
+}
+
+/* 5. Statement Headline & Scroll Gradient Color Fill Wave */
+.heading-2 {
+  font-family: Ppneuemontreal, "Plus Jakarta Sans", sans-serif !important;
+  font-size: clamp(2rem, 4.8vw, 4.2rem) !important;
+  line-height: 1.18 !important;
+  font-weight: 500 !important;
+  text-transform: uppercase !important;
+  letter-spacing: -0.015em !important;
+  color: var(--white);
+  margin: 0 !important;
+}
+
+.wave-word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.wave-char {
+  display: inline-block;
+  color: rgba(255, 255, 255, 0.2);
+  transition: color 0.12s ease-out;
+}
+
+/* 6. Work Section & Three.js Liquid Glass Dynamic Caption */
+.glass-carousel {
+  min-height: 100vh;
+  position: relative;
+  overflow: clip;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6rem 0;
+}
+
+.glass-carousel__caption {
+  position: absolute;
+  top: 14%;
+  left: 50%;
+  transform: translate(-50%);
+  text-align: center;
+  pointer-events: none;
+  z-index: 25;
+  width: 90%;
+  max-width: 800px;
+}
+
+.glass-carousel__caption-title {
+  font-family: Ppneuemontreal, "Plus Jakarta Sans", sans-serif;
+  font-size: clamp(1.8rem, 4.2vw, 3.2rem);
+  font-weight: 500;
+  text-transform: uppercase;
+  color: var(--white);
+  margin: 0;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.glass-carousel__caption-sub {
+  font-family: Ppneuemontreal, "Plus Jakarta Sans", sans-serif;
+  font-size: 0.9rem;
+  color: var(--orange);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 0.5rem;
+  font-weight: 500;
+}
+
+/* Fallback Card Typography in Work Carousel (Never breaks words) */
+.glass-carousel__item-content {
+  padding: 1.25rem 1.5rem !important;
+  background: rgba(11, 11, 11, 0.9) !important;
+  backdrop-filter: blur(8px) !important;
+}
+
+.glass-carousel__item-p {
+  font-size: clamp(1.1rem, 1.8vw, 1.45rem) !important;
+  white-space: normal !important;
+  word-break: keep-all !important;
+  line-height: 1.25 !important;
+  margin: 0 !important;
+  letter-spacing: -0.01em !important;
+}
+
+.glass-carousel__item-p.is--faded {
+  font-size: 0.82rem !important;
+  letter-spacing: 0.06em !important;
+  margin-top: 0.35rem !important;
+}
+
+@media screen and (max-width: 767px) {
+  .navbar {
+    padding: 1rem 1.25rem !important;
+  }
+  .section__header {
+    padding-top: 5.5rem !important;
+  }
+  .glass-carousel__caption {
+    top: 8%;
   }
 }
