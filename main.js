@@ -433,183 +433,370 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     initGradientWaveText();
 
-    // 10. Full Liquid Glass WebGL Carousel Engine with Dynamic Active Caption
+// 10. Robust Interactive Liquid Glass Carousel Engine
     const initLiquidGlassCarousel = () => {
         const carouselSec = document.querySelector('[data-glass-carousel]');
-        const list = document.querySelector('[data-glass-carousel-list]');
-        if (!carouselSec || !list) return;
+        const trackWrap = carouselSec ? carouselSec.querySelector('[data-glass-carousel-track-wrap]') || carouselSec : null;
+        const list = carouselSec ? carouselSec.querySelector('[data-glass-carousel-list]') : null;
+        if (!carouselSec || !list || !trackWrap) return;
 
-        const canvas = carouselSec.querySelector('[data-glass-carousel-canvas]');
-        const items = Array.from(list.querySelectorAll('.glass-carousel__item'));
+        const items = Array.from(list.querySelectorAll('[data-glass-carousel-item]'));
         if (!items.length) return;
 
         const captionEl = carouselSec.querySelector('[data-glass-carousel-caption]');
+        const counterEl = carouselSec.querySelector('[data-glass-carousel-counter]');
+        const prevBtn = carouselSec.querySelector('[data-carousel-prev]');
+        const nextBtn = carouselSec.querySelector('[data-carousel-next]');
+        const total = items.length;
+
         let activeIndex = 0;
+        let currentX = 0;
+        let targetX = 0;
+        let isDragging = false;
+        let pointerDownX = 0;
+        let startTargetX = 0;
+        let dragDistance = 0;
+        let lastMoveX = 0;
+        let lastMoveTime = 0;
+        let velocityX = 0;
+        let isPointerDown = false;
+        let suppressClick = false;
 
+        // Calculate center offset for a given card index
+        const getOffsetForIndex = (idx) => {
+            const item = items[idx];
+            if (!item) return 0;
+            const containerWidth = trackWrap.clientWidth;
+            const itemCenter = item.offsetLeft + item.offsetWidth / 2;
+            return (containerWidth / 2) - itemCenter;
+        };
+
+        const getMaxX = () => getOffsetForIndex(0);
+        const getMinX = () => getOffsetForIndex(total - 1);
+
+        // Update active caption and counter
         const updateCaption = (index) => {
-            if (!captionEl || !items[index]) return;
             activeIndex = index;
-            const title = items[index].querySelector('h3')?.textContent.trim() || '';
-            const sub = items[index].querySelector('p.is--faded')?.textContent.trim() || '';
 
-            if (typeof gsap !== 'undefined') {
-                gsap.killTweensOf(captionEl);
-                gsap.to(captionEl, {
-                    opacity: 0,
-                    y: -8,
-                    duration: 0.2,
-                    ease: 'power2.in',
-                    onComplete: () => {
-                        captionEl.innerHTML = `
-                            <h3 class="glass-carousel__caption-title">${title}</h3>
-                            <p class="glass-carousel__caption-sub">${sub}</p>
-                        `;
-                        gsap.fromTo(captionEl, 
-                            { opacity: 0, y: 12 },
-                            { opacity: 1, y: 0, duration: 0.35, ease: 'power2.out' }
-                        );
-                    }
-                });
-            } else {
-                captionEl.innerHTML = `
-                    <h3 class="glass-carousel__caption-title">${title}</h3>
-                    <p class="glass-carousel__caption-sub">${sub}</p>
-                `;
+            // Update item active classes
+            items.forEach((item, i) => {
+                item.classList.toggle('is-active', i === index);
+            });
+
+            // Update counter
+            if (counterEl) {
+                counterEl.textContent = `${String(index + 1).padStart(2, '0')} / ${String(total).padStart(2, '0')}`;
+            }
+
+            // Update caption with smooth animation
+            if (captionEl && items[index]) {
+                const title = items[index].querySelector('h3')?.textContent.trim() || '';
+                const sub = items[index].querySelector('p.is--faded')?.textContent.trim() || '';
+
+                if (typeof gsap !== 'undefined') {
+                    gsap.killTweensOf(captionEl);
+                    gsap.to(captionEl, {
+                        opacity: 0,
+                        y: -8,
+                        duration: 0.18,
+                        ease: 'power2.in',
+                        onComplete: () => {
+                            captionEl.innerHTML = `
+                                <h3 class="glass-carousel__caption-title">${title}</h3>
+                                <p class="glass-carousel__caption-sub">${sub}</p>
+                            `;
+                            gsap.fromTo(captionEl, 
+                                { opacity: 0, y: 10 },
+                                { opacity: 1, y: 0, duration: 0.32, ease: 'power2.out' }
+                            );
+                        }
+                    });
+                } else {
+                    captionEl.innerHTML = `
+                        <h3 class="glass-carousel__caption-title">${title}</h3>
+                        <p class="glass-carousel__caption-sub">${sub}</p>
+                    `;
+                }
             }
         };
 
-        const computeActiveIndex = () => {
-            const center = list.scrollLeft + list.clientWidth / 2;
+        // Go to specific index
+        const goToIndex = (idx) => {
+            const clamped = Math.max(0, Math.min(idx, total - 1));
+            targetX = getOffsetForIndex(clamped);
+            updateCaption(clamped);
+        };
+
+        // Snap to closest card
+        const snapToNearest = () => {
             let closestIdx = 0;
-            let minDiff = Infinity;
-            items.forEach((item, idx) => {
-                const itemCenter = item.offsetLeft + item.offsetWidth / 2;
-                const diff = Math.abs(center - itemCenter);
-                if (diff < minDiff) {
-                    minDiff = diff;
-                    closestIdx = idx;
+            let closestDist = Infinity;
+            items.forEach((item, i) => {
+                const off = getOffsetForIndex(i);
+                const dist = Math.abs(targetX - off);
+                if (dist < closestDist) {
+                    closestDist = dist;
+                    closestIdx = i;
                 }
             });
-            if (closestIdx !== activeIndex) {
-                updateCaption(closestIdx);
-            }
+            goToIndex(closestIdx);
         };
 
-        // Initialize first caption
+        // Initial alignment
+        targetX = currentX = getOffsetForIndex(0);
         updateCaption(0);
 
-        let isDragging = false;
-        let startX = 0;
-        let currentScroll = 0;
-        let targetScroll = 0;
-
-        list.addEventListener('wheel', (e) => {
-            if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
-                targetScroll += e.deltaX * 1.2;
-            } else {
-                targetScroll += e.deltaY * 1.2;
+        // Animation frame render loop
+        const tick = () => {
+            if (!isDragging) {
+                if (Math.abs(velocityX) > 0.5) {
+                    targetX += velocityX;
+                    velocityX *= 0.88;
+                }
             }
-            targetScroll = Math.max(0, Math.min(targetScroll, list.scrollWidth - list.clientWidth));
-            e.preventDefault();
+
+            const maxX = getMaxX() + 100;
+            const minX = getMinX() - 100;
+            if (targetX > maxX) targetX = maxX;
+            if (targetX < minX) targetX = minX;
+
+            currentX += (targetX - currentX) * (isDragging ? 0.35 : 0.12);
+            list.style.transform = `translateX(${currentX}px)`;
+
+            const centerPoint = trackWrap.clientWidth / 2;
+            let activeIdx = 0;
+            let minDiff = Infinity;
+            items.forEach((item, i) => {
+                const rect = item.getBoundingClientRect();
+                const itemMid = rect.left + rect.width / 2;
+                const diff = Math.abs(centerPoint - itemMid);
+                if (diff < minDiff) {
+                    minDiff = diff;
+                    activeIdx = i;
+                }
+            });
+
+            if (activeIdx !== activeIndex && !isDragging) {
+                updateCaption(activeIdx);
+            }
+
+            requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+
+        // Pointer event handlers (Desktop mouse + Mobile touch unified)
+        const onPointerDown = (e) => {
+            if (e.button && e.button !== 0) return;
+            isPointerDown = true;
+            isDragging = true;
+            pointerDownX = e.clientX;
+            startTargetX = targetX;
+            dragDistance = 0;
+            lastMoveX = e.clientX;
+            lastMoveTime = performance.now();
+            velocityX = 0;
+            suppressClick = false;
+
+            carouselSec.classList.add('is-dragging');
+            if (e.target && e.target.setPointerCapture) {
+                try { e.target.setPointerCapture(e.pointerId); } catch (err) {}
+            }
+        };
+
+        const onPointerMove = (e) => {
+            if (!isPointerDown) return;
+            const deltaX = e.clientX - pointerDownX;
+            dragDistance = Math.abs(deltaX);
+
+            if (dragDistance > 6) {
+                suppressClick = true;
+            }
+
+            targetX = startTargetX + deltaX;
+
+            const now = performance.now();
+            const dt = Math.max(1, now - lastMoveTime);
+            velocityX = (e.clientX - lastMoveX) / dt * 14;
+            lastMoveX = e.clientX;
+            lastMoveTime = now;
+        };
+
+        const onPointerUp = (e) => {
+            if (!isPointerDown) return;
+            isPointerDown = false;
+            isDragging = false;
+            carouselSec.classList.remove('is-dragging');
+
+            if (dragDistance > 30) {
+                if (velocityX < -5 && activeIndex < total - 1) {
+                    goToIndex(activeIndex + 1);
+                } else if (velocityX > 5 && activeIndex > 0) {
+                    goToIndex(activeIndex - 1);
+                } else {
+                    snapToNearest();
+                }
+            } else {
+                snapToNearest();
+            }
+        };
+
+        carouselSec.addEventListener('pointerdown', onPointerDown);
+        window.addEventListener('pointermove', onPointerMove);
+        window.addEventListener('pointerup', onPointerUp);
+        window.addEventListener('pointercancel', onPointerUp);
+
+        // Card click handling
+        items.forEach((item, idx) => {
+            item.addEventListener('click', (e) => {
+                if (suppressClick) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return;
+                }
+                if (idx !== activeIndex) {
+                    e.preventDefault();
+                    goToIndex(idx);
+                }
+            });
+        });
+
+        // Wheel listener
+        let wheelTimeout;
+        carouselSec.addEventListener('wheel', (e) => {
+            const absX = Math.abs(e.deltaX);
+            const absY = Math.abs(e.deltaY);
+
+            if (absX > absY) {
+                targetX -= e.deltaX * 1.2;
+                clearTimeout(wheelTimeout);
+                wheelTimeout = setTimeout(snapToNearest, 120);
+                e.preventDefault();
+            } else if (absY > 30) {
+                if (e.deltaY > 0 && activeIndex < total - 1) {
+                    goToIndex(activeIndex + 1);
+                    e.preventDefault();
+                } else if (e.deltaY < 0 && activeIndex > 0) {
+                    goToIndex(activeIndex - 1);
+                    e.preventDefault();
+                }
+            }
         }, { passive: false });
 
-        list.addEventListener('mousedown', (e) => {
-            isDragging = true;
-            startX = e.pageX - list.offsetLeft;
-            currentScroll = list.scrollLeft;
-            carouselSec.setAttribute('data-glass-carousel-pointer', 'grabbing');
+        // Prev & Next Buttons
+        if (prevBtn) {
+            prevBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (activeIndex > 0) goToIndex(activeIndex - 1);
+            });
+        }
+
+        if (nextBtn) {
+            nextBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (activeIndex < total - 1) goToIndex(activeIndex + 1);
+            });
+        }
+
+        window.addEventListener('resize', () => {
+            goToIndex(activeIndex);
         });
 
-        window.addEventListener('mouseup', () => {
-            isDragging = false;
-            carouselSec.setAttribute('data-glass-carousel-pointer', 'grab');
+        window.addEventListener('keydown', (e) => {
+            const rect = carouselSec.getBoundingClientRect();
+            const inView = rect.top < window.innerHeight && rect.bottom > 0;
+            if (!inView) return;
+
+            if (e.key === 'ArrowRight' && activeIndex < total - 1) {
+                goToIndex(activeIndex + 1);
+            } else if (e.key === 'ArrowLeft' && activeIndex > 0) {
+                goToIndex(activeIndex - 1);
+            }
         });
 
-        list.addEventListener('mousemove', (e) => {
-            if (!isDragging) return;
-            e.preventDefault();
-            const x = e.pageX - list.offsetLeft;
-            const walk = (x - startX) * 1.6;
-            targetScroll = currentScroll - walk;
-        });
+        // Three.js Liquid Lens Shader Integration (Visual distortion layer)
+        const canvas = carouselSec.querySelector('[data-glass-carousel-canvas]');
+        if (canvas && !reduceMotion()) {
+            import('https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js').then((THREE) => {
+                const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+                renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+                renderer.setSize(carouselSec.clientWidth, carouselSec.clientHeight);
 
-        const updateScroll = () => {
-            list.scrollLeft += (targetScroll - list.scrollLeft) * 0.12;
-            computeActiveIndex();
-            requestAnimationFrame(updateScroll);
-        };
-        requestAnimationFrame(updateScroll);
+                const scene = new THREE.Scene();
+                const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
 
-        // Three.js Liquid Lens Shader Integration
-        import('https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js').then((THREE) => {
-            if (!canvas || reduceMotion()) return;
-
-            const scene = new THREE.Scene();
-            const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
-            const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-            renderer.setSize(carouselSec.clientWidth, carouselSec.clientHeight);
-
-            const vertexShader = `
-                varying vec2 vUv;
-                void main() {
-                    vUv = uv;
-                    gl_Position = vec4(position.xy, 0.0, 1.0);
-                }
-            `;
-
-            const fragmentShader = `
-                precision highp float;
-                varying vec2 vUv;
-                uniform float uTime;
-                uniform vec2 uResolution;
-                uniform vec2 uCenter;
-
-                void main() {
-                    vec2 p = (gl_FragCoord.xy - uResolution * 0.5) / min(uResolution.x, uResolution.y);
-                    float dist = length(p);
-                    float lensRadius = 0.38;
-
-                    if (dist < lensRadius) {
-                        float distortion = sin(dist * 18.0 - uTime * 2.0) * 0.015;
-                        vec3 col = vec3(0.04, 0.04, 0.04);
-                        // Chromatic dispersion ring
-                        float ring = smoothstep(lensRadius - 0.015, lensRadius, dist);
-                        col += vec3(0.95, 0.26, 0.07) * ring * 0.85;
-                        gl_FragColor = vec4(col, ring * 0.4);
-                    } else {
-                        gl_FragColor = vec4(0.0);
+                const vertexShader = `
+                    varying vec2 vUv;
+                    void main() {
+                        vUv = uv;
+                        gl_Position = vec4(position.xy, 0.0, 1.0);
                     }
-                }
-            `;
+                `;
 
-            const material = new THREE.ShaderMaterial({
-                vertexShader,
-                fragmentShader,
-                uniforms: {
+                const fragmentShader = `
+                    precision highp float;
+                    varying vec2 vUv;
+                    uniform float uTime;
+                    uniform vec2 uResolution;
+                    uniform vec2 uPointer;
+
+                    void main() {
+                        vec2 p = (gl_FragCoord.xy - uResolution * 0.5) / min(uResolution.x, uResolution.y);
+                        vec2 lensCenter = (uPointer - uResolution * 0.5) / min(uResolution.x, uResolution.y);
+                        lensCenter = mix(vec2(0.0), lensCenter, 0.35);
+
+                        vec2 offset = p - lensCenter;
+                        float dist = length(offset);
+                        float radius = 0.38;
+
+                        if (dist < radius) {
+                            float edge = smoothstep(radius - 0.03, radius, dist);
+                            float wave = sin(dist * 24.0 - uTime * 2.5) * 0.5 + 0.5;
+                            vec3 col = vec3(0.95, 0.26, 0.07) * edge * 0.7;
+                            col += vec3(0.0, 0.61, 1.0) * (1.0 - edge) * wave * 0.12;
+                            float alpha = edge * 0.5 + wave * 0.06;
+                            gl_FragColor = vec4(col, alpha);
+                        } else {
+                            gl_FragColor = vec4(0.0);
+                        }
+                    }
+                `;
+
+                const uniforms = {
                     uTime: { value: 0 },
                     uResolution: { value: new THREE.Vector2(carouselSec.clientWidth, carouselSec.clientHeight) },
-                    uCenter: { value: new THREE.Vector2(0.5, 0.5) }
-                },
-                transparent: true
+                    uPointer: { value: new THREE.Vector2(carouselSec.clientWidth * 0.5, carouselSec.clientHeight * 0.5) }
+                };
+
+                const material = new THREE.ShaderMaterial({
+                    vertexShader,
+                    fragmentShader,
+                    uniforms,
+                    transparent: true
+                });
+
+                const quad = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), material);
+                scene.add(quad);
+
+                window.addEventListener('resize', () => {
+                    renderer.setSize(carouselSec.clientWidth, carouselSec.clientHeight);
+                    uniforms.uResolution.value.set(carouselSec.clientWidth, carouselSec.clientHeight);
+                });
+
+                carouselSec.addEventListener('pointermove', (e) => {
+                    const rect = carouselSec.getBoundingClientRect();
+                    uniforms.uPointer.value.set(e.clientX - rect.left, rect.bottom - e.clientY);
+                });
+
+                const renderLoop = (time) => {
+                    uniforms.uTime.value = time * 0.001;
+                    renderer.render(scene, camera);
+                    requestAnimationFrame(renderLoop);
+                };
+                requestAnimationFrame(renderLoop);
+            }).catch((err) => {
+                console.warn('[Carousel] WebGL lens fallback:', err);
             });
-
-            const quad = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), material);
-            scene.add(quad);
-
-            window.addEventListener('resize', () => {
-                renderer.setSize(carouselSec.clientWidth, carouselSec.clientHeight);
-                material.uniforms.uResolution.value.set(carouselSec.clientWidth, carouselSec.clientHeight);
-            });
-
-            const renderLiquidLens = (time) => {
-                material.uniforms.uTime.value = time * 0.001;
-                renderer.render(scene, camera);
-                requestAnimationFrame(renderLiquidLens);
-            };
-            requestAnimationFrame(renderLiquidLens);
-        }).catch((err) => {
-            console.warn('[Carousel] Liquid lens shader fallback to native snap scroll:', err);
-        });
+        }
     };
     initLiquidGlassCarousel();
 

@@ -5565,3 +5565,256 @@ h1, h2, h3, h4, h5, h6,
     top: 8%;
   }
 }
+
+
+/* ==============================================================================
+   INTERACTIVE LIQUID GLASS CAROUSEL ENGINE (HIGH-PERFORMANCE ARCHITECTURE)
+   ============================================================================== */
+.glass-carousel {
+  min-height: 100vh !important;
+  height: 100vh !important;
+  position: relative !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  background: #0B0B0B !important;
+  padding: 0 !important;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  touch-action: pan-y !important;
+  cursor: grab !important;
+}
+
+.glass-carousel.is-dragging {
+  cursor: grabbing !important;
+}
+
+.glass-carousel__canvas {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  pointer-events: none !important;
+  z-index: 10 !important;
+  display: block !important;
+}
+
+.glass-carousel__caption {
+  position: absolute !important;
+  top: 10% !important;
+  left: 50% !important;
+  transform: translate(-50%) !important;
+  text-align: center !important;
+  pointer-events: none !important;
+  z-index: 25 !important;
+  width: 90% !important;
+  max-width: 800px !important;
+}
+
+.glass-carousel__caption-title {
+  font-family: Ppneuemontreal, "Plus Jakarta Sans", sans-serif !important;
+  font-size: clamp(1.8rem, 4.2vw, 3.2rem) !important;
+  font-weight: 500 !important;
+  text-transform: uppercase !important;
+  color: var(--white) !important;
+  margin: 0 !important;
+  letter-spacing: -0.02em !important;
+  line-height: 1.1 !important;
+}
+
+.glass-carousel__caption-sub {
+  font-family: Ppneuemontreal, "Plus Jakarta Sans", sans-serif !important;
+  font-size: 0.9rem !important;
+  color: var(--orange) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  margin-top: 0.5rem !important;
+  font-weight: 500 !important;
+}
+
+/* Track Wrapper & Smooth List */
+.glass-carousel__track-wrap {
+  width: 100% !important;
+  overflow: visible !important;
+  position: relative !important;
+  z-index: 2 !important;
+  display: flex !important;
+  align-items: center !important;
+  pointer-events: auto !important;
+}
+
+.glass-carousel__collection {
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+.glass-carousel__list {
+  display: flex !important;
+  gap: clamp(1.5rem, 3.5vw, 3rem) !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  list-style: none !important;
+  will-change: transform !important;
+  position: relative !important;
+  inset: auto !important;
+  overflow: visible !important;
+  scroll-snap-type: none !important;
+  pointer-events: auto !important;
+}
+
+.glass-carousel__item {
+  flex: 0 0 clamp(320px, 50vw, 680px) !important;
+  aspect-ratio: 16 / 10 !important;
+  height: auto !important;
+  border-radius: 1rem !important;
+  overflow: hidden !important;
+  position: relative !important;
+  background: #141414 !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6) !important;
+  text-decoration: none !important;
+  color: inherit !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-end !important;
+  opacity: 0.45 !important;
+  transform: scale(0.9) !important;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.45s ease, border-color 0.45s ease, box-shadow 0.45s ease !important;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+}
+
+.glass-carousel__item.is-active {
+  opacity: 1 !important;
+  transform: scale(1) !important;
+  border-color: rgba(243, 66, 19, 0.7) !important;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 35px rgba(243, 66, 19, 0.25) !important;
+}
+
+.glass-carousel__item:hover {
+  border-color: var(--orange) !important;
+}
+
+.bunny-bg {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 1 !important;
+  pointer-events: none !important;
+}
+
+.bunny-bg__placeholder {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+  pointer-events: none !important;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.glass-carousel__item:hover .bunny-bg__placeholder {
+  transform: scale(1.03) !important;
+}
+
+.glass-carousel__item-content {
+  position: relative !important;
+  z-index: 2 !important;
+  padding: 1.25rem 1.75rem !important;
+  background: linear-gradient(180deg, transparent 0%, rgba(11, 11, 11, 0.95) 100%) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.3rem !important;
+  pointer-events: none !important;
+  bottom: 0 !important;
+}
+
+.glass-carousel__item-p {
+  font-family: Ppneuemontreal, "Plus Jakarta Sans", sans-serif !important;
+  font-size: clamp(1.2rem, 2vw, 1.6rem) !important;
+  font-weight: 500 !important;
+  text-transform: uppercase !important;
+  color: var(--white) !important;
+  margin: 0 !important;
+  word-break: keep-all !important;
+  white-space: normal !important;
+  line-height: 1.2 !important;
+}
+
+.glass-carousel__item-p.is--faded {
+  font-size: 0.85rem !important;
+  color: var(--orange) !important;
+  letter-spacing: 0.08em !important;
+  opacity: 0.9 !important;
+  text-transform: uppercase !important;
+  margin-top: 0.25rem !important;
+}
+
+/* Prev / Next Nav Buttons */
+.carousel-nav-btn {
+  position: absolute !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  z-index: 30 !important;
+  width: 3.5rem !important;
+  height: 3.5rem !important;
+  border-radius: 50% !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 0.5px solid rgba(255, 255, 255, 0.2) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  color: var(--white) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  transition: all 0.25s ease !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4) !important;
+}
+
+.carousel-nav-btn:hover {
+  background: rgba(243, 66, 19, 0.25) !important;
+  border-color: var(--orange) !important;
+  color: var(--white) !important;
+  transform: translateY(-50%) scale(1.08) !important;
+}
+
+.carousel-nav-btn.is-prev {
+  left: 2.5rem !important;
+}
+
+.carousel-nav-btn.is-next {
+  right: 2.5rem !important;
+}
+
+/* Carousel Counter */
+.glass-carousel__counter {
+  position: absolute !important;
+  bottom: 8% !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  z-index: 25 !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 0.5px solid rgba(255, 255, 255, 0.15) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  padding: 0.4rem 1.1rem !important;
+  border-radius: 2rem !important;
+  font-family: Ppneuemontreal, monospace !important;
+  font-size: 0.85rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.12em !important;
+  color: var(--sand) !important;
+  pointer-events: none !important;
+}
+
+@media screen and (max-width: 767px) {
+  .carousel-nav-btn {
+    display: none !important;
+  }
+  .glass-carousel__item {
+    flex: 0 0 85vw !important;
+  }
+}

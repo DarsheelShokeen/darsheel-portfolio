@@ -27,7 +27,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Production Stylesheet -->
-    <link rel="stylesheet" href="styles.css?v=6.2">
+    <link rel="stylesheet" href="styles.css?v=6.3">
 
     <!-- Favicon Suite -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -409,7 +409,12 @@
         </section>
 
         <!-- Interactive Liquid Glass Carousel -->
+                <!-- ====================================================================
+             SECTION 5: WORK & CASE STUDIES (#work)
+             Interactive Liquid Glass Carousel (Tom de Koning Blueprint)
+             ==================================================================== -->
         <section class="glass-carousel" data-glass-carousel="" id="work">
+            <!-- Dynamic Liquid Lens WebGL Canvas (Visual Distortion Overlay) -->
             <canvas aria-hidden="true" class="glass-carousel__canvas" data-glass-carousel-canvas=""></canvas>
             
             <!-- Dedicated Dynamic Glass Carousel Caption (Tom de Koning Blueprint) -->
@@ -418,13 +423,29 @@
                 <p class="glass-carousel__caption-sub">Android / Media3 / Kotlin</p>
             </div>
 
-            <div class="glass-carousel__collection">
+            <!-- Carousel Navigation Arrows -->
+            <button class="carousel-nav-btn is-prev" aria-label="Previous Project" data-carousel-prev="">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+            </button>
+            <button class="carousel-nav-btn is-next" aria-label="Next Project" data-carousel-next="">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </button>
+
+            <!-- Carousel Counter Pill -->
+            <div class="glass-carousel__counter" data-glass-carousel-counter="">01 / 04</div>
+
+            <!-- Interactive Track Wrapper -->
+            <div class="glass-carousel__track-wrap" data-glass-carousel-track-wrap="">
                 <div class="glass-carousel__list" data-glass-carousel-list="">
 
                     <!-- Project 1: AlbumCanvas -->
-                    <a href="album-canvas.html" class="glass-carousel__item" data-glass-carousel-item="">
+                    <a href="album-canvas.html" class="glass-carousel__item is-active" data-glass-carousel-item="" data-index="0">
                         <div class="bunny-bg">
-                            <img src="assets/images/albumcanvas-cover.webp?v=6.2" alt="AlbumCanvas — Dynamic Live Wallpaper &amp; Ambient Music Experience" class="bunny-bg__placeholder" loading="lazy">
+                            <img src="assets/images/albumcanvas-cover.webp?v=6.3" alt="AlbumCanvas — Dynamic Live Wallpaper &amp; Ambient Music Experience" class="bunny-bg__placeholder" loading="lazy">
                         </div>
                         <div class="glass-carousel__item-content" data-glass-carousel-content="">
                             <h3 class="glass-carousel__item-p">AlbumCanvas</h3>
@@ -433,9 +454,9 @@
                     </a>
 
                     <!-- Project 2: Smart Flood Alert -->
-                    <a href="smart-flood.html" class="glass-carousel__item" data-glass-carousel-item="">
+                    <a href="smart-flood.html" class="glass-carousel__item" data-glass-carousel-item="" data-index="1">
                         <div class="bunny-bg">
-                            <img src="assets/images/smartflood-cover.webp?v=6.2" alt="Smart Flood Alert — IoT Early Warning Telemetry Network" class="bunny-bg__placeholder" loading="lazy">
+                            <img src="assets/images/smartflood-cover.webp?v=6.3" alt="Smart Flood Alert — IoT Early Warning Telemetry Network" class="bunny-bg__placeholder" loading="lazy">
                         </div>
                         <div class="glass-carousel__item-content" data-glass-carousel-content="">
                             <h3 class="glass-carousel__item-p">Smart Flood Alert</h3>
@@ -444,9 +465,9 @@
                     </a>
 
                     <!-- Project 3: LessonPlan Maker -->
-                    <a href="lessonplan-maker.html" class="glass-carousel__item" data-glass-carousel-item="">
+                    <a href="lessonplan-maker.html" class="glass-carousel__item" data-glass-carousel-item="" data-index="2">
                         <div class="bunny-bg">
-                            <img src="assets/images/lessonplan-cover.webp?v=6.2" alt="LessonPlan Maker — Pedagogical Workbench" class="bunny-bg__placeholder" loading="lazy">
+                            <img src="assets/images/lessonplan-cover.webp?v=6.3" alt="LessonPlan Maker — Pedagogical Workbench" class="bunny-bg__placeholder" loading="lazy">
                         </div>
                         <div class="glass-carousel__item-content" data-glass-carousel-content="">
                             <h3 class="glass-carousel__item-p">LessonPlan Maker</h3>
@@ -455,9 +476,9 @@
                     </a>
 
                     <!-- Project 4: Financial Research -->
-                    <a href="financial-research.html" class="glass-carousel__item" data-glass-carousel-item="">
+                    <a href="financial-research.html" class="glass-carousel__item" data-glass-carousel-item="" data-index="3">
                         <div class="bunny-bg">
-                            <img src="assets/images/financial-research-cover.webp?v=6.2" alt="Quantitative Financial Research &amp; Valuation Platform" class="bunny-bg__placeholder" loading="lazy">
+                            <img src="assets/images/financial-research-cover.webp?v=6.3" alt="Quantitative Financial Research &amp; Valuation Platform" class="bunny-bg__placeholder" loading="lazy">
                         </div>
                         <div class="glass-carousel__item-content" data-glass-carousel-content="">
                             <h3 class="glass-carousel__item-p">Financial Research</h3>
@@ -553,6 +574,6 @@
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
     
     <!-- Production JavaScript Runtime -->
-    <script src="main.js?v=6.2"></script>
+    <script src="main.js?v=6.3"></script>
 </body>
 </html>
