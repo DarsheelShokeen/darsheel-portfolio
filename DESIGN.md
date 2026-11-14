@@ -1,139 +1,72 @@
-# DESIGN.md — DARSHEEL SHOKEEN (V5.0 AWWWARDS CONTENDER EDITION)
-## Architectural Cyber Monolith & Playable Engineering Exhibition
+# DESIGN.md — DARSHEEL SHOKEEN
+## Tom de Koning Reference Adaptation | Avant-Garde Minimalist & Liquid Glass Engineering
 
 ---
 
-## 1. Context (From Discovery)
+## 1. Context & Blueprint Translation
 
-- **Artifact Type:** Portfolio & Engineering Publication (`artifact-types.md` § Portfolio / Brand Site).
-- **Positioning:** Independent Product Engineer, Systems Architect, and Founder-Builder.
-- **Audience:** Global design directors, engineering leaders, technology founders, and elite clients seeking top 1% product execution.
-- **Primary Action:** Explore flagship engineering work, test live interactive widgets, inspect technical case studies, and initiate high-value collaboration commissions.
-- **Brand Adjectives:** Architectural, Sovereign, Instrumental, Luminous, Precise.
-- **Visual Word Translations:**
-  - *Architectural* -> Strict geometric grid, hairline scaffolding, running section coordinates (`01 //`, `02 //`), no decorative card clutter.
-  - *Sovereign* -> Authoritative display typography, self-hosted runtime, zero third-party tracking scripts, local telemetry.
-  - *Instrumental* -> Playable interactive widgets inside each project (vinyl audio visualizer, IoT node switcher, 5E pedagogical stepper, DCF valuation model).
-  - *Luminous* -> Radiant Hyper Cyan and Sky Azure accents against deep mineral obsidian, subtle ambient back-radiation halos.
-  - *Precise* -> Tabular monospaced figures (`tabular-nums`), debounced ADC sensor readouts, live IST clock with second ticks.
-- **3-Word Aesthetic Essence:** Deep Monolith Cyan.
-- **Single-Minded Proposition:** An independent product engineer who designs with international editorial prestige and builds with first-principles systems rigor.
-- **Archetype:** Creator / Sage.
-- **References:**
-  - *Admire:* Apple WWDC Developer Keynotes (fluid spring kinetics), Linear (keyboard command palette, micro-haptics), Stripe Press (editorial typographic discipline), Active Theory / Awwwards Site of the Day (spatial motion, sound design).
-  - *Avoid:* Generic SaaS purple-on-black AI templates, floating blob shapes, fake 3D isometric stock illustrations, ungrounded testimonials, center-aligned body copy.
-- **Mode:** Dark Mode Native (OLED Deep Titanium `#06080D` / OKLCH `oklch(0.12 0.015 245)`).
-- **Density:** Airy and expansive for project showcases; dense and technical for telemetry and valuation matrices.
-- **Constraints:** Vanilla ES6+ and pure CSS for maximum performance, zero bloated frameworks, sub-100ms TTI, WCAG 2.2 AA compliance, full `prefers-reduced-motion` override.
+- **Reference Blueprint:** Tom de Koning Personal Portfolio (`https://www.tomdekoning.work/`).
+- **Objective:** High-fidelity architectural recreation of Tom de Koning's layout, composition, typography, spacing, navigation, interactions, and animations, adapted 100% to Darsheel Shokeen's identity, content, and real software engineering projects.
+- **Positioning:** Product Engineer, Systems Architect, and Independent Builder.
+- **Audience:** Global design directors, engineering executives, technical founders, and elite teams looking for world-class product engineering.
+- **Aesthetic Essence:** Dutch Avant-Garde Minimalist, High-Contrast Typography, Liquid Glass Refraction.
+- **3-Word Essence:** Pitch, Vermilion, Sand.
+- **Brand Adjectives:** Bold, Editorial, Tactile, Fluid, Uncompromising.
 
 ---
 
-## 2. Aesthetic & Signature Moves
+## 2. Color Palette System
 
-- **Direction:** Architectural Cyber Monolith (Editorial Swiss Hybrid).
-- **Defining Trait:** High-contrast editorial typography and architectural hairline scaffolding replacing standard SaaS card grids; playable interactive engineering widgets directly on flagship showcases.
-- **Signature Moves:**
-  1. **Real-Time Telemetry Cockpit:** Live orbital coordinates `[ 28°36'N 77°12'E • NEW DELHI ]`, live IST clock with seconds, and authentic animated character avatar inside an architectural titanium floating capsule with dynamic 3D cursor tilt.
-  2. **Playable Engineering Exhibition:**
-     - *AlbumCanvas:* Interactive vinyl record spin + 16-band real-time SVG audio visualizer + dynamic wallpaper color extraction simulator.
-     - *Smart Flood Alert:* Interactive IoT sensing node toggle (Node 01 vs Node 02) + dynamic depth gauge + morphing SVG hydrograph + simulated Meta Cloud WhatsApp evacuation dispatch.
-     - *LessonPlan Maker:* Interactive 5E pedagogical cycle stepper + real-time NEP 2020 learning outcome prompt generator.
-     - *Financial Research Platform:* Interactive quantitative DCF valuation model with revenue CAGR and WACC sliders dynamically computing intrinsic share value and margin of safety.
-  3. **Native Web Audio API Sound Design:** Optional micro-audio haptics synthesized client-side (sine blip at 800Hz/1200Hz, 15ms) with a dedicated navbar sound toggle (`🔊 Audio: ON / OFF`). Zero external audio files required.
-  4. **Smooth Magnetic Cursor:** Precision custom pointer dot with spring-lagging trailing ring that magnetically locks to interactive controls on desktop pointers.
+Strictly aligned with the reference design tokens:
+
+| Token | Hex Value | Role / Usage |
+|---|---|---|
+| `--black` | `#0B0B0B` | Primary background, fullscreen menu background, deep pitch black surfaces |
+| `--sand` | `#E7E1D7` | Secondary text, stats labels, divider borders, clean linen neutral |
+| `--orange` | `#F34213` | Primary accent, 8-point rotating star, text highlights, button background, menu dots, cursor |
+| `--white` | `#FFFFFF` | Primary headlines, extreme display titles |
+| `border-line` | `rgba(231, 225, 215, 0.2)` | 1px hairline horizontal scaffolding and table separators |
+| `selection` | `#0B0B0B` on `#F34213` | Text selection highlight |
 
 ---
 
 ## 3. Typography Architecture
 
-- **Primary UI Sans:** `Plus Jakarta Sans`, `Inter`, `-apple-system`, `sans-serif`
-  - Weights: `400` (Regular), `500` (Medium), `600` (Semi-Bold), `700` (Bold), `800` (Heavy).
-  - Used for structural interface copy, buttons, badges, and navigation.
-- **Editorial Display Serif:** `Newsreader`, `Georgia`, `serif`
-  - Optical sizing active (`opsz: 6..72`), weights `400` / `500`, with italic emphasis.
-  - Negative tracking on display headlines (`letter-spacing: -0.025em`).
-- **Telemetry & Technical Monospace:** `JetBrains Mono`, `Consolas`, `monospace`
-  - Weights: `400`, `500`, `600`.
-  - `font-variant-numeric: tabular-nums` enforced to prevent horizontal number jitter.
-
-### Modular Type Scale (1.25 Major Third)
-| Token | Step | Size (Desktop) | Line Height | Usage |
-| :--- | :--- | :--- | :--- | :--- |
-| `--text-display` | Display | `clamp(2.8rem, 5.8vw, 4.8rem)` | `1.05` | Hero headline statement |
-| `--text-h1` | H1 | `clamp(2.0rem, 3.8vw, 3.2rem)` | `1.15` | Section titles |
-| `--text-h2` | H2 | `clamp(1.5rem, 2.6vw, 2.2rem)` | `1.25` | Flagship project titles |
-| `--text-h3` | H3 | `1.25rem (20px)` | `1.4` | Card titles and subsection headers |
-| `--text-base` | Body | `1.0rem (16px)` | `1.65` | Narrative body copy (measure 65–75ch) |
-| `--text-sm` | Small | `0.875rem (14px)` | `1.5` | Captions, button labels, and tech tags |
-| `--text-xs` | Micro | `0.75rem (12px)` | `1.4` | Monospace coordinates, timestamps, and chips |
+- **Primary Grotesque Sans:** `PP Neue Montreal` (`Ppneuemontreal`, `Plus Jakarta Sans`, `-apple-system`, `sans-serif`)
+  - Weight: 400 (Regular), 500 (Medium), 600 (Semi-bold).
+  - Used for interface elements, hero text, stats, navigation, body paragraphs.
+- **Editorial Accent Serif:** `Playfair Display`, `Georgia`, `serif`
+  - Style: Italic.
+  - Signature Move: Dynamic wrapping of every letter 'O' and 'o' across headings into `<span class="playfair-o">o</span>` with negative optical kerning (`left: -0.075em`).
+- **Scale Hierarchy:**
+  - `heading-extreme`: `32vw` ("Work" display headline).
+  - `heading-2`: `14.5vw` / `clamp(2.5rem, 8vw, 6rem)` (About statement).
+  - `h1.text-align-right`: `clamp(3.5rem, 10vw, 8.5rem)` (Darsheel Shokeen title).
+  - `h6`: `0.85rem` uppercase, letter-spaced labels.
+  - Body: `1.05rem` / line-height `1.55`.
 
 ---
 
-## 4. Color Architecture (OKLCH 60-30-10 System)
+## 4. Key Sections & Visual Composition
 
-Authored in OKLCH with hex fallbacks. Dominant abyssal slate, structural titanium neutrals, and laser Hyper Cyan accent.
-
-```css
-:root {
-  /* 60% Base Oceanic Slate Surfaces */
-  --color-bg: oklch(0.12 0.015 245);          /* #06080D - Abyssal canvas */
-  --color-surface: oklch(0.16 0.02 245);     /* #0C1017 - Structural columns & cards */
-  --color-elevated: oklch(0.20 0.025 245);   /* #131B26 - Floating panels & popovers */
-  --color-elevated-hover: oklch(0.24 0.03 245); /* #1A2433 - Interactive hover state */
-  --color-card-glass: rgba(12, 16, 23, 0.85);
-
-  /* 30% Structural Neutrals & Hairline Edges */
-  --color-fg: oklch(0.97 0.005 240);         /* #F8FAFC - Primary titanium white */
-  --color-fg-secondary: oklch(0.70 0.015 240); /* #94A3B8 - Descriptive slate */
-  --color-fg-muted: oklch(0.52 0.02 240);    /* #64748B - Metadata & labels */
-  --color-border: oklch(0.24 0.02 245);      /* #1D2A3D - Base hairline border (1px) */
-  --color-border-hover: rgba(0, 229, 255, 0.45);
-
-  /* 10% Sharp Accents & Semantic Telemetry Signals */
-  --color-accent: oklch(0.85 0.18 200);      /* #00E5FF - Laser Hyper Cyan */
-  --color-accent-secondary: oklch(0.72 0.15 220); /* #38BDF8 - Sky Azure */
-  --color-accent-tertiary: oklch(0.55 0.22 255);  /* #2563EB - Electric Cobalt */
-  --color-status-live: oklch(0.72 0.17 155); /* #10B981 - Emerald Live Pulse */
-  --color-status-dev: oklch(0.78 0.16 75);   /* #F59E0B - Solar Amber Alert */
-}
-```
-
----
-
-## 5. Spacing, Radius & Elevation
-
-- **Spacing Base:** 4px grid. Constrained rhythm:
-  `--space-1: 0.25rem (4px)`, `--space-2: 0.5rem (8px)`, `--space-3: 1rem (16px)`,
-  `--space-4: 1.5rem (24px)`, `--space-5: 2rem (32px)`, `--space-6: 3rem (48px)`,
-  `--space-8: 5rem (80px)`, `--space-10: 7.5rem (120px)`.
-- **Radius:** Committed and disciplined:
-  - Base cards & buttons: `var(--radius-sm): 6px` or `var(--radius-md): 10px`.
-  - Capsules & badges: `var(--radius-pill): 9999px`.
-  - Avatar frame: `50%` circular bezel.
-- **Elevation Approach:** Pure lightness-based elevation with crisp 1px borders and dynamic radial spotlight glow (`--mouse-x`, `--mouse-y`), avoiding diffuse blurry drop-shadows.
-
----
-
-## 6. Motion & Kinetic Engine
-
-- **Duration Scale:**
-  - Instant (micro-haptics, button press): `100ms`
-  - Fast (tab transitions, hover shifts): `150ms`
-  - Normal (card reveals, dropdowns): `250ms`
-  - Slow (staggered scroll reveals, sheet drawer): `400ms`
-- **Easing:**
-  - `--ease-out: cubic-bezier(0.16, 1, 0.3, 1)` (WWDC fluid spring physics)
-  - `--ease-in-out: cubic-bezier(0.65, 0, 0.35, 1)`
-- **Tactile Feedback:** Instantaneous press compression: `:active { transform: scale(0.97) !important; }`. Zero mobile touch delay with `touch-action: manipulation`.
-- **Accessibility Gate:** Strict `@media (prefers-reduced-motion: reduce)` bypasses all transforms, smooth scrolls, audio synthesizers, and continuous animations.
-
----
-
-## 7. Quality Assurance & Compliance
-
-- [x] WCAG 2.2 AA Contrast ratio (minimum 4.5:1, up to 14.2:1 for primary headings).
-- [x] Visible focus indicator rings with `:focus-visible`.
-- [x] Semantic HTML5 layout (`<article>`, `<header>`, `<nav>`, `<aside>`, `<time>`, `<figure>`).
-- [x] All 4 flagship project covers locked in strict 16:10 aspect ratio with zero distortion.
-- [x] Server-side zero-cache headers enforced through `index.php` and `projects.php`.
-- [x] Responsive layout verified across 375px (Mobile), 768px (Tablet), 1024px (Laptop), and 1440px (Desktop).
+1. **Floating Navigation (`navbar`):**
+   - Left: Minimalist geometric "DS" lettermark button linked to `#header`.
+   - Right: Pill menu button with 5-dot orange matrix icon that morphs into an 'X' on click.
+   - Overlay Menu: Fullscreen `#0B0B0B` overlay featuring staggered slide-up links (`INFO`, `ABOUT`, `WORK`, `CONTACT`).
+2. **Hero Section (`#header`):**
+   - Sticky 3D geometric/procedural canvas (`image-sequence__canvas`) in right column responding to scroll.
+   - Header top: `darsheelshokeen.xo.je` (Left), `portfolio 2026` (Right).
+   - Header bottom: `Hi there`, 8-point geometric star in `#F34213` rotating with scroll velocity, intro manifesto, thin horizontal line, and massive right-aligned `darsheelshokeen.xo.je`.
+   - Info block (`#info`): 2-column layout (`7fr 5fr`) with stats stack (Services, Experience, Delhi IST Clock, Availability, Focus Areas) and tactile dual-state pill button (`button-097` "View work" / "Explore Systems →").
+3. **About Section (`#about`):**
+   - Giant headline `heading-2`: *"I engineer software that commands attention — systems, products and beyond"*.
+   - 2-column editorial grid (`_2-col is-3-9`) with Darsheel's engineering philosophy.
+4. **Work Section (`#work`):**
+   - Pre-headline: `What you’re here for (I guess)` + `<h2 class="heading-extreme">Work</h2>`.
+   - Fullscreen horizontal **Liquid Glass Carousel**:
+     - Three.js WebGL shader with liquid chromatic dispersion, rim waves, inertia dragging, touch swipe, and wheel scroll.
+     - Darsheel's 5 projects: **AlbumCanvas**, **Smart Flood Alert**, **LessonPlan Maker**, **Financial Research Platform**, **EduCloud Management System**.
+5. **Footer / Contact Section (`#contact`):**
+   - Rounded container `footer-base`: Top bar, 2-column direct contact links (Email, GitHub, LinkedIn), horizontal line, and continuous infinite marquee `darsheelshokeen.xo.je`.
+6. **Cursor Physics:**
+   - Custom glowing orange path canvas with smooth trailing dot (`cursor-wrap`).

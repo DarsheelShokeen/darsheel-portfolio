@@ -1,39 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="utf-8">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <meta charset="UTF-8">
-    <meta name="theme-color" content="#06090E">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Darsheel Shokeen — Product Engineer, Builder & Designer</title>
-    <meta name="description" content="Personal website of Darsheel Shokeen — Exploring technology, building digital products, experimenting with design and turning ambitious ideas into reality. Delhi, India.">
-    <meta name="author" content="Darsheel Shokeen">
-    <link rel="canonical" href="https://darsheelshokeen.xo.je/">
-
-    <!-- Open Graph Metadata -->
+    <title>darsheelshokeen.xo.je — Product Engineer & Systems Architect</title>
+    <meta name="description" content="Portfolio of Darsheel Shokeen — Product engineer, systems architect, and independent builder based in Delhi, India. Engineering resilient Android software, IoT telemetry, and quantitative valuation systems.">
+    
+    <!-- Open Graph / Meta -->
+    <meta property="og:title" content="darsheelshokeen.xo.je — Product Engineer & Systems Architect">
+    <meta property="og:description" content="Product engineer, systems architect, and independent builder. Engineering resilient software, clean, scalable, unforgettable.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://darsheelshokeen.xo.je/">
-    <meta property="og:title" content="Darsheel Shokeen — Product Engineer, Builder & Designer">
-    <meta property="og:description" content="Explore digital products, native Android applications, IoT telemetry systems, and financial research engines built by Darsheel Shokeen.">
     <meta property="og:image" content="https://darsheelshokeen.xo.je/og-preview.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-
-    <!-- Twitter / X Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Darsheel Shokeen — Product Engineer, Builder & Designer">
-    <meta name="twitter:description" content="Explore digital products, native Android applications, IoT telemetry systems, and financial research engines built by Darsheel Shokeen.">
-    <meta name="twitter:image" content="https://darsheelshokeen.xo.je/og-preview.png">
+    <meta name="theme-color" content="#0B0B0B">
 
-    <!-- Fonts & Stylesheet -->
+    <!-- Canonical -->
+    <link rel="canonical" href="https://darsheelshokeen.xo.je/">
+
+    <!-- Fonts: Playfair Display + Plus Jakarta Sans + Local PP Neue Montreal -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=5.1">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Production Stylesheet -->
+    <link rel="stylesheet" href="styles.css?v=6.0">
 
-    <!-- Custom DS Monogram Favicon Suite -->
+    <!-- Favicon Suite -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
@@ -47,7 +43,7 @@
         "@type": "Person",
         "name": "Darsheel Shokeen",
         "url": "https://darsheelshokeen.xo.je/",
-        "jobTitle": "Product Engineer & Builder",
+        "jobTitle": "Product Engineer & Systems Architect",
         "address": {
             "@type": "PostalAddress",
             "addressLocality": "Delhi",
@@ -61,1116 +57,347 @@
     </script>
 </head>
 <body>
-    <!-- Awwwards V5.0 Custom Magnetic Cursor -->
-    <div class="custom-cursor" aria-hidden="true"></div>
-    <div class="cursor-trail" aria-hidden="true"></div>
 
-    <!-- Sticky Navigation with Command Palette Trigger -->
-    <header class="site-nav" id="top-nav">
-        <div class="container nav-container">
-            <a href="index.html" class="nav-brand">
-                <span class="nav-brand-dot"></span>
-                Darsheel Shokeen
-            </a>
-
-            <nav aria-label="Main Navigation">
-                <ul class="nav-menu">
-                    <li><a href="#about" class="nav-link">About</a></li>
-                    <li><a href="#projects" class="nav-link">Projects</a></li>
-                    <li><a href="#expertise" class="nav-link">Expertise</a></li>
-                    <li><a href="#experiments" class="nav-link">Experiments</a></li>
-                    <li><a href="#journal" class="nav-link">Journal</a></li>
-                    <li><a href="now.html" class="nav-link">Now</a></li>
-                    <li><a href="#contact" class="nav-link">Contact</a></li>
-                </ul>
-            </nav>
-
-            <div class="nav-actions">
-                <button class="audio-toggle-btn" id="audio-toggle-btn" aria-label="Toggle ambient UI audio synthesizer">
-                    <span class="audio-eq-icon" aria-hidden="true">
-                        <span class="audio-eq-bar"></span>
-                        <span class="audio-eq-bar"></span>
-                        <span class="audio-eq-bar"></span>
-                    </span>
-                    <span class="audio-label">Audio: OFF</span>
-                </button>
-                <button class="cmd-palette-btn open-cmd-btn" aria-label="Open Command Palette (Ctrl+K)">
-                    <span>Search</span>
-                    <kbd class="cmd-kbd">Ctrl+K</kbd>
-                </button>
-                <a href="#contact" class="nav-cta">Get in Touch →</a>
-                <button class="nav-toggle-btn" id="nav-toggle" aria-label="Open mobile navigation" aria-expanded="false">
-                    <span></span><span></span><span></span>
-                </button>
-            </div>
-        </div>
-    </header>
-
-    <!-- Mobile Drawer -->
-    <div class="mobile-nav-drawer" id="mobile-drawer">
-        <ul class="mobile-nav-links">
-            <li><a href="#about" class="mobile-nav-link">About</a></li>
-            <li><a href="#projects" class="mobile-nav-link">Projects</a></li>
-            <li><a href="#expertise" class="mobile-nav-link">Expertise</a></li>
-            <li><a href="#experiments" class="mobile-nav-link">Experiments</a></li>
-            <li><a href="#journal" class="mobile-nav-link">Journal</a></li>
-            <li><a href="now.html" class="mobile-nav-link">Now</a></li>
-            <li><a href="guestbook.html" class="mobile-nav-link">Guestbook</a></li>
-            <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
-        </ul>
+    <!-- 1. Custom Glowing Cursor -->
+    <div class="cursor-wrap" aria-hidden="true">
+        <canvas data-cursor-canvas=""></canvas>
+        <div data-cursor-dot=""></div>
     </div>
 
-    <!-- Hero Section -->
-    <section class="hero-section" id="hero">
-        <div class="hero-ambient" aria-hidden="true"></div>
-        <div class="container hero-content">
-            <div class="hero-grid">
-                <!-- Left: Editorial Headline & Narrative -->
-                <div class="hero-copy-col">
-                    <div class="hero-meta-row">
-                    <div class="meta-badge" style="letter-spacing: 0.08em; font-family: var(--font-mono);">
-                        <span style="color: var(--accent-primary);">[ 28°36'N 77°12'E • NEW DELHI ]</span>
-                    </div>
-                        <div class="meta-badge">
-                            <span class="meta-dot meta-dot-cyan"></span>
-                            <span>Delhi, India</span>
-                        </div>
-                        <div class="meta-badge">
-                            <span class="meta-dot meta-dot-green"></span>
-                            <span>Available for select collaborations</span>
-                        </div>
-                        <div class="meta-badge">
-                            <span id="ist-clock">--:-- IST</span>
-                        </div>
-                    </div>
+    <!-- 2. Fullscreen Minimalist Menu Overlay -->
+    <div class="navbar-link-wrapper" id="menu-overlay" aria-hidden="true">
+        <a class="nav-link" data-link-stagger="" href="#info">INFO</a>
+        <a class="nav-link" data-link-stagger="" href="#about">ABOUT</a>
+        <a class="nav-link" data-link-stagger="" href="#work">WORK</a>
+        <a class="nav-link" data-link-stagger="" href="#contact">CONTACT</a>
+        <a class="nav-link" data-link-stagger="" href="projects.html" style="font-size: clamp(1.2rem, 2.5vw, 2rem); margin-top: 2rem; color: var(--orange);">
+            ARCHIVE &amp; CASE STUDIES →
+        </a>
+    </div>
 
-                    <h1 class="hero-headline">
-                        Building ideas into <span class="headline-serif-italic">something meaningful.</span>
-                    </h1>
-
-                    <p class="hero-description">
-                        I'm Darsheel — product engineer and independent builder. I engineer end-to-end digital experiences, embedded hardware systems, and analytical software with deliberate craft.
-                    </p>
-
-                    <div class="hero-ctas">
-                        <a href="#projects" class="btn-primary">
-                            Explore Flagship Work
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                        </a>
-                        <a href="#about" class="btn-secondary">About Me</a>
-                    </div>
-                </div>
-
-                <!-- Right: Authentic Interactive Avatar & Identity Card -->
-                <div class="hero-avatar-col">
-                    <div class="avatar-card-container">
-                        <div class="avatar-glow-halo" aria-hidden="true"></div>
-                        <div class="avatar-frame">
-                            <img src="assets/images/darsheel-avatar.gif?v=5.0" 
-                                 alt="Darsheel Shokeen - Creative Product Engineer & Builder" 
-                                 class="hero-avatar-img" 
-                                 width="320" 
-                                 height="320" 
-                                 loading="eager">
-                        </div>
-                        <div class="avatar-meta-pill">
-                            <span class="avatar-pulse-dot"></span>
-                            <span class="avatar-meta-text">Darsheel Shokeen • Builder</span>
-                        </div>
-                        <div class="avatar-tech-chips">
-                            <span class="avatar-chip">Android (Kotlin)</span>
-                            <span class="avatar-chip">IoT (ESP32)</span>
-                            <span class="avatar-chip">Python / FastAPI</span>
-                            <span class="avatar-chip">Web Architecture</span>
-                        </div>
-                    </div>
-                </div>
+    <!-- 3. Fixed Navigation Bar -->
+    <nav class="navbar" id="nav" aria-label="Main Navigation">
+        <!-- Minimalist Bauhaus DS Monogram Logo Button -->
+        <a class="nav-button w-inline-block" href="#header" aria-label="Darsheel Shokeen Home">
+            <div class="icon-1x1-medium w-embed" style="width: 26px; height: 32px; display: flex; align-items: center;">
+                <svg fill="none" height="100%" viewBox="0 0 28 32" width="100%" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0 0H14C20.6274 0 26 5.37258 26 12C26 18.6274 20.6274 24 14 24H8V32H0V0ZM8 8V16H14C16.2091 16 18 14.2091 18 12C18 9.79086 16.2091 8 14 8H8Z" fill="currentColor"/>
+                    <circle cx="21" cy="27" r="4" fill="#F34213"/>
+                </svg>
             </div>
+        </a>
 
-            <!-- CURRENTLY BUILDING STRIP (Flagship showcase tracker) -->
-            <div class="currently-building-strip">
-                <div class="cb-label">
-                    <span class="meta-dot meta-dot-green"></span>
-                    Currently Building
-                </div>
-                <div class="cb-items-row">
-                    <a href="album-canvas.html" class="cb-item-link">
-                        <strong>AlbumCanvas</strong> — Android dynamic wallpaper
-                    </a>
-                    <span class="cb-separator">/</span>
-                    <a href="smart-flood.html" class="cb-item-link">
-                        <strong>Smart Flood Alert</strong> — IoT telemetry & alerts
-                    </a>
-                    <span class="cb-separator">/</span>
-                    <a href="lessonplan-maker.html" class="cb-item-link">
-                        <strong>LessonPlan Maker</strong> — EdTech workbench
-                    </a>
-                    <span class="cb-separator">/</span>
-                    <a href="financial-research.html" class="cb-item-link">
-                        <strong>Financial Research</strong> — Valuation & DCF
-                    </a>
-                </div>
+        <!-- 5-Dot Matrix Menu Toggle Button -->
+        <a class="nav-button is-menu w-inline-block" href="#" aria-label="Toggle navigation menu" aria-expanded="false">
+            <div class="menu-icon" aria-hidden="true">
+                <div class="menu-dot"></div>
+                <div class="menu-dot"></div>
+                <div class="menu-dot"></div>
+                <div class="menu-dot"></div>
+                <div class="menu-dot"></div>
             </div>
-        </div>
-    </section>
+            <div>MENU</div>
+        </a>
+    </nav>
 
-    <!-- Selected Projects Section (Horizontal Product Showcase with Dedicated Art Covers) -->
-    <section class="section section-alt" id="projects">
-        <div class="container">
-            <header class="section-header">
-                <div class="section-kicker">01 // Flagship Systems Architecture</div>
-                <h2 class="section-title">Selected Projects</h2>
-                <p class="section-subtitle">
-                    A curated collection of products, hardware systems, and analytical platforms engineered with intention.
-                </p>
-            </header>
+    <!-- 4. Main Page Wrapper -->
+    <div class="page-wrapper">
 
-            
-            <!-- Awwwards V5.0 Dual Viewport Architecture -->
-            <div class="view-mode-container">
-                <div class="stage-telemetry-badge">
-                    <span class="meta-dot meta-dot-cyan"></span>
-                    <span class="mono-label">EXHIBITION VIEWPORT // DUAL ENGINE</span>
+        <!-- ====================================================================
+             SECTION 1: HERO & SECTION INFO (#header)
+             ==================================================================== -->
+        <section id="header">
+            <div class="padding-global">
+
+                <!-- Sticky 3D Geometric Monolith Canvas -->
+                <div class="image-sequence__wrap" aria-hidden="true">
+                    <div class="image-sequence__sticky">
+                        <div class="scroll-col">
+                            <div></div>
+                            <div class="image-sequence__element">
+                                <canvas class="image-sequence__canvas" id="hero-canvas"></canvas>
+                            </div>
+                            <div></div>
+                        </div>
+                    </div>
                 </div>
-                <div class="view-mode-switcher" role="tablist" aria-label="Project View Modes">
-                    <button type="button" class="view-btn active" id="view-mode-stage" role="tab" aria-selected="true" data-mode="stage">
-                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
-                        <span>Exhibition Stage</span>
-                    </button>
-                    <button type="button" class="view-btn" id="view-mode-catalog" role="tab" aria-selected="false" data-mode="catalog">
-                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
-                        <span>Swiss Archive Catalog</span>
-                    </button>
-                </div>
-            </div>
 
-            <!-- Stage Rail Navigation Tabs -->
-            <div class="stage-rail-tabs" id="stage-tabs-nav" role="tablist" aria-label="Select Flagship Project">
-                <button type="button" class="stage-tab-btn active" role="tab" aria-selected="true" data-project="0">
-                    <span class="tab-num">01 / ARCHITECTURE</span>
-                    <span class="tab-name">AlbumCanvas</span>
-                    <span class="tab-sub">Kotlin • Compose • Media3</span>
-                </button>
-                <button type="button" class="stage-tab-btn" role="tab" aria-selected="false" data-project="1">
-                    <span class="tab-num">02 / IOT TELEMETRY</span>
-                    <span class="tab-name">Smart Flood Alert</span>
-                    <span class="tab-sub">ESP32 • FastAPI • Meta Cloud</span>
-                </button>
-                <button type="button" class="stage-tab-btn" role="tab" aria-selected="false" data-project="2">
-                    <span class="tab-num">03 / EDTECH WORKBENCH</span>
-                    <span class="tab-name">LessonPlan Maker</span>
-                    <span class="tab-sub">Python • Flask • NEP 2020</span>
-                </button>
-                <button type="button" class="stage-tab-btn" role="tab" aria-selected="false" data-project="3">
-                    <span class="tab-num">04 / QUANT FINANCE</span>
-                    <span class="tab-name">Financial Research</span>
-                    <span class="tab-sub">React • DCF • WACC Modeling</span>
-                </button>
-            </div>
-
-            <!-- Exhibition Deck (Active Slide Viewport) -->
-            <div class="exhibition-deck" id="exhibition-deck">
-
-                <!-- Project 1: AlbumCanvas -->
-                <article class="project-card-large deck-item active">
-                    <div class="project-media-col">
-                        <a href="album-canvas.html" class="project-cover-link">
-                            <img src="assets/images/albumcanvas-cover.webp?v=5.1" alt="AlbumCanvas — Dynamic Live Wallpaper & Ambient Music Experience" class="project-cover-img" width="1600" height="1000" loading="lazy">
-                        </a>
-                        <div class="vinyl-disc-peek" aria-hidden="true"></div>
+                <!-- Hero Section Top & Bottom -->
+                <div class="section__header">
+                    <div class="header-top">
+                        <h6>darsheelshokeen.xo.je</h6>
+                        <h6>portfolio 2026</h6>
                     </div>
 
-                    <div class="project-info-col">
-                        <div>
-                            <div class="project-meta-top">
-                                <span class="project-category">Mobile System Architecture</span>
-                                <span class="project-status-tag live">
-                                    <span class="meta-dot meta-dot-green"></span>
-                                    Complete & Open Source
-                                    <span class="albumcanvas-equalizer" aria-hidden="true">
-                                        <span class="albumcanvas-equalizer-bar"></span>
-                                        <span class="albumcanvas-equalizer-bar"></span>
-                                        <span class="albumcanvas-equalizer-bar"></span>
-                                        <span class="albumcanvas-equalizer-bar"></span>
-                                        <span class="albumcanvas-equalizer-bar"></span>
+                    <div class="header-bottom">
+                        <div class="header-intro__wrap">
+                            <h6 class="hide-mobile-landscape">Hi there</h6>
+                            <div class="header-text-wrapper" style="display: flex; align-items: flex-start; gap: 1.5rem;">
+                                <!-- 8-Point Geometric Vermilion Star Icon -->
+                                <div class="star-icon w-embed" aria-hidden="true">
+                                    <svg fill="none" height="48" viewBox="0 0 42 48" width="42" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M21 0L22.1089 20.2315C22.1536 21.0354 23.0188 21.5299 23.7418 21.1641L42 11.999L24.8507 23.0654C24.1683 23.5036 24.1683 24.4924 24.8507 24.9346L42 36.001L23.7418 26.8359C23.0147 26.4701 22.1536 26.9646 22.1089 27.7685L21 48L19.8911 27.7685C19.8464 26.9646 18.9812 26.4701 18.2582 26.8359L0 35.997L17.1493 24.9306C17.8317 24.4924 17.8317 23.5036 17.1493 23.0614L0 11.999L18.2582 21.1641C18.9853 21.5299 19.8464 21.0354 19.8911 20.2315L21 0Z" fill="#F34213"></path>
+                                    </svg>
+                                </div>
+                                <p style="font-size: clamp(1.1rem, 1.8vw, 1.4rem); line-height: 1.45; margin: 0; color: var(--sand); font-weight: 400;">
+                                    I engineer resilient software &amp; systems,
+                                    <br>
+                                    clean, scalable, unforgettable.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="line"></div>
+
+                        <!-- Huge Right-Aligned Signature Title -->
+                        <h1 class="text-align-right" style="margin: 0; font-size: clamp(3.2rem, 10.5vw, 9.5rem); line-height: 0.95; font-weight: 500; text-transform: uppercase; letter-spacing: -0.03em;">
+                            darsheelshokeen
+                            <br>
+                            <span class="text-color-orange">.xo.je</span>
+                        </h1>
+                    </div>
+                </div>
+
+                <!-- Section Info: Services & Telemetry (#info) -->
+                <div class="section__info" id="info">
+                    <div class="_2-col is-intro">
+                        <h6>About</h6>
+                        <div class="flex-vertical space-between is-stretch" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+                            <div class="flex-vertical">
+                                <div class="stats-wrapper">
+                                    <h6>Services</h6>
+                                    <h6 class="text-align-right">Software Architecture, Android Systems &amp;<br>Quantitative Platforms</h6>
+                                    <div class="line is-top"></div>
+                                </div>
+                                <div class="stats-wrapper">
+                                    <h6>Experience</h6>
+                                    <h6>3+ years / Product Engineer</h6>
+                                    <div class="line is-top"></div>
+                                </div>
+                                <div class="stats-wrapper">
+                                    <h6>Timezone</h6>
+                                    <h6 data-timezone="Asia/Kolkata">DELHI --:--</h6>
+                                    <div class="line is-top"></div>
+                                </div>
+                                <div class="stats-wrapper">
+                                    <h6>Availability</h6>
+                                    <h6>Available for High-Impact Projects</h6>
+                                    <div class="line is-top"></div>
+                                </div>
+                                <div class="stats-wrapper">
+                                    <h6>Core Stacks</h6>
+                                    <h6>Kotlin • Python • React • C++ (IoT)</h6>
+                                    <div class="line is-top"></div>
+                                </div>
+                            </div>
+
+                            <!-- Button-097 Dual-State Tactile Pill Button -->
+                            <a class="button-097 w-inline-block" href="#work">
+                                <span class="button-097__hover">
+                                    <span class="button-097__bg is--hover"></span>
+                                    <span class="button-097__inner">
+                                        <span class="button-097__text">Explore Systems →</span>
                                     </span>
                                 </span>
-                            </div>
-                            <h3 class="project-title">AlbumCanvas</h3>
-                            <p class="project-summary">
-                                Native Android application built with Jetpack Compose & Material 3 that dynamically hooks into system media playback to transform active music artwork into ambient wallpapers and interactive home screen widgets.
+                                <span aria-hidden="true" class="button-097__default">
+                                    <span class="button-097__bg is--default"></span>
+                                    <span class="button-097__inner">
+                                        <span class="button-097__text">View work</span>
+                                    </span>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ====================================================================
+             SECTION 2: ABOUT MANIFESTO (#about)
+             ==================================================================== -->
+        <section id="about">
+            <div class="padding-global">
+                <div class="padding-vertical padding-xxhuge" style="padding-top: 10rem; padding-bottom: 8rem;">
+                    <div class="margin-bottom margin-large" style="margin-bottom: 3.5rem;">
+                        <h2 class="heading-2" data-gradient-wave-text="" style="font-size: clamp(2.4rem, 7vw, 5.8rem); line-height: 1.05; text-transform: uppercase; margin: 0; font-weight: 500; letter-spacing: -0.02em;">
+                            I engineer software that commands attention — systems, products and beyond
+                        </h2>
+                    </div>
+                    <div class="line"></div>
+                    <div class="margin-top margin-medium" style="margin-top: 3.5rem;">
+                        <div class="_2-col is-3-9" style="display: grid; grid-template-columns: 3fr 9fr; gap: 2rem;">
+                            <h6>Philosophy</h6>
+                            <p class="text-2-col" style="font-size: clamp(1.1rem, 1.8vw, 1.5rem); line-height: 1.6; color: var(--sand); margin: 0;">
+                                I’m a product engineer and software builder based in Delhi, India. I bring system architecture, product design, and rigorous engineering together to build applications that stand out and perform reliably wherever they run. From low-level embedded hardware and Android media engines to quantitative valuation models and multi-tenant web platforms. I engineer systems from the ground up with obsessive precision. One vision. Purposeful craft. Software that works as one.
                             </p>
-                            <div class="project-tech-stack">
-                                <span class="tech-tag">Kotlin</span>
-                                <span class="tech-tag">Jetpack Compose</span>
-                                <span class="tech-tag">Material 3</span>
-                                <span class="tech-tag">MediaSession</span>
-                                <span class="tech-tag">AndroidX Palette</span>
-                                <span class="tech-tag">OpenGL Shaders</span>
-                            </div>
-                        </div>
-                                                <!-- AlbumCanvas Live Interactive Sandbox -->
-                        <div class="project-interactive-drawer">
-                            <div class="drawer-header">
-                                <span class="drawer-title">
-                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
-                                    Dynamic Vinyl & 16-Band Equalizer Sandbox
-                                </span>
-                                <span class="drawer-badge">Interactive Demo</span>
-                            </div>
-                            <div class="albumcanvas-controls-row">
-                                <button type="button" class="sim-btn" id="albumcanvas-play-btn">
-                                    <span>▶</span> Play Audio Simulation
-                                </button>
-                                <div class="palette-swatches-group">
-                                    <span style="font-family: var(--font-mono); font-size: 0.68rem; color: var(--text-muted); margin-right: 4px;">Palette Extractor:</span>
-                                    <button type="button" class="swatch-btn active" data-color="#00E5FF" style="background: #00E5FF;" title="Hyper Cyan" aria-label="Extract Hyper Cyan"></button>
-                                    <button type="button" class="swatch-btn" data-color="#10B981" style="background: #10B981;" title="Emerald Live" aria-label="Extract Emerald Live"></button>
-                                    <button type="button" class="swatch-btn" data-color="#F59E0B" style="background: #F59E0B;" title="Solar Amber" aria-label="Extract Solar Amber"></button>
-                                    <button type="button" class="swatch-btn" data-color="#8B5CF6" style="background: #8B5CF6;" title="Royal Violet" aria-label="Extract Royal Violet"></button>
-                                </div>
-                            </div>
-                            <div class="live-16-band-eq" id="albumcanvas-eq-bars" aria-label="16-band real-time audio visualizer simulation"></div>
-                        </div>
-                        <div class="project-actions">
-                            <a href="album-canvas.html" class="link-case-study">Read Case Study →</a>
-                            <a href="album-canvas/index.html" target="_blank" class="link-text-action">Live Web Simulator ↗</a>
-                            <a href="https://github.com/DarsheelShokeen/AlbumCanvas" target="_blank" rel="noopener noreferrer" class="link-text-action">GitHub ↗</a>
                         </div>
                     </div>
-                </article>
-
-                <!-- Project 2: Smart Flood Alert -->
-                <article class="project-card-large deck-item">
-                    <div class="project-media-col">
-                        <a href="smart-flood.html" class="project-cover-link">
-                            <img src="assets/images/smartflood-cover.webp?v=5.1" alt="Smart Flood Alert — IoT Urban Water Level Telemetry Cockpit" class="project-cover-img" width="1600" height="1000" loading="lazy">
-                        </a>
-                    </div>
-
-                    <div class="project-info-col">
-                        <div>
-                            <div class="project-meta-top">
-                                <span class="project-category">IoT & Cloud Systems</span>
-                                <span class="project-status-tag live">
-                                    <span class="meta-dot meta-dot-green"></span>
-                                    Deployed & Operational
-                                </span>
-                            </div>
-                            <h3 class="project-title">Smart Flood Alert</h3>
-                            <p class="project-summary">
-                                An end-to-end urban flood early-warning platform utilizing ESP32 hardware sensing nodes, FC-28 liquid depth probes, a Python FastAPI telemetry gateway, and instant Meta Cloud WhatsApp evacuation alerts.
-                            </p>
-                            <div class="project-tech-stack">
-                                <span class="tech-tag">ESP32 (C++)</span>
-                                <span class="tech-tag">FC-28 Sensor</span>
-                                <span class="tech-tag">Python</span>
-                                <span class="tech-tag">FastAPI</span>
-                                <span class="tech-tag">Meta Cloud API</span>
-                                <span class="tech-tag">Chart.js</span>
-                            </div>
-                        </div>
-                                                <!-- Smart Flood Alert Live Telemetry Switcher -->
-                        <div class="project-interactive-drawer">
-                            <div class="drawer-header">
-                                <span class="drawer-title">
-                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg>
-                                    IoT Sensing Node Telemetry Cockpit
-                                </span>
-                                <div class="telemetry-node-nav">
-                                    <button type="button" class="node-btn active" id="smartflood-node-01">Node 01: Canal</button>
-                                    <button type="button" class="node-btn" id="smartflood-node-02">Node 02: Underpass</button>
-                                </div>
-                            </div>
-                            <div class="node-metrics-grid">
-                                <div class="node-metric-box">
-                                    <span class="metric-label">Liquid Depth Probe</span>
-                                    <span class="metric-value" id="flood-depth-val" style="color: #F59E0B;">14.8 cm (74%)</span>
-                                </div>
-                                <div class="node-metric-box">
-                                    <span class="metric-label">Telemetry Status</span>
-                                    <span class="metric-value" id="flood-status-val" style="color: #F59E0B;">WARNING LEVEL</span>
-                                </div>
-                                <div class="node-metric-box">
-                                    <span class="metric-label">Debounced ADC Sensor</span>
-                                    <span class="metric-value" id="flood-voltage-val">2.14 V (ADC 2658)</span>
-                                </div>
-                            </div>
-                            <div style="background: rgba(14, 20, 30, 0.7); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: var(--radius-sm); padding: 8px 10px; font-family: var(--font-mono); font-size: 0.72rem; color: #10B981; line-height: 1.4;" id="flood-dispatch-text">
-                                🚨 ADVISORY DISPATCHED: Ward 12 Canal Drain water depth exceeded 14.0 cm (+2.1 cm/hr rate of rise). Basements advised to monitor.
-                            </div>
-                        </div>
-                        <div class="project-actions">
-                            <a href="smart-flood.html" class="link-case-study">Read Case Study →</a>
-                            <a href="smart-flood/index.html" target="_blank" class="link-text-action">Operational Dashboard ↗</a>
-                            <a href="https://github.com/DarsheelShokeen/Smart-Flood-Alert" target="_blank" rel="noopener noreferrer" class="link-text-action">GitHub ↗</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Project 3: LessonPlan Maker -->
-                <article class="project-card-large deck-item">
-                    <div class="project-media-col">
-                        <a href="lessonplan-maker.html" class="project-cover-link">
-                            <img src="assets/images/lessonplan-cover.webp?v=5.1" alt="LessonPlan Maker — NCERT Middle Stage Curriculum Planning Workbench" class="project-cover-img" width="1600" height="1000" loading="lazy">
-                        </a>
-                    </div>
-
-                    <div class="project-info-col">
-                        <div>
-                            <div class="project-meta-top">
-                                <span class="project-category">Educational Platform</span>
-                                <span class="project-status-tag live">
-                                    <span class="meta-dot meta-dot-green"></span>
-                                    Fully Deployed & Operational
-                                </span>
-                            </div>
-                            <h3 class="project-title">LessonPlan Maker</h3>
-                            <p class="project-summary">
-                                A specialized educational workbench designed to streamline NCERT-based lesson planning for Classes 6–8 across Science, Math, Social Science, and English with NEP 2020 competency learning outcomes and 5E inquiry structures.
-                            </p>
-                            <div class="project-tech-stack">
-                                <span class="tech-tag">JavaScript (ES6+)</span>
-                                <span class="tech-tag">NCERT Taxonomy</span>
-                                <span class="tech-tag">5E Inquiry Cycle</span>
-                                <span class="tech-tag">DOM State Machine</span>
-                                <span class="tech-tag">Print Engine</span>
-                            </div>
-                        </div>
-                                                <!-- LessonPlan Maker 5E Stepper Drawer -->
-                        <div class="project-interactive-drawer">
-                            <div class="drawer-header">
-                                <span class="drawer-title">
-                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-                                    NCERT 5E Inquiry Cycle & NEP 2020 Engine
-                                </span>
-                                <span class="drawer-badge">Pedagogy Matrix</span>
-                            </div>
-                            <div class="pedagogy-stepper-tabs">
-                                <button type="button" class="step-tab-btn active" data-step="1">1. Engage</button>
-                                <button type="button" class="step-tab-btn" data-step="2">2. Explore</button>
-                                <button type="button" class="step-tab-btn" data-step="3">3. Explain</button>
-                                <button type="button" class="step-tab-btn" data-step="4">4. Elaborate</button>
-                                <button type="button" class="step-tab-btn" data-step="5">5. Evaluate</button>
-                            </div>
-                            <div class="pedagogy-outcome-display">
-                                <span class="outcome-tag" id="lp-outcome-tag">PHASE 1: ENGAGE • Elicit Prior Understanding (Bloom: Recall & Connect)</span>
-                                <span id="lp-outcome-text">Elicit prior student observations of capillary liquid rise using colored water stalks. Scaffold initial student conjectures regarding plant transpiration mechanics.</span>
-                            </div>
-                        </div>
-                        <div class="project-actions">
-                            <a href="lessonplan-maker.html" class="link-case-study">Read Case Study →</a>
-                            <a href="lessonplan-maker/index.html" target="_blank" class="link-text-action">Launch Workbench ↗</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Project 4: Financial Research Platform -->
-                <article class="project-card-large deck-item">
-                    <div class="project-media-col">
-                        <a href="financial-research.html" class="project-cover-link">
-                            <img src="assets/images/financial-research-cover.webp?v=5.1" alt="Financial Research Platform — Systematic Valuation & Statement Analytics" class="project-cover-img" width="1600" height="1000" loading="lazy">
-                        </a>
-                    </div>
-
-                    <div class="project-info-col">
-                        <div>
-                            <div class="project-meta-top">
-                                <span class="project-category">Quantitative Finance</span>
-                                <span class="project-status-tag in-dev">
-                                    <span class="meta-dot" style="background: var(--status-dev);"></span>
-                                    In Active Development
-                                </span>
-                            </div>
-                            <h3 class="project-title">Financial Research Platform</h3>
-                            <p class="project-summary">
-                                An equity analysis and investment research platform that automates corporate financial statement normalization, computes normalized valuation ratios, and runs interactive Discounted Cash Flow (DCF) intrinsic value sensitivity models.
-                            </p>
-                            <div class="project-tech-stack">
-                                <span class="tech-tag">Python</span>
-                                <span class="tech-tag">Valuation Math</span>
-                                <span class="tech-tag">DCF Modeling</span>
-                                <span class="tech-tag">Financial Accounting</span>
-                                <span class="tech-tag">Pandas</span>
-                            </div>
-                        </div>
-                                                <!-- Financial Research Platform DCF Valuation Sandbox -->
-                        <div class="project-interactive-drawer">
-                            <div class="drawer-header">
-                                <span class="drawer-title">
-                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-                                    Interactive DCF Intrinsic Valuation Model
-                                </span>
-                                <span class="drawer-badge">Quantitative Model</span>
-                            </div>
-                            <div class="dcf-slider-container">
-                                <div class="dcf-slider-row">
-                                    <span class="dcf-slider-label">5-Yr Revenue CAGR:</span>
-                                    <input type="range" class="dcf-range-input" id="dcf-growth-slider" min="8" max="25" step="0.5" value="12" aria-label="5-Year Revenue Growth Rate">
-                                    <span class="dcf-slider-val" id="dcf-growth-val">12%</span>
-                                </div>
-                                <div class="dcf-slider-row">
-                                    <span class="dcf-slider-label">WACC Discount Rate:</span>
-                                    <input type="range" class="dcf-range-input" id="dcf-wacc-slider" min="7" max="14" step="0.25" value="9.5" aria-label="WACC Discount Rate">
-                                    <span class="dcf-slider-val" id="dcf-wacc-val">9.5%</span>
-                                </div>
-                            </div>
-                            <div class="dcf-output-banner">
-                                <div class="dcf-stat-block">
-                                    <span class="dcf-stat-label">Intrinsic Value / Share</span>
-                                    <span class="dcf-stat-val" id="dcf-share-price">$137.95</span>
-                                </div>
-                                <div class="dcf-stat-block">
-                                    <span class="dcf-stat-label">Enterprise Value (EV)</span>
-                                    <span class="dcf-stat-val" id="dcf-ev">$3.65B</span>
-                                </div>
-                                <span class="dcf-margin-badge" id="dcf-margin-safety">+20.0% MoS</span>
-                            </div>
-                        </div>
-                        <div class="project-actions">
-                            <a href="financial-research.html" class="link-case-study">Read Case Study →</a>
-                            <a href="financial-research.html#sandbox" class="link-text-action">Test Live Valuation Model ↓</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Exhibition Stage Footer Bar -->
-                <div class="deck-nav-bar">
-                    <button type="button" class="deck-nav-btn" id="deck-prev-btn" aria-label="Previous project">
-                        ← Previous System
-                    </button>
-                    <span class="deck-indicator" id="deck-indicator">01 / 04 — AlbumCanvas</span>
-                    <button type="button" class="deck-nav-btn" id="deck-next-btn" aria-label="Next project">
-                        Next System →
-                    </button>
                 </div>
             </div>
+        </section>
 
-            <!-- Swiss Archive Catalog Table (Dense Architectural View) -->
-            <div class="archive-catalog-view" id="archive-catalog-view">
-                <div class="catalog-filter-bar">
-                    <button type="button" class="catalog-filter-btn active" data-filter="all">All Systems (6)</button>
-                    <button type="button" class="catalog-filter-btn" data-filter="mobile">Mobile Systems</button>
-                    <button type="button" class="catalog-filter-btn" data-filter="iot">IoT & Telemetry</button>
-                    <button type="button" class="catalog-filter-btn" data-filter="edtech">EdTech & Web</button>
-                    <button type="button" class="catalog-filter-btn" data-filter="finance">Quantitative Finance</button>
-                </div>
-                <div class="catalog-table-wrap">
-                    <table class="catalog-table">
-                        <thead>
-                            <tr>
-                                <th>Index</th>
-                                <th>System / Platform</th>
-                                <th>Domain</th>
-                                <th>Core Architecture & Stack</th>
-                                <th>Status</th>
-                                <th>Year</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr data-category="mobile">
-                                <td><code>SYS-01</code></td>
-                                <td class="catalog-title-cell"><strong>AlbumCanvas</strong></td>
-                                <td>Android Dynamic Wallpaper</td>
-                                <td>Kotlin, Jetpack Compose, Media3, Android Palette API</td>
-                                <td><span class="catalog-status-pill live">Complete • Open Source</span></td>
-                                <td>2026</td>
-                                <td><a href="album-canvas.html" class="catalog-action-link">Explore Case Study →</a></td>
-                            </tr>
-                            <tr data-category="iot">
-                                <td><code>SYS-02</code></td>
-                                <td class="catalog-title-cell"><strong>Smart Flood Alert</strong></td>
-                                <td>IoT Urban Flood Telemetry</td>
-                                <td>ESP32 C++, FC-28 Probes, Python FastAPI, Meta Cloud WhatsApp</td>
-                                <td><span class="catalog-status-pill live">Operational • Hardware</span></td>
-                                <td>2026</td>
-                                <td><a href="smart-flood.html" class="catalog-action-link">Explore Case Study →</a></td>
-                            </tr>
-                            <tr data-category="edtech">
-                                <td><code>SYS-03</code></td>
-                                <td class="catalog-title-cell"><strong>LessonPlan Maker</strong></td>
-                                <td>EdTech Pedagogical Workbench</td>
-                                <td>Python, Flask, NCERT / NEP 2020 5E Framework, Bloom's Taxonomy</td>
-                                <td><span class="catalog-status-pill live">Production • In Use</span></td>
-                                <td>2025–26</td>
-                                <td><a href="lessonplan-maker.html" class="catalog-action-link">Explore Case Study →</a></td>
-                            </tr>
-                            <tr data-category="finance">
-                                <td><code>SYS-04</code></td>
-                                <td class="catalog-title-cell"><strong>Financial Research Platform</strong></td>
-                                <td>Quantitative Equities & DCF</td>
-                                <td>React, TypeScript, DCF Valuation Engine, WACC Discounting</td>
-                                <td><span class="catalog-status-pill wip">Quantitative Model</span></td>
-                                <td>2026</td>
-                                <td><a href="financial-research.html" class="catalog-action-link">Explore Case Study →</a></td>
-                            </tr>
-                            <tr data-category="edtech">
-                                <td><code>SYS-05</code></td>
-                                <td class="catalog-title-cell"><strong>EduCloud Management System</strong></td>
-                                <td>School Enterprise Platform</td>
-                                <td>PHP 8.2, MySQL, RBAC, Multi-Role Portal Architecture</td>
-                                <td><span class="catalog-status-pill live">Enterprise Prototype</span></td>
-                                <td>2025</td>
-                                <td><a href="projects.html" class="catalog-action-link">System Overview →</a></td>
-                            </tr>
-                            <tr data-category="mobile">
-                                <td><code>SYS-06</code></td>
-                                <td class="catalog-title-cell"><strong>AudioTrack WebGL Visualizer</strong></td>
-                                <td>Audio Synthesis & GLSL</td>
-                                <td>Web Audio API, Three.js, Fast Fourier Transform (FFT)</td>
-                                <td><span class="catalog-status-pill live">Interactive Experiment</span></td>
-                                <td>2026</td>
-                                <td><a href="#experiments" class="catalog-action-link">Run Sandbox →</a></td>
-                            </tr>
-                        </tbody>
-                    </table>
+        <!-- ====================================================================
+             SECTION 3: WORK HEADER & LIQUID GLASS CAROUSEL (#work)
+             ==================================================================== -->
+        <section>
+            <div class="padding-global">
+                <div class="margin-top margin-huge" style="margin-top: 6rem; text-align: center;">
+                    <h6>What you’re here for (I guess)</h6>
+                    <h2 class="heading-extreme" style="font-size: clamp(5rem, 26vw, 32vw); line-height: 0.85; margin: 0; text-transform: uppercase; font-weight: 500; letter-spacing: -0.04em;">
+                        Work
+                    </h2>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- About Section Refinement -->
-    <section class="section" id="about">
-        <div class="container">
-            <header class="section-header">
-                <div class="section-kicker">02 // Intellectual Manifesto & Philosophy</div>
-                <h2 class="section-title">Curiosity drives <span class="section-title-serif">everything I build.</span></h2>
-                <p class="section-subtitle">
-                    Operating at the intersection of software engineering, product design, financial markets, and business.
-                </p>
-            </header>
+        <!-- Interactive Liquid Glass Carousel -->
+        <section class="glass-carousel" data-glass-carousel="" id="work">
+            <canvas aria-hidden="true" class="glass-carousel__canvas" data-glass-carousel-canvas=""></canvas>
+            <div class="glass-carousel__collection">
+                <div class="glass-carousel__list" data-glass-carousel-list="">
 
-            <div class="about-grid">
-                <div class="about-narrative">
-                    <p>
-                        I'm interested in understanding how things work, why products succeed and how technology can turn ideas into useful experiences.
-                    </p>
-                    <div class="about-pullquote">
-                        "My interests sit at the intersection of software engineering, product design, financial markets and business. I enjoy building things from the ground up, experimenting with different technologies and understanding the systems behind them."
-                    </div>
-                    <p>
-                        Based in Delhi, India, I treat every project as an end-to-end craft. Rather than relying on superficial wrappers, I prioritize understanding the underlying mechanics: how the Android media subsystem manages IPC, how embedded microcontrollers handle ADC jitter, and how corporate financial statements represent underlying economic realities.
-                    </p>
-                    <p>
-                        I value technical honesty, speed, and restraint. When I'm not writing code or analyzing capital structures, I explore typography, design systems, and minimalist digital publications.
-                    </p>
+                    <!-- Project 1: AlbumCanvas -->
+                    <a href="album-canvas.html" class="glass-carousel__item" data-glass-carousel-item="">
+                        <div class="bunny-bg">
+                            <img src="assets/images/albumcanvas-cover.webp?v=6.0" alt="AlbumCanvas — Dynamic Live Wallpaper & Ambient Music Experience" class="bunny-bg__placeholder" loading="lazy">
+                        </div>
+                        <div class="glass-carousel__item-content">
+                            <h3 class="glass-carousel__item-p">AlbumCanvas</h3>
+                            <p class="glass-carousel__item-p is--faded">Android / Media3 / Kotlin</p>
+                        </div>
+                    </a>
+
+                    <!-- Project 2: Smart Flood Alert -->
+                    <a href="smart-flood.html" class="glass-carousel__item" data-glass-carousel-item="">
+                        <div class="bunny-bg">
+                            <img src="assets/images/smartflood-cover.webp?v=6.0" alt="Smart Flood Alert — IoT Urban Water Level Telemetry Cockpit" class="bunny-bg__placeholder" loading="lazy">
+                        </div>
+                        <div class="glass-carousel__item-content">
+                            <h3 class="glass-carousel__item-p">Smart Flood Alert</h3>
+                            <p class="glass-carousel__item-p is--faded">IoT Telemetry / FastAPI / ESP32</p>
+                        </div>
+                    </a>
+
+                    <!-- Project 3: LessonPlan Maker -->
+                    <a href="lessonplan-maker.html" class="glass-carousel__item" data-glass-carousel-item="">
+                        <div class="bunny-bg">
+                            <img src="assets/images/lessonplan-cover.webp?v=6.0" alt="LessonPlan Maker — NCERT & NEP 2020 Pedagogical Workbench" class="bunny-bg__placeholder" loading="lazy">
+                        </div>
+                        <div class="glass-carousel__item-content">
+                            <h3 class="glass-carousel__item-p">LessonPlan Maker</h3>
+                            <p class="glass-carousel__item-p is--faded">EdTech Platform / Python / NEP 2020</p>
+                        </div>
+                    </a>
+
+                    <!-- Project 4: Financial Research Platform -->
+                    <a href="financial-research.html" class="glass-carousel__item" data-glass-carousel-item="">
+                        <div class="bunny-bg">
+                            <img src="assets/images/financial-research-cover.webp?v=6.0" alt="Financial Research Platform — Quantitative Valuation & DCF Engine" class="bunny-bg__placeholder" loading="lazy">
+                        </div>
+                        <div class="glass-carousel__item-content">
+                            <h3 class="glass-carousel__item-p">Financial Research</h3>
+                            <p class="glass-carousel__item-p is--faded">Quantitative DCF Valuation / React</p>
+                        </div>
+                    </a>
+
+                    <!-- Project 5: EduCloud Management System -->
+                    <a href="projects.html" class="glass-carousel__item" data-glass-carousel-item="">
+                        <div class="bunny-bg">
+                            <img src="assets/images/educloud-cover.webp?v=6.0" alt="EduCloud Platform — Multi-Tenant Campus Administration" class="bunny-bg__placeholder" loading="lazy">
+                        </div>
+                        <div class="glass-carousel__item-content">
+                            <h3 class="glass-carousel__item-p">EduCloud System</h3>
+                            <p class="glass-carousel__item-p is--faded">Campus Enterprise / PHP / MySQL</p>
+                        </div>
+                    </a>
+
                 </div>
+            </div>
+        </section>
 
-                <aside class="about-sidebar">
-                    <div>
-                        <div class="sidebar-block-title">Key Project Milestones</div>
-                        <div class="sidebar-timeline">
-                            <div class="timeline-entry">
-                                <div class="timeline-marker"></div>
-                                <div class="timeline-info">
-                                    <span class="timeline-year">2026</span>
-                                    <span class="timeline-title">Systems & Analytical Architecture</span>
-                                    <span class="timeline-desc">Engineered Smart Flood Alert IoT telemetry and Financial Research DCF valuation models.</span>
+        <!-- ====================================================================
+             SECTION 4: FOOTER / CONTACT (#contact)
+             ==================================================================== -->
+        <section class="section-footer" id="contact">
+            <div class="padding-global is-full">
+                <div class="footer-base" style="background: #101010; border: 1px solid rgba(231, 225, 215, 0.15); border-radius: 0.75rem; padding: 2.5rem; min-height: 75vh; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden;">
+                    
+                    <!-- Footer Top Header -->
+                    <div class="padding-medium">
+                        <div class="flex-horizontal space-between is-stretch" style="display: flex; justify-content: space-between; align-items: center;">
+                            <h6>darsheelshokeen.xo.je</h6>
+                            <h6>portfolio 2026</h6>
+                        </div>
+                    </div>
+
+                    <!-- Footer Content & Marquee -->
+                    <div class="footer-last" style="width: 100%;">
+                        <div class="padding-medium" style="margin-bottom: 2rem;">
+                            <div class="flex-horizontal space-between is-stretch" style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem;">
+                                <div class="flex-vertical gap-s" style="display: flex; flex-direction: column; gap: 1.5rem;">
+                                    <div class="flex-vertical">
+                                        <h6 style="margin-bottom: 0.25rem;">Contact</h6>
+                                        <a class="heading-style-h6" data-link-stagger="" href="contact.html" style="font-size: 1.5rem; text-decoration: none; color: var(--sand);">
+                                            Get in Touch →
+                                        </a>
+                                    </div>
+                                    <div class="flex-vertical">
+                                        <h6 style="margin-bottom: 0.25rem;">GitHub</h6>
+                                        <a class="heading-style-h6" data-link-stagger="" href="https://github.com/DarsheelShokeen" target="_blank" rel="noopener noreferrer" style="font-size: 1.5rem; text-decoration: none; color: var(--sand);">
+                                            @DarsheelShokeen
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="flex-vertical gap-s" style="display: flex; flex-direction: column; gap: 1.5rem; text-align: right;">
+                                    <div class="flex-vertical">
+                                        <h6 style="margin-bottom: 0.25rem;">LinkedIn</h6>
+                                        <a class="heading-style-h6 text-align-right" data-link-stagger="" href="https://www.linkedin.com/in/darsheel-shokeen-523833302" target="_blank" rel="noopener noreferrer" style="font-size: 1.5rem; text-decoration: none; color: var(--sand);">
+                                            @darsheel-shokeen
+                                        </a>
+                                    </div>
+                                    <div class="flex-vertical">
+                                        <h6 style="margin-bottom: 0.25rem;">Location</h6>
+                                        <h6 class="text-align-right" style="font-size: 1.5rem; margin: 0; color: var(--sand);">
+                                            Delhi, India
+                                        </h6>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="timeline-entry">
-                                <div class="timeline-marker"></div>
-                                <div class="timeline-info">
-                                    <span class="timeline-year">2026</span>
-                                    <span class="timeline-title">Android System & Audio Visuals</span>
-                                    <span class="timeline-desc">Architected AlbumCanvas: Jetpack Compose wallpaper & widget suite with real-time palette extraction.</span>
-                                </div>
-                            </div>
-                            <div class="timeline-entry">
-                                <div class="timeline-marker"></div>
-                                <div class="timeline-info">
-                                    <span class="timeline-year">2025 – 2026</span>
-                                    <span class="timeline-title">EdTech & Web Platforms</span>
-                                    <span class="timeline-desc">Developed NCERT LessonPlan Maker and cloud-based school management architectures.</span>
+                            <div class="line" style="margin-top: 2rem;"></div>
+                        </div>
+
+                        <!-- Infinite Smooth Marquee -->
+                        <div class="marquee-advanced" data-marquee-direction="left">
+                            <div class="marquee-advanced__scroll">
+                                <div class="marquee-advanced__collection">
+                                    <div class="marquee-advanced__item">
+                                        <h3 class="marquee-text">
+                                            darsheelshokeen<span class="text-color-orange">.xo.je</span>
+                                            <span style="opacity: 0.4; font-size: 0.7em;">—</span>
+                                            product engineer &amp; systems builder
+                                            <span style="opacity: 0.4; font-size: 0.7em;">—</span>
+                                        </h3>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div style="padding-top: 24px; border-top: 1px solid var(--border-subtle);">
-                        <div class="sidebar-block-title">Core Principles</div>
-                        <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 0.88rem; color: var(--text-secondary);">
-                            <li>• Zero artificial complexity.</li>
-                            <li>• First-principles technical honesty.</li>
-                            <li>• Restrained Swiss typographic precision.</li>
-                            <li>• Respect for user attention & performance.</li>
-                        </ul>
-                    </div>
-                </aside>
-            </div>
-        </div>
-    </section>
-
-    <!-- Expertise Section (3 Clean Categories, Zero Fake Progress Bars) -->
-    <section class="section section-alt" id="expertise">
-        <div class="container">
-            <header class="section-header">
-                <div class="section-kicker">03 // Core Capabilities & Domains</div>
-                <h2 class="section-title">Expertise & Interests</h2>
-                <p class="section-subtitle">
-                    Technical proficiencies and analytical domains developed through rigorous project execution.
-                </p>
-            </header>
-
-            <div class="expertise-grid">
-                <!-- Discipline 1: Software Engineering -->
-                <div class="expertise-card">
-                    <div class="expertise-icon-wrapper">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-                    </div>
-                    <h3 class="expertise-card-title">Software Engineering</h3>
-                    <p class="expertise-card-desc">
-                        Building native Android applications, embedded IoT firmware, and high-performance backend pipelines with clean, maintainable architecture.
-                    </p>
-                    <div class="skills-pill-list">
-                        <span class="skill-pill">Kotlin</span>
-                        <span class="skill-pill">Android Development</span>
-                        <span class="skill-pill">Jetpack Compose</span>
-                        <span class="skill-pill">Python</span>
-                        <span class="skill-pill">SQL</span>
-                    </div>
-                </div>
-
-                <!-- Discipline 2: Design and Product -->
-                <div class="expertise-card">
-                    <div class="expertise-icon-wrapper">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-                    </div>
-                    <h3 class="expertise-card-title">Design and Product</h3>
-                    <p class="expertise-card-desc">
-                        Designing editorial interfaces grounded in typography, negative space, visual hierarchy, and intuitive user mental models.
-                    </p>
-                    <div class="skills-pill-list">
-                        <span class="skill-pill">UI/UX</span>
-                        <span class="skill-pill">Product Design</span>
-                        <span class="skill-pill">Interface Design</span>
-                        <span class="skill-pill">Product Thinking</span>
-                    </div>
-                </div>
-
-                <!-- Discipline 3: Financial Research -->
-                <div class="expertise-card">
-                    <div class="expertise-icon-wrapper">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-                    </div>
-                    <h3 class="expertise-card-title">Financial Research</h3>
-                    <p class="expertise-card-desc">
-                        Analyzing corporate capital structures, financial statement dynamics, economic unit fundamentals, and intrinsic valuation models.
-                    </p>
-                    <div class="skills-pill-list">
-                        <span class="skill-pill">Financial Statements</span>
-                        <span class="skill-pill">Business Fundamentals</span>
-                        <span class="skill-pill">Valuation</span>
-                        <span class="skill-pill">DCF Analysis</span>
-                    </div>
+                    <!-- Ambient Glowing Radiant Mesh -->
+                    <div class="footer-gradient" style="position: absolute; bottom: 0; left: 0; right: 0; height: 35%; background: radial-gradient(ellipse at 50% 120%, rgba(243, 66, 19, 0.25), transparent 70%); pointer-events: none;"></div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Experiments Section (Divided: Live Experiments vs. Research & Prototypes) -->
-    <section class="section" id="experiments">
-        <div class="container">
-            <header class="section-header">
-                <div class="section-kicker">04 // Creative Technology Lab & Prototypes</div>
-                <h2 class="section-title">Beyond the finished product.</h2>
-                <p class="section-subtitle">
-                    Prototypes, technical experiments, and targeted investigations into specific computing problems.
-                </p>
-            </header>
-
-            <!-- Group A: Live Experiments -->
-            <div class="experiments-subheading">
-                <span>Live Experiments — Interactive Demonstrations</span>
-            </div>
-            <div class="experiments-grid">
-                <!-- Exp 1: Serverless Telemetry -->
-                <div class="experiment-card">
-                    <div>
-                        <div class="experiment-header">
-                            <span class="experiment-badge">Telemetry & Security</span>
-                            <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--status-live);">Live Operational</span>
-                        </div>
-                        <h3 class="experiment-title">Privacy-First Visitor Telemetry</h3>
-                        <p class="experiment-desc">
-                            A lightweight PHP analytics engine that computes SHA-256 daily hashed visitor footprints for anti-tamper visit counters with zero tracking cookies and automatic rolling log pruning.
-                        </p>
-                    </div>
-                    <div class="experiment-meta">
-                        <span style="color: var(--text-muted); font-family: var(--font-mono); font-size: 0.76rem;">PHP • SHA-256 • Serverless</span>
-                        <span class="experiment-link">Active on Site →</span>
-                    </div>
-                </div>
-
-                <!-- Exp 2: Canvas Palette Extraction -->
-                <div class="experiment-card">
-                    <div>
-                        <div class="experiment-header">
-                            <span class="experiment-badge">Computer Vision</span>
-                            <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--status-live);">Interactive</span>
-                        </div>
-                        <h3 class="experiment-title">Client-Side Palette Quantizer</h3>
-                        <p class="experiment-desc">
-                            In-browser Canvas 2D image color quantization that downsamples album artwork and clusters RGB vectors into dominant, muted, and vibrant swatches within 16 milliseconds.
-                        </p>
-                    </div>
-                    <div class="experiment-meta">
-                        <span style="color: var(--text-muted); font-family: var(--font-mono); font-size: 0.76rem;">Canvas API • Color Quantization</span>
-                        <a href="album-canvas/index.html" target="_blank" class="experiment-link">Test in Simulator ↗</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Group B: Research & Prototypes -->
-            <div class="experiments-subheading" style="margin-top: 16px;">
-                <span>Research & Prototypes — Technical Explorations</span>
-            </div>
-            <div class="experiments-grid">
-                <!-- Proto 1: ESP32 Temporal Debounce -->
-                <div class="experiment-card">
-                    <div>
-                        <div class="experiment-header">
-                            <span class="experiment-badge">Embedded Firmware</span>
-                            <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--status-dev);">Verified Prototype</span>
-                        </div>
-                        <h3 class="experiment-title">ADC Temporal Window Debounce</h3>
-                        <p class="experiment-desc">
-                            Firmware module in C++ for the ESP32 that eliminates surface splash false positives on analog water probes via a rolling multi-sample median filter before triggering transmission.
-                        </p>
-                    </div>
-                    <div class="experiment-meta">
-                        <span style="color: var(--text-muted); font-family: var(--font-mono); font-size: 0.76rem;">C++ • FreeRTOS • ESP32</span>
-                        <a href="smart-flood.html#challenges" class="experiment-link">Read Architecture →</a>
-                    </div>
-                </div>
-
-                <!-- Proto 2: Financial Statement Normalizer -->
-                <div class="experiment-card">
-                    <div>
-                        <div class="experiment-header">
-                            <span class="experiment-badge">Quantitative Modeling</span>
-                            <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--status-dev);">In Development</span>
-                        </div>
-                        <h3 class="experiment-title">Financial Statement Normalization</h3>
-                        <p class="experiment-desc">
-                            Structured data parser that reconciles divergent accounting line items (Ind-AS vs. US GAAP) into standard Free Cash Flow to Firm inputs for automated valuation screeners.
-                        </p>
-                    </div>
-                    <div class="experiment-meta">
-                        <span style="color: var(--text-muted); font-family: var(--font-mono); font-size: 0.76rem;">Python • Pandas • Accounting</span>
-                        <a href="financial-research.html" class="experiment-link">Explore Sandbox →</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Journal Section Refinement -->
-    <section class="section section-alt" id="journal">
-        <div class="container">
-            <header class="section-header">
-                <div class="section-kicker">Writing & Essays</div>
-                <h2 class="section-title">Journal</h2>
-                <p class="section-subtitle">
-                    In-depth articles covering software architecture, hardware systems, and valuation frameworks.
-                </p>
-            </header>
-
-            <!-- Featured Article Card -->
-            <article class="journal-featured-card">
-                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px; font-family: var(--font-mono); font-size: 0.74rem;">
-                    <span style="color: var(--accent-secondary); font-weight: 600; text-transform: uppercase;">Featured Essay</span>
-                    <span style="color: var(--text-muted);">•</span>
-                    <span style="color: var(--text-muted);">Software Engineering</span>
-                    <span style="color: var(--text-muted);">•</span>
-                    <span style="color: var(--text-muted);">October 2026</span>
-                </div>
-                <h3 style="font-size: 1.6rem; font-weight: 600; color: var(--text-primary); margin-bottom: 12px; line-height: 1.3;">
-                    <a href="album-canvas.html">Architecting Ambient Android Experiences with Jetpack Compose & MediaSession</a>
-                </h3>
-                <p style="font-size: 0.96rem; line-height: 1.7; color: var(--text-secondary); margin-bottom: 20px;">
-                    How treating system playback state as a reactive stream enables dynamic live wallpapers and home screen widgets with zero battery redraw penalties. We explore bitmap caching, memory constraints, and OpenGL blur render pipelines.
-                </p>
-                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
-                    <span style="font-family: var(--font-mono); font-size: 0.76rem; color: var(--text-muted);">6 min read • Jetpack Compose, WallpaperService</span>
-                    <a href="album-canvas.html" class="btn-secondary" style="padding: 8px 16px; font-size: 0.82rem;">Read Full Breakdown →</a>
-                </div>
-            </article>
-
-            <!-- Regular Entries List -->
-            <div class="journal-list">
-                <!-- Entry 2 -->
-                <a href="smart-flood.html" class="journal-entry-row">
-                    <span class="journal-date">SEP 2026</span>
-                    <div class="journal-title-group">
-                        <h3 class="journal-entry-title">Hardware-to-Cloud Telemetry: Designing Resilient IoT Pipelines with ESP32 and FastAPI</h3>
-                        <p class="journal-excerpt">
-                            Debouncing environmental sensors on microcontroller ADC pins and automating sub-5-second emergency broadcasts via WhatsApp webhooks.
-                        </p>
-                    </div>
-                    <div class="journal-meta-right">
-                        <span>IoT & Systems</span>
-                        <span>•</span>
-                        <span>8 min read</span>
-                    </div>
-                </a>
-
-                <!-- Entry 3 -->
-                <a href="financial-research.html" class="journal-entry-row">
-                    <span class="journal-date">JUN 2026</span>
-                    <div class="journal-title-group">
-                        <h3 class="journal-entry-title">The Anatomy of a Corporate Valuation Engine: Bridging Accounting Reality and DCF Models</h3>
-                        <p class="journal-excerpt">
-                            Deconstructing how to normalize corporate accounting statements into true Free Cash Flow to Firm and calibrate horizon terminal values.
-                        </p>
-                    </div>
-                    <div class="journal-meta-right">
-                        <span>Finance</span>
-                        <span>•</span>
-                        <span>9 min read</span>
-                    </div>
-                </a>
-
-                <!-- Entry 4 -->
-                <a href="lessonplan-maker.html" class="journal-entry-row">
-                    <span class="journal-date">MAY 2026</span>
-                    <div class="journal-title-group">
-                        <h3 class="journal-entry-title">First Principles: Engineering Pedagogical State Machines for the NCERT Curriculum</h3>
-                        <p class="journal-excerpt">
-                            Structuring NEP 2020 competency learning outcomes and the 5E inquiry cycle into rapid, print-optimized web workflows for educators.
-                        </p>
-                    </div>
-                    <div class="journal-meta-right">
-                        <span>Product Building</span>
-                        <span>•</span>
-                        <span>5 min read</span>
-                    </div>
-                </a>
-            </div>
-
-            <div style="margin-top: 36px; text-align: center;">
-                <a href="journal.html" class="btn-secondary" style="display: inline-flex;">
-                    Browse Full Journal Archive →
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section Refinement -->
-    <section class="section" id="contact">
-        <div class="container">
-            <div class="contact-layout">
-                <div class="contact-info-col">
-                    <div>
-                        <div class="section-kicker">Reach Out</div>
-                        <h2 class="contact-title">Have something interesting in mind?</h2>
-                        <p class="contact-subtitle" style="margin-top: 12px;">
-                            Let's build something worth exploring. I'm always open to discussing technology, product ideas, collaborative engineering, and investment research.
-                        </p>
-                    </div>
-
-                    <div class="direct-channels-list">
-                        <a href="mailto:darsheelshokeen@gmail.com" class="channel-item">
-                            <div class="channel-icon">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                            </div>
-                            <div class="channel-details">
-                                <span class="channel-label">Email Direct</span>
-                                <span class="channel-value">darsheelshokeen@gmail.com</span>
-                            </div>
-                        </a>
-
-                        <a href="https://github.com/DarsheelShokeen" target="_blank" rel="noopener noreferrer" class="channel-item">
-                            <div class="channel-icon">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
-                            </div>
-                            <div class="channel-details">
-                                <span class="channel-label">GitHub</span>
-                                <span class="channel-value">@DarsheelShokeen</span>
-                            </div>
-                        </a>
-
-                        <a href="https://www.linkedin.com/in/darsheel-shokeen-523833302" target="_blank" rel="noopener noreferrer" class="channel-item">
-                            <div class="channel-icon">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
-                            </div>
-                            <div class="channel-details">
-                                <span class="channel-label">LinkedIn</span>
-                                <span class="channel-value">Darsheel Shokeen</span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="contact-form-box">
-                    <form class="contact-form" id="contact-form" novalidate>
-                        <!-- Honeypot anti-spam field -->
-                        <div class="hp-field">
-                            <label for="form-hp">Website</label>
-                            <input type="text" id="form-hp" name="website" tabindex="-1" autocomplete="off">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="form-name" class="form-label">Your Name *</label>
-                            <input type="text" id="form-name" class="form-input" placeholder="e.g. Alex Sharma" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="form-email" class="form-label">Email Address *</label>
-                            <input type="email" id="form-email" class="form-input" placeholder="alex@company.com" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="form-subject" class="form-label">Subject</label>
-                            <input type="text" id="form-subject" class="form-input" placeholder="Project Inquiry / Collaboration">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="form-message" class="form-label">Message *</label>
-                            <textarea id="form-message" class="form-textarea" placeholder="Tell me about what you are building or exploring..." required></textarea>
-                        </div>
-
-                        <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; padding: 14px;">
-                            Send Message →
-                        </button>
-
-                        <div class="form-feedback" id="form-feedback" role="alert"></div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="site-footer">
-        <div class="container">
-            <div class="footer-top">
-                <div class="footer-brand">
-                    <span class="footer-wordmark">Darsheel Shokeen</span>
-                    <span class="footer-tagline">Building ideas into something meaningful.</span>
-                </div>
-                <ul class="footer-nav-links">
-                    <li><a href="#about" class="footer-nav-link">About</a></li>
-                    <li><a href="#projects" class="footer-nav-link">Projects</a></li>
-                    <li><a href="#expertise" class="footer-nav-link">Expertise</a></li>
-                    <li><a href="#experiments" class="footer-nav-link">Experiments</a></li>
-                    <li><a href="journal.html" class="footer-nav-link">Journal</a></li>
-                    <li><a href="now.html" class="footer-nav-link">Now</a></li>
-                    <li><a href="guestbook.html" class="footer-nav-link">Guestbook</a></li>
-                    <li><a href="#contact" class="footer-nav-link">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-bottom">
-                <div class="footer-bottom-left">
-                    <span>© <span id="current-year">2026</span> Darsheel Shokeen • Delhi, India</span>
-                    <span class="footer-telemetry-badge" title="Real-time privacy-first telemetry">
-                        <span class="meta-dot meta-dot-green"></span>
-                        <span id="visit-counter-val">482</span> Total Visits
-                    </span>
-                </div>
-                <span class="back-to-top-btn" id="back-to-top">Back to top ↑</span>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Command Palette Modal (Ctrl+K / Cmd+K) -->
-    <div class="cmd-palette-overlay" id="cmd-palette" role="dialog" aria-modal="true" aria-label="Command Palette">
-        <div class="cmd-palette-box">
-            <div class="cmd-input-wrapper">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="cmd-input-icon"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                <input type="text" id="cmd-input" class="cmd-input" placeholder="Search pages, projects, articles..." autocomplete="off">
-            </div>
-            <ul class="cmd-list" id="cmd-list">
-                <li class="cmd-group-label">Navigation</li>
-                <li class="cmd-item active" data-href="index.html">
-                    <div class="cmd-item-left">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
-                        <span>Home</span>
-                    </div>
-                    <span class="cmd-badge">Page</span>
-                </li>
-                <li class="cmd-item" data-href="#about">
-                    <div class="cmd-item-left">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
-                        <span>About Me</span>
-                    </div>
-                    <span class="cmd-badge">Section</span>
-                </li>
-                <li class="cmd-item" data-href="#projects">
-                    <div class="cmd-item-left">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
-                        <span>Selected Work</span>
-                    </div>
-                    <span class="cmd-badge">Section</span>
-                </li>
-                <li class="cmd-item" data-href="journal.html">
-                    <div class="cmd-item-left">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-                        <span>Journal</span>
-                    </div>
-                    <span class="cmd-badge">Essays</span>
-                </li>
-                <li class="cmd-item" data-href="now.html">
-                    <div class="cmd-item-left">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                        <span>Now Page</span>
-                    </div>
-                    <span class="cmd-badge">Active Focus</span>
-                </li>
-                <li class="cmd-item" data-href="guestbook.html">
-                    <div class="cmd-item-left">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-                        <span>Guestbook</span>
-                    </div>
-                    <span class="cmd-badge">Community</span>
-                </li>
-                <li class="cmd-item" data-href="#contact">
-                    <div class="cmd-item-left">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                        <span>Contact</span>
-                    </div>
-                    <span class="cmd-badge">Direct</span>
-                </li>
-
-                <li class="cmd-group-label">Flagship Projects</li>
-                <li class="cmd-item" data-href="album-canvas.html">
-                    <div class="cmd-item-left">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
-                        <span>AlbumCanvas (Android)</span>
-                    </div>
-                    <span class="cmd-badge">Case Study</span>
-                </li>
-                <li class="cmd-item" data-href="smart-flood.html">
-                    <div class="cmd-item-left">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg>
-                        <span>Smart Flood Alert (IoT)</span>
-                    </div>
-                    <span class="cmd-badge">Case Study</span>
-                </li>
-                <li class="cmd-item" data-href="lessonplan-maker.html">
-                    <div class="cmd-item-left">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-                        <span>LessonPlan Maker (EdTech)</span>
-                    </div>
-                    <span class="cmd-badge">Case Study</span>
-                </li>
-                <li class="cmd-item" data-href="financial-research.html">
-                    <div class="cmd-item-left">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-                        <span>Financial Research Platform (DCF)</span>
-                    </div>
-                    <span class="cmd-badge">Case Study</span>
-                </li>
-            </ul>
-            <div class="cmd-footer">
-                <span>Navigate: ↑ ↓ • Select: Enter</span>
-                <span>Close: Esc</span>
-            </div>
-        </div>
     </div>
 
-    <!-- Runtime JavaScript -->
-    <script src="main.js?v=5.1"></script>
+    <!-- GSAP & Core Animation Dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    
+    <!-- Production JavaScript Runtime -->
+    <script src="main.js?v=6.0"></script>
 </body>
 </html>
