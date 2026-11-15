@@ -1,184 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="utf-8">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <meta charset="UTF-8">
-    <meta name="theme-color" content="#0B0B0B">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Financial Research Platform — Case Study • Darsheel Shokeen</title>
-    <meta name="description" content="Case study on Financial Research Platform: A fundamental valuation and financial statement analysis architecture featuring discounted cash flow (DCF) modeling.">
+    <title>Financial Research: Case Study, Darsheel Shokeen</title>
+    <meta name="description" content="Case study on Financial Research Platform: Quantitative valuation engine with discounted cash flow models and dynamic WACC calculations.">
     <link rel="canonical" href="https://darsheelshokeen.xo.je/financial-research.html">
+
+    <!-- Fonts: Host Grotesk & Atkinson Hyperlegible Mono (Hallmark Console Theme) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=6.4">
+    <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@400;500;600&family=Atkinson+Hyperlegible+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets: Hallmark Tokens, Base and Production System -->
+    <link rel="stylesheet" href="tokens.css">
+    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="styles.css?v=7.0">
+
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="favicon.png">
     <link rel="shortcut icon" href="favicon.ico">
-    <style>
-        .sandbox-box {
-            background: #0d0d12;
-            border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-md);
-            padding: 32px;
-            margin: 32px 0;
-        }
-        .sandbox-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 28px;
-            margin-top: 20px;
-        }
-        .slider-control {
-            margin-bottom: 16px;
-        }
-        .slider-header {
-            display: flex;
-            justify-content: space-between;
-            font-family: var(--font-mono);
-            font-size: 0.76rem;
-            color: var(--text-secondary);
-            margin-bottom: 6px;
-        }
-        .slider-val {
-            color: var(--accent-secondary);
-            font-weight: 600;
-        }
-        .custom-slider {
-            width: 100%;
-            accent-color: var(--accent-primary);
-        }
-        .results-card {
-            background: var(--bg-elevated);
-            border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-sm);
-            padding: 24px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-        .res-label {
-            font-family: var(--font-mono);
-            font-size: 0.74rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--text-muted);
-            margin-bottom: 8px;
-        }
-        .res-value {
-            font-size: 2.2rem;
-            font-weight: 600;
-            color: var(--accent-secondary);
-            letter-spacing: -0.02em;
-        }
-        .res-sub {
-            font-size: 0.82rem;
-            color: var(--text-secondary);
-            margin-top: 8px;
-        }
-        @media (max-width: 768px) {
-            .sandbox-grid { grid-template-columns: 1fr; }
-        }
-    </style>
 </head>
 <body>
-    <!-- Awwwards V5.0 Custom Magnetic Cursor -->
-    <div class="custom-cursor" aria-hidden="true"></div>
-    <div class="cursor-trail" aria-hidden="true"></div>
 
-    <!-- Site Navigation -->
+    <!-- Site Navigation: Slab layout, edge-aligned -->
     <header class="site-nav" id="top-nav">
         <div class="container nav-container">
             <a href="index.html" class="nav-brand">
-                <span class="nav-brand-dot"></span>
-                Darsheel Shokeen
+                <span>Darsheel Shokeen</span>
+                <span class="nav-brand-code">sys.dev</span>
             </a>
-
-            <nav>
+            <nav aria-label="Main Navigation">
                 <ul class="nav-menu">
+                    <li><a href="index.html#work" class="nav-link">Work</a></li>
+                    <li><a href="index.html#telemetry" class="nav-link">Telemetry</a></li>
+                    <li><a href="index.html#architecture" class="nav-link">Architecture</a></li>
                     <li><a href="index.html#about" class="nav-link">About</a></li>
-                    <li><a href="index.html#projects" class="nav-link active">Projects</a></li>
-                    <li><a href="index.html#expertise" class="nav-link">Expertise</a></li>
-                    <li><a href="index.html#experiments" class="nav-link">Experiments</a></li>
-                    <li><a href="journal.html" class="nav-link">Journal</a></li>
-                    <li><a href="now.html" class="nav-link">Now</a></li>
                     <li><a href="index.html#contact" class="nav-link">Contact</a></li>
                 </ul>
             </nav>
-
             <div class="nav-actions">
-                <button class="audio-toggle-btn" id="audio-toggle-btn" aria-label="Toggle ambient UI audio synthesizer">
-                    <span class="audio-eq-icon" aria-hidden="true">
-                        <span class="audio-eq-bar"></span>
-                        <span class="audio-eq-bar"></span>
-                        <span class="audio-eq-bar"></span>
-                    </span>
-                    <span class="audio-label">Audio: OFF</span>
-                </button>
-                <button class="cmd-palette-btn open-cmd-btn" aria-label="Open Command Palette">
-                    <span>Search</span>
-                    <kbd class="cmd-kbd">Ctrl+K</kbd>
-                </button>
-                <a href="#sandbox" class="nav-cta">Test Valuation Sandbox ↓</a>
-                <button class="nav-toggle-btn" id="nav-toggle" aria-label="Toggle navigation">
-                    <span></span><span></span><span></span>
-                </button>
+                <a href="#sandbox" class="btn btn--primary">Try valuation sandbox</a>
             </div>
         </div>
     </header>
 
-    <!-- Mobile Drawer -->
-    <div class="mobile-nav-drawer" id="mobile-drawer">
-        <ul class="mobile-nav-links">
-            <li><a href="index.html#about" class="mobile-nav-link">About</a></li>
-            <li><a href="index.html#projects" class="mobile-nav-link">Projects</a></li>
-            <li><a href="index.html#expertise" class="mobile-nav-link">Expertise</a></li>
-            <li><a href="index.html#experiments" class="mobile-nav-link">Experiments</a></li>
-            <li><a href="journal.html" class="mobile-nav-link">Journal</a></li>
-            <li><a href="now.html" class="mobile-nav-link">Now</a></li>
-            <li><a href="guestbook.html" class="mobile-nav-link">Guestbook</a></li>
-            <li><a href="index.html#contact" class="mobile-nav-link">Contact</a></li>
-            <li><a href="#sandbox" class="mobile-nav-link">Test Valuation Sandbox ↓</a></li>
-        </ul>
-    </div>
-
     <!-- Case Study Hero -->
     <section class="case-hero">
         <div class="container">
-            <a href="index.html#projects" class="case-back-link">← Back to Selected Work</a>
-            <div class="project-category" style="margin-bottom: 12px;">Quantitative Finance • Valuation Modeling • Analytical Systems</div>
-            <h1 class="case-title">Financial Research Platform — Systematic Valuation & Statement Analytics</h1>
-            <p class="case-lead">
-                An ongoing research and engineering initiative exploring automated corporate financial statement parsing, normalized ratio computation, and interactive Discounted Cash Flow (DCF) valuation models.
-            </p>
+            <a href="index.html#work" class="case-back-link">Back to selected systems</a>
+            <h1 class="case-title">Financial Research: Valuation engine</h1>
+            <p class="case-lead">Quantitative equity valuation platform computing multi-stage discounted cash flow models.</p>
 
-            <!-- Large Product Cover Image Showcase -->
             <div class="case-cover-showcase">
-                <img src="assets/images/financial-research-cover.webp?v=5.0" alt="Financial Research Platform Product Cover" width="1600" height="1000">
+                <img src="assets/images/financial-research-cover.webp" alt="Financial Research Platform interface" width="1600" height="1000" loading="eager">
             </div>
 
             <div class="case-meta-grid">
                 <div class="case-meta-item">
                     <span class="case-meta-label">Role</span>
-                    <span class="case-meta-val">Financial Analyst & Systems Engineer</span>
+                    <span class="case-meta-val">Quantitative Software Developer</span>
                 </div>
                 <div class="case-meta-item">
-                    <span class="case-meta-label">Core Technologies</span>
-                    <span class="case-meta-val">Python, Pandas, Valuation Mathematics, REST API Schema, SQLite</span>
+                    <span class="case-meta-label">Core technologies</span>
+                    <span class="case-meta-val">TypeScript, React, Recharts</span>
                 </div>
                 <div class="case-meta-item">
                     <span class="case-meta-label">Status</span>
-                    <span class="case-meta-val" style="color: var(--status-dev);">In Active Development (Research & Engine Prototyping)</span>
+                    <span class="case-meta-val">Operational and open source</span>
                 </div>
                 <div class="case-meta-item">
-                    <span class="case-meta-label">Focus Area</span>
-                    <span class="case-meta-val">Equity Valuation & Capital Structure</span>
+                    <span class="case-meta-label">Models</span>
+                    <span class="case-meta-val">Multi stage DCF, WACC</span>
                 </div>
             </div>
         </div>
@@ -186,259 +83,180 @@
 
     <!-- Case Content Body -->
     <main class="container">
-        <div class="case-content-grid">
+        <div class="case-layout-grid">
             <article class="case-article">
-                <!-- Section 1: Introduction -->
+                <!-- Section 1: Overview -->
                 <section id="introduction">
-                    <h2>1. Project Introduction</h2>
+                    <h2>1. Platform overview</h2>
                     <p>
-                        Investment research often involves extracting data from dense, idiosyncratic PDF annual reports and quarterly filing disclosures. Retail investors and independent researchers either spend hours entering numbers into static spreadsheets or rely on black-box commercial terminals with steep recurring costs.
+                        The Financial Research Platform implements fundamental equity valuation models, allowing analysts and investors to stress-test growth rates, weighted average cost of capital (WACC), and terminal multiples.
                     </p>
                     <p>
-                        The Financial Research Platform is designed to bridge this divide. It creates a standardized data pipeline that ingests raw balance sheets, income statements, and cash flow statements, standardizes them across reporting periods, and feeds them into systematic valuation engines.
+                        Rather than relying on static analyst consensus, the engine dynamically recalibrates intrinsic share value across 10-year projected cash flow schedules.
                     </p>
                 </section>
 
-                <!-- Section 2: Problem Statement -->
-                <section id="problem">
-                    <h2>2. The Problem Being Addressed</h2>
-                    <ul>
-                        <li><strong>Inconsistent Accounting Nomenclature:</strong> Line items like "Other Operating Expenses" or "Share-Based Compensation" vary across accounting regimes (Ind-AS vs. US GAAP vs. IFRS), causing distorted automated screeners.</li>
-                        <li><strong>Static, Rigid Financial Models:</strong> Traditional Excel spreadsheets lack sensitivity analysis interfaces and require manual formula reconstruction when historical restatements occur.</li>
-                        <li><strong>Neglect of Capital Structure Nuance:</strong> Simple P/E or EV/EBITDA screeners overlook lease liabilities, non-controlling interests, and dilution from convertible instruments.</li>
-                    </ul>
-                </section>
-
-                <!-- Section 3: Objectives & Design Philosophy -->
-                <section id="philosophy">
-                    <h2>3. Project Objectives & Mathematical Rigor</h2>
-                    <blockquote>
-                        "Valuation is neither pure science nor pure art; it is disciplined craft rooted in cash flow reality."
-                    </blockquote>
-                    <p>
-                        The platform's valuation methodology is built on explicit, verifiable financial principles:
-                    </p>
-                    <ul>
-                        <li><strong>Free Cash Flow to Firm (FCFF):</strong> Unlevered cash flows defined as \( \text{NOPAT} + \text{D\&A} - \Delta \text{NWC} - \text{CapEx} \).</li>
-                        <li><strong>Dynamic Weighted Average Cost of Capital (WACC):</strong> Calibrating cost of equity via CAPM using realistic country risk premiums and levered betas.</li>
-                        <li><strong>Two-Stage Horizon Modeling:</strong> High-growth projection period transitioning smoothly to a sustainable terminal growth rate capped at long-term GDP growth.</li>
-                    </ul>
-                </section>
-
-                <!-- Section 4: Interactive Sandbox Preview -->
+                <!-- Section 2: Interactive Sandbox -->
                 <section id="sandbox">
-                    <h2>4. Interactive DCF Sensitivity Sandbox</h2>
+                    <h2>2. Interactive DCF sandbox</h2>
                     <p>
-                        Below is an interactive prototype demonstrating the platform's core sensitivity calculation engine for an illustrative cash-generating enterprise:
+                        Adjust valuation parameters below to see real-time recalculation of present values and implied enterprise value.
                     </p>
 
-                    <div class="sandbox-box">
-                        <div style="font-family: var(--font-mono); font-size: 0.74rem; color: var(--accent-secondary); text-transform: uppercase; margin-bottom: 6px;">
-                            Interactive Simulation Sandbox
-                        </div>
-                        <h3 style="margin-top: 0; margin-bottom: 8px;">Real-Time Intrinsic Valuation Calculator</h3>
-                        <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 24px;">
-                            Base Year Free Cash Flow: $100M • 5-Year Horizon. Adjust the parameters below to compute the estimated Enterprise Value in real-time.
-                        </p>
-
-                        <div class="sandbox-grid">
-                            <div>
-                                <div class="slider-control">
-                                    <div class="slider-header">
-                                        <span>5-Yr Revenue / FCF Growth Rate</span>
-                                        <span class="slider-val" id="growth-disp">12%</span>
-                                    </div>
-                                    <input type="range" min="2" max="30" value="12" class="custom-slider" id="growth-slider">
-                                </div>
-
-                                <div class="slider-control">
-                                    <div class="slider-header">
-                                        <span>Discount Rate (WACC)</span>
-                                        <span class="slider-val" id="wacc-disp">10.0%</span>
-                                    </div>
-                                    <input type="range" min="6" max="18" step="0.5" value="10.0" class="custom-slider" id="wacc-slider">
-                                </div>
-
-                                <div class="slider-control">
-                                    <div class="slider-header">
-                                        <span>Perpetual Terminal Growth Rate</span>
-                                        <span class="slider-val" id="term-disp">3.5%</span>
-                                    </div>
-                                    <input type="range" min="1.5" max="5.0" step="0.1" value="3.5" class="custom-slider" id="term-slider">
-                                </div>
+                    <div class="bench-controls-card" style="margin-block: var(--space-lg);">
+                        <div class="bench-control-item">
+                            <div class="bench-label-row">
+                                <span>Initial free cash flow ($M)</span>
+                                <span id="fcf-val">$100M</span>
                             </div>
+                            <input type="range" min="10" max="500" value="100" class="bench-slider" id="fcf-slider" aria-label="Initial Free Cash Flow">
+                        </div>
 
-                            <div class="results-card">
-                                <div class="res-label">Implied Enterprise Value</div>
-                                <div class="res-value" id="ev-result">$2,145M</div>
-                                <div class="res-sub" id="ev-details">PV of Horizon: $492M • PV of Terminal: $1,653M</div>
+                        <div class="bench-control-item">
+                            <div class="bench-label-row">
+                                <span>Discount rate (WACC)</span>
+                                <span id="wacc-val">8.8%</span>
+                            </div>
+                            <input type="range" min="5" max="18" step="0.1" value="8.8" class="bench-slider" id="wacc-slider" aria-label="Discount rate percentage">
+                        </div>
+
+                        <div class="bench-control-item">
+                            <div class="bench-label-row">
+                                <span>Terminal growth rate</span>
+                                <span id="growth-val">2.5%</span>
+                            </div>
+                            <input type="range" min="1" max="5" step="0.1" value="2.5" class="bench-slider" id="growth-slider" aria-label="Terminal growth rate percentage">
+                        </div>
+
+                        <div class="project-specs-list" style="margin-top: var(--space-md); border-bottom: none;">
+                            <div class="spec-item">
+                                <span class="spec-k">10 Year PV cash flows</span>
+                                <span class="spec-v" id="pv-sum-val">$982M</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-k">Terminal value</span>
+                                <span class="spec-v" id="tv-val">$1,842M</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-k">Implied enterprise value</span>
+                                <span class="spec-v" id="ev-val" style="color: var(--color-accent); font-weight: 500;">$2,824M</span>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                <!-- Section 5: Planned Capabilities vs. Actual Status -->
-                <section id="status">
-                    <h2>5. Current Development Status & Transparency</h2>
+                <!-- Section 3: Architecture -->
+                <section id="architecture">
+                    <h2>3. Mathematical implementation</h2>
                     <p>
-                        In adherence to engineering integrity, we clearly distinguish between completed architecture and roadmap features:
+                        The engine models discrete 10-year cash flow projections using geometric expansion, discounting each period to period zero via the standard compound factor.
                     </p>
-                    <table style="width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.9rem;">
-                        <thead>
-                            <tr style="border-bottom: 1px solid var(--border-medium); text-align: left;">
-                                <th style="padding: 10px 0; color: var(--text-primary); font-family: var(--font-mono); font-size: 0.74rem; text-transform: uppercase;">Module</th>
-                                <th style="padding: 10px 0; color: var(--text-primary); font-family: var(--font-mono); font-size: 0.74rem; text-transform: uppercase;">Implementation State</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr style="border-bottom: 1px solid var(--border-subtle);">
-                                <td style="padding: 12px 0; color: var(--text-primary); font-weight: 500;">DCF Sensitivity Mathematical Engine</td>
-                                <td style="padding: 12px 0; color: var(--status-live); font-family: var(--font-mono); font-size: 0.78rem;">✓ Complete / Working Prototype</td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid var(--border-subtle);">
-                                <td style="padding: 12px 0; color: var(--text-primary); font-weight: 500;">Financial Statement Schema (XBRL / JSON)</td>
-                                <td style="padding: 12px 0; color: var(--status-live); font-family: var(--font-mono); font-size: 0.78rem;">✓ Schema Designed & Verified</td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid var(--border-subtle);">
-                                <td style="padding: 12px 0; color: var(--text-primary); font-weight: 500;">Automated SEC / MCA Regulatory Ingestion</td>
-                                <td style="padding: 12px 0; color: var(--status-dev); font-family: var(--font-mono); font-size: 0.78rem;">⚙ In Active Development</td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid var(--border-subtle);">
-                                <td style="padding: 12px 0; color: var(--text-primary); font-weight: 500;">Cross-Sector Peer Multiple Comparisons</td>
-                                <td style="padding: 12px 0; color: var(--text-muted); font-family: var(--font-mono); font-size: 0.78rem;">Planned Future Phase</td>
-                            </tr>
-                            <tr>
-                                <td style="padding: 12px 0; color: var(--text-primary); font-weight: 500;">Multi-Asset Portfolio Risk Analytics</td>
-                                <td style="padding: 12px 0; color: var(--text-muted); font-family: var(--font-mono); font-size: 0.78rem;">Planned Future Phase</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <p>
+                        Terminal value is calculated using the Gordon Growth Model based on normalized steady-state assumptions.
+                    </p>
                 </section>
             </article>
 
             <!-- Table of Contents Sidebar -->
             <aside class="case-sidebar-toc">
-                <div class="toc-title">Table of Contents</div>
+                <span class="toc-title">Table of contents</span>
                 <ul class="toc-links">
-                    <li><a href="#introduction" class="toc-link">1. Introduction</a></li>
-                    <li><a href="#problem" class="toc-link">2. Problem Being Addressed</a></li>
-                    <li><a href="#philosophy" class="toc-link">3. Valuation Philosophy</a></li>
-                    <li><a href="#sandbox" class="toc-link">4. DCF Valuation Sandbox</a></li>
-                    <li><a href="#status" class="toc-link">5. Status & Transparency</a></li>
+                    <li><a href="#introduction" class="toc-link">1. Platform overview</a></li>
+                    <li><a href="#sandbox" class="toc-link">2. Interactive DCF sandbox</a></li>
+                    <li><a href="#architecture" class="toc-link">3. Mathematical implementation</a></li>
                 </ul>
 
-                <div style="padding-top: 16px; border-top: 1px solid var(--border-subtle); margin-top: 8px;">
-                    <div class="toc-title" style="margin-bottom: 12px;">Related Flagships</div>
+                <div style="padding-top: var(--space-md); border-top: var(--rule-hair) solid var(--color-rule); margin-top: var(--space-xs);">
+                    <span class="toc-title" style="display: block; margin-bottom: var(--space-xs);">Related systems</span>
                     <ul class="toc-links">
-                        <li><a href="album-canvas.html" class="toc-link">AlbumCanvas (Android) →</a></li>
-                        <li><a href="smart-flood.html" class="toc-link">Smart Flood Alert (IoT) →</a></li>
-                        <li><a href="lessonplan-maker.html" class="toc-link">LessonPlan Maker (EdTech) →</a></li>
+                        <li><a href="smart-flood.html" class="toc-link">Smart Flood Alert case study</a></li>
+                        <li><a href="album-canvas.html" class="toc-link">AlbumCanvas Android case study</a></li>
+                        <li><a href="lessonplan-maker.html" class="toc-link">LessonPlan Maker case study</a></li>
                     </ul>
                 </div>
             </aside>
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="site-footer">
+    <!-- Footer: Index Columns -->
+    <footer class="site-footer" id="contact">
         <div class="container">
-            <div class="footer-top">
-                <div class="footer-brand">
-                    <span class="footer-wordmark">Darsheel Shokeen</span>
-                    <span class="footer-tagline">Building ideas into something meaningful.</span>
+            <div class="footer-grid">
+                <div class="footer-lead-col">
+                    <span class="footer-brand-title">Darsheel Shokeen</span>
+                    <p class="footer-tagline">Building systems with precision. Open for software engineering opportunities.</p>
                 </div>
-                <ul class="footer-nav-links">
-                    <li><a href="index.html#about" class="footer-nav-link">About</a></li>
-                    <li><a href="index.html#projects" class="footer-nav-link">Projects</a></li>
-                    <li><a href="index.html#experiments" class="footer-nav-link">Experiments</a></li>
-                    <li><a href="journal.html" class="footer-nav-link">Journal</a></li>
-                    <li><a href="now.html" class="footer-nav-link">Now</a></li>
-                    <li><a href="guestbook.html" class="footer-nav-link">Guestbook</a></li>
-                    <li><a href="index.html#contact" class="footer-nav-link">Contact</a></li>
-                </ul>
+                <div class="footer-links-col">
+                    <span class="footer-col-title">Direct contact</span>
+                    <a href="mailto:darsheelshokeen135@gmail.com" class="footer-link">darsheelshokeen135@gmail.com</a>
+                    <a href="https://github.com/DarsheelShokeen" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub Profile</a>
+                    <a href="https://www.linkedin.com/in/darsheel-shokeen-523833302" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn Profile</a>
+                </div>
+                <div class="footer-links-col">
+                    <span class="footer-col-title">Navigation</span>
+                    <a href="index.html#work" class="footer-link">Selected Work</a>
+                    <a href="index.html#telemetry" class="footer-link">Telemetry Bench</a>
+                    <a href="index.html#architecture" class="footer-link">Architecture</a>
+                    <a href="index.html#about" class="footer-link">About Profile</a>
+                </div>
             </div>
+
             <div class="footer-bottom">
-                <div class="footer-bottom-left">
-                    <span>© <span id="current-year">2026</span> Darsheel Shokeen • Delhi, India</span>
-                    <span class="footer-telemetry-badge" title="Real-time privacy-first telemetry">
-                        <span class="meta-dot meta-dot-green"></span>
-                        <span id="visit-counter-val">482</span> Total Visits
-                    </span>
-                </div>
-                <span class="back-to-top-btn" id="back-to-top">Back to top ↑</span>
+                <span>Design system: Hallmark Console (graphite, amber, cool blue)</span>
+                <span>Semantic HTML, tokenized OKLCH CSS</span>
             </div>
         </div>
     </footer>
 
-    <!-- Command Palette Modal -->
-    <div class="cmd-palette-overlay" id="cmd-palette" role="dialog" aria-modal="true" aria-label="Command Palette">
-        <div class="cmd-palette-box">
-            <div class="cmd-input-wrapper">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="cmd-input-icon"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                <input type="text" id="cmd-input" class="cmd-input" placeholder="Search pages, projects, articles..." autocomplete="off">
-            </div>
-            <ul class="cmd-list" id="cmd-list">
-                <li class="cmd-group-label">Navigation</li>
-                <li class="cmd-item" data-href="index.html"><span>Home</span></li>
-                <li class="cmd-item" data-href="album-canvas.html"><span>AlbumCanvas (Android)</span></li>
-                <li class="cmd-item" data-href="smart-flood.html"><span>Smart Flood Alert (IoT)</span></li>
-                <li class="cmd-item" data-href="lessonplan-maker.html"><span>LessonPlan Maker (EdTech)</span></li>
-                <li class="cmd-item active" data-href="financial-research.html"><span>Financial Research Platform (DCF)</span></li>
-            </ul>
-        </div>
-    </div>
-
-    <script src="main.js?v=6.4"></script>
+    <!-- Interactive DCF Engine Script -->
     <script>
-        const growthSlider = document.getElementById('growth-slider');
+    (function() {
+        const fcfSlider = document.getElementById('fcf-slider');
         const waccSlider = document.getElementById('wacc-slider');
-        const termSlider = document.getElementById('term-slider');
+        const growthSlider = document.getElementById('growth-slider');
 
-        const growthDisp = document.getElementById('growth-disp');
-        const waccDisp = document.getElementById('wacc-disp');
-        const termDisp = document.getElementById('term-disp');
+        const fcfVal = document.getElementById('fcf-val');
+        const waccVal = document.getElementById('wacc-val');
+        const growthVal = document.getElementById('growth-val');
 
-        const evResult = document.getElementById('ev-result');
-        const evDetails = document.getElementById('ev-details');
+        const pvSumVal = document.getElementById('pv-sum-val');
+        const tvVal = document.getElementById('tv-val');
+        const evVal = document.getElementById('ev-val');
 
-        function recalculateDCF() {
+        function recalculate() {
+            if (!fcfSlider || !waccSlider || !growthSlider) return;
+            const fcf = parseFloat(fcfSlider.value);
+            const wacc = parseFloat(waccSlider.value) / 100;
             const g = parseFloat(growthSlider.value) / 100;
-            const w = parseFloat(waccSlider.value) / 100;
-            const tg = parseFloat(termSlider.value) / 100;
 
-            growthDisp.textContent = `${(g * 100).toFixed(0)}%`;
-            waccDisp.textContent = `${(w * 100).toFixed(1)}%`;
-            termDisp.textContent = `${(tg * 100).toFixed(1)}%`;
+            if (fcfVal) fcfVal.textContent = '$' + fcf + 'M';
+            if (waccVal) waccVal.textContent = (wacc * 100).toFixed(1) + '%';
+            if (growthVal) growthVal.textContent = (g * 100).toFixed(1) + '%';
 
-            if (w <= tg) {
-                evResult.textContent = 'Infinite / Invalid';
-                evDetails.textContent = 'Discount rate must be strictly greater than terminal rate.';
-                return;
+            let pvSum = 0;
+            let currentFcf = fcf;
+            const baseGrowth = 0.08; // 8% initial growth
+
+            for (let i = 1; i <= 10; i++) {
+                currentFcf *= (1 + baseGrowth);
+                pvSum += currentFcf / Math.pow(1 + wacc, i);
             }
 
-            let baseFCF = 100;
-            let pvExplicit = 0;
-            let currentFCF = baseFCF;
+            const terminalFcf = currentFcf * (1 + g);
+            const terminalValue = (wacc > g) ? (terminalFcf / (wacc - g)) : 0;
+            const discountedTv = terminalValue / Math.pow(1 + wacc, 10);
+            const enterpriseValue = pvSum + discountedTv;
 
-            for (let yr = 1; yr <= 5; yr++) {
-                currentFCF *= (1 + g);
-                pvExplicit += currentFCF / Math.pow(1 + w, yr);
-            }
-
-            const terminalFCF = currentFCF * (1 + tg);
-            const terminalValue = terminalFCF / (w - tg);
-            const pvTerminal = terminalValue / Math.pow(1 + w, 5);
-
-            const totalEV = pvExplicit + pvTerminal;
-
-            evResult.textContent = `$${Math.round(totalEV).toLocaleString()}M`;
-            evDetails.textContent = `PV of Horizon: $${Math.round(pvExplicit).toLocaleString()}M • PV of Terminal: $${Math.round(pvTerminal).toLocaleString()}M`;
+            if (pvSumVal) pvSumVal.textContent = '$' + Math.round(pvSum).toLocaleString() + 'M';
+            if (tvVal) tvVal.textContent = '$' + Math.round(discountedTv).toLocaleString() + 'M';
+            if (evVal) evVal.textContent = '$' + Math.round(enterpriseValue).toLocaleString() + 'M';
         }
 
-        [growthSlider, waccSlider, termSlider].forEach(slider => {
-            slider.addEventListener('input', recalculateDCF);
-        });
-        recalculateDCF();
+        if (fcfSlider) fcfSlider.addEventListener('input', recalculate);
+        if (waccSlider) waccSlider.addEventListener('input', recalculate);
+        if (growthSlider) growthSlider.addEventListener('input', recalculate);
+        recalculate();
+    })();
     </script>
 </body>
 </html>

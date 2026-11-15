@@ -1,423 +1,212 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="utf-8">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <meta charset="UTF-8">
-    <meta name="theme-color" content="#0B0B0B">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Selected Work • Darsheel Shokeen</title>
-    <meta name="description" content="Selected engineering projects and digital products built by Darsheel Shokeen.">
+    <title>Systems Archive: Darsheel Shokeen</title>
+    <meta name="description" content="Complete archive of software systems, IoT telemetry probes, Android utilities, and quantitative engineering projects by Darsheel Shokeen.">
     <link rel="canonical" href="https://darsheelshokeen.xo.je/projects.html">
+
+    <!-- Fonts: Host Grotesk & Atkinson Hyperlegible Mono (Hallmark Console Theme) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=6.4">
+    <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@400;500;600&family=Atkinson+Hyperlegible+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets: Hallmark Tokens, Base and Production System -->
+    <link rel="stylesheet" href="tokens.css">
+    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="styles.css?v=7.0">
+
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="favicon.png">
     <link rel="shortcut icon" href="favicon.ico">
 </head>
 <body>
-    <!-- Awwwards V5.0 Custom Magnetic Cursor -->
-    <div class="custom-cursor" aria-hidden="true"></div>
-    <div class="cursor-trail" aria-hidden="true"></div>
 
-    <!-- Site Navigation -->
+    <!-- Site Navigation: Slab layout, edge-aligned -->
     <header class="site-nav" id="top-nav">
         <div class="container nav-container">
             <a href="index.html" class="nav-brand">
-                <span class="nav-brand-dot"></span>
-                Darsheel Shokeen
+                <span>Darsheel Shokeen</span>
+                <span class="nav-brand-code">sys.dev</span>
             </a>
-
-            <nav>
+            <nav aria-label="Main Navigation">
                 <ul class="nav-menu">
+                    <li><a href="index.html#work" class="nav-link">Work</a></li>
+                    <li><a href="index.html#telemetry" class="nav-link">Telemetry</a></li>
+                    <li><a href="index.html#architecture" class="nav-link">Architecture</a></li>
                     <li><a href="index.html#about" class="nav-link">About</a></li>
-                    <li><a href="projects.html" class="nav-link active">Projects</a></li>
-                    <li><a href="index.html#expertise" class="nav-link">Expertise</a></li>
-                    <li><a href="index.html#experiments" class="nav-link">Experiments</a></li>
-                    <li><a href="journal.html" class="nav-link">Journal</a></li>
-                    <li><a href="now.html" class="nav-link">Now</a></li>
-                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                    <li><a href="index.html#contact" class="nav-link">Contact</a></li>
                 </ul>
             </nav>
-
             <div class="nav-actions">
-                <button class="audio-toggle-btn" id="audio-toggle-btn" aria-label="Toggle ambient UI audio synthesizer">
-                    <span class="audio-eq-icon" aria-hidden="true">
-                        <span class="audio-eq-bar"></span>
-                        <span class="audio-eq-bar"></span>
-                        <span class="audio-eq-bar"></span>
-                    </span>
-                    <span class="audio-label">Audio: OFF</span>
-                </button>
-                <button class="cmd-palette-btn open-cmd-btn" aria-label="Open Command Palette">
-                    <span>Search</span>
-                    <kbd class="cmd-kbd">Ctrl+K</kbd>
-                </button>
-                <a href="contact.html" class="nav-cta">Get in Touch →</a>
-                <button class="nav-toggle-btn" id="nav-toggle" aria-label="Toggle navigation">
-                    <span></span><span></span><span></span>
-                </button>
+                <a href="index.html#contact" class="btn btn--primary">Get in touch</a>
             </div>
         </div>
     </header>
 
-    <!-- Mobile Drawer -->
-    <div class="mobile-nav-drawer" id="mobile-drawer">
-        <ul class="mobile-nav-links">
-            <li><a href="index.html#about" class="mobile-nav-link">About</a></li>
-            <li><a href="projects.html" class="mobile-nav-link">Projects</a></li>
-            <li><a href="index.html#expertise" class="mobile-nav-link">Expertise</a></li>
-            <li><a href="index.html#experiments" class="mobile-nav-link">Experiments</a></li>
-            <li><a href="journal.html" class="mobile-nav-link">Journal</a></li>
-            <li><a href="now.html" class="mobile-nav-link">Now</a></li>
-            <li><a href="guestbook.html" class="mobile-nav-link">Guestbook</a></li>
-            <li><a href="contact.html" class="mobile-nav-link">Contact</a></li>
-        </ul>
-    </div>
+    <!-- Archive Hero -->
+    <section class="case-hero">
+        <div class="container">
+            <a href="index.html" class="case-back-link">Back to overview</a>
+            <h1 class="case-title">Systems archive and open repositories</h1>
+            <p class="case-lead">Chronological record of hardware firmware, Android utilities, and quantitative algorithms.</p>
+        </div>
+    </section>
 
-    <!-- Main Content -->
-    <main class="container" style="padding-top: 150px; padding-bottom: 80px;">
-        <header class="section-header">
-            <div class="section-kicker">Portfolio Archive</div>
-            <h1 class="section-title">Selected Projects</h1>
-            <p class="section-subtitle">
-                Detailed breakdowns of products, hardware systems, and research engines engineered with craft.
-            </p>
-        </header>
+    <!-- Main Content: Systems Index Table & Cards -->
+    <main class="container" style="padding-block: var(--space-2xl);">
+        <div class="projects-index">
 
-        <div class="projects-grid">
-            <!-- Project 1: AlbumCanvas -->
-            <article class="project-card-large">
-                <div class="project-media-col">
-                    <a href="album-canvas.html" class="project-cover-link">
-                        <img src="assets/images/albumcanvas-cover.webp?v=5.1" alt="AlbumCanvas — Dynamic Live Wallpaper & Ambient Music Experience" class="project-cover-img" width="1600" height="1000" loading="lazy">
-                    </a>
-                        <div class="vinyl-disc-peek" aria-hidden="true"></div>
+            <!-- Item 1: Smart Flood Alert -->
+            <article class="project-entry">
+                <div class="project-visual-col">
+                    <img src="assets/images/smartflood-cover.webp" alt="Smart Flood Alert dashboard" width="800" height="500" loading="eager">
                 </div>
-
                 <div class="project-info-col">
-                    <div>
-                        <div class="project-meta-top">
-                            <span class="project-category">Mobile System Architecture</span>
-                            <span class="project-status-tag live">
-                                <span class="meta-dot meta-dot-green"></span>
-                                Complete & Open Source
-                                    <span class="albumcanvas-equalizer" aria-hidden="true">
-                                        <span class="albumcanvas-equalizer-bar"></span>
-                                        <span class="albumcanvas-equalizer-bar"></span>
-                                        <span class="albumcanvas-equalizer-bar"></span>
-                                        <span class="albumcanvas-equalizer-bar"></span>
-                                        <span class="albumcanvas-equalizer-bar"></span>
-                                    </span>
-                            </span>
+                    <div class="project-header-group">
+                        <span class="project-domain">Embedded IoT, Cloud Telemetry</span>
+                        <h2 class="project-heading">Smart Flood Alert</h2>
+                        <p class="project-summary">Urban flood telemetry with ESP32 edge probes, FastAPI ingestion, and WhatsApp alerts.</p>
+                    </div>
+                    <div class="project-specs-list">
+                        <div class="spec-item">
+                            <span class="spec-k">Edge hardware</span>
+                            <span class="spec-v">ESP32 NodeMCU, FC-28</span>
                         </div>
-                        <h2 class="project-title">AlbumCanvas</h2>
-                        <p class="project-summary">
-                            Native Android application built with Jetpack Compose & Material 3 that dynamically hooks into system media playback to transform active music artwork into ambient wallpapers and interactive home screen widgets.
-                        </p>
-                        <div class="project-tech-stack">
-                            <span class="tech-tag">Kotlin</span>
-                            <span class="tech-tag">Jetpack Compose</span>
-                            <span class="tech-tag">Material 3</span>
-                            <span class="tech-tag">MediaSession</span>
-                            <span class="tech-tag">AndroidX Palette</span>
+                        <div class="spec-item">
+                            <span class="spec-k">Sampling rate</span>
+                            <span class="spec-v">10 Hz, 4000ms debounce</span>
                         </div>
                     </div>
-                                            <!-- AlbumCanvas Live Interactive Sandbox -->
-                        <div class="project-interactive-drawer">
-                            <div class="drawer-header">
-                                <span class="drawer-title">
-                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
-                                    Dynamic Vinyl & 16-Band Equalizer Sandbox
-                                </span>
-                                <span class="drawer-badge">Interactive Demo</span>
-                            </div>
-                            <div class="albumcanvas-controls-row">
-                                <button type="button" class="sim-btn" id="albumcanvas-play-btn">
-                                    <span>▶</span> Play Audio Simulation
-                                </button>
-                                <div class="palette-swatches-group">
-                                    <span style="font-family: var(--font-mono); font-size: 0.68rem; color: var(--text-muted); margin-right: 4px;">Palette Extractor:</span>
-                                    <button type="button" class="swatch-btn active" data-color="#00E5FF" style="background: #00E5FF;" title="Hyper Cyan" aria-label="Extract Hyper Cyan"></button>
-                                    <button type="button" class="swatch-btn" data-color="#10B981" style="background: #10B981;" title="Emerald Live" aria-label="Extract Emerald Live"></button>
-                                    <button type="button" class="swatch-btn" data-color="#F59E0B" style="background: #F59E0B;" title="Solar Amber" aria-label="Extract Solar Amber"></button>
-                                    <button type="button" class="swatch-btn" data-color="#8B5CF6" style="background: #8B5CF6;" title="Royal Violet" aria-label="Extract Royal Violet"></button>
-                                </div>
-                            </div>
-                            <div class="live-16-band-eq" id="albumcanvas-eq-bars" aria-label="16-band real-time audio visualizer simulation"></div>
-                        </div>
-                    <div class="project-actions">
-                        <a href="album-canvas.html" class="link-case-study">Read Case Study →</a>
-                        <a href="album-canvas/index.html" target="_blank" class="link-text-action">Live Web Simulator ↗</a>
-                        <a href="https://github.com/DarsheelShokeen/AlbumCanvas" target="_blank" rel="noopener noreferrer" class="link-text-action">GitHub ↗</a>
+                    <div class="project-links-row">
+                        <a href="smart-flood.html" class="btn btn--primary">Inspect case study</a>
+                        <a href="smart-flood/index.html" class="btn btn--cool">Launch dashboard</a>
+                        <a href="https://github.com/DarsheelShokeen/Smart-Flood-Alert" target="_blank" rel="noopener noreferrer" class="btn btn--subtle">GitHub repository</a>
                     </div>
                 </div>
             </article>
 
-            <!-- Project 2: Smart Flood Alert -->
-            <article class="project-card-large">
-                <div class="project-media-col">
-                    <a href="smart-flood.html" class="project-cover-link">
-                        <img src="assets/images/smartflood-cover.webp?v=5.1" alt="Smart Flood Alert — IoT Urban Water Level Telemetry Cockpit" class="project-cover-img" width="1600" height="1000" loading="lazy">
-                    </a>
+            <!-- Item 2: AlbumCanvas -->
+            <article class="project-entry">
+                <div class="project-visual-col">
+                    <img src="assets/images/albumcanvas-cover.webp" alt="AlbumCanvas interface" width="800" height="500" loading="lazy">
                 </div>
-
                 <div class="project-info-col">
-                    <div>
-                        <div class="project-meta-top">
-                            <span class="project-category">IoT & Cloud Systems</span>
-                            <span class="project-status-tag live">
-                                <span class="meta-dot meta-dot-green"></span>
-                                Deployed & Operational
-                            </span>
+                    <div class="project-header-group">
+                        <span class="project-domain">Android Systems, Media Engine</span>
+                        <h2 class="project-heading">AlbumCanvas</h2>
+                        <p class="project-summary">Live wallpaper and widget engine hooking Android MediaSessionManager to render OpenGL shaders.</p>
+                    </div>
+                    <div class="project-specs-list">
+                        <div class="spec-item">
+                            <span class="spec-k">Core architecture</span>
+                            <span class="spec-v">Kotlin, Jetpack Compose</span>
                         </div>
-                        <h2 class="project-title">Smart Flood Alert</h2>
-                        <p class="project-summary">
-                            An end-to-end urban flood early-warning platform utilizing ESP32 hardware sensing nodes, FC-28 liquid depth probes, a Python FastAPI telemetry gateway, and instant Meta Cloud WhatsApp evacuation alerts.
-                        </p>
-                        <div class="project-tech-stack">
-                            <span class="tech-tag">ESP32 (C++)</span>
-                            <span class="tech-tag">FC-28 Sensor</span>
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">FastAPI</span>
-                            <span class="tech-tag">Meta Cloud API</span>
-                            <span class="tech-tag">Chart.js</span>
+                        <div class="spec-item">
+                            <span class="spec-k">Media engine</span>
+                            <span class="spec-v">AndroidX Media3, Shaders</span>
                         </div>
                     </div>
-                                            <!-- Smart Flood Alert Live Telemetry Switcher -->
-                        <div class="project-interactive-drawer">
-                            <div class="drawer-header">
-                                <span class="drawer-title">
-                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg>
-                                    IoT Sensing Node Telemetry Cockpit
-                                </span>
-                                <div class="telemetry-node-nav">
-                                    <button type="button" class="node-btn active" id="smartflood-node-01">Node 01: Canal</button>
-                                    <button type="button" class="node-btn" id="smartflood-node-02">Node 02: Underpass</button>
-                                </div>
-                            </div>
-                            <div class="node-metrics-grid">
-                                <div class="node-metric-box">
-                                    <span class="metric-label">Liquid Depth Probe</span>
-                                    <span class="metric-value" id="flood-depth-val" style="color: #F59E0B;">14.8 cm (74%)</span>
-                                </div>
-                                <div class="node-metric-box">
-                                    <span class="metric-label">Telemetry Status</span>
-                                    <span class="metric-value" id="flood-status-val" style="color: #F59E0B;">WARNING LEVEL</span>
-                                </div>
-                                <div class="node-metric-box">
-                                    <span class="metric-label">Debounced ADC Sensor</span>
-                                    <span class="metric-value" id="flood-voltage-val">2.14 V (ADC 2658)</span>
-                                </div>
-                            </div>
-                            <div style="background: rgba(14, 20, 30, 0.7); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: var(--radius-sm); padding: 8px 10px; font-family: var(--font-mono); font-size: 0.72rem; color: #10B981; line-height: 1.4;" id="flood-dispatch-text">
-                                🚨 ADVISORY DISPATCHED: Ward 12 Canal Drain water depth exceeded 14.0 cm (+2.1 cm/hr rate of rise). Basements advised to monitor.
-                            </div>
-                        </div>
-                    <div class="project-actions">
-                        <a href="smart-flood.html" class="link-case-study">Read Case Study →</a>
-                        <a href="smart-flood/index.html" target="_blank" class="link-text-action">Operational Dashboard ↗</a>
-                        <a href="https://github.com/DarsheelShokeen/Smart-Flood-Alert" target="_blank" rel="noopener noreferrer" class="link-text-action">GitHub ↗</a>
+                    <div class="project-links-row">
+                        <a href="album-canvas.html" class="btn btn--primary">Inspect case study</a>
+                        <a href="album-canvas/index.html" class="btn btn--cool">Launch simulator</a>
+                        <a href="https://github.com/DarsheelShokeen/AlbumCanvas" target="_blank" rel="noopener noreferrer" class="btn btn--subtle">GitHub repository</a>
                     </div>
                 </div>
             </article>
 
-            <!-- Project 3: LessonPlan Maker -->
-            <article class="project-card-large">
-                <div class="project-media-col">
-                    <a href="lessonplan-maker.html" class="project-cover-link">
-                        <img src="assets/images/lessonplan-cover.webp?v=5.1" alt="LessonPlan Maker — NCERT Middle Stage Curriculum Planning Workbench" class="project-cover-img" width="1600" height="1000" loading="lazy">
-                    </a>
+            <!-- Item 3: LessonPlan Maker -->
+            <article class="project-entry">
+                <div class="project-visual-col">
+                    <img src="assets/images/lessonplan-cover.webp" alt="LessonPlan Maker interface" width="800" height="500" loading="lazy">
                 </div>
-
                 <div class="project-info-col">
-                    <div>
-                        <div class="project-meta-top">
-                            <span class="project-category">Educational Platform</span>
-                            <span class="project-status-tag live">
-                                <span class="meta-dot meta-dot-green"></span>
-                                Fully Deployed & Operational
-                            </span>
+                    <div class="project-header-group">
+                        <span class="project-domain">Educational Platforms, Pedagogy</span>
+                        <h2 class="project-heading">LessonPlan Maker</h2>
+                        <p class="project-summary">Curriculum workbench implementing NEP 2020 5E inquiry pedagogy across middle schools.</p>
+                    </div>
+                    <div class="project-specs-list">
+                        <div class="spec-item">
+                            <span class="spec-k">Backend stack</span>
+                            <span class="spec-v">Python, Flask, Jinja2</span>
                         </div>
-                        <h2 class="project-title">LessonPlan Maker</h2>
-                        <p class="project-summary">
-                            A specialized educational workbench designed to streamline NCERT-based lesson planning for Classes 6–8 across Science, Math, Social Science, and English with NEP 2020 competency learning outcomes and 5E inquiry structures.
-                        </p>
-                        <div class="project-tech-stack">
-                            <span class="tech-tag">JavaScript (ES6+)</span>
-                            <span class="tech-tag">NCERT Taxonomy</span>
-                            <span class="tech-tag">5E Inquiry Cycle</span>
-                            <span class="tech-tag">DOM State Machine</span>
-                            <span class="tech-tag">Print Engine</span>
+                        <div class="spec-item">
+                            <span class="spec-k">Pedagogy model</span>
+                            <span class="spec-v">NEP 2020 5E Inquiry</span>
                         </div>
                     </div>
-                                            <!-- LessonPlan Maker 5E Stepper Drawer -->
-                        <div class="project-interactive-drawer">
-                            <div class="drawer-header">
-                                <span class="drawer-title">
-                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-                                    NCERT 5E Inquiry Cycle & NEP 2020 Engine
-                                </span>
-                                <span class="drawer-badge">Pedagogy Matrix</span>
-                            </div>
-                            <div class="pedagogy-stepper-tabs">
-                                <button type="button" class="step-tab-btn active" data-step="1">1. Engage</button>
-                                <button type="button" class="step-tab-btn" data-step="2">2. Explore</button>
-                                <button type="button" class="step-tab-btn" data-step="3">3. Explain</button>
-                                <button type="button" class="step-tab-btn" data-step="4">4. Elaborate</button>
-                                <button type="button" class="step-tab-btn" data-step="5">5. Evaluate</button>
-                            </div>
-                            <div class="pedagogy-outcome-display">
-                                <span class="outcome-tag" id="lp-outcome-tag">PHASE 1: ENGAGE • Elicit Prior Understanding (Bloom: Recall & Connect)</span>
-                                <span id="lp-outcome-text">Elicit prior student observations of capillary liquid rise using colored water stalks. Scaffold initial student conjectures regarding plant transpiration mechanics.</span>
-                            </div>
-                        </div>
-                    <div class="project-actions">
-                        <a href="lessonplan-maker.html" class="link-case-study">Read Case Study →</a>
-                        <a href="lessonplan-maker/index.html" target="_blank" class="link-text-action">Launch Workbench ↗</a>
+                    <div class="project-links-row">
+                        <a href="lessonplan-maker.html" class="btn btn--primary">Inspect case study</a>
+                        <a href="lessonplan-maker/index.html" class="btn btn--cool">Launch planner</a>
                     </div>
                 </div>
             </article>
 
-            <!-- Project 4: Financial Research Platform -->
-            <article class="project-card-large">
-                <div class="project-media-col">
-                    <a href="financial-research.html" class="project-cover-link">
-                        <img src="assets/images/financial-research-cover.webp?v=5.1" alt="Financial Research Platform — Systematic Valuation & Statement Analytics" class="project-cover-img" width="1600" height="1000" loading="lazy">
-                    </a>
+            <!-- Item 4: Financial Research Platform -->
+            <article class="project-entry">
+                <div class="project-visual-col">
+                    <img src="assets/images/financial-research-cover.webp" alt="Financial Research interface" width="800" height="500" loading="lazy">
                 </div>
-
                 <div class="project-info-col">
-                    <div>
-                        <div class="project-meta-top">
-                            <span class="project-category">Quantitative Finance</span>
-                            <span class="project-status-tag in-dev">
-                                <span class="meta-dot" style="background: var(--status-dev);"></span>
-                                In Active Development
-                            </span>
+                    <div class="project-header-group">
+                        <span class="project-domain">Quantitative Finance, Valuation</span>
+                        <h2 class="project-heading">Financial Research Platform</h2>
+                        <p class="project-summary">Equity valuation engine calculating multi-stage DCF models, WACC estimations, and sensitivities.</p>
+                    </div>
+                    <div class="project-specs-list">
+                        <div class="spec-item">
+                            <span class="spec-k">Frontend architecture</span>
+                            <span class="spec-v">TypeScript, React</span>
                         </div>
-                        <h2 class="project-title">Financial Research Platform</h2>
-                        <p class="project-summary">
-                            An equity analysis and investment research platform that automates corporate financial statement normalization, computes normalized valuation ratios, and runs interactive Discounted Cash Flow (DCF) intrinsic value sensitivity models.
-                        </p>
-                        <div class="project-tech-stack">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">Valuation Math</span>
-                            <span class="tech-tag">DCF Modeling</span>
-                            <span class="tech-tag">Financial Accounting</span>
-                            <span class="tech-tag">Pandas</span>
+                        <div class="spec-item">
+                            <span class="spec-k">Valuation models</span>
+                            <span class="spec-v">10 Year DCF, WACC</span>
                         </div>
                     </div>
-                                            <!-- Financial Research Platform DCF Valuation Sandbox -->
-                        <div class="project-interactive-drawer">
-                            <div class="drawer-header">
-                                <span class="drawer-title">
-                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-                                    Interactive DCF Intrinsic Valuation Model
-                                </span>
-                                <span class="drawer-badge">Quantitative Model</span>
-                            </div>
-                            <div class="dcf-slider-container">
-                                <div class="dcf-slider-row">
-                                    <span class="dcf-slider-label">5-Yr Revenue CAGR:</span>
-                                    <input type="range" class="dcf-range-input" id="dcf-growth-slider" min="8" max="25" step="0.5" value="12" aria-label="5-Year Revenue Growth Rate">
-                                    <span class="dcf-slider-val" id="dcf-growth-val">12%</span>
-                                </div>
-                                <div class="dcf-slider-row">
-                                    <span class="dcf-slider-label">WACC Discount Rate:</span>
-                                    <input type="range" class="dcf-range-input" id="dcf-wacc-slider" min="7" max="14" step="0.25" value="9.5" aria-label="WACC Discount Rate">
-                                    <span class="dcf-slider-val" id="dcf-wacc-val">9.5%</span>
-                                </div>
-                            </div>
-                            <div class="dcf-output-banner">
-                                <div class="dcf-stat-block">
-                                    <span class="dcf-stat-label">Intrinsic Value / Share</span>
-                                    <span class="dcf-stat-val" id="dcf-share-price">$137.95</span>
-                                </div>
-                                <div class="dcf-stat-block">
-                                    <span class="dcf-stat-label">Enterprise Value (EV)</span>
-                                    <span class="dcf-stat-val" id="dcf-ev">$3.65B</span>
-                                </div>
-                                <span class="dcf-margin-badge" id="dcf-margin-safety">+20.0% MoS</span>
-                            </div>
-                        </div>
-                    <div class="project-actions">
-                        <a href="financial-research.html" class="link-case-study">Read Case Study →</a>
-                        <a href="financial-research.html#sandbox" class="link-text-action">Test Live Valuation Model ↓</a>
+                    <div class="project-links-row">
+                        <a href="financial-research.html" class="btn btn--primary">Inspect model</a>
                     </div>
                 </div>
             </article>
+
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="site-footer">
+    <!-- Footer: Index Columns -->
+    <footer class="site-footer" id="contact">
         <div class="container">
-            <div class="footer-top">
-                <div class="footer-brand">
-                    <span class="footer-wordmark">Darsheel Shokeen</span>
-                    <span class="footer-tagline">Building ideas into something meaningful.</span>
+            <div class="footer-grid">
+                <div class="footer-lead-col">
+                    <span class="footer-brand-title">Darsheel Shokeen</span>
+                    <p class="footer-tagline">Building systems with precision. Open for software engineering opportunities.</p>
                 </div>
-                <ul class="footer-nav-links">
-                    <li><a href="index.html#about" class="footer-nav-link">About</a></li>
-                    <li><a href="projects.html" class="footer-nav-link">Projects</a></li>
-                    <li><a href="index.html#expertise" class="footer-nav-link">Expertise</a></li>
-                    <li><a href="index.html#experiments" class="footer-nav-link">Experiments</a></li>
-                    <li><a href="journal.html" class="footer-nav-link">Journal</a></li>
-                    <li><a href="now.html" class="footer-nav-link">Now</a></li>
-                    <li><a href="guestbook.html" class="footer-nav-link">Guestbook</a></li>
-                    <li><a href="contact.html" class="footer-nav-link">Contact</a></li>
-                </ul>
+                <div class="footer-links-col">
+                    <span class="footer-col-title">Direct contact</span>
+                    <a href="mailto:darsheelshokeen135@gmail.com" class="footer-link">darsheelshokeen135@gmail.com</a>
+                    <a href="https://github.com/DarsheelShokeen" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub Profile</a>
+                    <a href="https://www.linkedin.com/in/darsheel-shokeen-523833302" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn Profile</a>
+                </div>
+                <div class="footer-links-col">
+                    <span class="footer-col-title">Navigation</span>
+                    <a href="index.html#work" class="footer-link">Selected Work</a>
+                    <a href="index.html#telemetry" class="footer-link">Telemetry Bench</a>
+                    <a href="index.html#architecture" class="footer-link">Architecture</a>
+                    <a href="index.html#about" class="footer-link">About Profile</a>
+                </div>
             </div>
+
             <div class="footer-bottom">
-                <div class="footer-bottom-left">
-                    <span>© <span id="current-year">2026</span> Darsheel Shokeen • Delhi, India</span>
-                    <span class="footer-telemetry-badge" title="Real-time privacy-first telemetry">
-                        <span class="meta-dot meta-dot-green"></span>
-                        <span id="visit-counter-val">482</span> Total Visits
-                    </span>
-                </div>
-                <span class="back-to-top-btn" id="back-to-top">Back to top ↑</span>
+                <span>Design system: Hallmark Console (graphite, amber, cool blue)</span>
+                <span>Semantic HTML, tokenized OKLCH CSS</span>
             </div>
         </div>
     </footer>
 
-    <!-- Command Palette Modal -->
-    <div class="cmd-palette-overlay" id="cmd-palette" role="dialog" aria-modal="true" aria-label="Command Palette">
-        <div class="cmd-palette-box">
-            <div class="cmd-input-wrapper">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="cmd-input-icon"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                <input type="text" id="cmd-input" class="cmd-input" placeholder="Search pages, projects, articles..." autocomplete="off">
-            </div>
-            <ul class="cmd-list" id="cmd-list">
-                <li class="cmd-group-label">Navigation</li>
-                <li class="cmd-item" data-href="index.html">
-                    <div class="cmd-item-left">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
-                        <span>Home</span>
-                    </div>
-                    <span class="cmd-badge">Page</span>
-                </li>
-                <li class="cmd-item active" data-href="projects.html">
-                    <div class="cmd-item-left">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
-                        <span>Selected Work</span>
-                    </div>
-                    <span class="cmd-badge">Section</span>
-                </li>
-            </ul>
-            <div class="cmd-footer">
-                <span>Navigate: ↑ ↓ • Select: Enter</span>
-                <span>Close: Esc</span>
-            </div>
-        </div>
-    </div>
-
-    <script src="main.js?v=6.4"></script>
 </body>
 </html>

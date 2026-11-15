@@ -6,574 +6,435 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Darsheel Shokeen — Software & Systems Engineer</title>
-    <meta name="description" content="Portfolio of Darsheel Shokeen — CS Student, Software Engineer, and Builder specializing in Android systems, IoT telemetry, and high-performance applications.">
-    
-    <!-- Open Graph / Meta -->
-    <meta property="og:title" content="Darsheel Shokeen — Software & Systems Engineer">
-    <meta property="og:description" content="Product engineer, systems architect, and independent builder. Engineering resilient software, clean, scalable, unforgettable.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://darsheelshokeen.xo.je/">
-    <meta property="og:image" content="https://darsheelshokeen.xo.je/og-preview.png">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="theme-color" content="#0B0B0B">
-
-    <!-- Canonical -->
+    <title>Darsheel Shokeen, Software and Systems Engineer</title>
+    <meta name="description" content="Portfolio of Darsheel Shokeen: Computer Science student and systems builder specializing in Android Media3, IoT telemetry, and reactive applications.">
     <link rel="canonical" href="https://darsheelshokeen.xo.je/">
 
-    <!-- Fonts: Playfair Display + Plus Jakarta Sans + Local PP Neue Montreal -->
+    <!-- Typography: Host Grotesk & Atkinson Hyperlegible Mono (Hallmark Console Theme) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Production Stylesheet -->
-    <link rel="stylesheet" href="styles.css?v=6.4">
+    <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@400;500;600&family=Atkinson+Hyperlegible+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets: Hallmark Tokens, Base and Production System -->
+    <link rel="stylesheet" href="tokens.css">
+    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="styles.css?v=7.0">
 
     <!-- Favicon Suite -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="favicon.png">
     <link rel="shortcut icon" href="favicon.ico">
-
-    <!-- Structured Data (JSON-LD) -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Darsheel Shokeen",
-        "url": "https://darsheelshokeen.xo.je/",
-        "jobTitle": "Product Engineer & Systems Architect",
-        "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Delhi",
-            "addressCountry": "India"
-        },
-        "sameAs": [
-            "https://github.com/DarsheelShokeen",
-            "https://www.linkedin.com/in/darsheel-shokeen-523833302"
-        ]
-    }
-    </script>
 </head>
 <body>
 
-    <!-- 1. Custom Glowing Cursor -->
-    <div class="cursor-wrap" aria-hidden="true">
-        <canvas data-cursor-canvas=""></canvas>
-        <div data-cursor-dot=""></div>
-    </div>
-
-    <!-- 2. Fullscreen Minimalist Menu Overlay -->
-    <div class="navbar-link-wrapper" id="menu-overlay" aria-hidden="true">
-        <a class="nav-link" data-link-stagger="" href="#info">INFO</a>
-        <a class="nav-link" data-link-stagger="" href="#about">ABOUT</a>
-        <a class="nav-link" data-link-stagger="" href="#capabilities">CAPABILITIES</a>
-        <a class="nav-link" data-link-stagger="" href="#experience">EXPERIENCE</a>
-        <a class="nav-link" data-link-stagger="" href="#work">WORK</a>
-        <a class="nav-link" data-link-stagger="" href="#contact">CONTACT</a>
-        <a class="nav-link" data-link-stagger="" href="projects.html" style="font-size: clamp(1.2rem, 2.5vw, 2rem); margin-top: 2rem; color: var(--orange);">
-            ARCHIVE &amp; CASE STUDIES →
-        </a>
-    </div>
-
-    <!-- 3. Fixed Navigation Bar -->
-    <nav class="navbar" id="nav" aria-label="Main Navigation">
-        <!-- Minimalist Bauhaus DS Monogram Logo Button -->
-        <a class="nav-button w-inline-block" href="#header" aria-label="Darsheel Shokeen Home">
-            <span class="nav-brand-mark">DS<span class="nav-brand-dot"></span></span>
-        </a>
-
-        <!-- 5-Dot Matrix Menu Toggle Button -->
-        <a class="nav-button is-menu w-inline-block" href="#" aria-label="Toggle navigation menu" aria-expanded="false">
-            <div class="menu-icon" aria-hidden="true">
-                <div class="menu-dot"></div>
-                <div class="menu-dot"></div>
-                <div class="menu-dot"></div>
-                <div class="menu-dot"></div>
-                <div class="menu-dot"></div>
+    <!-- Site Navigation: Slab layout, edge-aligned -->
+    <header class="site-nav" id="top-nav">
+        <div class="container nav-container">
+            <a href="index.html" class="nav-brand">
+                <span>Darsheel Shokeen</span>
+                <span class="nav-brand-code">sys.dev</span>
+            </a>
+            <nav aria-label="Main Navigation">
+                <ul class="nav-menu">
+                    <li><a href="#work" class="nav-link">Work</a></li>
+                    <li><a href="#telemetry" class="nav-link">Telemetry</a></li>
+                    <li><a href="#architecture" class="nav-link">Architecture</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="nav-actions">
+                <a href="#contact" class="btn btn--primary">Get in touch</a>
             </div>
-            <div>MENU</div>
-        </a>
-    </nav>
+        </div>
+    </header>
 
-    <!-- 4. Main Page Wrapper -->
-    <div class="page-wrapper">
+    <main id="main-content">
 
-        <!-- ====================================================================
-             SECTION 1: HERO & SECTION INFO (#header)
-             ==================================================================== -->
-        <section id="header">
-            <div class="padding-global">
-
-                <!-- Sticky 3D Geometric Monolith Canvas -->
-                <div class="image-sequence__wrap" aria-hidden="true">
-                    <div class="image-sequence__sticky">
-                        <div class="scroll-col">
-                            <div></div>
-                            <div class="image-sequence__element">
-                                <canvas class="image-sequence__canvas" id="hero-canvas"></canvas>
-                            </div>
-                            <div></div>
-                        </div>
+        <!-- Section 1: Hero (Ledge Posture) -->
+        <section class="hero-section" id="hero">
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <span class="hero-telemetry-pill">Station Delhi 28.7041° N (Nominal)</span>
+                    <h1 class="hero-title">Engineering resilient systems and reactive software</h1>
+                    <p class="hero-lead">Computer science student and systems builder in Delhi.</p>
+                    <div class="hero-actions">
+                        <a href="#work" class="btn btn--primary">Inspect systems</a>
+                        <a href="#telemetry" class="btn btn--subtle">Review telemetry</a>
                     </div>
                 </div>
 
-                <!-- Hero Section Top & Bottom -->
-                <div class="section__header">
-                    <div class="header-top">
-                        <h6>Darsheel Shokeen</h6>
-                        <div class="header-status">
-                            <span class="status-indicator-dot"></span>
-                            <h6>Available for Roles</h6>
+                <!-- Signature: Live Instrument Telemetry Console -->
+                <div class="hero-console-col">
+                    <div class="console-panel">
+                        <div class="console-header">
+                            <span class="console-title">Telemetry monitor: station Delhi</span>
+                            <span class="console-status-live">Live</span>
                         </div>
-                    </div>
-
-                    <div class="header-bottom">
-                        <div class="header-intro__wrap">
-                            <h6 class="hide-mobile-landscape">Hi there</h6>
-                            <div class="header-text-wrapper" style="display: flex; align-items: flex-start; gap: 1.5rem;">
-                                <!-- 8-Point Geometric Vermilion Star Icon -->
-                                <div class="star-icon w-embed" aria-hidden="true">
-                                    <svg fill="none" height="48" viewBox="0 0 42 48" width="42" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M21 0L22.1089 20.2315C22.1536 21.0354 23.0188 21.5299 23.7418 21.1641L42 11.999L24.8507 23.0654C24.1683 23.5036 24.1683 24.4924 24.8507 24.9346L42 36.001L23.7418 26.8359C23.0147 26.4701 22.1536 26.9646 22.1089 27.7685L21 48L19.8911 27.7685C19.8464 26.9646 18.9812 26.4701 18.2582 26.8359L0 35.997L17.1493 24.9306C17.8317 24.4924 17.8317 23.5036 17.1493 23.0614L0 11.999L18.2582 21.1641C18.9853 21.5299 19.8464 21.0354 19.8911 20.2315L21 0Z" fill="#F34213"></path>
-                                    </svg>
+                        <div class="console-body">
+                            <div class="console-metric-row">
+                                <div class="metric-cell">
+                                    <span class="metric-label">Water depth</span>
+                                    <span class="metric-value metric-value--cool" id="metric-water">24 <span class="metric-unit">mm</span></span>
                                 </div>
-                                <p style="font-size: clamp(1.1rem, 1.8vw, 1.4rem); line-height: 1.45; margin: 0; color: var(--sand); font-weight: 400;">
-                                    I engineer resilient software &amp; systems,
-                                    <br>
-                                    clean, scalable, unforgettable.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="line"></div>
-
-                        <!-- Huge Right-Aligned Signature Title -->
-                        <h1 class="hero-title text-align-right">
-                            <span class="hero-firstname">Darsheel</span>
-                            <br>
-                            <span class="hero-lastname">Shokeen</span>
-                        </h1>
-                    </div>
-                </div>
-
-                <!-- Section Info: Services & Telemetry (#info) -->
-                <div class="section__info" id="info">
-                    <div class="_2-col is-intro">
-                        <h6>About</h6>
-                        <div class="flex-vertical space-between is-stretch" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
-                            <div class="flex-vertical">
-                                <div class="stats-wrapper">
-                                    <h6>Services</h6>
-                                    <h6 class="text-align-right">Software Architecture, Android Systems &amp;<br>Quantitative Platforms</h6>
-                                    <div class="line is-top"></div>
+                                <div class="metric-cell">
+                                    <span class="metric-label">Audio buffer</span>
+                                    <span class="metric-value metric-value--amber">200 <span class="metric-unit">ms</span></span>
                                 </div>
-                                <div class="stats-wrapper">
-                                    <h6>Experience</h6>
-                                    <h6>Fresher / CS Student &amp; Builder</h6>
-                                    <div class="line is-top"></div>
-                                </div>
-                                <div class="stats-wrapper">
-                                    <h6>Timezone</h6>
-                                    <h6 data-timezone="Asia/Kolkata">DELHI --:--</h6>
-                                    <div class="line is-top"></div>
-                                </div>
-                                <div class="stats-wrapper">
-                                    <h6>Availability</h6>
-                                    <h6>Available for High-Impact Projects</h6>
-                                    <div class="line is-top"></div>
-                                </div>
-                                <div class="stats-wrapper">
-                                    <h6>Core Stacks</h6>
-                                    <h6>Kotlin • Python • React • C++ (IoT)</h6>
-                                    <div class="line is-top"></div>
+                                <div class="metric-cell">
+                                    <span class="metric-label">Discount rate</span>
+                                    <span class="metric-value">8.8 <span class="metric-unit">%</span></span>
                                 </div>
                             </div>
-
-                            <!-- Button-097 Dual-State Tactile Pill Button -->
-                            <a class="button-097 w-inline-block" href="#work">
-                                <span class="button-097__hover">
-                                    <span class="button-097__bg is--hover"></span>
-                                    <span class="button-097__inner">
-                                        <span class="button-097__text">Explore Systems →</span>
-                                    </span>
-                                </span>
-                                <span aria-hidden="true" class="button-097__default">
-                                    <span class="button-097__bg is--default"></span>
-                                    <span class="button-097__inner">
-                                        <span class="button-097__text">View work</span>
-                                    </span>
-                                </span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- ====================================================================
-             SECTION 2: ABOUT MANIFESTO (#about)
-             ==================================================================== -->
-        <section id="about">
-            <div class="padding-global">
-                <div class="padding-vertical padding-xxhuge" style="padding-top: 10rem; padding-bottom: 8rem;">
-                    <div class="margin-bottom margin-large" style="margin-bottom: 3.5rem;">
-                        <h2 class="heading-2" data-gradient-wave-text="" data-gradient-wave-color-start="rgba(255, 255, 255, 0.2)" data-gradient-wave-color-wave="#F34213">
-                            I engineer software that commands attention — systems, products and beyond
-                        </h2>
-                    </div>
-                    <div class="line"></div>
-                    <div class="margin-top margin-medium" style="margin-top: 3.5rem;">
-                        <div class="_2-col is-3-9" style="display: grid; grid-template-columns: 3fr 9fr; gap: 2rem;">
-                            <h6>Philosophy</h6>
-                            <p class="text-2-col" style="font-size: clamp(1.1rem, 1.8vw, 1.5rem); line-height: 1.6; color: var(--sand); margin: 0;">
-                                I’m a product engineer and software builder based in Delhi, India. I bring system architecture, product design, and rigorous engineering together to build applications that stand out and perform reliably wherever they run. From low-level embedded hardware and Android media engines to quantitative valuation models and multi-tenant web platforms. I engineer systems from the ground up with obsessive precision. One vision. Purposeful craft. Software that works as one.
-                            </p>
+                            <div class="console-terminal-view" id="hero-terminal" aria-live="polite">
+                                <span class="term-line"><span class="term-stamp">[06:14:02.108]</span> <span class="term-actor">esp32/adc34:</span> raw 1420 to depth 24.2mm (nominal)</span>
+                                <span class="term-line"><span class="term-stamp">[06:14:02.340]</span> <span class="term-actor">media3/session:</span> track transition to palette quantized</span>
+                                <span class="term-line"><span class="term-stamp">[06:14:02.890]</span> <span class="term-actor">fastapi/alert:</span> debounce 4000ms holding stable</span>
+                                <span class="term-line"><span class="term-stamp">[06:14:03.115]</span> <span class="term-actor">dcf/eval:</span> terminal growth 2.5%, intrinsic value computed</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ====================================================================
-             SECTION 3: CAPABILITIES (#capabilities)
-             ==================================================================== -->
-        <section id="capabilities" class="section-editorial">
-            <div class="padding-global">
-                <div class="margin-bottom margin-large" style="margin-bottom: 3.5rem;">
-                    <h2 class="heading-2" data-gradient-wave-text="" style="font-size: clamp(2.4rem, 7vw, 5.8rem); line-height: 1.05; text-transform: uppercase; margin: 0; font-weight: 500; letter-spacing: -0.02em;">
-                        Disciplines forged in real production environments
-                    </h2>
+        <!-- Section 2: Selected Systems Index -->
+        <section class="section-block" id="work">
+            <div class="container">
+                <div class="section-head">
+                    <h2 class="section-title">Selected systems and open platforms</h2>
+                    <p class="section-desc">Production systems engineered from edge firmware to reactive interfaces.</p>
                 </div>
-                <div class="line"></div>
-                <div class="margin-top margin-medium" style="margin-top: 3.5rem;">
-                    <div class="capabilities-list">
 
-                        <!-- Capability 1 -->
-                        <div class="capability-item">
-                            <div class="capability-meta">
-                                <span class="capability-num">01 / ARCHITECTURE</span>
-                                <span class="capability-category">Mobile Systems</span>
+                <div class="projects-index">
+
+                    <!-- Project 1: Smart Flood Alert -->
+                    <article class="project-entry">
+                        <div class="project-visual-col">
+                            <img src="assets/images/smartflood-cover.webp" alt="Smart Flood Alert system dashboard preview" width="800" height="500" loading="eager">
+                        </div>
+                        <div class="project-info-col">
+                            <div class="project-header-group">
+                                <span class="project-domain">Embedded IoT, Cloud Telemetry</span>
+                                <h3 class="project-heading">Smart Flood Alert</h3>
+                                <p class="project-summary">Urban flood telemetry with ESP32 edge probes, FastAPI ingestion, and WhatsApp alerts.</p>
                             </div>
-                            <div class="capability-details">
-                                <h3 class="capability-title">Native Android &amp; Media Engines</h3>
-                                <span class="capability-stack">Kotlin • Jetpack Compose • Media3 • Android Palette API • AudioTrack</span>
-                                <p class="capability-desc">
-                                    Deep expertise in Android system-level media session IPC hooking, dynamic wallpaper services, real-time bitmap palette extraction, and reactive Material 3 desktop-grade mobile architectures.
-                                </p>
+                            <div class="project-specs-list">
+                                <div class="spec-item">
+                                    <span class="spec-k">Edge hardware</span>
+                                    <span class="spec-v">ESP32 NodeMCU, FC-28</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-k">Sampling rate</span>
+                                    <span class="spec-v">10 Hz, 4000ms debounce</span>
+                                </div>
+                            </div>
+                            <div class="project-links-row">
+                                <a href="smart-flood.html" class="btn btn--primary">Inspect case study</a>
+                                <a href="smart-flood/index.html" class="btn btn--cool">Launch dashboard</a>
+                                <a href="https://github.com/DarsheelShokeen/Smart-Flood-Alert" target="_blank" rel="noopener noreferrer" class="btn btn--subtle">GitHub repository</a>
                             </div>
                         </div>
+                    </article>
 
-                        <!-- Capability 2 -->
-                        <div class="capability-item">
-                            <div class="capability-meta">
-                                <span class="capability-num">02 / EMBEDDED</span>
-                                <span class="capability-category">IoT &amp; Telemetry</span>
+                    <!-- Project 2: AlbumCanvas -->
+                    <article class="project-entry">
+                        <div class="project-visual-col">
+                            <img src="assets/images/albumcanvas-cover.webp" alt="AlbumCanvas Android interface preview" width="800" height="500" loading="lazy">
+                        </div>
+                        <div class="project-info-col">
+                            <div class="project-header-group">
+                                <span class="project-domain">Android Systems, Media Engine</span>
+                                <h3 class="project-heading">AlbumCanvas</h3>
+                                <p class="project-summary">Live wallpaper and widget engine hooking Android MediaSessionManager to render OpenGL shaders.</p>
                             </div>
-                            <div class="capability-details">
-                                <h3 class="capability-title">Hardware Probes &amp; Telemetry Gateways</h3>
-                                <span class="capability-stack">ESP32 (C++) • FC-28 Probes • Python FastAPI • Meta Cloud WhatsApp API</span>
-                                <p class="capability-desc">
-                                    Autonomous liquid depth sensing, hardware ADC noise filtration, low-latency telemetry ingestion microservices, and instant automated citizen broadcast dispatch pipelines under critical conditions.
-                                </p>
+                            <div class="project-specs-list">
+                                <div class="spec-item">
+                                    <span class="spec-k">Core architecture</span>
+                                    <span class="spec-v">Kotlin, Jetpack Compose</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-k">Media engine</span>
+                                    <span class="spec-v">AndroidX Media3, Shaders</span>
+                                </div>
+                            </div>
+                            <div class="project-links-row">
+                                <a href="album-canvas.html" class="btn btn--primary">Inspect case study</a>
+                                <a href="album-canvas/index.html" class="btn btn--cool">Launch simulator</a>
+                                <a href="https://github.com/DarsheelShokeen/AlbumCanvas" target="_blank" rel="noopener noreferrer" class="btn btn--subtle">GitHub repository</a>
                             </div>
                         </div>
-
-                        <!-- Capability 3 -->
-                        <div class="capability-item">
-                            <div class="capability-meta">
-                                <span class="capability-num">03 / EDTECH</span>
-                                <span class="capability-category">Web Workbenches</span>
-                            </div>
-                            <div class="capability-details">
-                                <h3 class="capability-title">Instructional &amp; Pedagogical Systems</h3>
-                                <span class="capability-stack">Python • Flask • NEP 2020 5E Model • Bloom's Taxonomy • PDF Generation</span>
-                                <p class="capability-desc">
-                                    Domain-driven educational workbenches aligning lesson architectures to national curricular frameworks (NCERT / NEP 2020), structured cognitive prompt scaffolding, and automated document compilation.
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Capability 4 -->
-                        <div class="capability-item">
-                            <div class="capability-meta">
-                                <span class="capability-num">04 / QUANTITATIVE</span>
-                                <span class="capability-category">Financial Modeling</span>
-                            </div>
-                            <div class="capability-details">
-                                <h3 class="capability-title">Valuation Engines &amp; DCF Platforms</h3>
-                                <span class="capability-stack">React • TypeScript • Discounted Cash Flow • WACC Modeling • Chart.js</span>
-                                <p class="capability-desc">
-                                    High-precision intrinsic equity pricing engines, free cash flow multi-stage projections, dynamic weighted average cost of capital sensitivity matrices, and automated fundamental financial health diagnostics.
-                                </p>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ====================================================================
-             SECTION 4: EXPERIENCE / TRACK RECORD (#experience)
-             ==================================================================== -->
-        <section id="experience" class="section-editorial">
-            <div class="padding-global">
-                <div class="margin-bottom margin-large" style="margin-bottom: 3.5rem;">
-                    <div style="margin-bottom: 1rem;">
-                        <span style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--orange); font-weight: 600;">ACADEMIC &amp; ENGINEERING TRAJECTORY</span>
-                    </div>
-                    <h2 class="heading-2" data-gradient-wave-text="" style="margin: 0; font-weight: 500; letter-spacing: -0.02em;">
-                        Student milestones &amp; verified engineering
-                    </h2>
-                </div>
-                <div class="line"></div>
-                <div class="margin-top margin-medium" style="margin-top: 3.5rem;">
-                    <div class="experience-list">
-
-                        <!-- Milestone 1 -->
-                        <div class="experience-item">
-                            <div class="experience-meta">
-                                <span class="experience-year">2024 — PRESENT</span>
-                                <span class="experience-role">Lead Engineer &amp; Creator</span>
-                            </div>
-                            <div class="experience-details">
-                                <h3 class="experience-title">AlbumCanvas — Android Audio &amp; Media3 Architecture</h3>
-                                <p class="experience-desc">
-                                    Engineered open-source ambient live wallpaper with real-time Media3 audio hooks, dynamic Android 14 Monet palette extraction, and 60fps hardware-accelerated canvas rendering.
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Milestone 2 -->
-                        <div class="experience-item">
-                            <div class="experience-meta">
-                                <span class="experience-year">2024</span>
-                                <span class="experience-role">IoT Systems Developer</span>
-                            </div>
-                            <div class="experience-details">
-                                <h3 class="experience-title">Smart Flood Alert IoT Early-Warning Network</h3>
-                                <p class="experience-desc">
-                                    Architected hardware sensing units using ESP32 and FC-28 depth probes in C++, interfaced with high-throughput Python FastAPI telemetry gateway, and automated Meta Cloud WhatsApp emergency broadcast triggers.
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Milestone 3 -->
-                        <div class="experience-item">
-                            <div class="experience-meta">
-                                <span class="experience-year">2024</span>
-                                <span class="experience-role">Full-Stack Developer</span>
-                            </div>
-                            <div class="experience-details">
-                                <h3 class="experience-title">LessonPlan Maker (NCERT &amp; NEP 2020)</h3>
-                                <p class="experience-desc">
-                                    Built an end-to-end pedagogical workbench integrating 5E learning frameworks and Bloom's cognitive taxonomy, enabling educators to generate NEP 2020-compliant lesson blueprints.
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Milestone 4 -->
-                        <div class="experience-item">
-                            <div class="experience-meta">
-                                <span class="experience-year">2024</span>
-                                <span class="experience-role">Quantitative Systems Developer</span>
-                            </div>
-                            <div class="experience-details">
-                                <h3 class="experience-title">Financial Research &amp; DCF Valuation Engine</h3>
-                                <p class="experience-desc">
-                                    Developed algorithmic valuation platform implementing Monte Carlo simulations, discounted cash flow (DCF) models, and automated financial filing analysis with interactive dashboards.
-                                </p>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ====================================================================
-             SECTION 5: SELECTED WORK & LIQUID GLASS CAROUSEL (#work)
-             ==================================================================== -->
-        <section>
-            <div class="padding-global">
-                <div class="margin-top margin-huge" style="margin-top: 6rem; text-align: center;">
-                    <h6>What you’re here for (I guess)</h6>
-                    <h2 class="heading-extreme" style="font-size: clamp(5rem, 26vw, 32vw); line-height: 0.85; margin: 0; text-transform: uppercase; font-weight: 500; letter-spacing: -0.04em;">
-                        Work
-                    </h2>
-                </div>
-            </div>
-        </section>
-
-        <!-- Interactive Liquid Glass Carousel -->
-                <!-- ====================================================================
-             SECTION 5: WORK & CASE STUDIES (#work)
-             Interactive Liquid Glass Carousel (Tom de Koning Blueprint)
-             ==================================================================== -->
-        <section class="glass-carousel" data-glass-carousel="" id="work">
-            <!-- Dynamic Liquid Lens WebGL Canvas (Visual Distortion Overlay) -->
-            <canvas aria-hidden="true" class="glass-carousel__canvas" data-glass-carousel-canvas=""></canvas>
-            
-            <!-- Dedicated Dynamic Glass Carousel Caption (Tom de Koning Blueprint) -->
-            <div class="glass-carousel__caption" data-glass-carousel-caption="">
-                <h3 class="glass-carousel__caption-title">AlbumCanvas</h3>
-                <p class="glass-carousel__caption-sub">Android / Media3 / Kotlin</p>
-            </div>
-
-            <!-- Carousel Navigation Arrows -->
-            <button class="carousel-nav-btn is-prev" aria-label="Previous Project" data-carousel-prev="">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="15 18 9 12 15 6"></polyline>
-                </svg>
-            </button>
-            <button class="carousel-nav-btn is-next" aria-label="Next Project" data-carousel-next="">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="9 18 15 12 9 6"></polyline>
-                </svg>
-            </button>
-
-            <!-- Carousel Counter Pill -->
-            <div class="glass-carousel__counter" data-glass-carousel-counter="">01 / 04</div>
-
-            <!-- Interactive Track Wrapper -->
-            <div class="glass-carousel__track-wrap" data-glass-carousel-track-wrap="">
-                <div class="glass-carousel__list" data-glass-carousel-list="">
-
-                    <!-- Project 1: AlbumCanvas -->
-                    <a href="album-canvas.html" class="glass-carousel__item is-active" data-glass-carousel-item="" data-index="0">
-                        <div class="bunny-bg">
-                            <img src="assets/images/albumcanvas-cover.webp?v=6.3" alt="AlbumCanvas — Dynamic Live Wallpaper &amp; Ambient Music Experience" class="bunny-bg__placeholder" loading="lazy">
-                        </div>
-                        <div class="glass-carousel__item-content" data-glass-carousel-content="">
-                            <h3 class="glass-carousel__item-p">AlbumCanvas</h3>
-                            <p class="glass-carousel__item-p is--faded">Android / Media3 / Kotlin</p>
-                        </div>
-                    </a>
-
-                    <!-- Project 2: Smart Flood Alert -->
-                    <a href="smart-flood.html" class="glass-carousel__item" data-glass-carousel-item="" data-index="1">
-                        <div class="bunny-bg">
-                            <img src="assets/images/smartflood-cover.webp?v=6.3" alt="Smart Flood Alert — IoT Early Warning Telemetry Network" class="bunny-bg__placeholder" loading="lazy">
-                        </div>
-                        <div class="glass-carousel__item-content" data-glass-carousel-content="">
-                            <h3 class="glass-carousel__item-p">Smart Flood Alert</h3>
-                            <p class="glass-carousel__item-p is--faded">IoT Telemetry / FastAPI / ESP32</p>
-                        </div>
-                    </a>
+                    </article>
 
                     <!-- Project 3: LessonPlan Maker -->
-                    <a href="lessonplan-maker.html" class="glass-carousel__item" data-glass-carousel-item="" data-index="2">
-                        <div class="bunny-bg">
-                            <img src="assets/images/lessonplan-cover.webp?v=6.3" alt="LessonPlan Maker — Pedagogical Workbench" class="bunny-bg__placeholder" loading="lazy">
+                    <article class="project-entry">
+                        <div class="project-visual-col">
+                            <img src="assets/images/lessonplan-cover.webp" alt="LessonPlan Maker application interface" width="800" height="500" loading="lazy">
                         </div>
-                        <div class="glass-carousel__item-content" data-glass-carousel-content="">
-                            <h3 class="glass-carousel__item-p">LessonPlan Maker</h3>
-                            <p class="glass-carousel__item-p is--faded">EdTech Platform / Python / FastAPI</p>
+                        <div class="project-info-col">
+                            <div class="project-header-group">
+                                <span class="project-domain">Educational Platforms, Pedagogy</span>
+                                <h3 class="project-heading">LessonPlan Maker</h3>
+                                <p class="project-summary">Curriculum workbench implementing NEP 2020 5E inquiry pedagogy across middle schools.</p>
+                            </div>
+                            <div class="project-specs-list">
+                                <div class="spec-item">
+                                    <span class="spec-k">Backend stack</span>
+                                    <span class="spec-v">Python, Flask, Jinja2</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-k">Pedagogy model</span>
+                                    <span class="spec-v">NEP 2020 5E Inquiry</span>
+                                </div>
+                            </div>
+                            <div class="project-links-row">
+                                <a href="lessonplan-maker.html" class="btn btn--primary">Inspect case study</a>
+                                <a href="lessonplan-maker/index.html" class="btn btn--cool">Launch planner</a>
+                            </div>
                         </div>
-                    </a>
+                    </article>
 
-                    <!-- Project 4: Financial Research -->
-                    <a href="financial-research.html" class="glass-carousel__item" data-glass-carousel-item="" data-index="3">
-                        <div class="bunny-bg">
-                            <img src="assets/images/financial-research-cover.webp?v=6.3" alt="Quantitative Financial Research &amp; Valuation Platform" class="bunny-bg__placeholder" loading="lazy">
+                    <!-- Project 4: Financial Research Platform -->
+                    <article class="project-entry">
+                        <div class="project-visual-col">
+                            <img src="assets/images/financial-research-cover.webp" alt="Financial Research Platform valuation interface" width="800" height="500" loading="lazy">
                         </div>
-                        <div class="glass-carousel__item-content" data-glass-carousel-content="">
-                            <h3 class="glass-carousel__item-p">Financial Research</h3>
-                            <p class="glass-carousel__item-p is--faded">Quantitative Engine / Streamlit / DCF</p>
+                        <div class="project-info-col">
+                            <div class="project-header-group">
+                                <span class="project-domain">Quantitative Finance, Valuation</span>
+                                <h3 class="project-heading">Financial Research Platform</h3>
+                                <p class="project-summary">Equity valuation engine calculating multi-stage DCF models, WACC estimations, and sensitivities.</p>
+                            </div>
+                            <div class="project-specs-list">
+                                <div class="spec-item">
+                                    <span class="spec-k">Frontend architecture</span>
+                                    <span class="spec-v">TypeScript, React</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-k">Valuation models</span>
+                                    <span class="spec-v">10 Year DCF, WACC</span>
+                                </div>
+                            </div>
+                            <div class="project-links-row">
+                                <a href="financial-research.html" class="btn btn--primary">Inspect model</a>
+                            </div>
                         </div>
-                    </a>
+                    </article>
 
                 </div>
             </div>
         </section>
 
-        <!-- ====================================================================
-             SECTION 6: FOOTER / CONTACT (#contact)
-             ==================================================================== -->
-        <section class="section-footer" id="contact">
-            <div class="padding-global is-full">
-                <div class="footer-base" style="background: #101010; border: 1px solid rgba(231, 225, 215, 0.15); border-radius: 0.75rem; padding: 2.5rem; min-height: 75vh; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden;">
-                    
-                    <!-- Footer Top Header -->
-                    <div class="padding-medium">
-                        <div class="flex-horizontal space-between is-stretch" style="display: flex; justify-content: space-between; align-items: center;">
-                            <h6>Darsheel Shokeen</h6>
-                            <h6>Delhi, India / Available Worldwide</h6>
-                        </div>
-                    </div>
+        <!-- Section 3: Interactive Telemetry Bench -->
+        <section class="section-block section-block--alt" id="telemetry">
+            <div class="container">
+                <div class="section-head">
+                    <h2 class="section-title">Interactive telemetry and signal workbench</h2>
+                    <p class="section-desc">Interactive edge signal processor demonstrating debounce logic and alert thresholds.</p>
+                </div>
 
-                    <!-- Footer Content & Marquee -->
-                    <div class="footer-last" style="width: 100%;">
-                        <div class="padding-medium" style="margin-bottom: 2rem;">
-                            <div class="flex-horizontal space-between is-stretch" style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem;">
-                                <div class="flex-vertical gap-s" style="display: flex; flex-direction: column; gap: 1.5rem;">
-                                    <div class="flex-vertical">
-                                        <h6 style="margin-bottom: 0.25rem;">Contact</h6>
-                                        <a class="heading-style-h6" data-link-stagger="" href="contact.html" style="font-size: 1.5rem; text-decoration: none; color: var(--sand);">
-                                            Get in Touch →
-                                        </a>
-                                    </div>
-                                    <div class="flex-vertical">
-                                        <h6 style="margin-bottom: 0.25rem;">GitHub</h6>
-                                        <a class="heading-style-h6" data-link-stagger="" href="https://github.com/DarsheelShokeen" target="_blank" rel="noopener noreferrer" style="font-size: 1.5rem; text-decoration: none; color: var(--sand);">
-                                            @DarsheelShokeen
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <div class="flex-vertical gap-s" style="display: flex; flex-direction: column; gap: 1.5rem; text-align: right;">
-                                    <div class="flex-vertical">
-                                        <h6 style="margin-bottom: 0.25rem;">LinkedIn</h6>
-                                        <a class="heading-style-h6 text-align-right" data-link-stagger="" href="https://www.linkedin.com/in/darsheel-shokeen-523833302" target="_blank" rel="noopener noreferrer" style="font-size: 1.5rem; text-decoration: none; color: var(--sand);">
-                                            @darsheel-shokeen
-                                        </a>
-                                    </div>
-                                    <div class="flex-vertical">
-                                        <h6 style="margin-bottom: 0.25rem;">Location</h6>
-                                        <h6 class="text-align-right" style="font-size: 1.5rem; margin: 0; color: var(--sand);">
-                                            Delhi, India
-                                        </h6>
-                                    </div>
-                                </div>
+                <div class="bench-grid">
+                    <div class="bench-controls-card">
+                        <div class="bench-control-item">
+                            <div class="bench-label-row">
+                                <span>Simulated water probe depth</span>
+                                <span id="bench-depth-val">24 mm</span>
                             </div>
-                            <div class="line" style="margin-top: 2rem;"></div>
+                            <input type="range" min="0" max="100" value="24" class="bench-slider" id="bench-depth-slider" aria-label="Simulate water depth in millimeters">
                         </div>
 
-                        <!-- Infinite Smooth Marquee -->
-                        <div class="marquee-advanced" data-marquee-direction="left">
-                            <div class="marquee-advanced__scroll">
-                                <div class="marquee-advanced__collection">
-                                    <div class="marquee-advanced__item">
-                                        <h3 class="marquee-text">
-                                            Darsheel Shokeen
-                                            <span style="opacity: 0.4; font-size: 0.7em;">—</span>
-                                            Software &amp; Systems Engineer
-                                            <span style="opacity: 0.4; font-size: 0.7em;">—</span>
-                                            CS Student &amp; Builder
-                                            <span style="opacity: 0.4; font-size: 0.7em;">—</span>
-                                        </h3>
-                                    </div>
-                                </div>
+                        <div class="bench-control-item">
+                            <div class="bench-label-row">
+                                <span>Debounce sampling window</span>
+                                <span>4000 ms (10 samples)</span>
+                            </div>
+                        </div>
+
+                        <div class="bench-control-item">
+                            <button type="button" class="btn btn--cool" id="btn-inject-spike">Inject transient reading spike</button>
+                        </div>
+
+                        <div class="project-specs-list" style="margin-top: var(--space-sm);">
+                            <div class="spec-item">
+                                <span class="spec-k">Active state</span>
+                                <span class="spec-v" id="bench-state-tag">Nominal (< 40mm)</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-k">Dispatch queue</span>
+                                <span class="spec-v" id="bench-queue-tag">0 alerts pending</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Ambient Glowing Radiant Mesh -->
-                    <div class="footer-gradient" style="position: absolute; bottom: 0; left: 0; right: 0; height: 35%; background: radial-gradient(ellipse at 50% 120%, rgba(243, 66, 19, 0.25), transparent 70%); pointer-events: none;"></div>
+                    <div class="bench-output-card">
+                        <div class="console-header" style="background: transparent; padding: 0 0 var(--space-xs) 0;">
+                            <span class="console-title">Edge telemetry stream: ESP32 ADC34</span>
+                            <span class="console-status-live">Connected</span>
+                        </div>
+                        <div class="bench-log" id="bench-terminal" aria-live="polite">
+                            <span class="term-line"><span class="term-stamp">[INIT]</span> System online: 10Hz sampling rate configured on GPIO 34</span>
+                            <span class="term-line"><span class="term-stamp">[LOG]</span> Baseline calibrated: ADC offset 1420 counts = 24.0mm</span>
+                            <span class="term-line"><span class="term-stamp">[LOG]</span> Debounce buffer initialized: 10 sample window active</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-    </div>
+        <!-- Section 4: Technical Capabilities -->
+        <section class="section-block" id="architecture">
+            <div class="container">
+                <div class="section-head">
+                    <h2 class="section-title">Technical disciplines and core stacks</h2>
+                    <p class="section-desc">Focused software engineering across low-level hardware, mobile platforms, and web services.</p>
+                </div>
 
-    <!-- GSAP & Core Animation Dependencies -->
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-    
-    <!-- Production JavaScript Runtime -->
-    <script src="main.js?v=6.4"></script>
+                <div class="caps-grid">
+                    <div class="cap-card">
+                        <h3 class="cap-title">Embedded systems</h3>
+                        <p class="cap-body">ESP32 C++ firmware, ADC calibration, debounce filters, FastAPI telemetry.</p>
+                    </div>
+
+                    <div class="cap-card">
+                        <h3 class="cap-title">Android systems</h3>
+                        <p class="cap-body">Kotlin architecture, Jetpack Compose, Media3 playback, OpenGL shaders.</p>
+                    </div>
+
+                    <div class="cap-card">
+                        <h3 class="cap-title">Web platforms</h3>
+                        <p class="cap-body">TypeScript, Python services, educational engines, mathematical valuation.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Profile & Identity (Fresher / Student Context) -->
+        <section class="section-block section-block--alt" id="about">
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <h2 class="section-title">About Darsheel Shokeen</h2>
+                    <p class="hero-lead">Computer science student and systems builder in Delhi.</p>
+                    <p style="font-size: var(--text-md); line-height: 1.6; color: var(--color-ink-2);">
+                        I build software connecting hardware to reactive interfaces: ESP32 edge telemetry, Android Media3 services, and financial valuation engines. Open for engineering roles.
+                    </p>
+                </div>
+
+                <div class="hero-console-col">
+                    <div class="console-panel">
+                        <div class="console-header">
+                            <span class="console-title">Candidate profile and status</span>
+                            <span class="console-status-live">Open for roles</span>
+                        </div>
+                        <div class="console-body">
+                            <div class="project-specs-list" style="border-top: none;">
+                                <div class="spec-item">
+                                    <span class="spec-k">Academic standing</span>
+                                    <span class="spec-v">Computer Science Undergraduate</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-k">Location</span>
+                                    <span class="spec-v">Delhi, India</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-k">Primary languages</span>
+                                    <span class="spec-v">Kotlin, Python, C++, TypeScript</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-k">Development philosophy</span>
+                                    <span class="spec-v">Measure, build cleanly, test thoroughly</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer: Index Columns -->
+    <footer class="site-footer" id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-lead-col">
+                    <span class="footer-brand-title">Darsheel Shokeen</span>
+                    <p class="footer-tagline">Building systems with precision. Open for software engineering opportunities.</p>
+                </div>
+                <div class="footer-links-col">
+                    <span class="footer-col-title">Direct contact</span>
+                    <a href="mailto:darsheelshokeen135@gmail.com" class="footer-link">darsheelshokeen135@gmail.com</a>
+                    <a href="https://github.com/DarsheelShokeen" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub Profile</a>
+                    <a href="https://www.linkedin.com/in/darsheel-shokeen-523833302" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn Profile</a>
+                </div>
+                <div class="footer-links-col">
+                    <span class="footer-col-title">Navigation</span>
+                    <a href="#work" class="footer-link">Selected Work</a>
+                    <a href="#telemetry" class="footer-link">Telemetry Bench</a>
+                    <a href="#architecture" class="footer-link">Architecture</a>
+                    <a href="#about" class="footer-link">About Profile</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <span>Design system: Hallmark Console (graphite, amber, cool blue)</span>
+                <span>Semantic HTML, tokenized OKLCH CSS</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Telemetry Bench JavaScript -->
+    <script>
+    (function() {
+        const slider = document.getElementById('bench-depth-slider');
+        const depthVal = document.getElementById('bench-depth-val');
+        const stateTag = document.getElementById('bench-state-tag');
+        const queueTag = document.getElementById('bench-queue-tag');
+        const term = document.getElementById('bench-terminal');
+        const metricWater = document.getElementById('metric-water');
+        const btnSpike = document.getElementById('btn-inject-spike');
+
+        function appendLog(msg, isAlert) {
+            if (!term) return;
+            const now = new Date().toISOString().substring(11, 19);
+            const line = document.createElement('span');
+            line.className = 'term-line';
+            line.innerHTML = '<span class="term-stamp">[' + now + ']</span> ' + msg;
+            term.appendChild(line);
+            term.scrollTop = term.scrollHeight;
+        }
+
+        if (slider) {
+            slider.addEventListener('input', function(e) {
+                const val = parseInt(e.target.value, 10);
+                if (depthVal) depthVal.textContent = val + ' mm';
+                if (metricWater) metricWater.innerHTML = val + ' <span class="metric-unit">mm</span>';
+
+                if (val < 40) {
+                    if (stateTag) stateTag.textContent = 'Nominal (< 40mm)';
+                    if (queueTag) queueTag.textContent = '0 alerts pending';
+                    appendLog('ESP32 ADC reading updated: ' + val + 'mm (Nominal baseline)');
+                } else if (val < 70) {
+                    if (stateTag) stateTag.textContent = 'Warning (40-70mm)';
+                    if (queueTag) queueTag.textContent = '1 advisory queued';
+                    appendLog('<span class="term-actor">WARNING:</span> Water reached ' + val + 'mm threshold. Debounce holding.');
+                } else {
+                    if (stateTag) stateTag.textContent = 'Critical Alert (> 70mm)';
+                    if (queueTag) queueTag.textContent = 'Emergency broadcast active';
+                    appendLog('<span class="term-actor">CRITICAL:</span> Water level ' + val + 'mm. Emergency WhatsApp dispatch triggered.');
+                }
+            });
+        }
+
+        if (btnSpike) {
+            btnSpike.addEventListener('click', function() {
+                appendLog('<span class="term-actor">NOISE SPIKE:</span> Single reading 92mm received.');
+                setTimeout(function() {
+                    appendLog('<span class="term-ok">DEBOUNCE FILTER:</span> Transient discarded (consecutive count < 10). State preserved.');
+                }, 400);
+            });
+        }
+    })();
+    </script>
 </body>
 </html>
