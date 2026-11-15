@@ -420,6 +420,7 @@
   background: var(--color-paper-3);
   border: var(--rule-hair) solid var(--color-rule);
   border-radius: var(--radius-pill);
+  overflow: hidden;
 }
 
 .spectrum-bar {

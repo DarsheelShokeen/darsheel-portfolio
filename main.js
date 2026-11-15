@@ -379,7 +379,7 @@
       // Harmonic sine wave generator
       const freq = 0.003;
       const wave = Math.sin(timestamp * freq + i * 0.45) * 0.5 + 0.5;
-      const heightPx = Math.round(6 + wave * 34); // Height between 6px and 40px
+      const heightPx = Math.round(4 + wave * 24); // Height between 4px and 28px (fits inside 30px content box)
 
       bar.style.height = `${heightPx}px`;
     }
