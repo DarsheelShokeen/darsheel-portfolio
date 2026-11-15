@@ -1,803 +1,690 @@
-/* ==============================================================================
-   DARSHEEL SHOKEEN — PORTFOLIO RUNTIME ENGINE
-   Tom de Koning Reference Blueprint | Avant-Garde Minimalist & Liquid Glass Physics
-   ============================================================================== */
+/**
+ * Darsheel Shokeen — Portfolio Telemetry Runtime Engine
+ * Hallmark Console Theme | Macrostructure 05 Workbench | Ledge Posture
+ * 
+ * Domains:
+ * 1. ESP32 ADC Sampling (GPIO 34, 12-bit SAR ADC, 50Hz edge loop, 4000ms moving median debounce)
+ * 2. Android Media3 Audio Pipeline (MediaSessionManager, 200ms buffer, <8.2ms AGSL blur, Octree Palette)
+ * 3. Two-Stage DCF Financial Model (FCFF, explicit 5-year forecast + Gordon Growth terminal value)
+ */
 
-document.addEventListener('DOMContentLoaded', () => {
+(function () {
+  'use strict';
 
-    // 1. Utility: Reduce Motion Check
-    const reduceMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // =========================================================================
+  // 1. Reactive Telemetry State Model
+  // =========================================================================
+  const telemetryState = {
+    activeDomain: 'esp32',
+    isStreamPaused: false,
 
-    // 2. Signature Typographic Move: Wrap Letter 'O' with Playfair Display Italic
-    const initWrapLetterO = () => {
-        const wrap = (node) => {
-            if (node.nodeType === Node.TEXT_NODE) {
-                const text = node.nodeValue;
-                if (!/[oO]/.test(text)) return;
+    station: {
+      id: 'DELHI-NODE-28N',
+      location: 'Delhi, India (28.7041° N, 77.1025° E)',
+      status: 'NOMINAL',
+    },
 
-                const fragment = document.createDocumentFragment();
-                for (const part of text.split(/([oO])/)) {
-                    if (/^[oO]$/.test(part)) {
-                        const span = document.createElement('span');
-                        span.className = 'playfair-o';
-                        span.textContent = part;
-                        fragment.append(span);
-                    } else if (part.length > 0) {
-                        fragment.append(document.createTextNode(part));
-                    }
-                }
-                node.replaceWith(fragment);
-            } else if (
-                node.nodeType === Node.ELEMENT_NODE &&
-                !node.matches('.playfair-o, script, style, svg, canvas, code, pre')
-            ) {
-                Array.from(node.childNodes).forEach(wrap);
-            }
-        };
+    esp32: {
+      gpioPin: 34,
+      resolutionBits: 12,
+      rawAdcOffset: 1420, // Baseline offset (24.2mm nominal depth)
+      rawAdcMax: 4095,
+      currentDepthMm: 24.2,
+      rawAdcCounts: 1420,
+      voltageVolts: 1.144,
+      debounceSamples: [24, 24, 24, 25, 24, 24, 24, 24, 25, 24],
+      debounceWindowMs: 4000,
+      debounceCapacity: 10,
+      status: 'NOMINAL',
+      queueAlerts: 0,
+      whatsappArmed: true,
+      lastDispatchTime: null,
+    },
 
-        const targets = document.querySelectorAll('h1, h2, h3, h4, h5, h6, .heading-extreme, .heading-2, .marquee-text, .nav-link, .stats-wrapper h6');
-        targets.forEach(el => {
-            if (!el.matches('[data-gradient-wave-text]') && !el.closest('[data-gradient-wave-text]')) {
-                wrap(el);
-            }
-        });
-    };
-    initWrapLetterO();
+    media3: {
+      playbackState: 'STATE_PLAYING',
+      bufferWindowMs: 200,
+      crossfadeLatencyMs: 280,
+      agslRenderTimeMs: 6.8,
+      lruMemoryMb: 28.4,
+      activeTrackIndex: 0,
+      tracks: [
+        {
+          title: 'After Hours',
+          artist: 'The Weeknd',
+          format: '48.0 kHz / 24-bit PCM',
+          swatches: {
+            dominant: '#180B13',
+            vibrant: '#00E5FF',
+            muted: '#9F1239',
+            lightVibrant: '#FECDD3',
+            darkMuted: '#4C0519',
+            darkVibrant: '#E11D48',
+          },
+        },
+        {
+          title: 'Random Access Memories',
+          artist: 'Daft Punk',
+          format: '96.0 kHz / 24-bit FLAC',
+          swatches: {
+            dominant: '#0B1329',
+            vibrant: '#0284C7',
+            muted: '#334155',
+            lightVibrant: '#BAE6FD',
+            darkMuted: '#0F172A',
+            darkVibrant: '#1D4ED8',
+          },
+        },
+        {
+          title: 'Currents',
+          artist: 'Tame Impala',
+          format: '44.1 kHz / 16-bit Lossless',
+          swatches: {
+            dominant: '#1C0D29',
+            vibrant: '#A855F7',
+            muted: '#701A75',
+            lightVibrant: '#F0ABFC',
+            darkMuted: '#3B0764',
+            darkVibrant: '#9333EA',
+          },
+        },
+      ],
+      spectrumBands: 16,
+      spectrumAmplitudes: new Array(16).fill(12),
+    },
 
-    // 3. Navigation & 5-Dot Matrix Menu Toggle
-    const initMenu = () => {
-        const trigger = document.querySelector('.nav-button.is-menu');
-        const icon = document.querySelector('.menu-icon');
-        const wrapper = document.querySelector('.navbar-link-wrapper');
-        if (!trigger || !icon || !wrapper) return;
+    dcf: {
+      baseFcfMillions: 158.0,
+      growthRatePct: 12.0,      // 5-Year CAGR (range: 8.0 - 25.0)
+      discountRateWaccPct: 9.5, // WACC discount rate (range: 7.5 - 14.0)
+      terminalGrowthPct: 3.0,   // Perpetual Gordon Growth (range: 2.0 - 3.5)
+      netDebtMillions: 200.0,
+      sharesDilutedMillions: 25.0,
+      currentMarketPrice: 115.00,
+      pvExplicitHorizon: 684.2,
+      pvTerminalValue: 2965.8,
+      enterpriseValueBillions: 3.65,
+      intrinsicValuePerShare: 137.95,
+      marginOfSafetyPct: 20.0,
+      valuationStatus: 'UNDERVALUED',
+    },
+  };
 
-        const dots = Array.from(icon.querySelectorAll('.menu-dot'));
-        const links = Array.from(wrapper.querySelectorAll('.nav-link'));
-        let isOpen = false;
+  // =========================================================================
+  // 2. Telemetry Terminal Logger
+  // =========================================================================
+  function getTimestamp() {
+    const now = new Date();
+    return now.toTimeString().substring(0, 8) + '.' + String(now.getMilliseconds()).padStart(3, '0');
+  }
 
-        // Position initial dots (cross/plus configuration)
-        const d = 5;
-        const plusX = [0, d, 0, -d];
-        const plusY = [-d, 0, d, 0];
-        const crossX = [-d, d, d, -d];
-        const crossY = [-d, -d, d, d];
+  function appendTerminalLog(terminalId, actor, message, toneClass) {
+    const term = document.getElementById(terminalId);
+    if (!term) return;
 
-        dots.forEach((dot, i) => {
-            dot.style.position = 'absolute';
-            dot.style.top = '50%';
-            dot.style.left = '50%';
-            dot.style.transition = 'transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease';
-            if (i < 4) {
-                dot.style.transform = `translate(-50%, -50%) translate(${plusX[i]}px, ${plusY[i]}px)`;
-            } else {
-                dot.style.transform = 'translate(-50%, -50%) scale(0)';
-            }
-        });
+    const line = document.createElement('span');
+    line.className = 'term-line';
 
-        const toggleMenu = (open) => {
-            isOpen = open !== undefined ? open : !isOpen;
-            trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    const stamp = document.createElement('span');
+    stamp.className = 'term-stamp';
+    stamp.textContent = `[${getTimestamp()}] `;
 
-            if (isOpen) {
-                wrapper.style.display = 'flex';
-                requestAnimationFrame(() => {
-                    wrapper.style.opacity = '1';
-                    wrapper.style.pointerEvents = 'auto';
-                    dots.forEach((dot, i) => {
-                        if (i < 4) {
-                            dot.style.transform = `translate(-50%, -50%) translate(${crossX[i]}px, ${crossY[i]}px)`;
-                        } else {
-                            dot.style.transform = 'translate(-50%, -50%) scale(0)';
-                        }
-                    });
-                });
-            } else {
-                wrapper.style.opacity = '0';
-                wrapper.style.pointerEvents = 'none';
-                setTimeout(() => {
-                    if (!isOpen) wrapper.style.display = 'none';
-                }, 350);
-                dots.forEach((dot, i) => {
-                    if (i < 4) {
-                        dot.style.transform = `translate(-50%, -50%) translate(${plusX[i]}px, ${plusY[i]}px)`;
-                    } else {
-                        dot.style.transform = 'translate(-50%, -50%) scale(0)';
-                    }
-                });
-            }
-        };
+    const actorSpan = document.createElement('span');
+    actorSpan.className = toneClass ? `term-${toneClass}` : 'term-actor';
+    actorSpan.textContent = actor ? `${actor}: ` : '';
 
-        trigger.addEventListener('click', (e) => {
-            e.preventDefault();
-            toggleMenu();
-        });
+    const textNode = document.createTextNode(message);
 
-        links.forEach((link) => {
-            link.addEventListener('click', () => {
-                toggleMenu(false);
-            });
-        });
+    line.appendChild(stamp);
+    if (actor) line.appendChild(actorSpan);
+    line.appendChild(textNode);
 
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && isOpen) toggleMenu(false);
-        });
-    };
-    initMenu();
+    term.appendChild(line);
 
-    // 4. Live Timezone Clock (Delhi IST UTC+5:30)
-    const initTimezoneClocks = () => {
-        const clockEls = document.querySelectorAll('[data-timezone]');
-        if (!clockEls.length) return;
+    // Keep log capped at 50 entries
+    while (term.children.length > 50) {
+      term.removeChild(term.firstChild);
+    }
+    term.scrollTop = term.scrollHeight;
+  }
 
-        const update = () => {
-            const now = new Date();
-            clockEls.forEach((el) => {
-                const tz = el.getAttribute('data-timezone') || 'Asia/Kolkata';
-                try {
-                    const timeStr = new Intl.DateTimeFormat('en-GB', {
-                        timeZone: tz,
-                        hour: '2-digit',
-                        minute: '2-digit',
-                        hourCycle: 'h23'
-                    }).format(now);
-                    el.textContent = `DELHI ${timeStr}`;
-                } catch (e) {
-                    el.textContent = `IST ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
-                }
-            });
-        };
+  // =========================================================================
+  // 3. ESP32 ADC Sampling Engine & Debounce Filter
+  // =========================================================================
+  function calculateMedian(arr) {
+    if (!arr.length) return 0;
+    const sorted = [...arr].sort((a, b) => a - b);
+    const mid = Math.floor(sorted.length / 2);
+    return sorted.length % 2 !== 0 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2;
+  }
 
-        update();
-        setInterval(update, 30000);
-    };
-    initTimezoneClocks();
+  function depthToAdcCounts(depthMm) {
+    // Linear approximation with offset: 0mm = 1420 (dry), 100mm = 4095 (full scale)
+    const normalized = Math.max(0, Math.min(100, depthMm));
+    const counts = Math.round(1420 + (normalized / 100) * (4095 - 1420));
+    return Math.max(0, Math.min(4095, counts));
+  }
 
-    // 5. 8-Point Star Continuous Rotation with Scroll Velocity Acceleration
-    const initStarRotation = () => {
-        const star = document.querySelector('.star-icon');
-        if (!star || reduceMotion()) return;
+  function adcCountsToVoltage(counts) {
+    // 12-bit SAR ADC at 3.3V reference (11dB attenuation)
+    return ((counts / 4095) * 3.3).toFixed(3);
+  }
 
-        let rotation = 0;
-        let lastScrollY = window.scrollY;
-        let velocity = 0;
+  function updateEsp32View() {
+    const depth = telemetryState.esp32.currentDepthMm;
+    const counts = telemetryState.esp32.rawAdcCounts;
+    const volts = telemetryState.esp32.voltageVolts;
 
-        window.addEventListener('scroll', () => {
-            const currentScrollY = window.scrollY;
-            velocity = (currentScrollY - lastScrollY) * 0.15;
-            lastScrollY = currentScrollY;
-        }, { passive: true });
+    // Filtered depth via 10-sample moving median
+    const medianDepth = calculateMedian(telemetryState.esp32.debounceSamples);
 
-        const tick = () => {
-            rotation += 0.5 + velocity;
-            velocity *= 0.92;
-            star.style.transform = `rotate(${rotation}deg)`;
-            requestAnimationFrame(tick);
-        };
-        requestAnimationFrame(tick);
-    };
-    initStarRotation();
+    let stateText = 'Nominal (< 40mm)';
+    let stateClass = 'metric-value--cool';
+    let queueText = '0 alerts queued';
 
-    // 6. Smooth Infinite Marquee with Dynamic Scroll Acceleration
-    const initMarquee = () => {
-        const marquee = document.querySelector('.marquee-advanced');
-        if (!marquee) return;
+    if (medianDepth >= 70) {
+      stateText = 'Critical Alert (> 70mm)';
+      stateClass = 'metric-value--amber';
+      queueText = 'WhatsApp alert broadcast active';
+      telemetryState.esp32.status = 'CRITICAL';
+    } else if (medianDepth >= 40) {
+      stateText = 'Warning (40 - 70mm)';
+      stateClass = 'metric-value--amber';
+      queueText = '1 municipal advisory queued';
+      telemetryState.esp32.status = 'WARNING';
+    } else {
+      telemetryState.esp32.status = 'NOMINAL';
+    }
 
-        const scrollTarget = marquee.querySelector('.marquee-advanced__scroll');
-        if (!scrollTarget) return;
+    // Update Hero elements
+    const heroDepth = document.getElementById('hero-esp32-depth');
+    if (heroDepth) heroDepth.textContent = depth.toFixed(1);
 
-        // Duplicate items if needed to guarantee seamless loop
-        if (scrollTarget.children.length === 1) {
-            const clone = scrollTarget.children[0].cloneNode(true);
-            scrollTarget.appendChild(clone);
+    const heroCounts = document.getElementById('hero-esp32-counts');
+    if (heroCounts) heroCounts.textContent = counts;
+
+    const heroVolts = document.getElementById('hero-esp32-volts');
+    if (heroVolts) heroVolts.textContent = volts;
+
+    const heroStatus = document.getElementById('hero-esp32-status');
+    if (heroStatus) {
+      heroStatus.textContent = stateText;
+      heroStatus.className = `metric-value ${stateClass}`;
+    }
+
+    // Update Workbench Sandboxes if present
+    const benchDepthVal = document.getElementById('bench-depth-val');
+    if (benchDepthVal) benchDepthVal.textContent = `${depth.toFixed(1)} mm`;
+
+    const benchStateTag = document.getElementById('bench-state-tag');
+    if (benchStateTag) benchStateTag.textContent = stateText;
+
+    const benchQueueTag = document.getElementById('bench-queue-tag');
+    if (benchQueueTag) benchQueueTag.textContent = queueText;
+
+    // Update Debounce Buffer indicator cells
+    const bufferContainer = document.getElementById('debounce-buffer-cells');
+    if (bufferContainer) {
+      const cells = bufferContainer.querySelectorAll('.buffer-cell');
+      telemetryState.esp32.debounceSamples.forEach((val, idx) => {
+        if (cells[idx]) {
+          cells[idx].className = 'buffer-cell' + (val >= 70 ? ' buffer-cell--bad' : val >= 40 ? ' buffer-cell--warn' : ' buffer-cell--ok');
+          cells[idx].title = `Sample ${idx + 1}: ${val.toFixed(1)}mm`;
         }
-    };
-    initMarquee();
-
-    // 7. Interactive Custom Trail Cursor
-    const initCursor = () => {
-        const dot = document.querySelector('[data-cursor-dot]');
-        const canvas = document.querySelector('[data-cursor-canvas]');
-        if (!dot || !canvas || reduceMotion() || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-
-        const ctx = canvas.getContext('2d');
-        let width = canvas.width = window.innerWidth;
-        let height = canvas.height = window.innerHeight;
-
-        window.addEventListener('resize', () => {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-        });
-
-        let mouseX = -100;
-        let mouseY = -100;
-        let dotX = -100;
-        let dotY = -100;
-        const trail = [];
-        const maxTrail = 20;
-
-        window.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-        }, { passive: true });
-
-        const animateCursor = () => {
-            dotX += (mouseX - dotX) * 0.25;
-            dotY += (mouseY - dotY) * 0.25;
-
-            dot.style.transform = `translate3d(${dotX}px, ${dotY}px, 0)`;
-
-            trail.push({ x: dotX, y: dotY, age: 1.0 });
-            if (trail.length > maxTrail) trail.shift();
-
-            ctx.clearRect(0, 0, width, height);
-            if (trail.length > 2) {
-                ctx.beginPath();
-                ctx.moveTo(trail[0].x, trail[0].y);
-                for (let i = 1; i < trail.length; i++) {
-                    ctx.lineTo(trail[i].x, trail[i].y);
-                }
-                ctx.strokeStyle = 'rgba(243, 66, 19, 0.35)';
-                ctx.lineWidth = 3;
-                ctx.lineCap = 'round';
-                ctx.lineJoin = 'round';
-                ctx.stroke();
-            }
-
-            requestAnimationFrame(animateCursor);
-        };
-        requestAnimationFrame(animateCursor);
-    };
-    initCursor();
-
-    // 8. Interactive Procedural Hero Canvas (3D Geometric Cybernetic Monolith)
-    const initHeroCanvas = () => {
-        const canvas = document.getElementById('hero-canvas');
-        if (!canvas) return;
-
-        const ctx = canvas.getContext('2d');
-        if (!ctx) return;
-
-        let width = canvas.width = canvas.offsetWidth || 500;
-        let height = canvas.height = canvas.offsetHeight || 600;
-
-        const handleResize = () => {
-            width = canvas.width = canvas.offsetWidth;
-            height = canvas.height = canvas.offsetHeight;
-        };
-        window.addEventListener('resize', handleResize);
-
-        let rotX = 0.5;
-        let rotY = 0.5;
-        let targetRotX = 0.5;
-        let targetRotY = 0.5;
-
-        // Vertices of an architectural icosahedron
-        const phi = (1 + Math.sqrt(5)) / 2;
-        const rawVertices = [
-            [-1, phi, 0], [1, phi, 0], [-1, -phi, 0], [1, -phi, 0],
-            [0, -1, phi], [0, 1, phi], [0, -1, -phi], [0, 1, -phi],
-            [phi, 0, -1], [phi, 0, 1], [-phi, 0, -1], [-phi, 0, 1]
-        ].map(([x, y, z]) => {
-            const mag = Math.hypot(x, y, z);
-            return [x / mag, y / mag, z / mag];
-        });
-
-        const edges = [
-            [0, 11], [0, 5], [0, 1], [0, 7], [0, 10],
-            [1, 5], [5, 11], [11, 10], [10, 7], [7, 1],
-            [3, 9], [3, 4], [3, 2], [3, 6], [3, 8],
-            [9, 4], [4, 2], [2, 6], [6, 8], [8, 9],
-            [4, 5], [5, 9], [9, 1], [1, 8], [8, 7],
-            [7, 6], [6, 10], [10, 2], [2, 11], [11, 4]
-        ];
-
-        window.addEventListener('scroll', () => {
-            const scrollRatio = window.scrollY / (window.innerHeight || 1);
-            targetRotY = 0.5 + scrollRatio * 2.5;
-            targetRotX = 0.4 + scrollRatio * 1.2;
-        }, { passive: true });
-
-        const renderHero = () => {
-            rotX += (targetRotX - rotX) * 0.05;
-            rotY += (targetRotY - rotY) * 0.05;
-            targetRotY += 0.005;
-
-            ctx.clearRect(0, 0, width, height);
-
-            const cx = width / 2;
-            const cy = height / 2;
-            const scale = Math.min(width, height) * 0.38;
-
-            const cosX = Math.cos(rotX), sinX = Math.sin(rotX);
-            const cosY = Math.cos(rotY), sinY = Math.sin(rotY);
-
-            const proj = rawVertices.map(([x, y, z]) => {
-                // Rot Y
-                const x1 = x * cosY + z * sinY;
-                const z1 = -x * sinY + z * cosY;
-                // Rot X
-                const y2 = y * cosX - z1 * sinX;
-                const z2 = y * sinX + z1 * cosX;
-
-                const persp = 3 / (3 + z2);
-                return [cx + x1 * scale * persp, cy + y2 * scale * persp, z2];
-            });
-
-            // Draw edges
-            edges.forEach(([i, j]) => {
-                const [x1, y1, z1] = proj[i];
-                const [x2, y2, jz] = proj[j];
-                const avgZ = (z1 + jz) / 2;
-                const alpha = Math.max(0.15, Math.min(0.85, (avgZ + 1) / 2));
-
-                ctx.beginPath();
-                ctx.moveTo(x1, y1);
-                ctx.lineTo(x2, y2);
-                ctx.strokeStyle = `rgba(243, 66, 19, ${alpha})`;
-                ctx.lineWidth = 1.4;
-                ctx.stroke();
-            });
-
-            // Draw vertices
-            proj.forEach(([px, py, pz]) => {
-                const alpha = Math.max(0.2, (pz + 1) / 2);
-                ctx.beginPath();
-                ctx.arc(px, py, 3, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(231, 225, 215, ${alpha})`;
-                ctx.fill();
-            });
-
-            requestAnimationFrame(renderHero);
-        };
-        requestAnimationFrame(renderHero);
-    };
-    initHeroCanvas();
-
-// 9. Signature Scroll Wave Color Fill (Tom de Koning Specification)
-    const initGradientWaveText = () => {
-        const headings = document.querySelectorAll('[data-gradient-wave-text]');
-        if (!headings.length) return;
-
-        headings.forEach((heading) => {
-            const startColor = heading.dataset.gradientWaveColorStart || 'rgba(255, 255, 255, 0.2)';
-            const waveColor = heading.dataset.gradientWaveColorWave || '#F34213';
-            const endColor = '#FFFFFF';
-
-            // Clean raw text
-            const rawText = heading.textContent.trim().replace(/\s+/g, ' ');
-            heading.innerHTML = '';
-
-            const words = rawText.split(' ');
-            const allChars = [];
-
-            words.forEach((wordText, wIdx) => {
-                const wordSpan = document.createElement('span');
-                wordSpan.className = 'wave-word';
-                wordSpan.style.display = 'inline-block';
-                wordSpan.style.whiteSpace = 'nowrap';
-
-                for (let c = 0; c < wordText.length; c++) {
-                    const char = wordText[c];
-                    const charSpan = document.createElement('span');
-                    charSpan.className = 'wave-char' + (/[oO]/.test(char) ? ' playfair-o' : '');
-                    charSpan.style.display = 'inline-block';
-                    charSpan.style.color = startColor;
-                    charSpan.textContent = char;
-                    wordSpan.appendChild(charSpan);
-                    allChars.push(charSpan);
-                }
-
-                heading.appendChild(wordSpan);
-
-                if (wIdx < words.length - 1) {
-                    heading.appendChild(document.createTextNode(' '));
-                }
-            });
-
-            if (reduceMotion()) {
-                allChars.forEach(ch => ch.style.color = endColor);
-                return;
-            }
-
-            if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-                const totalChars = allChars.length;
-                const progressObj = { value: 0 };
-
-                const paint = () => {
-                    const next = Math.round(progressObj.value * totalChars);
-                    for (let i = 0; i < totalChars; i++) {
-                        if (i < next - 1) {
-                            allChars[i].style.color = endColor;
-                        } else if (i === next - 1 || (i === next && next < totalChars)) {
-                            allChars[i].style.color = waveColor;
-                        } else {
-                            allChars[i].style.color = startColor;
-                        }
-                    }
-                };
-
-                gsap.to(progressObj, {
-                    value: 1,
-                    ease: 'none',
-                    scrollTrigger: {
-                        trigger: heading,
-                        start: 'top 85%',
-                        end: 'center 45%',
-                        scrub: 0.15,
-                        onUpdate: paint,
-                        onRefresh: paint
-                    }
-                });
-            }
-        });
-    };
-    initGradientWaveText();
-
-// 10. Robust Interactive Liquid Glass Carousel Engine
-    const initLiquidGlassCarousel = () => {
-        const carouselSec = document.querySelector('[data-glass-carousel]');
-        const trackWrap = carouselSec ? carouselSec.querySelector('[data-glass-carousel-track-wrap]') || carouselSec : null;
-        const list = carouselSec ? carouselSec.querySelector('[data-glass-carousel-list]') : null;
-        if (!carouselSec || !list || !trackWrap) return;
-
-        const items = Array.from(list.querySelectorAll('[data-glass-carousel-item]'));
-        if (!items.length) return;
-
-        const captionEl = carouselSec.querySelector('[data-glass-carousel-caption]');
-        const counterEl = carouselSec.querySelector('[data-glass-carousel-counter]');
-        const prevBtn = carouselSec.querySelector('[data-carousel-prev]');
-        const nextBtn = carouselSec.querySelector('[data-carousel-next]');
-        const total = items.length;
-
-        let activeIndex = 0;
-        let currentX = 0;
-        let targetX = 0;
-        let isDragging = false;
-        let pointerDownX = 0;
-        let startTargetX = 0;
-        let dragDistance = 0;
-        let lastMoveX = 0;
-        let lastMoveTime = 0;
-        let velocityX = 0;
-        let isPointerDown = false;
-        let suppressClick = false;
-
-        // Calculate center offset for a given card index
-        const getOffsetForIndex = (idx) => {
-            const item = items[idx];
-            if (!item) return 0;
-            const containerWidth = trackWrap.clientWidth;
-            const itemCenter = item.offsetLeft + item.offsetWidth / 2;
-            return (containerWidth / 2) - itemCenter;
-        };
-
-        const getMaxX = () => getOffsetForIndex(0);
-        const getMinX = () => getOffsetForIndex(total - 1);
-
-        // Update active caption and counter
-        const updateCaption = (index) => {
-            activeIndex = index;
-
-            // Update item active classes
-            items.forEach((item, i) => {
-                item.classList.toggle('is-active', i === index);
-            });
-
-            // Update counter
-            if (counterEl) {
-                counterEl.textContent = `${String(index + 1).padStart(2, '0')} / ${String(total).padStart(2, '0')}`;
-            }
-
-            // Update caption with smooth animation
-            if (captionEl && items[index]) {
-                const title = items[index].querySelector('h3')?.textContent.trim() || '';
-                const sub = items[index].querySelector('p.is--faded')?.textContent.trim() || '';
-
-                if (typeof gsap !== 'undefined') {
-                    gsap.killTweensOf(captionEl);
-                    gsap.to(captionEl, {
-                        opacity: 0,
-                        y: -8,
-                        duration: 0.18,
-                        ease: 'power2.in',
-                        onComplete: () => {
-                            captionEl.innerHTML = `
-                                <h3 class="glass-carousel__caption-title">${title}</h3>
-                                <p class="glass-carousel__caption-sub">${sub}</p>
-                            `;
-                            gsap.fromTo(captionEl, 
-                                { opacity: 0, y: 10 },
-                                { opacity: 1, y: 0, duration: 0.32, ease: 'power2.out' }
-                            );
-                        }
-                    });
-                } else {
-                    captionEl.innerHTML = `
-                        <h3 class="glass-carousel__caption-title">${title}</h3>
-                        <p class="glass-carousel__caption-sub">${sub}</p>
-                    `;
-                }
-            }
-        };
-
-        // Go to specific index
-        const goToIndex = (idx) => {
-            const clamped = Math.max(0, Math.min(idx, total - 1));
-            targetX = getOffsetForIndex(clamped);
-            updateCaption(clamped);
-        };
-
-        // Snap to closest card
-        const snapToNearest = () => {
-            let closestIdx = 0;
-            let closestDist = Infinity;
-            items.forEach((item, i) => {
-                const off = getOffsetForIndex(i);
-                const dist = Math.abs(targetX - off);
-                if (dist < closestDist) {
-                    closestDist = dist;
-                    closestIdx = i;
-                }
-            });
-            goToIndex(closestIdx);
-        };
-
-        // Initial alignment
-        targetX = currentX = getOffsetForIndex(0);
-        updateCaption(0);
-
-        // Animation frame render loop
-        const tick = () => {
-            if (!isDragging) {
-                if (Math.abs(velocityX) > 0.5) {
-                    targetX += velocityX;
-                    velocityX *= 0.88;
-                }
-            }
-
-            const maxX = getMaxX() + 100;
-            const minX = getMinX() - 100;
-            if (targetX > maxX) targetX = maxX;
-            if (targetX < minX) targetX = minX;
-
-            currentX += (targetX - currentX) * (isDragging ? 0.35 : 0.12);
-            list.style.transform = `translateX(${currentX}px)`;
-
-            const centerPoint = trackWrap.clientWidth / 2;
-            let activeIdx = 0;
-            let minDiff = Infinity;
-            items.forEach((item, i) => {
-                const rect = item.getBoundingClientRect();
-                const itemMid = rect.left + rect.width / 2;
-                const diff = Math.abs(centerPoint - itemMid);
-                if (diff < minDiff) {
-                    minDiff = diff;
-                    activeIdx = i;
-                }
-            });
-
-            if (activeIdx !== activeIndex && !isDragging) {
-                updateCaption(activeIdx);
-            }
-
-            requestAnimationFrame(tick);
-        };
-        requestAnimationFrame(tick);
-
-        // Pointer event handlers (Desktop mouse + Mobile touch unified)
-        const onPointerDown = (e) => {
-            if (e.button && e.button !== 0) return;
-            isPointerDown = true;
-            isDragging = true;
-            pointerDownX = e.clientX;
-            startTargetX = targetX;
-            dragDistance = 0;
-            lastMoveX = e.clientX;
-            lastMoveTime = performance.now();
-            velocityX = 0;
-            suppressClick = false;
-
-            carouselSec.classList.add('is-dragging');
-            if (e.target && e.target.setPointerCapture) {
-                try { e.target.setPointerCapture(e.pointerId); } catch (err) {}
-            }
-        };
-
-        const onPointerMove = (e) => {
-            if (!isPointerDown) return;
-            const deltaX = e.clientX - pointerDownX;
-            dragDistance = Math.abs(deltaX);
-
-            if (dragDistance > 6) {
-                suppressClick = true;
-            }
-
-            targetX = startTargetX + deltaX;
-
-            const now = performance.now();
-            const dt = Math.max(1, now - lastMoveTime);
-            velocityX = (e.clientX - lastMoveX) / dt * 14;
-            lastMoveX = e.clientX;
-            lastMoveTime = now;
-        };
-
-        const onPointerUp = (e) => {
-            if (!isPointerDown) return;
-            isPointerDown = false;
-            isDragging = false;
-            carouselSec.classList.remove('is-dragging');
-
-            if (dragDistance > 30) {
-                if (velocityX < -5 && activeIndex < total - 1) {
-                    goToIndex(activeIndex + 1);
-                } else if (velocityX > 5 && activeIndex > 0) {
-                    goToIndex(activeIndex - 1);
-                } else {
-                    snapToNearest();
-                }
-            } else {
-                snapToNearest();
-            }
-        };
-
-        carouselSec.addEventListener('pointerdown', onPointerDown);
-        window.addEventListener('pointermove', onPointerMove);
-        window.addEventListener('pointerup', onPointerUp);
-        window.addEventListener('pointercancel', onPointerUp);
-
-        // Card click handling
-        items.forEach((item, idx) => {
-            item.addEventListener('click', (e) => {
-                if (suppressClick) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    return;
-                }
-                if (idx !== activeIndex) {
-                    e.preventDefault();
-                    goToIndex(idx);
-                }
-            });
-        });
-
-        // Wheel listener
-        let wheelTimeout;
-        carouselSec.addEventListener('wheel', (e) => {
-            const absX = Math.abs(e.deltaX);
-            const absY = Math.abs(e.deltaY);
-
-            if (absX > absY) {
-                targetX -= e.deltaX * 1.2;
-                clearTimeout(wheelTimeout);
-                wheelTimeout = setTimeout(snapToNearest, 120);
-                e.preventDefault();
-            } else if (absY > 30) {
-                if (e.deltaY > 0 && activeIndex < total - 1) {
-                    goToIndex(activeIndex + 1);
-                    e.preventDefault();
-                } else if (e.deltaY < 0 && activeIndex > 0) {
-                    goToIndex(activeIndex - 1);
-                    e.preventDefault();
-                }
-            }
-        }, { passive: false });
-
-        // Prev & Next Buttons
-        if (prevBtn) {
-            prevBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                if (activeIndex > 0) goToIndex(activeIndex - 1);
-            });
-        }
-
-        if (nextBtn) {
-            nextBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                if (activeIndex < total - 1) goToIndex(activeIndex + 1);
-            });
-        }
-
-        window.addEventListener('resize', () => {
-            goToIndex(activeIndex);
-        });
-
-        window.addEventListener('keydown', (e) => {
-            const rect = carouselSec.getBoundingClientRect();
-            const inView = rect.top < window.innerHeight && rect.bottom > 0;
-            if (!inView) return;
-
-            if (e.key === 'ArrowRight' && activeIndex < total - 1) {
-                goToIndex(activeIndex + 1);
-            } else if (e.key === 'ArrowLeft' && activeIndex > 0) {
-                goToIndex(activeIndex - 1);
-            }
-        });
-
-        // Three.js Liquid Lens Shader Integration (Visual distortion layer)
-        const canvas = carouselSec.querySelector('[data-glass-carousel-canvas]');
-        if (canvas && !reduceMotion()) {
-            import('https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js').then((THREE) => {
-                const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-                renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-                renderer.setSize(carouselSec.clientWidth, carouselSec.clientHeight);
-
-                const scene = new THREE.Scene();
-                const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
-
-                const vertexShader = `
-                    varying vec2 vUv;
-                    void main() {
-                        vUv = uv;
-                        gl_Position = vec4(position.xy, 0.0, 1.0);
-                    }
-                `;
-
-                const fragmentShader = `
-                    precision highp float;
-                    varying vec2 vUv;
-                    uniform float uTime;
-                    uniform vec2 uResolution;
-                    uniform vec2 uPointer;
-
-                    void main() {
-                        vec2 p = (gl_FragCoord.xy - uResolution * 0.5) / min(uResolution.x, uResolution.y);
-                        vec2 lensCenter = (uPointer - uResolution * 0.5) / min(uResolution.x, uResolution.y);
-                        lensCenter = mix(vec2(0.0), lensCenter, 0.35);
-
-                        vec2 offset = p - lensCenter;
-                        float dist = length(offset);
-                        float radius = 0.38;
-
-                        if (dist < radius) {
-                            float edge = smoothstep(radius - 0.03, radius, dist);
-                            float wave = sin(dist * 24.0 - uTime * 2.5) * 0.5 + 0.5;
-                            vec3 col = vec3(0.95, 0.26, 0.07) * edge * 0.7;
-                            col += vec3(0.0, 0.61, 1.0) * (1.0 - edge) * wave * 0.12;
-                            float alpha = edge * 0.5 + wave * 0.06;
-                            gl_FragColor = vec4(col, alpha);
-                        } else {
-                            gl_FragColor = vec4(0.0);
-                        }
-                    }
-                `;
-
-                const uniforms = {
-                    uTime: { value: 0 },
-                    uResolution: { value: new THREE.Vector2(carouselSec.clientWidth, carouselSec.clientHeight) },
-                    uPointer: { value: new THREE.Vector2(carouselSec.clientWidth * 0.5, carouselSec.clientHeight * 0.5) }
-                };
-
-                const material = new THREE.ShaderMaterial({
-                    vertexShader,
-                    fragmentShader,
-                    uniforms,
-                    transparent: true
-                });
-
-                const quad = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), material);
-                scene.add(quad);
-
-                window.addEventListener('resize', () => {
-                    renderer.setSize(carouselSec.clientWidth, carouselSec.clientHeight);
-                    uniforms.uResolution.value.set(carouselSec.clientWidth, carouselSec.clientHeight);
-                });
-
-                carouselSec.addEventListener('pointermove', (e) => {
-                    const rect = carouselSec.getBoundingClientRect();
-                    uniforms.uPointer.value.set(e.clientX - rect.left, rect.bottom - e.clientY);
-                });
-
-                const renderLoop = (time) => {
-                    uniforms.uTime.value = time * 0.001;
-                    renderer.render(scene, camera);
-                    requestAnimationFrame(renderLoop);
-                };
-                requestAnimationFrame(renderLoop);
-            }).catch((err) => {
-                console.warn('[Carousel] WebGL lens fallback:', err);
-            });
-        }
-    };
-    initLiquidGlassCarousel();
-
-});
+      });
+    }
+  }
+
+  function setSimulatedWaterDepth(depthMm, logSource) {
+    telemetryState.esp32.currentDepthMm = depthMm;
+    telemetryState.esp32.rawAdcCounts = depthToAdcCounts(depthMm);
+    telemetryState.esp32.voltageVolts = adcCountsToVoltage(telemetryState.esp32.rawAdcCounts);
+
+    // Push into debounce sliding buffer
+    telemetryState.esp32.debounceSamples.shift();
+    telemetryState.esp32.debounceSamples.push(depthMm);
+
+    updateEsp32View();
+
+    if (logSource) {
+      appendTerminalLog(
+        'hero-terminal',
+        'esp32/adc34',
+        `GPIO 34 raw ${telemetryState.esp32.rawAdcCounts} to depth ${depthMm.toFixed(1)}mm (${telemetryState.esp32.voltageVolts}V)`
+      );
+    }
+  }
+
+  function injectTransientNoiseSpike() {
+    // Injects a single extreme spike (92mm) to demonstrate 10-sample moving median filter rejection
+    appendTerminalLog(
+      'hero-terminal',
+      'esp32/adc34',
+      'NOISE SPIKE: Single sample 92.4mm (ADC 3940) ingested on GPIO 34',
+      'actor'
+    );
+
+    // Push single spike into buffer
+    telemetryState.esp32.debounceSamples.shift();
+    telemetryState.esp32.debounceSamples.push(92.4);
+    updateEsp32View();
+
+    setTimeout(() => {
+      // Return to nominal baseline
+      telemetryState.esp32.debounceSamples.shift();
+      telemetryState.esp32.debounceSamples.push(24.2);
+      updateEsp32View();
+
+      appendTerminalLog(
+        'hero-terminal',
+        'fastapi/filter',
+        'DEBOUNCE FILTER: 10-sample moving median window discarded transient spike. Status preserved: NOMINAL.',
+        'ok'
+      );
+    }, 400);
+  }
+
+  function triggerEmergencyInundation() {
+    appendTerminalLog(
+      'hero-terminal',
+      'esp32/adc34',
+      'CRITICAL: Water level sustained above 75.0mm for 10 consecutive readings.',
+      'actor'
+    );
+
+    // Fill buffer with critical readings
+    telemetryState.esp32.debounceSamples = [78, 79, 82, 80, 84, 83, 85, 82, 84, 86];
+    setSimulatedWaterDepth(82.0, false);
+
+    setTimeout(() => {
+      appendTerminalLog(
+        'hero-terminal',
+        'whatsapp/cloud-api',
+        'DISPATCH BROADCAST: Meta WhatsApp Cloud API webhooks sent to registered residents (GPS: 28.7041 N, 77.1025 E).',
+        'ok'
+      );
+    }, 300);
+  }
+
+  // =========================================================================
+  // 4. Android Media3 Audio Engine & 16-Band Spectrum
+  // =========================================================================
+  function switchTrack(trackIndex) {
+    if (trackIndex < 0 || trackIndex >= telemetryState.media3.tracks.length) return;
+    telemetryState.media3.activeTrackIndex = trackIndex;
+    const track = telemetryState.media3.tracks[trackIndex];
+
+    const trackTitle = document.getElementById('media3-track-title');
+    if (trackTitle) trackTitle.textContent = track.title;
+
+    const trackArtist = document.getElementById('media3-track-artist');
+    if (trackArtist) trackArtist.textContent = track.artist;
+
+    const trackFormat = document.getElementById('media3-track-format');
+    if (trackFormat) trackFormat.textContent = track.format;
+
+    // Update Swatches
+    const swatchContainer = document.getElementById('media3-swatches');
+    if (swatchContainer) {
+      swatchContainer.innerHTML = '';
+      Object.entries(track.swatches).forEach(([name, hex]) => {
+        const item = document.createElement('div');
+        item.className = 'swatch-pill';
+
+        const dot = document.createElement('span');
+        dot.className = 'swatch-dot';
+        dot.style.backgroundColor = hex;
+
+        const label = document.createElement('span');
+        label.className = 'swatch-label';
+        label.textContent = `${name.replace(/([A-Z])/g, ' $1').toLowerCase()}: ${hex}`;
+
+        item.appendChild(dot);
+        item.appendChild(label);
+        swatchContainer.appendChild(item);
+      });
+    }
+
+    // Update Track Button Active States
+    const trackBtns = document.querySelectorAll('.track-select-btn');
+    trackBtns.forEach((btn, idx) => {
+      if (idx === trackIndex) {
+        btn.classList.add('active');
+        btn.setAttribute('aria-pressed', 'true');
+      } else {
+        btn.classList.remove('active');
+        btn.setAttribute('aria-pressed', 'false');
+      }
+    });
+
+    appendTerminalLog(
+      'hero-terminal',
+      'media3/session',
+      `Track transition to "${track.title}" by ${track.artist}. Octree 16-bin Palette re-quantized.`,
+      'cool'
+    );
+  }
+
+  function renderSpectrumBars(timestamp) {
+    const barsContainer = document.getElementById('spectrum-visualizer');
+    if (!barsContainer) return;
+
+    const bands = telemetryState.media3.spectrumBands;
+    const bars = barsContainer.querySelectorAll('.spectrum-bar');
+
+    for (let i = 0; i < bands; i++) {
+      const bar = bars[i];
+      if (!bar) continue;
+
+      // Harmonic sine wave generator
+      const freq = 0.003;
+      const wave = Math.sin(timestamp * freq + i * 0.45) * 0.5 + 0.5;
+      const heightPx = Math.round(6 + wave * 34); // Height between 6px and 40px
+
+      bar.style.height = `${heightPx}px`;
+    }
+  }
+
+  // =========================================================================
+  // 5. Two-Stage DCF Financial Valuation Engine
+  // =========================================================================
+  function calculateDcf() {
+    const fcf0 = telemetryState.dcf.baseFcfMillions;
+    const g = telemetryState.dcf.growthRatePct / 100;
+    const wacc = telemetryState.dcf.discountRateWaccPct / 100;
+    const gTerm = telemetryState.dcf.terminalGrowthPct / 100;
+    const netDebt = telemetryState.dcf.netDebtMillions;
+    const shares = telemetryState.dcf.sharesDilutedMillions;
+    const marketPrice = telemetryState.dcf.currentMarketPrice;
+
+    // Mathematical safety check: Gordon Growth requires WACC > g_term
+    if (wacc <= gTerm) {
+      telemetryState.dcf.pvExplicitHorizon = 0;
+      telemetryState.dcf.pvTerminalValue = 0;
+      telemetryState.dcf.enterpriseValueBillions = 0;
+      telemetryState.dcf.intrinsicValuePerShare = 0;
+      telemetryState.dcf.marginOfSafetyPct = -100;
+      telemetryState.dcf.valuationStatus = 'INVALID (WACC <= g_term)';
+      updateDcfView(true);
+      return;
+    }
+
+    // Stage 1: Explicit 5-year discrete high growth
+    let explicitPvTotal = 0;
+    let finalYearFcf = fcf0;
+
+    for (let t = 1; t <= 5; t++) {
+      const fcfT = fcf0 * Math.pow(1 + g, t);
+      const discountFactor = Math.pow(1 + wacc, t);
+      explicitPvTotal += fcfT / discountFactor;
+      if (t === 5) finalYearFcf = fcfT;
+    }
+
+    // Stage 2: Perpetual Gordon Growth Terminal Value at Year 5
+    const terminalValueYear5 = (finalYearFcf * (1 + gTerm)) / (wacc - gTerm);
+    const pvTerminalValue = terminalValueYear5 / Math.pow(1 + wacc, 5);
+
+    // Total Enterprise Value & Equity Value
+    const enterpriseValueTotal = explicitPvTotal + pvTerminalValue; // in Millions
+    const equityValue = enterpriseValueTotal - netDebt;
+    const intrinsicValuePerShare = equityValue / shares;
+    const marginOfSafety = ((intrinsicValuePerShare - marketPrice) / marketPrice) * 100;
+
+    telemetryState.dcf.pvExplicitHorizon = explicitPvTotal;
+    telemetryState.dcf.pvTerminalValue = pvTerminalValue;
+    telemetryState.dcf.enterpriseValueBillions = (enterpriseValueTotal / 1000).toFixed(2);
+    telemetryState.dcf.intrinsicValuePerShare = intrinsicValuePerShare.toFixed(2);
+    telemetryState.dcf.marginOfSafetyPct = marginOfSafety.toFixed(1);
+    telemetryState.dcf.valuationStatus = marginOfSafety >= 0 ? 'UNDERVALUED' : 'OVERVALUED';
+
+    updateDcfView(false);
+  }
+
+  function updateDcfView(isInvalid) {
+    const evElem = document.getElementById('dcf-ev-val');
+    const priceElem = document.getElementById('dcf-price-val');
+    const mosElem = document.getElementById('dcf-mos-val');
+    const statusElem = document.getElementById('dcf-status-tag');
+    const pvExpElem = document.getElementById('dcf-pv-explicit');
+    const pvTermElem = document.getElementById('dcf-pv-terminal');
+
+    if (isInvalid) {
+      if (evElem) evElem.textContent = 'Divergent';
+      if (priceElem) priceElem.textContent = 'N/A';
+      if (mosElem) mosElem.textContent = 'N/A';
+      if (statusElem) {
+        statusElem.textContent = 'Invalid: WACC <= g_term';
+        statusElem.className = 'metric-value metric-value--amber';
+      }
+      return;
+    }
+
+    if (evElem) evElem.textContent = `$${telemetryState.dcf.enterpriseValueBillions}B`;
+    if (priceElem) priceElem.textContent = `$${telemetryState.dcf.intrinsicValuePerShare}`;
+
+    if (mosElem) {
+      const sign = telemetryState.dcf.marginOfSafetyPct >= 0 ? '+' : '';
+      mosElem.textContent = `${sign}${telemetryState.dcf.marginOfSafetyPct}%`;
+    }
+
+    if (statusElem) {
+      statusElem.textContent = `${telemetryState.dcf.valuationStatus} (${telemetryState.dcf.marginOfSafetyPct}%)`;
+      statusElem.className = telemetryState.dcf.marginOfSafetyPct >= 0 ? 'metric-value metric-value--cool' : 'metric-value metric-value--amber';
+    }
+
+    if (pvExpElem) pvExpElem.textContent = `$${Math.round(telemetryState.dcf.pvExplicitHorizon)}M`;
+    if (pvTermElem) pvTermElem.textContent = `$${Math.round(telemetryState.dcf.pvTerminalValue)}M`;
+
+    // Sliders Readouts
+    const waccReadout = document.getElementById('dcf-wacc-readout');
+    if (waccReadout) waccReadout.textContent = `${telemetryState.dcf.discountRateWaccPct.toFixed(1)}%`;
+
+    const gTermReadout = document.getElementById('dcf-gterm-readout');
+    if (gTermReadout) gTermReadout.textContent = `${telemetryState.dcf.terminalGrowthPct.toFixed(1)}%`;
+
+    const cagrReadout = document.getElementById('dcf-cagr-readout');
+    if (cagrReadout) cagrReadout.textContent = `${telemetryState.dcf.growthRatePct.toFixed(1)}%`;
+  }
+
+  // =========================================================================
+  // 6. Tab Navigation & Keyboard Routing
+  // =========================================================================
+  function switchDomainTab(domainId) {
+    telemetryState.activeDomain = domainId;
+
+    const tabs = document.querySelectorAll('[role="tab"]');
+    const panels = document.querySelectorAll('[role="tabpanel"]');
+
+    tabs.forEach((tab) => {
+      const targetDomain = tab.getAttribute('data-domain');
+      const isSelected = targetDomain === domainId;
+      tab.setAttribute('aria-selected', isSelected ? 'true' : 'false');
+      if (isSelected) {
+        tab.classList.add('active');
+      } else {
+        tab.classList.remove('active');
+      }
+    });
+
+    panels.forEach((panel) => {
+      const panelDomain = panel.getAttribute('data-domain');
+      if (panelDomain === domainId) {
+        panel.removeAttribute('hidden');
+      } else {
+        panel.setAttribute('hidden', 'true');
+      }
+    });
+
+    appendTerminalLog(
+      'hero-terminal',
+      'console/workspace',
+      `Active telemetry domain switched to ${domainId.toUpperCase()}.`,
+      'cool'
+    );
+  }
+
+  // =========================================================================
+  // 7. Technical Index Filtering
+  // =========================================================================
+  function filterAuditIndex(category) {
+    const rows = document.querySelectorAll('.index-table-row');
+    const filterBtns = document.querySelectorAll('.filter-btn');
+
+    filterBtns.forEach((btn) => {
+      const target = btn.getAttribute('data-filter');
+      if (target === category) {
+        btn.classList.add('active');
+        btn.setAttribute('aria-pressed', 'true');
+      } else {
+        btn.classList.remove('active');
+        btn.setAttribute('aria-pressed', 'false');
+      }
+    });
+
+    rows.forEach((row) => {
+      const rowCategory = row.getAttribute('data-category');
+      if (category === 'all' || rowCategory === category) {
+        row.removeAttribute('hidden');
+      } else {
+        row.setAttribute('hidden', 'true');
+      }
+    });
+  }
+
+  // =========================================================================
+  // 8. Animation Loop & Tick Dispatcher
+  // =========================================================================
+  let lastTickTime = 0;
+  let animFrameId = null;
+
+  function telemetryLoop(currentTime) {
+    if (!lastTickTime) lastTickTime = currentTime;
+    const delta = currentTime - lastTickTime;
+
+    // Render 16-band spectrum if Media3 panel is visible
+    if (telemetryState.activeDomain === 'media3' && !telemetryState.isStreamPaused) {
+      renderSpectrumBars(currentTime);
+    }
+
+    // Low-frequency periodic telemetry updates (every 2500ms)
+    if (delta > 2500 && !telemetryState.isStreamPaused) {
+      lastTickTime = currentTime;
+
+      // Small jitter around nominal depth for live feeling
+      if (telemetryState.esp32.status === 'NOMINAL') {
+        const jitter = (Math.random() - 0.5) * 0.8;
+        const newDepth = Math.max(22, Math.min(27, telemetryState.esp32.currentDepthMm + jitter));
+        setSimulatedWaterDepth(newDepth, false);
+      }
+    }
+
+    animFrameId = requestAnimationFrame(telemetryLoop);
+  }
+
+  // =========================================================================
+  // 9. Initializer & Event Listeners
+  // =========================================================================
+  document.addEventListener('DOMContentLoaded', () => {
+    // 1. Initial Views
+    updateEsp32View();
+    calculateDcf();
+    switchTrack(0);
+
+    // 2. Tab Switchers
+    const tabBtns = document.querySelectorAll('[role="tab"]');
+    tabBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const domain = btn.getAttribute('data-domain');
+        if (domain) switchDomainTab(domain);
+      });
+    });
+
+    // 3. ESP32 Sliders & Controls
+    const depthSlider = document.getElementById('hero-depth-slider');
+    if (depthSlider) {
+      depthSlider.addEventListener('input', (e) => {
+        const val = parseFloat(e.target.value);
+        setSimulatedWaterDepth(val, true);
+      });
+    }
+
+    const spikeBtn = document.getElementById('hero-btn-spike');
+    if (spikeBtn) {
+      spikeBtn.addEventListener('click', () => {
+        injectTransientNoiseSpike();
+      });
+    }
+
+    const floodBtn = document.getElementById('hero-btn-flood');
+    if (floodBtn) {
+      floodBtn.addEventListener('click', () => {
+        triggerEmergencyInundation();
+      });
+    }
+
+    // 4. Media3 Track Switchers
+    const trackBtns = document.querySelectorAll('.track-select-btn');
+    trackBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const trackIdx = parseInt(btn.getAttribute('data-track-index'), 10);
+        if (!isNaN(trackIdx)) switchTrack(trackIdx);
+      });
+    });
+
+    // 5. DCF Parameter Sliders
+    const waccSlider = document.getElementById('dcf-wacc-slider');
+    if (waccSlider) {
+      waccSlider.addEventListener('input', (e) => {
+        telemetryState.dcf.discountRateWaccPct = parseFloat(e.target.value);
+        calculateDcf();
+      });
+    }
+
+    const gTermSlider = document.getElementById('dcf-gterm-slider');
+    if (gTermSlider) {
+      gTermSlider.addEventListener('input', (e) => {
+        telemetryState.dcf.terminalGrowthPct = parseFloat(e.target.value);
+        calculateDcf();
+      });
+    }
+
+    const cagrSlider = document.getElementById('dcf-cagr-slider');
+    if (cagrSlider) {
+      cagrSlider.addEventListener('input', (e) => {
+        telemetryState.dcf.growthRatePct = parseFloat(e.target.value);
+        calculateDcf();
+      });
+    }
+
+    // 6. Audit Index Filter Buttons
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    filterBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const cat = btn.getAttribute('data-filter');
+        if (cat) filterAuditIndex(cat);
+      });
+    });
+
+    // 7. Keyboard Navigation (1 for ESP32, 2 for Media3, 3 for DCF, Space for pause stream)
+    window.addEventListener('keydown', (e) => {
+      // Ignore if typing inside input
+      if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) return;
+
+      if (e.key === '1') {
+        switchDomainTab('esp32');
+      } else if (e.key === '2') {
+        switchDomainTab('media3');
+      } else if (e.key === '3') {
+        switchDomainTab('dcf');
+      } else if (e.code === 'Space') {
+        e.preventDefault();
+        telemetryState.isStreamPaused = !telemetryState.isStreamPaused;
+        const statusText = telemetryState.isStreamPaused ? 'PAUSED' : 'RESUMED';
+        appendTerminalLog('hero-terminal', 'stream/clock', `Telemetry live tick ${statusText}.`, 'cool');
+      }
+    });
+
+    // 8. Start requestAnimationFrame Loop
+    animFrameId = requestAnimationFrame(telemetryLoop);
+  });
+})();
