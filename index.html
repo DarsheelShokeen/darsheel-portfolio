@@ -7,7 +7,7 @@
     <meta http-equiv="Expires" content="0">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Darsheel Shokeen, Software and Systems Engineer</title>
-    <meta name="description" content="Portfolio of Darsheel Shokeen: Computer Science student and systems builder in Delhi. Edge IoT, Android Media3, and valuation modeling.">
+    <meta name="description" content="Portfolio of Darsheel Shokeen: Computer Science student in Delhi. Edge IoT, Android Media3, and valuation modeling.">
     <link rel="canonical" href="https://darsheelshokeen.xo.je/">
 
     <!-- Typography: Host Grotesk & Atkinson Hyperlegible Mono (Hallmark Console Theme) -->
@@ -18,7 +18,7 @@
     <!-- Stylesheets: Hallmark Tokens, Base and Production System -->
     <link rel="stylesheet" href="tokens.css">
     <link rel="stylesheet" href="base.css">
-    <link rel="stylesheet" href="styles.css?v=9.0">
+    <link rel="stylesheet" href="styles.css?v=11.0">
 
     <!-- Favicon Suite -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -82,22 +82,22 @@
                                     <span class="metric-value metric-value--cool"><span id="hero-esp32-depth">24.2</span> <span class="metric-unit">mm</span></span>
                                 </div>
                                 <div class="metric-cell">
-                                    <span class="metric-label">SAR ADC34 count</span>
+                                    <span class="metric-label">SAR ADC34</span>
                                     <span class="metric-value metric-value--cool" id="hero-esp32-counts">1420</span>
                                 </div>
                                 <div class="metric-cell">
-                                    <span class="metric-label">Voltage (11dB)</span>
+                                    <span class="metric-label">Voltage</span>
                                     <span class="metric-value metric-value--cool"><span id="hero-esp32-volts">1.144</span> <span class="metric-unit">V</span></span>
                                 </div>
                                 <div class="metric-cell">
                                     <span class="metric-label">Debounce status</span>
-                                    <span class="metric-value metric-value--cool" id="hero-esp32-status">Nominal (&lt; 40mm)</span>
+                                    <span class="metric-value metric-value--cool" id="hero-esp32-status">Nominal</span>
                                 </div>
                             </div>
 
                             <!-- Debounce Buffer Indicator Strip -->
                             <div>
-                                <span class="metric-label">10-sample moving median debounce buffer (4000ms window):</span>
+                                <span class="metric-label">Debounce buffer:</span>
                                 <div class="buffer-cells-strip" id="debounce-buffer-cells">
                                     <span class="buffer-cell buffer-cell--ok"></span>
                                     <span class="buffer-cell buffer-cell--ok"></span>
@@ -115,17 +115,15 @@
                             <!-- Interactive Edge Controls -->
                             <div class="console-controls-row">
                                 <div class="slider-group">
-                                    <span class="slider-label">Simulate depth:</span>
+                                    <span class="slider-label">Depth:</span>
                                     <input type="range" min="0" max="100" value="24" class="bench-slider" id="hero-depth-slider" aria-label="Simulate liquid depth in mm">
                                 </div>
                                 <button type="button" class="btn btn--subtle btn--small" id="hero-btn-spike">Inject 92mm spike</button>
-                                <button type="button" class="btn btn--cool btn--small" id="hero-btn-flood">Simulate emergency flood</button>
+                                <button type="button" class="btn btn--cool btn--small" id="hero-btn-flood">Simulate flood</button>
                             </div>
 
                             <div class="console-terminal-view" id="hero-terminal" aria-live="polite">
-                                <span class="term-line"><span class="term-stamp">[INIT]</span> System online: 50Hz hardware polling active on GPIO 34</span>
-                                <span class="term-line"><span class="term-stamp">[LOG]</span> ESP32 calibration: 1420 offset to 24.2mm nominal baseline</span>
-                                <span class="term-line"><span class="term-stamp">[LOG]</span> Debounce buffer initialized: 10 sample sliding window armed</span>
+                                <span class="term-line"><span class="term-stamp">[INIT]</span> GPIO 34 50Hz polling online, 1420 baseline</span>
                             </div>
                         </div>
 
@@ -137,29 +135,29 @@
                                     <span class="metric-value metric-value--cool">STATE_PLAYING</span>
                                 </div>
                                 <div class="metric-cell">
-                                    <span class="metric-label">Audio ring buffer</span>
+                                    <span class="metric-label">Audio buffer</span>
                                     <span class="metric-value metric-value--cool">200 <span class="metric-unit">ms</span></span>
                                 </div>
                                 <div class="metric-cell">
-                                    <span class="metric-label">AGSL blur budget</span>
+                                    <span class="metric-label">AGSL blur</span>
                                     <span class="metric-value metric-value--cool">6.8 <span class="metric-unit">ms</span></span>
                                 </div>
                                 <div class="metric-cell">
-                                    <span class="metric-label">LRU bitmap heap</span>
+                                    <span class="metric-label">LRU heap</span>
                                     <span class="metric-value metric-value--amber">28.4 <span class="metric-unit">MB</span></span>
                                 </div>
                             </div>
 
                             <div>
-                                <span class="metric-label">Active MediaSession metadata:</span>
+                                <span class="metric-label">Active MediaSession:</span>
                                 <p style="font-size: var(--text-sm); color: var(--color-ink);">
-                                    <strong id="media3-track-title">After Hours</strong>, <span id="media3-track-artist">The Weeknd</span> (<span id="media3-track-format" style="font-family: var(--font-outlier); font-size: var(--text-xs); color: var(--color-cool);">48.0 kHz / 24-bit PCM</span>)
+                                    <strong id="media3-track-title">After Hours</strong>, <span id="media3-track-artist">The Weeknd</span> (<span id="media3-track-format" style="font-family: var(--font-outlier); font-size: var(--text-xs); color: var(--color-cool);">48.0 kHz PCM</span>)
                                 </p>
                             </div>
 
                             <!-- 16-Band Dynamic Spectrum Visualizer -->
                             <div>
-                                <span class="metric-label">16-band live frequency spectrum:</span>
+                                <span class="metric-label">16-band spectrum:</span>
                                 <div class="spectrum-visualizer" id="spectrum-visualizer">
                                     <span class="spectrum-bar"></span>
                                     <span class="spectrum-bar"></span>
@@ -180,15 +178,11 @@
                                 </div>
                             </div>
 
-                            <!-- Octree 16-bin 6-Swatch Palette Display -->
-                            <div>
-                                <span class="metric-label">AndroidX Palette 16-bin Octree extracted swatches:</span>
-                                <div class="swatches-row" id="media3-swatches"></div>
-                            </div>
+                            <div class="swatches-row" id="media3-swatches"></div>
 
                             <!-- Track Switchers -->
                             <div class="console-controls-row">
-                                <span class="slider-label">Switch audio track:</span>
+                                <span class="slider-label">Track:</span>
                                 <button type="button" class="btn btn--subtle btn--small track-select-btn active" data-track-index="0" aria-pressed="true">After Hours</button>
                                 <button type="button" class="btn btn--subtle btn--small track-select-btn" data-track-index="1" aria-pressed="false">Random Access Memories</button>
                                 <button type="button" class="btn btn--subtle btn--small track-select-btn" data-track-index="2" aria-pressed="false">Currents</button>
@@ -207,7 +201,7 @@
                                     <span class="metric-value metric-value--cool" id="dcf-price-val">$137.95</span>
                                 </div>
                                 <div class="metric-cell">
-                                    <span class="metric-label">Market benchmark</span>
+                                    <span class="metric-label">Market price</span>
                                     <span class="metric-value">$115.00</span>
                                 </div>
                                 <div class="metric-cell">
@@ -219,26 +213,26 @@
                             <!-- DCF Parameter Sliders -->
                             <div class="console-controls-row">
                                 <div class="slider-group">
-                                    <span class="slider-label">discount rate wacc (<span id="dcf-wacc-readout">9.5%</span>):</span>
-                                    <input type="range" min="7.5" max="14.0" step="0.1" value="9.5" class="bench-slider" id="dcf-wacc-slider" aria-label="Adjust WACC discount rate">
+                                    <span class="slider-label">wacc (<span id="dcf-wacc-readout">9.5%</span>):</span>
+                                    <input type="range" min="7.5" max="14.0" step="0.1" value="9.5" class="bench-slider" id="dcf-wacc-slider" aria-label="Adjust WACC">
                                 </div>
                                 <div class="slider-group">
-                                    <span class="slider-label">terminal growth (<span id="dcf-gterm-readout">3.0%</span>):</span>
-                                    <input type="range" min="2.0" max="3.5" step="0.1" value="3.0" class="bench-slider" id="dcf-gterm-slider" aria-label="Adjust perpetual terminal growth">
+                                    <span class="slider-label">terminal (<span id="dcf-gterm-readout">3.0%</span>):</span>
+                                    <input type="range" min="2.0" max="3.5" step="0.1" value="3.0" class="bench-slider" id="dcf-gterm-slider" aria-label="Adjust terminal growth">
                                 </div>
                                 <div class="slider-group">
-                                    <span class="slider-label">5-year growth cagr (<span id="dcf-cagr-readout">12.0%</span>):</span>
-                                    <input type="range" min="8.0" max="25.0" step="0.5" value="12.0" class="bench-slider" id="dcf-cagr-slider" aria-label="Adjust 5-year revenue growth">
+                                    <span class="slider-label">cagr (<span id="dcf-cagr-readout">12.0%</span>):</span>
+                                    <input type="range" min="8.0" max="25.0" step="0.5" value="12.0" class="bench-slider" id="dcf-cagr-slider" aria-label="Adjust CAGR">
                                 </div>
                             </div>
 
                             <div class="project-specs-list">
                                 <div class="spec-item">
-                                    <span class="spec-k">Explicit 5Y horizon PV</span>
+                                    <span class="spec-k">5Y horizon PV</span>
                                     <span class="spec-v" id="dcf-pv-explicit">$684M</span>
                                 </div>
                                 <div class="spec-item">
-                                    <span class="spec-k">Perpetual terminal PV</span>
+                                    <span class="spec-k">Terminal PV</span>
                                     <span class="spec-v" id="dcf-pv-terminal">$2966M</span>
                                 </div>
                             </div>
@@ -277,7 +271,7 @@
                             <figure class="workbench-figure">
                                 <img src="assets/images/smartflood-cover.webp" alt="Smart Flood Alert hardware probe telemetry dashboard" width="800" height="500" loading="eager">
                                 <figcaption class="workbench-figcaption">
-                                    ESP32 NodeMCU on GPIO 34 (12-bit SAR ADC), 50Hz hardware loop, 4000ms debounce filter, Meta WhatsApp Cloud API alert dispatch.
+                                    ESP32 GPIO 34 SAR ADC, 50Hz hardware loop, WhatsApp Cloud API.
                                 </figcaption>
                             </figure>
                         </div>
@@ -285,18 +279,18 @@
                             <div class="project-header-group">
                                 <span class="project-domain">Embedded IoT, Cloud Telemetry</span>
                                 <h3 class="project-heading">Smart Flood Alert</h3>
-                                <p class="project-summary">Urban flood telemetry with ESP32 edge probes, FastAPI ingestion, and WhatsApp alerts.</p>
+                                <p class="project-summary">IoT flood telemetry with ESP32 edge probes and WhatsApp alerts.</p>
                             </div>
                             <blockquote class="workbench-quote">
                                 <p class="workbench-quote-text">“Emergency notifications must meet people where they already are: immediately, with zero friction.”</p>
                             </blockquote>
                             <div class="project-specs-list">
                                 <div class="spec-item">
-                                    <span class="spec-k">Edge hardware</span>
+                                    <span class="spec-k">Hardware</span>
                                     <span class="spec-v">ESP32 NodeMCU, FC-28</span>
                                 </div>
                                 <div class="spec-item">
-                                    <span class="spec-k">Sampling rate</span>
+                                    <span class="spec-k">Sampling</span>
                                     <span class="spec-v">10 Hz, 4000ms debounce</span>
                                 </div>
                             </div>
@@ -313,7 +307,7 @@
                             <figure class="workbench-figure">
                                 <img src="assets/images/albumcanvas-cover.webp" alt="AlbumCanvas Android interface rendering AGSL blur shader" width="800" height="500" loading="lazy">
                                 <figcaption class="workbench-figcaption">
-                                    Android 12+ (API 31+), Kotlin 1.9, AndroidX Media3 / MediaSessionManager, 200ms ring buffer, &lt;=300ms crossfade, 120Hz &lt;8.2ms AGSL blur shader.
+                                    Android 12+, MediaSessionManager, 200ms buffer, 120Hz AGSL blur.
                                 </figcaption>
                             </figure>
                         </div>
@@ -321,18 +315,18 @@
                             <div class="project-header-group">
                                 <span class="project-domain">Android Systems, Media Engine</span>
                                 <h3 class="project-heading">AlbumCanvas</h3>
-                                <p class="project-summary">Live wallpaper and widget engine hooking Android MediaSessionManager to render OpenGL shaders.</p>
+                                <p class="project-summary">Android engine hooking MediaSessionManager to render OpenGL shaders.</p>
                             </div>
                             <blockquote class="workbench-quote">
                                 <p class="workbench-quote-text">“Interface elements should not fight with user content; they should emerge naturally from it.”</p>
                             </blockquote>
                             <div class="project-specs-list">
                                 <div class="spec-item">
-                                    <span class="spec-k">Core architecture</span>
+                                    <span class="spec-k">Stack</span>
                                     <span class="spec-v">Kotlin, Jetpack Compose</span>
                                 </div>
                                 <div class="spec-item">
-                                    <span class="spec-k">Media engine</span>
+                                    <span class="spec-k">Engine</span>
                                     <span class="spec-v">AndroidX Media3, AGSL</span>
                                 </div>
                             </div>
@@ -349,7 +343,7 @@
                             <figure class="workbench-figure">
                                 <img src="assets/images/financial-research-cover.webp" alt="Financial Research Platform two-stage DCF valuation model" width="800" height="500" loading="lazy">
                                 <figcaption class="workbench-figcaption">
-                                    Two-stage FCFF valuation model (NOPAT + D&amp;A - DeltaNWC - CapEx), explicit 5-year forecast horizon + Gordon Growth terminal value.
+                                    Two-stage FCFF model with explicit 5Y horizon and Gordon terminal value.
                                 </figcaption>
                             </figure>
                         </div>
@@ -357,23 +351,23 @@
                             <div class="project-header-group">
                                 <span class="project-domain">Quantitative Finance, Valuation</span>
                                 <h3 class="project-heading">Financial Research Platform</h3>
-                                <p class="project-summary">Equity valuation engine calculating multi-stage DCF models, WACC estimations, and sensitivities.</p>
+                                <p class="project-summary">Equity valuation engine calculating multi-stage DCF models and sensitivities.</p>
                             </div>
                             <blockquote class="workbench-quote">
                                 <p class="workbench-quote-text">“Valuation is neither pure science nor pure art; it is disciplined craft rooted in cash flow reality.”</p>
                             </blockquote>
                             <div class="project-specs-list">
                                 <div class="spec-item">
-                                    <span class="spec-k">Valuation model</span>
+                                    <span class="spec-k">Model</span>
                                     <span class="spec-v">Two-Stage FCFF, Gordon TV</span>
                                 </div>
                                 <div class="spec-item">
-                                    <span class="spec-k">Discount structure</span>
+                                    <span class="spec-k">Discount</span>
                                     <span class="spec-v">Dynamic CAPM WACC</span>
                                 </div>
                             </div>
                             <div class="project-links-row">
-                                <a href="financial-research.html" class="btn btn--primary">Inspect valuation model</a>
+                                <a href="financial-research.html" class="btn btn--primary">Inspect model</a>
                             </div>
                         </div>
                     </article>
@@ -384,7 +378,7 @@
                             <figure class="workbench-figure">
                                 <img src="assets/images/lessonplan-cover.webp" alt="LessonPlan Maker pedagogical curriculum workbench" width="800" height="500" loading="lazy">
                                 <figcaption class="workbench-figcaption">
-                                    Curriculum workbench implementing NCERT taxonomies and the NEP 2020 5E Inquiry Cycle for middle school teachers.
+                                    NCERT Middle Stage workbench implementing NEP 2020 5E Inquiry Cycle.
                                 </figcaption>
                             </figure>
                         </div>
@@ -399,11 +393,11 @@
                             </blockquote>
                             <div class="project-specs-list">
                                 <div class="spec-item">
-                                    <span class="spec-k">Backend stack</span>
+                                    <span class="spec-k">Stack</span>
                                     <span class="spec-v">Python, Flask, Jinja2</span>
                                 </div>
                                 <div class="spec-item">
-                                    <span class="spec-k">Pedagogy model</span>
+                                    <span class="spec-k">Pedagogy</span>
                                     <span class="spec-v">NEP 2020 5E Inquiry</span>
                                 </div>
                             </div>
@@ -422,7 +416,7 @@
             <div class="container">
                 <div class="section-head">
                     <h2 class="section-title">Technical index and audit trail</h2>
-                    <p class="section-desc">Multi-column verification records across edge sensing, mobile engines, and valuation pipelines.</p>
+                    <p class="section-desc">Verification records across edge sensing, mobile engines, and valuation pipelines.</p>
                 </div>
 
                 <!-- Category Filters -->
@@ -440,53 +434,45 @@
                         <thead>
                             <tr>
                                 <th scope="col">Identifier</th>
-                                <th scope="col">System name</th>
-                                <th scope="col">Discipline and stack</th>
-                                <th scope="col">Measured telemetry</th>
+                                <th scope="col">System</th>
+                                <th scope="col">Stack</th>
+                                <th scope="col">Telemetry</th>
                                 <th scope="col">State</th>
-                                <th scope="col">Audit link</th>
+                                <th scope="col">Link</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr class="index-table-row" data-category="iot">
                                 <td class="audit-id">NODE-01 / v2.4</td>
                                 <td class="audit-name">Smart Flood Alert</td>
-                                <td>ESP32, C++, FastAPI</td>
-                                <td class="audit-telemetry">12-bit SAR ADC GPIO 34 (50Hz)</td>
+                                <td>ESP32, C++</td>
+                                <td class="audit-telemetry">SAR ADC34 @ 50Hz</td>
                                 <td><span class="status-chip status-chip--ok">Nominal</span></td>
-                                <td><a href="smart-flood.html" class="footer-link">Inspect case</a></td>
+                                <td><a href="smart-flood.html" class="footer-link">Inspect</a></td>
                             </tr>
                             <tr class="index-table-row" data-category="android">
                                 <td class="audit-id">SVC-02 / v1.9</td>
                                 <td class="audit-name">AlbumCanvas</td>
-                                <td>Kotlin, Media3, AGSL</td>
-                                <td class="audit-telemetry">&lt;8.2ms @ 120Hz, &lt;=32MB LRU</td>
+                                <td>Kotlin, Media3</td>
+                                <td class="audit-telemetry">&lt;8.2ms AGSL, 32MB</td>
                                 <td><span class="status-chip status-chip--cool">Active</span></td>
-                                <td><a href="album-canvas.html" class="footer-link">Inspect case</a></td>
+                                <td><a href="album-canvas.html" class="footer-link">Inspect</a></td>
                             </tr>
                             <tr class="index-table-row" data-category="finance">
                                 <td class="audit-id">MOD-03 / v2.1</td>
                                 <td class="audit-name">Financial Research</td>
-                                <td>Two-Stage FCFF, TypeScript</td>
-                                <td class="audit-telemetry">+20.0% MoS ($137.95 EV $3.65B)</td>
+                                <td>Two-Stage FCFF</td>
+                                <td class="audit-telemetry">+20.0% MoS ($137.95)</td>
                                 <td><span class="status-chip status-chip--amber">Evaluated</span></td>
-                                <td><a href="financial-research.html" class="footer-link">Inspect model</a></td>
+                                <td><a href="financial-research.html" class="footer-link">Inspect</a></td>
                             </tr>
                             <tr class="index-table-row" data-category="pedagogy">
                                 <td class="audit-id">NCERT-04 / v1.2</td>
                                 <td class="audit-name">LessonPlan Maker</td>
-                                <td>JavaScript, Flask, Jinja2</td>
-                                <td class="audit-telemetry">NEP 2020 5E Inquiry Cycle</td>
+                                <td>JS, Flask</td>
+                                <td class="audit-telemetry">NEP 2020 5E</td>
                                 <td><span class="status-chip status-chip--ok">Verified</span></td>
-                                <td><a href="lessonplan-maker.html" class="footer-link">Inspect case</a></td>
-                            </tr>
-                            <tr class="index-table-row" data-category="pedagogy">
-                                <td class="audit-id">PORTAL-05 / v1.0</td>
-                                <td class="audit-name">EduCloud</td>
-                                <td>Modular Vanilla SPA</td>
-                                <td class="audit-telemetry">Multi-tenant institutional RBAC</td>
-                                <td><span class="status-chip status-chip--cool">Stable</span></td>
-                                <td><a href="projects.html" class="footer-link">Inspect portal</a></td>
+                                <td><a href="lessonplan-maker.html" class="footer-link">Inspect</a></td>
                             </tr>
                         </tbody>
                     </table>
@@ -499,60 +485,60 @@
             <div class="container">
                 <div class="section-head">
                     <h2 class="section-title">Technical disciplines and core stacks</h2>
-                    <p class="section-desc">Focused software engineering across low-level hardware, mobile platforms, and web services.</p>
+                    <p class="section-desc">Software engineering across edge hardware, mobile platforms, and valuation models.</p>
                 </div>
 
                 <div class="caps-grid">
                     <div class="cap-card">
                         <h3 class="cap-title">Embedded systems</h3>
-                        <p class="cap-body">ESP32 C++ firmware, ADC calibration, debounce filters, FastAPI telemetry.</p>
+                        <p class="cap-body">ESP32 firmware, ADC calibration, FastAPI.</p>
                     </div>
 
                     <div class="cap-card">
                         <h3 class="cap-title">Android systems</h3>
-                        <p class="cap-body">Kotlin architecture, Jetpack Compose, Media3 playback, OpenGL shaders.</p>
+                        <p class="cap-body">Kotlin, Media3 playback, AGSL shaders.</p>
                     </div>
 
                     <div class="cap-card">
                         <h3 class="cap-title">Web platforms</h3>
-                        <p class="cap-body">TypeScript, Python services, educational engines, mathematical valuation.</p>
+                        <p class="cap-body">TypeScript, Python, mathematical valuation.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Section 5: Profile & Identity (Fresher / Student Context) -->
+        <!-- Section 5: Profile & Identity -->
         <section class="section-block section-block--alt" id="about">
             <div class="container about-grid">
                 <div class="about-content-col">
                     <h2 class="section-title">About Darsheel Shokeen</h2>
-                    <p class="hero-lead">Computer science student and systems builder in Delhi.</p>
+                    <p class="hero-lead">Computer science student in Delhi.</p>
                     <p style="font-size: var(--text-md); line-height: 1.6; color: var(--color-ink-2);">
-                        I build software connecting hardware to reactive interfaces: ESP32 edge telemetry, Android Media3 services, and financial valuation engines. Open for engineering roles.
+                        Building software connecting hardware to reactive interfaces. Open for engineering roles.
                     </p>
                     <div class="project-specs-list">
                         <div class="spec-item">
                             <span class="spec-k">Academic standing</span>
-                            <span class="spec-v">Computer Science Undergraduate</span>
+                            <span class="spec-v">CS Undergraduate</span>
                         </div>
                         <div class="spec-item">
                             <span class="spec-k">Location</span>
                             <span class="spec-v">Delhi, India</span>
                         </div>
                         <div class="spec-item">
-                            <span class="spec-k">Primary languages</span>
-                            <span class="spec-v">Kotlin, Python, C++, TypeScript</span>
+                            <span class="spec-k">Languages</span>
+                            <span class="spec-v">Kotlin, Python, C++, TS</span>
                         </div>
                         <div class="spec-item">
-                            <span class="spec-k">Development philosophy</span>
-                            <span class="spec-v">Measure, build cleanly, test thoroughly</span>
+                            <span class="spec-k">Philosophy</span>
+                            <span class="spec-v">Measure, build cleanly, test</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="about-visual-col">
                     <div class="avatar-frame">
-                        <img src="assets/images/darsheel-avatar.gif" alt="Darsheel Shokeen animated profile signature" width="220" height="220" loading="lazy">
+                        <img src="assets/images/darsheel-avatar.gif" alt="Darsheel Shokeen profile signature" width="220" height="220" loading="lazy">
                     </div>
                 </div>
             </div>
@@ -566,7 +552,7 @@
             <div class="footer-grid">
                 <div class="footer-lead-col">
                     <span class="footer-brand-title">Darsheel Shokeen</span>
-                    <p class="footer-tagline">Building systems with precision. Open for software engineering opportunities.</p>
+                    <p class="footer-tagline">Building resilient systems. Open for engineering roles.</p>
                 </div>
                 <div class="footer-links-col">
                     <span class="footer-col-title">Direct contact</span>
